@@ -5,14 +5,11 @@ function MyPage({ children }) {
   return (
     <main>
       {/* Top header */}
-      <nav
-        className="navbar navbar-expand-lg navbar-light  pt-3 pb-3"
-        style={{ backgroundColor: "#F5F9F3" }}
-      >
+      <nav className="navbar navbar-expand-lg navbar-light  pt-3 pb-3">
         <div className="container">
           <Link to="/" className="navbar-brand" href="#">
-            <img src="/Dip.jpg" className="img-responsive" height="60" />
-            Dream Inspired Project
+            <img src="/Dip.jpeg" className="img-responsive" height="60" />
+            Dream Institution For Professionalism
           </Link>
 
           <button
@@ -27,34 +24,53 @@ function MyPage({ children }) {
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+            <ul className="navbar-nav ms-auto mb-2 mb-lg-0 ">
               <li className="nav-item">
-                <Link
-                  to="/help"
-                  className="nav-link actived"
-                  aria-current="page"
-                >
-                  Help
+                <Link to="/" className="nav-link actived" aria-current="page">
+                  Home
                 </Link>
               </li>
               <li className="nav-item">
-                <Link
-                  to="/about"
-                  className="nav-link actived"
-                  aria-current="page"
-                >
-                  About
+                <Link to="/" className="nav-link actived" aria-current="page">
+                  Mission
                 </Link>
               </li>
               <li className="nav-item">
-                <Link
-                  to="/contribute"
-                  className="nav-link actived"
-                  aria-current="page"
-                >
-                  Contribute
+                <Link to="/" className="nav-link actived" aria-current="page">
+                  Vision
                 </Link>
               </li>
+              <div className="d-flex" style={{ gap: "6px " }}>
+                <button
+                  type="button"
+                  class="btn btn-outline-success p-0 py-0 px-2"
+                  style={{ border: "2px solid #28a745" }}
+                >
+                  <li className="nav-item">
+                    <Link
+                      to="/login"
+                      className="nav-link actived"
+                      aria-current="page"
+                    >
+                      Signin
+                    </Link>
+                  </li>
+                </button>
+
+                <button type="button" class="btn btn-primary btn-sm py-0">
+                  <li className="nav-item">
+                    {" "}
+                    <Link
+                      to="/registeration"
+                      className="nav-link actived"
+                      aria-current="page"
+                      style={{ color: "white" }}
+                    >
+                      Signup
+                    </Link>
+                  </li>
+                </button>
+              </div>
             </ul>
           </div>
         </div>
@@ -66,7 +82,7 @@ function MyPage({ children }) {
 
       <footer
         className="container-fluid page-footer font-small pt-4"
-        style={{ backgroundColor: "#F5F9F3" }}
+        style={{ backgroundColor: "#BFD9FE" }}
       >
         <div className="container text-md-left">
           <div className="row">
@@ -114,7 +130,7 @@ function MyPage({ children }) {
 
         <div className="footer-copyright text-center py-3">
           © 2021 Copyright:
-          <a href="https://mdbootstrap.com/"> agbp.com</a>
+          <a href="https://mdbootstrap.com/"> dip.com</a>
         </div>
       </footer>
     </main>
