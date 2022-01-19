@@ -61,7 +61,7 @@ function MyPage({ children }) {
                   <li className="nav-item">
                     {" "}
                     <Link
-                      to="/registeration"
+                      to="/signup"
                       className="nav-link actived"
                       aria-current="page"
                       style={{ color: "white" }}

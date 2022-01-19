@@ -1,9 +1,8 @@
 import React from "react";
-import { MyPage } from "../components";
 import { Link } from "react-router-dom";
-import Mission from "./Mission";
-import Vision from "./Vision";
+import { Mission, Vision, MyPage } from "../../components";
 import Fade from "react-reveal/Fade";
+import styles from "./Home.module.css";
 
 function Home() {
   return (
@@ -25,14 +24,17 @@ function Home() {
                   facilisis
                 </h3>
               </div>
-              <div className="row find-input py-1 d-flex">
-                <div className="enter p-0">
+              <div
+                // className="row  py-1 d-flex"
+                className={` ${styles.findInput} row py-1 d-flex`}
+              >
+                <div className={` ${styles.enter} p-0`}>
                   <input
                     className="form-control"
                     placeholder="| Type Word Here"
                   />
                 </div>
-                <div className="press p-0">
+                <div className={` ${styles.press} p-0`}>
                   <Link to="/translatio">
                     <button className=" w-100">Find Now</button>
                   </Link>

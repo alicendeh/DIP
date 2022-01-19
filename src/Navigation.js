@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
-import Home from "./pages/Home";
-import Login from "./pages/Login";
-import Registration from "./pages/Registeration";
+import Home from "./pages/Home/Home";
+import Login from "./pages/Login/Login";
+import Registeration from "./pages/Registeration/Registeration";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 
 function ScrollToTop({ children }) {
@@ -19,7 +19,7 @@ function Navigation() {
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route exact path="/login" element={<Login />} />
-          <Route exact path="/signup" element={<Registration />} />
+          <Route exact path="/signup" element={<Registeration />} />
         </Routes>
       </ScrollToTop>
     </BrowserRouter>
