@@ -17,6 +17,8 @@
   height: 100vh;
   background-color: var(--paner_bckg);
   padding: 7px 12px;
+  position: fixed;
+  width: 100px;
 }
 
 .iconContainer {
@@ -34,8 +36,4 @@
 
 .logout {
   color: var(--primary);
-}
-i:hover {
-  cursor: pointer;
-  transition: 0.8s all;
 }

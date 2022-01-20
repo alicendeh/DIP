@@ -6,7 +6,7 @@ function AdminLayout({ children }) {
   return (
     <div className={styles.container}>
       <LeftNavigationBar />
-      {children}
+      <div className={styles.children}>{children}</div>
       <RightStatisticsSection />
     </div>
   );

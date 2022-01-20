@@ -1,33 +1,16 @@
 import React, { useState, useEffect } from "react";
 import styles from "./LeftNavigationBar.module.css";
 import { ICON_DATA_SET } from "../../../DATA";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 function LeftNavigationBar() {
-  const [iconDataSet, setIconDataSet] = useState([]);
-  const [prevActive, setPrevActive] = useState();
+  const location = useLocation();
+
+  const [currentPath, setCurrentPath] = useState();
 
   useEffect(() => {
-    setIconDataSet([...ICON_DATA_SET]);
-    setPrevActive(0);
+    setCurrentPath(location.pathname);
   }, []);
-
-  //set active item
-  const changeView = (index) => {
-    let newArray = [...iconDataSet];
-
-    newArray[prevActive] = {
-      ...newArray[prevActive],
-      isActive: false,
-    };
-
-    newArray[index] = {
-      ...newArray[index],
-      isActive: true,
-    };
-    setIconDataSet([...newArray]);
-    setPrevActive(index);
-  };
 
   return (
     <div className={`containerColumn ${styles.container}`}>
@@ -35,13 +18,13 @@ function LeftNavigationBar() {
         <img src="/logo_without_bg.png" width="90" alt="logo" />
       </div>
       <div className={`containerColumn ${styles.iconContainer}`}>
-        {iconDataSet.map((icon, index) => (
-          <Link to={icon.path}>
+        {ICON_DATA_SET.map((icon, index) => (
+          <Link to={icon.path} key={icon.name}>
             <i
-              key={icon.name}
-              onClick={() => changeView(index)}
               className={`icon ${icon.name}  ${
-                icon.isActive ? `${styles.isActive}` : `${styles.notActive}`
+                icon.path === currentPath
+                  ? `${styles.isActive}`
+                  : `${styles.notActive}`
               }`}
             ></i>
           </Link>
