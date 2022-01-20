@@ -1,21 +1,6 @@
-:root {
-  --primary: #005faf;
-  --secondary: #b4b4b4;
-  --primart_dark_violet: hsl(257, 27%, 26%);
-  --black: #3c3c3c;
-  --purple: #842287;
-  --yellow: #f7ad00;
-  --green: #41a504;
-  --red: rgba(167, 18, 18, 0.71);
-  --white: #fff;
-  --primary-light: rgba(0, 95, 176, 0.7);
-  --white: #fff;
-  --paner_bckg: #f5f6fb;
-}
-
 .container {
   height: 100vh;
-  background-color: var(--paner_bckg);
+  background-color: var(--panel_bckg);
   padding: 7px 12px;
   position: fixed;
   width: 100px;
