@@ -11,3 +11,10 @@
   --primary-cyan: rgba(0, 95, 176, 0.7);
   --white: #fff;
 }
+
+.container {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
