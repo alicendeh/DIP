@@ -1,10 +1,10 @@
 import React from "react";
-import styles from "./AdminLayout";
+import styles from "./AdminLayout.module.css";
 import { LeftNavigationBar, RightStatisticsSection } from "../../../components";
 
 function AdminLayout({ children }) {
   return (
-    <div>
+    <div className={styles.container}>
       <LeftNavigationBar />
       {children}
       <RightStatisticsSection />
