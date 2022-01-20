@@ -32,7 +32,7 @@ function RightStatisticsSection() {
           </div>
           <div className="pt-4">
             {STATISTICS_DATA.map((statistic, index) => (
-              <div className={`pt-4`}>
+              <div className={`pt-4 ${styles.stats}`}>
                 <div className={`containerRow`}>
                   <p>{statistic.label} </p>
                   <p>

@@ -7,18 +7,20 @@ function AllUsers() {
     <AdminLayout>
       all users
       <div
-        style={{
-          // backgroundColor: "red",
-          height: "45vh",
-          fontSize: 99,
-        }}
+        style={
+          {
+            // backgroundColor: "red",
+            // height: "45vh",
+            // fontSize: 99,
+          }
+        }
       >
         hey
       </div>
       <div
         style={{
-          // backgroundColor: "green",
-          height: "95vh",
+          backgroundColor: "green",
+          // width: "0%",
         }}
       >
         sup
