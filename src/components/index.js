@@ -6,6 +6,7 @@ import RightStatisticsSection from "./Admin/RightStatisticsSection/RightStatisti
 import Avater from "./Avater/Avater";
 import Header from "./Admin/Header/Header";
 import PendingCard from "./Admin/PendingCard/PendingCard";
+import PlanCard from "./Admin/PlanCard/PlanCard";
 
 export {
   MyPage,
@@ -16,4 +17,5 @@ export {
   Avater,
   Header,
   PendingCard,
+  PlanCard,
 };

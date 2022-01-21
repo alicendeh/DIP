@@ -1,5 +1,9 @@
 .colorContainer {
-  background-color: var(--purple);
+  background-color: var(--green);
+  width: 7px;
+}
+.colorContainerPremium {
+  background-color: var(--yellow);
   width: 7px;
 }
 .line {
@@ -25,7 +29,6 @@
   height: 65px;
   transition: 1s transform;
 }
-
 .card:hover {
   transform: translateX(30px);
 }

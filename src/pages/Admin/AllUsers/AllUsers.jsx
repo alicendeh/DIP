@@ -1,9 +1,9 @@
 import React from "react";
 import styles from "./AllUsers.module.css";
 import { AdminLayout } from "../../../pages";
-import { Header, PendingCard } from "../../../components";
+import { Header, PendingCard, PlanCard } from "../../../components";
+import { PENDING_USERS, CONFIREMED_USERS } from "../../../DATA";
 
-import { PENDING_USERS } from "../../../DATA";
 function AllUsers() {
   return (
     <AdminLayout>
@@ -11,6 +11,11 @@ function AllUsers() {
       <div>
         {PENDING_USERS.map((user) => (
           <PendingCard user={user} />
+        ))}
+      </div>
+      <div>
+        {CONFIREMED_USERS.map((user) => (
+          <PlanCard user={user} />
         ))}
       </div>
     </AdminLayout>
