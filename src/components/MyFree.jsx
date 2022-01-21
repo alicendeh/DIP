@@ -1,11 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
-function MyPage({ children }) {
+import styles from "../pages/Dashboard/Dashboard.module.css";
+function MyFree({ children }) {
   return (
     <main>
       {/* Top header */}
-      <nav className="navbar navbar-expand-lg navbar-light  pt-3 pb-3">
+      <nav
+        className="navbar navbar-expand-lg navbar-light  pt-3 pb-3"
+        style={{ boxShadow: "rgba(17, 12, 46, 0.15) 0px 48px 100px 0px" }}
+      >
         <div className="container">
           <Link to="/" className="navbar-brand" href="#">
             <img src="/Dip.jpeg" className="img-responsive" height="60" />
@@ -24,59 +27,43 @@ function MyPage({ children }) {
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav ms-auto mb-2 mb-lg-0 ">
-              <li className="nav-item">
+            <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+              <li className="nav-item pt-4">
                 <Link to="/" className="nav-link actived" aria-current="page">
-                  Home
+                  Hi, Fodjo Frank
                 </Link>
               </li>
-              <li className="nav-item">
-                <Link to="/" className="nav-link actived" aria-current="page">
-                  Mission
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link to="/" className="nav-link actived" aria-current="page">
-                  Vision
-                </Link>
-              </li>
-              <div className="d-flex" style={{ gap: "6px " }}>
-                <button
-                  type="button"
-                  class="btn btn-outline-success p-0 py-0 px-2"
-                  style={{ border: "2px solid #28a745" }}
-                >
-                  <li className="nav-item">
-                    <Link
-                      to="/login"
-                      className="nav-link actived"
-                      aria-current="page"
-                    >
-                      Signin
-                    </Link>
-                  </li>
-                </button>
 
-                <button type="button" class="btn btn-primary btn-sm py-0">
-                  <li className="nav-item">
-                    {" "}
-                    <Link
-                      to="/signup"
-                      className="nav-link actived"
-                      aria-current="page"
-                      style={{ color: "white" }}
-                    >
-                      Signup
-                    </Link>
-                  </li>
-                </button>
+              {/* <div className="d-flex" style={{ gap: "6px " }}> */}
+              <div
+                className="profile rounded-circle"
+                style={{
+                  width: "70px",
+                  height: "70px",
+                  borderRadius: "50%",
+                  backgroundColor: "violet",
+                }}
+              >
+                <img
+                  src="/7.jpeg"
+                  alt=""
+                  style={{ width: "100%", height: "100%", borderRadius: "50%" }}
+                />
               </div>
+              {/* </div> */}
             </ul>
           </div>
         </div>
       </nav>
 
-      <div className="container">{children}</div>
+      <div className={`${styles.containers} m-0 p-0`}>
+        <div
+          className="container  d-flex justify-content-center align-items-center"
+          style={{ margin: "0em !important" }}
+        >
+          {children}
+        </div>
+      </div>
 
       {/* Footer */}
 
@@ -99,13 +86,28 @@ function MyPage({ children }) {
 
               <ul className="list-unstyled">
                 <li>
-                  <a href="#!">Home page</a>
+                  <a
+                    href="#!"
+                    style={{ textDecoration: "none", color: "black" }}
+                  >
+                    Home page
+                  </a>
                 </li>
                 <li>
-                  <a href="#!">Help</a>
+                  <a
+                    href="#!"
+                    style={{ textDecoration: "none", color: "black" }}
+                  >
+                    Help
+                  </a>
                 </li>
                 <li>
-                  <a href="#!">Contribute</a>
+                  <a
+                    href="#!"
+                    style={{ textDecoration: "none", color: "black" }}
+                  >
+                    Contribute
+                  </a>
                 </li>
               </ul>
             </div>
@@ -115,17 +117,26 @@ function MyPage({ children }) {
 
               <ul className="list-unstyled">
                 <li>
-                  <a href="#!" style={{ textDecoration: "none" }}>
+                  <a
+                    href="#!"
+                    style={{ textDecoration: "none", color: "black" }}
+                  >
                     +222 222 222 222
                   </a>
                 </li>
                 <li>
-                  <a href="#!" style={{ textDecoration: "none" }}>
+                  <a
+                    href="#!"
+                    style={{ textDecoration: "none", color: "black" }}
+                  >
                     info@agbp.com
                   </a>
                 </li>
                 <li>
-                  <a href="#!" style={{ textDecoration: "none" }}>
+                  <a
+                    href="#!"
+                    style={{ textDecoration: "none", color: "black" }}
+                  >
                     Yaounde, Lorem ipsum dolo
                   </a>
                 </li>
@@ -136,11 +147,17 @@ function MyPage({ children }) {
 
         <div className="footer-copyright text-center py-3">
           © 2021 Copyright:
-          <a href="https://mdbootstrap.com/"> dip.com</a>
+          <a
+            href="https://mdbootstrap.com/"
+            style={{ textDecoration: "none", color: "black" }}
+          >
+            {" "}
+            dip.com
+          </a>
         </div>
       </footer>
     </main>
   );
 }
 
-export default MyPage;
+export default MyFree;

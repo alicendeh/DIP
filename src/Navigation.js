@@ -4,6 +4,7 @@ import Login from "./pages/Login/Login";
 import Registeration from "./pages/Registeration/Registeration";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { AdminLayout, AllUsers, Books, Upload, Profile } from "./pages";
+import Dashboard from "./pages/Dashboard/Dashboard";
 
 function ScrollToTop({ children }) {
   const { pathname } = useLocation();
@@ -26,6 +27,8 @@ function Navigation() {
           <Route exact path="/books" element={<Books />} />
           <Route exact path="/upload" element={<Upload />} />
           <Route exact path="/profile" element={<Profile />} />
+
+          <Route exact path="/dashboard" element={<Dashboard />} />
         </Routes>
       </ScrollToTop>
     </BrowserRouter>

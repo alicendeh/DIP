@@ -1,7 +1,23 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./Login.module.css";
 import { Link } from "react-router-dom";
 function Login() {
+  const [toggleEyePassword, setToggleEyePassword] = useState(false);
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+  const handletoggleEyePassword = () => {
+    setToggleEyePassword(!toggleEyePassword);
+  };
+  const { email, password } = formData;
+  const onchange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+  const onsubmit = async (e) => {
+    e.preventDefault();
+  };
+
   return (
     <div className={`${styles.main}`}>
       <div className={styles.box}>
@@ -59,7 +75,7 @@ function Login() {
                     id="inputEmail4"
                   />
                 </div>
-                <div class="col-md-12">
+                {/* <div class="col-md-12">
                   <label for="inputPassword4" className="form-label">
                     Password
                   </label>
@@ -68,6 +84,46 @@ function Login() {
                     className="form-control"
                     id="inputPassword4"
                   />
+                </div> */}
+                <div class="col-md-12">
+                  <label for="inputPassword4" className="form-label">
+                    Password
+                  </label>
+                  <div
+                    className="inputPass"
+                    style={{
+                      backgroundColor: "#fff",
+                      display: "flex",
+                      alignItems: "center",
+                      border: "1px solid #ced4da",
+                      borderRadius: 4,
+                    }}
+                  >
+                    <input
+                      style={{
+                        border: "none",
+                        outline: "none",
+                        borderStyle: "none",
+                      }}
+                      type={toggleEyePassword ? "text" : "password"}
+                      className="form-control"
+                      id="inputPassword4"
+                      name="password"
+                      value={password}
+                      onChange={(e) => onchange(e)}
+                      required
+                    />
+
+                    <i
+                      class={
+                        toggleEyePassword
+                          ? "far fa-eye mr-2"
+                          : "fas fa-eye-slash mr-2"
+                      }
+                      style={{ color: "#ccc", cursor: "pointer" }}
+                      onClick={handletoggleEyePassword}
+                    ></i>
+                  </div>
                 </div>
                 <div class="col-12">
                   <button type="submit" className="col-12 btn btn-primary ">

@@ -1,17 +1,37 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Registeration.module.css";
 import { Link } from "react-router-dom";
-
 function Registeration() {
-  const [put, setPut] = useState(false);
-  const [put1, setPut1] = useState(false);
-  const [validated, setValidated] = useState(false);
-  const handlePut = () => {
-    setPut(!put);
-    setPut1(!put1);
+  const [toggleEyePassword, setToggleEyePassword] = useState(false);
+  const [toggleEyePassword1, setToggleEyePassword1] = useState(false);
+  const [validationPassword, setValidationPassword] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    sponsorName: "",
+    upLineLeadersName: "",
+    password: "",
+    password2: "",
+  });
+  const handletoggleEyePassword = () => {
+    setToggleEyePassword(!toggleEyePassword);
   };
-  const handlePut1 = () => {
-    setPut1(!put1);
+  const handletoggleEyePassword1 = () => {
+    setToggleEyePassword1(!toggleEyePassword1);
+  };
+  const { name, email, sponsorName, leadersName, password, password2 } =
+    formData;
+
+  const onchange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+  const onsubmit = async (e) => {
+    e.preventDefault();
+    if (password !== password2) {
+      setValidationPassword(true);
+    } else {
+      // register({ name, lname, gender, email, password });
+    }
   };
 
   return (
@@ -32,7 +52,7 @@ function Registeration() {
               </p>
             </div>
             <div className="formsap row d-flex justify-content-center align-items-center">
-              <form class="row g-3 m-0 ">
+              <form class="row g-3 m-0 " onSubmit={(e) => onsubmit(e)}>
                 <div className="col-md-6">
                   <label for="validationCustom01" class="form-label">
                     Name
@@ -41,6 +61,9 @@ function Registeration() {
                     type="name"
                     className={`${styles.int} form-control`}
                     id="validationCustom01"
+                    name="name"
+                    value={name}
+                    onChange={(e) => onchange(e)}
                     required
                   />
                   <div class="invalid-feedback">
@@ -55,6 +78,10 @@ function Registeration() {
                     type="text"
                     className={`${styles.int} form-control`}
                     id="inputEmail4"
+                    name="email"
+                    value={email}
+                    onChange={(e) => onchange(e)}
+                    required
                   />
                 </div>
                 <div class="col-md-12">
@@ -65,6 +92,10 @@ function Registeration() {
                     type="text"
                     className={`${styles.int} form-control`}
                     id="inputEmail4"
+                    name="sponsorName"
+                    value={sponsorName}
+                    onChange={(e) => onchange(e)}
+                    required
                   />
                 </div>
                 <div class="col-md-12">
@@ -75,6 +106,10 @@ function Registeration() {
                     type="text"
                     className={`${styles.int} form-control`}
                     id="inputEmail4"
+                    name="upLineLeadersName"
+                    value={leadersName}
+                    onChange={(e) => onchange(e)}
+                    required
                   />
                 </div>
                 <div class="col-md-6">
@@ -82,12 +117,14 @@ function Registeration() {
                     Password
                   </label>
                   <div
-                    className="inputPass"
+                    className="inputPass "
                     style={{
                       backgroundColor: "#fff",
                       display: "flex",
                       alignItems: "center",
-                      border: "1px solid #ced4da",
+                      border: validationPassword
+                        ? "1px solid red"
+                        : "1px solid #ced4da",
                       borderRadius: 4,
                     }}
                   >
@@ -97,29 +134,39 @@ function Registeration() {
                         outline: "none",
                         borderStyle: "none",
                       }}
-                      type={put1 ? "text" : "password"}
+                      type={toggleEyePassword1 ? "text" : "password"}
                       className="form-control"
                       id="inputPassword4"
+                      name="password"
+                      value={password}
+                      onChange={(e) => onchange(e)}
+                      required
                     />
 
                     <i
-                      class={put1 ? "far fa-eye mr-2" : "fas fa-eye-slash mr-2"}
+                      class={
+                        toggleEyePassword1
+                          ? "far fa-eye mr-2"
+                          : "fas fa-eye-slash mr-2"
+                      }
                       style={{ color: "#ccc", cursor: "pointer" }}
-                      onClick={handlePut1}
+                      onClick={handletoggleEyePassword1}
                     ></i>
                   </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-6 ">
                   <label for="inputPassword4" className="form-label">
                     Confirm Password
                   </label>
                   <div
-                    className="inputPass"
+                    className="inputPass "
                     style={{
                       backgroundColor: "#fff",
                       display: "flex",
                       alignItems: "center",
-                      border: "1px solid #ced4da",
+                      border: validationPassword
+                        ? "1px solid red"
+                        : "1px solid #ced4da",
                       borderRadius: 4,
                     }}
                   >
@@ -129,17 +176,36 @@ function Registeration() {
                         outline: "none",
                         borderStyle: "none",
                       }}
-                      type={put ? "text" : "password"}
+                      type={toggleEyePassword ? "text" : "password"}
                       className="form-control"
                       id="inputPassword4"
+                      name="password2"
+                      value={password2}
+                      onChange={(e) => onchange(e)}
+                      required
                     />
 
                     <i
-                      class={put ? "far fa-eye mr-2" : "fas fa-eye-slash mr-2"}
+                      class={
+                        toggleEyePassword
+                          ? "far fa-eye mr-2"
+                          : "fas fa-eye-slash mr-2"
+                      }
                       style={{ color: "#ccc", cursor: "pointer" }}
-                      onClick={handlePut}
+                      onClick={handletoggleEyePassword}
                     ></i>
                   </div>
+                  <span
+                    style={{ display: validationPassword ? "block" : "none" }}
+                  >
+                    {" "}
+                    <p
+                      className="m-0 p-0"
+                      style={{ color: "red", fontSize: "11px" }}
+                    >
+                      Password Does Not Match
+                    </p>{" "}
+                  </span>
                 </div>
                 <div class="col-12">
                   <button type="submit" className="col-12 btn btn-primary ">

@@ -8,6 +8,8 @@ import Header from "./Admin/Header/Header";
 import PendingCard from "./Admin/PendingCard/PendingCard";
 import PlanCard from "./Admin/PlanCard/PlanCard";
 import BookCard from "./Admin/BookCard/BookCard";
+import DashPage from "./DashPage";
+import MyFree from "./MyFree";
 
 export {
   MyPage,
@@ -19,5 +21,8 @@ export {
   Header,
   PendingCard,
   PlanCard,
-  BookCard,
+  BookCard, DashPage, MyFree
 };
+
+
+
