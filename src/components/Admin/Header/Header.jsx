@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Header.module.css";
+import { Dropdown } from "react-bootstrap";
 
 function Header({ hidden, title }) {
   const [searchValue, setSearchValue] = useState("");
@@ -20,7 +21,7 @@ function Header({ hidden, title }) {
       ${hidden && `${styles.hideContainer}`}
       `}
       >
-        <i className="fas fa-search" value={searchValue}></i>
+        <i className={`fas fa-search  containerCenter`} value={searchValue}></i>
         <input
           type="text"
           value={searchValue}
@@ -30,11 +31,25 @@ function Header({ hidden, title }) {
         />
         {searchValue.length >= 1 ? (
           <i
-            className={`fas fa-times ${styles.cross}`}
+            className={`fas fa-times  ${styles.cross}`}
             onClick={clearInput}
           ></i>
         ) : (
-          <i className="fas fa-chevron-down "></i>
+          <Dropdown>
+            <Dropdown.Toggle
+              style={{
+                fontSize: "25px",
+                outline: "none",
+              }}
+              variant="white"
+              id="dropdown-basic"
+            ></Dropdown.Toggle>
+
+            <Dropdown.Menu>
+              <Dropdown.Item href="#/action-1">Free </Dropdown.Item>
+              <Dropdown.Item href="#/action-2">Premium </Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
         )}
       </div>
     </div>
