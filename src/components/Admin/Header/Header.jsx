@@ -29,7 +29,10 @@ function Header({ hidden, title }) {
           placeholder="Search..."
         />
         {searchValue.length >= 1 ? (
-          <i className="fas fa-times" onClick={clearInput}></i>
+          <i
+            className={`fas fa-times ${styles.cross}`}
+            onClick={clearInput}
+          ></i>
         ) : (
           <i className="fas fa-chevron-down "></i>
         )}

@@ -121,3 +121,22 @@ export const CONFIREMED_USERS = [
     plan: "Free",
   },
 ];
+
+export const BOOKS_DATA_SET = [
+  {
+    date: "01 Feb 2019",
+    name: "How to be rich",
+    avater: "/cover_page.png",
+    author: "Alice Ndeh",
+    plan: "Free",
+    views: "96 views",
+  },
+  {
+    date: "01 Feb 2019",
+    name: "How to be rich",
+    avater: "/cover_page.png",
+    author: "Samson Harp",
+    plan: "Premium",
+    views: "224 views",
+  },
+];

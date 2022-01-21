@@ -15,3 +15,7 @@ i {
 .hideContainer {
   display: none;
 }
+
+.cross:hover {
+  cursor: pointer;
+}

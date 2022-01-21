@@ -1,5 +1,4 @@
 import React from "react";
-import styles from "./AllUsers.module.css";
 import { AdminLayout } from "../../../pages";
 import { Header, PendingCard, PlanCard } from "../../../components";
 import { PENDING_USERS, CONFIREMED_USERS } from "../../../DATA";
