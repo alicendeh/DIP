@@ -5,7 +5,7 @@ import { Avater } from "../../../components";
 function PendingCard({ user }) {
   const { name, email, avater, plan, date } = user;
   return (
-    <div>
+    <div className={styles.mainCOntainer}>
       <div className={styles.card}>
         <div className={styles.colorContainer}></div>
         <div
@@ -30,7 +30,14 @@ function PendingCard({ user }) {
             <span className={styles.email}> {user.email}</span>
           </div>
         </div>
-        <div>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
           <span className={styles.usersPlan}>{user.plan} </span>
           <div className={`${styles.pendingContianer} `}>
             <div className={styles.round}></div>
@@ -38,8 +45,12 @@ function PendingCard({ user }) {
           </div>
         </div>
         <div className="containerCenter">
-          <div className="btn btn-primary mr-3">Accept</div>
-          <div className="btn btn-danger mr-3">Decline</div>
+          <div className={`btn btn-primary mr-3  ${styles.buttons}`}>
+            Accept
+          </div>
+          <div className={`btn btn-danger mr-3 ${styles.buttons} `}>
+            Decline
+          </div>
         </div>
       </div>
     </div>

@@ -22,3 +22,9 @@
 .logout {
   color: var(--primary);
 }
+
+@media (max-width: 477px) {
+  .container {
+    display: none;
+  }
+}

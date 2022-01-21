@@ -57,3 +57,19 @@
   font-size: 11px;
   color: #dad104;
 }
+
+@media (max-width: 943px) {
+  .mainCOntainer,
+  .usersPlan,
+  .txt,
+  .txtContainer,
+  .pendingContianer {
+    font-size: 10px;
+  }
+  .buttons {
+    font-size: 7px !important;
+  }
+  .card:hover {
+    transform: translateX(10px);
+  }
+}

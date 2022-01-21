@@ -22,7 +22,7 @@ function PlanCard({ user }) {
             flexDirection: "column",
           }}
         >
-          {user.date}
+          <span className={styles.dt}> {user.date}</span>
         </div>
         <div className={`containerCenter`}>
           <div className={styles.line}></div>
@@ -36,7 +36,14 @@ function PlanCard({ user }) {
             <span className={styles.email}> {user.email}</span>
           </div>
         </div>
-        <div>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
           <span className={styles.usersPlan}>{user.plan} </span>
           <div className={`${styles.pendingContianer} `}>
             <div className={styles.round}></div>
@@ -44,10 +51,12 @@ function PlanCard({ user }) {
           </div>
         </div>
         <div
-          className="containerCenter"
-          style={{
-            width: "200px",
-          }}
+          style={
+            {
+              // width: "200px",
+            }
+          }
+          className={` containerCenter ${styles.imgContainer}`}
         >
           <img src="/Group.png" alt="tick-icon" />
         </div>
