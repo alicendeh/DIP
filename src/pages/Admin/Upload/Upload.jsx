@@ -1,9 +1,14 @@
 import React from "react";
-import styles from "./Upload.css";
-import { AdminLayout } from "../../../pages";
+import styles from "./Upload.module.css";
+import { AdminLayout } from "../..";
+import { Header } from "../../../components";
 
 function Upload() {
-  return <AdminLayout>Upload</AdminLayout>;
+  return (
+    <AdminLayout>
+      <Header title={"Upload"} hidden />
+    </AdminLayout>
+  );
 }
 
 export default Upload;

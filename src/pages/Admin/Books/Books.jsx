@@ -1,9 +1,12 @@
 import React from "react";
+import styles from "./Books.module.css";
 import { AdminLayout } from "../../../pages";
+import { Header } from "../../../components";
+
 function Books() {
   return (
     <AdminLayout>
-      <div>Very good alice ndeh</div>
+      <Header title={"Books"} />
     </AdminLayout>
   );
 }

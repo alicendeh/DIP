@@ -52,3 +52,42 @@ export const COLOR_ARRAY = [
   "var(--primart_dark_violet)",
   "var(--purple)",
 ];
+
+export const PENDING_USERS = [
+  {
+    date: "23 Dec 2021",
+    name: "Maria Ballies",
+    avater: "/cld-sample.jpg",
+    email: "maria@gmail.com",
+    plan: "Free",
+  },
+  {
+    date: "23 Dec 2021",
+    name: "Yannick Noah",
+    avater: "/cld-sample.jpg",
+    email: "maria@gmail.com",
+    plan: "Premium",
+  },
+  {
+    date: "23 Dec 2021",
+    name: "Frank Mael",
+    avater: "/cld-sample.jpg",
+    email: "maria@gmail.com",
+    plan: "Free",
+  },
+  // {
+  //   date: "22 Dec 2021",
+  //   name: "Jack Forge",
+  //   avater: "/2.jpg",
+  //   email: "jack@gmail.com",
+  //   plan: "free",
+  // },
+
+  // {
+  //   date: "22 Dec 2021",
+  //   name: "Jack Forge",
+  //   avater: "/2.jpg",
+  //   email: "jack@gmail.com",
+  //   plan: "free",
+  // },
+];

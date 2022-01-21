@@ -4,6 +4,8 @@ import Mission from "./Mission";
 import LeftNavigationBar from "./Admin/LeftNavigationBar/LeftNavigationBar";
 import RightStatisticsSection from "./Admin/RightStatisticsSection/RightStatisticsSection";
 import Avater from "./Avater/Avater";
+import Header from "./Admin/Header/Header";
+import PendingCard from "./Admin/PendingCard/PendingCard";
 
 export {
   MyPage,
@@ -12,4 +14,6 @@ export {
   LeftNavigationBar,
   RightStatisticsSection,
   Avater,
+  Header,
+  PendingCard,
 };

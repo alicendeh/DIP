@@ -1,29 +1,17 @@
 import React from "react";
-import styles from "./AllUsers";
+import styles from "./AllUsers.module.css";
 import { AdminLayout } from "../../../pages";
+import { Header, PendingCard } from "../../../components";
 
+import { PENDING_USERS } from "../../../DATA";
 function AllUsers() {
   return (
     <AdminLayout>
-      all users
-      <div
-        style={
-          {
-            // backgroundColor: "red",
-            // height: "45vh",
-            // fontSize: 99,
-          }
-        }
-      >
-        hey
-      </div>
-      <div
-        style={{
-          backgroundColor: "green",
-          // width: "0%",
-        }}
-      >
-        sup
+      <Header title={"Users"} />
+      <div>
+        {PENDING_USERS.map((user) => (
+          <PendingCard user={user} />
+        ))}
       </div>
     </AdminLayout>
   );
