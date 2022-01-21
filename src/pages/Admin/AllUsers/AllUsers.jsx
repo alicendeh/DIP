@@ -9,13 +9,17 @@ function AllUsers() {
     <AdminLayout>
       <Header title={"Users"} />
       <div>
-        {PENDING_USERS.map((user) => (
-          <PendingCard user={user} />
+        {PENDING_USERS.map((user, index) => (
+          <div key={index}>
+            <PendingCard user={user} index={index} />
+          </div>
         ))}
       </div>
       <div>
-        {CONFIREMED_USERS.map((user) => (
-          <PlanCard user={user} />
+        {CONFIREMED_USERS.map((user, index) => (
+          <div key={index}>
+            <PlanCard user={user} />
+          </div>
         ))}
       </div>
     </AdminLayout>
