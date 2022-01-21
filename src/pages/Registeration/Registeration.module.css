@@ -89,6 +89,7 @@
   }
   .box {
     width: 90%;
+    height: fit-content;
   }
   .firstPart {
     display: none;

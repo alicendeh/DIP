@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styles from "../pages/Dashboard/Dashboard.module.css";
-function DashPage({ children }) {
+function MyFree({ children }) {
   return (
     <main>
       {/* Top header */}
@@ -160,4 +160,4 @@ function DashPage({ children }) {
   );
 }
 
-export default DashPage;
+export default MyFree;

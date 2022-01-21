@@ -36,9 +36,9 @@ function Dashboard() {
   const [modalShow, setModalShow] = React.useState(false);
   return (
     <DashPage>
-      <div className={`${styles.main1} row pt-5 pb-4 d-flex `}>
+      <div className={`${styles.main1} row whole pt-5 pb-4 d-flex `}>
         <div
-          className="col-lg-4"
+          className="col-lg-4 col-md-12 col-sm-12 "
           style={{
             borderRadius: "10px",
             border: "3px solid #009717",
@@ -126,7 +126,7 @@ function Dashboard() {
           </div>
         </div>
         <div
-          className="col-lg-6"
+          className="col-lg-6 col-md-12 col-sm-12"
           style={{ borderRadius: "10px", border: "3px solid #005FB0" }}
         >
           <div className="text-center pt-3">

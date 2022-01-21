@@ -117,7 +117,7 @@ function Registeration() {
                     Password
                   </label>
                   <div
-                    className="inputPass"
+                    className="inputPass "
                     style={{
                       backgroundColor: "#fff",
                       display: "flex",
@@ -154,12 +154,12 @@ function Registeration() {
                     ></i>
                   </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-6 ">
                   <label for="inputPassword4" className="form-label">
                     Confirm Password
                   </label>
                   <div
-                    className="inputPass"
+                    className="inputPass "
                     style={{
                       backgroundColor: "#fff",
                       display: "flex",
