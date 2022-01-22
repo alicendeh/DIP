@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { AllUsers, Books, Upload, Profile } from "./pages";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import NotFound from "./pages/NotFound/NotFound";
+import Upgrade from "./pages/Upgrade/Upgrade";
 
 function ScrollToTop({ children }) {
   const { pathname } = useLocation();
@@ -28,7 +29,7 @@ function Navigation() {
           <Route exact path="/upload" element={<Upload />} />
           <Route exact path="/profile" element={<Profile />} />
           <Route exact path="/dashboard" element={<Dashboard />} />
-
+          <Route exact path="/upgradetopremium" element={<Upgrade />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </ScrollToTop>
