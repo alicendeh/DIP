@@ -4,6 +4,7 @@ import { Dropdown } from "react-bootstrap";
 
 function Header({ hidden, title }) {
   const [searchValue, setSearchValue] = useState("");
+  const [currentSelectValue, setcurrentSelectValue] = useState("");
 
   const search = (e) => {
     setSearchValue(e.target.value);
@@ -11,6 +12,9 @@ function Header({ hidden, title }) {
 
   const clearInput = () => {
     setSearchValue("");
+  };
+  const cancelMode = () => {
+    setcurrentSelectValue("");
   };
 
   return (
@@ -22,21 +26,46 @@ function Header({ hidden, title }) {
       `}
       >
         <i className={`fas fa-search  containerCenter`} value={searchValue}></i>
-        <input
-          type="text"
-          value={searchValue}
-          onChange={(e) => search(e)}
-          className={styles.input}
-          placeholder="Search..."
-        />
+        {currentSelectValue.length > 0 ? (
+          <div className={`${styles.selectContainer} containerCenter`}>
+            {currentSelectValue === "#/free" ? (
+              <div className={`${styles.free} ${styles.mode}`}>
+                <span>free</span>
+                <div className={styles.cancelFree}>
+                  <i
+                    onClick={cancelMode}
+                    className={`fas fa-times pr-3 d-flex-end  ${styles.cross}`}
+                  ></i>
+                </div>
+              </div>
+            ) : (
+              <div className={`containerRow ${styles.premium} ${styles.mode}`}>
+                <span>Premium</span>
+                <i
+                  onClick={cancelMode}
+                  className={`fas fa-times pr-3 d-flex-end  ${styles.cross}`}
+                ></i>
+              </div>
+            )}
+          </div>
+        ) : (
+          <input
+            type="text"
+            value={searchValue}
+            onChange={(e) => search(e)}
+            className={styles.input}
+            placeholder="Search..."
+          />
+        )}
         {searchValue.length >= 1 ? (
           <i
             className={`fas fa-times pr-3 containerCenter  ${styles.cross}`}
             onClick={clearInput}
           ></i>
         ) : (
-          <Dropdown>
+          <Dropdown onSelect={(e) => setcurrentSelectValue(e)}>
             <Dropdown.Toggle
+              // onSelect={(e) => console.log("sup")}
               style={{
                 fontSize: "25px",
                 outline: "none",
@@ -46,8 +75,8 @@ function Header({ hidden, title }) {
             ></Dropdown.Toggle>
 
             <Dropdown.Menu>
-              <Dropdown.Item href="#/action-1">Free </Dropdown.Item>
-              <Dropdown.Item href="#/action-2">Premium </Dropdown.Item>
+              <Dropdown.Item href="#/free">Free </Dropdown.Item>
+              <Dropdown.Item href="#/premium">Premium </Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
         )}
