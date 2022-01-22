@@ -82,6 +82,27 @@ export const PENDING_USERS = [
     email: "maria@gmail.com",
     plan: "Free",
   },
+  {
+    date: "23 Dec 2021",
+    name: "Yannick Noah",
+    avater: "/2.jpg",
+    email: "maria@gmail.com",
+    plan: "Premium",
+  },
+  {
+    date: "23 Dec 2021",
+    name: "Frank Mael",
+    avater: "/cld-sample.jpg",
+    email: "maria@gmail.com",
+    plan: "Free",
+  },
+  {
+    date: "23 Dec 2021",
+    name: "Maria Ballies",
+    avater: "1.png",
+    email: "maria@gmail.com",
+    plan: "Free",
+  },
 ];
 
 export const CONFIREMED_USERS = [

@@ -15,6 +15,15 @@
   padding: 14px 30px;
 }
 
+@keyframes openMenu {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
 @media (max-width: 1142px) {
   .children {
     margin-left: 102px;
@@ -39,7 +48,7 @@
   }
 }
 
-@media (max-width: 477px) {
+@media (max-width: 500px) {
   .children {
     margin-left: 10px;
     margin-right: 0px;

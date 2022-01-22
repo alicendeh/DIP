@@ -23,7 +23,7 @@
   color: var(--primary);
 }
 
-@media (max-width: 477px) {
+@media (max-width: 500px) {
   .container {
     display: none;
   }

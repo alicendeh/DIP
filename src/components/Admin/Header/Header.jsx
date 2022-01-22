@@ -5,6 +5,7 @@ import { Dropdown } from "react-bootstrap";
 function Header({ hidden, title }) {
   const [searchValue, setSearchValue] = useState("");
   const [currentSelectValue, setcurrentSelectValue] = useState("");
+  const [toggleSideMenu, settoggleSideMenu] = useState(false);
 
   const search = (e) => {
     setSearchValue(e.target.value);
@@ -18,8 +19,15 @@ function Header({ hidden, title }) {
   };
 
   return (
-    <div className={`containerRow`}>
-      <p className="display-6">{title} </p>
+    <div className={`containerRow ${styles.header}`}>
+      {/* <SideBar openSideBar={toggleSideMenu} /> */}
+      <div className={styles.headeritleContainer}>
+        <p className={`display-6 `}>{title} </p>
+        <i
+          // onClick={() => settoggleSideMenu(!toggleSideMenu)}
+          className={`fas fa-bars hide ${styles.menu}`}
+        ></i>
+      </div>
       <div
         className={`${styles.inputContainer} d-flex 
       ${hidden && `${styles.hideContainer}`}
@@ -86,3 +94,15 @@ function Header({ hidden, title }) {
 }
 
 export default Header;
+
+const SideBar = ({ openSideBar }) => {
+  return (
+    <div
+      className={
+        openSideBar ? `${styles.showSideMenu}` : `${styles.hideSideMenu}`
+      }
+    >
+      Alice Ndeh
+    </div>
+  );
+};
