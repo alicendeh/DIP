@@ -1,11 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./PendingCard.module.css";
 import { Avater } from "../../../components";
+import { Button, Modal } from "react-bootstrap";
 
 function PendingCard({ user }) {
+  const [show, setShow] = useState(false);
+
+  const handleShow = () => setShow(true);
+  const handleClose = () => setShow(false);
+
   const { name, email, avater, plan, date } = user;
+
   return (
     <div className={styles.mainCOntainer}>
+      <ModalComponent name={name} show={show} handleClose={handleClose} />
       <div className={styles.card}>
         <div className={styles.colorContainer}></div>
         <div
@@ -48,7 +56,10 @@ function PendingCard({ user }) {
           <div className={`btn btn-primary mr-3  ${styles.buttons}`}>
             Accept
           </div>
-          <div className={`btn btn-danger mr-3 ${styles.buttons} `}>
+          <div
+            onClick={handleShow}
+            className={`btn btn-danger mr-3 ${styles.buttons} `}
+          >
             Decline
           </div>
         </div>
@@ -58,3 +69,30 @@ function PendingCard({ user }) {
 }
 
 export default PendingCard;
+
+function ModalComponent({ show, handleClose, name }) {
+  return (
+    <>
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Cancel Request</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          Are you sure to cancel
+          <b>
+            <i>{name}'s</i>
+          </b>
+          request ?{" "}
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={handleClose}>
+            Proceed
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </>
+  );
+}

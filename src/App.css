@@ -12,7 +12,7 @@
   --white: #fff;
   --light-pink: #efe3ff;
   --light-blue: #e5fcff;
-  --panel_bckg: #f5f6fb;
+  --panel_bckg: #e4e4e4;
 }
 
 .row {
@@ -42,5 +42,5 @@
 }
 
 .icon {
-  font-size: 25px;
+  font-size: 20px;
 }
