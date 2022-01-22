@@ -5,7 +5,7 @@ import { STATISTICS_DATA, COLOR_ARRAY } from "../../../DATA";
 
 function RightStatisticsSection() {
   return (
-    <div className={styles.container}>
+    <div className={`${styles.container}`}>
       <div>
         <div className={`containerCenter d-flex justify-content-end `}>
           <p className="pt-3 pr-3 ">

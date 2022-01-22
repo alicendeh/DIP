@@ -34,12 +34,12 @@
   font-size: 11px;
 }
 .usersPlan {
-  font-size: 14px;
+  font-size: 13px;
   font-weight: bold;
 }
 
 .txtContainer {
-  font-size: 14px;
+  font-size: 13px;
   margin-left: 12px;
   font-weight: bold;
 }
@@ -57,7 +57,9 @@
   font-size: 11px;
   color: #dad104;
 }
-
+.buttons {
+  font-size: 12px !important;
+}
 @media (max-width: 943px) {
   .mainCOntainer,
   .usersPlan,

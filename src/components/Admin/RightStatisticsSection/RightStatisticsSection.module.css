@@ -17,7 +17,9 @@
   height: 100%;
   border-radius: 25px;
 }
-
+.smallView {
+  display: none;
+}
 .overViewC0ntainer {
   flex: 1;
   margin-top: 45px;
@@ -36,8 +38,8 @@
 .total {
   border-radius: 18px;
   padding-top: 12px;
-  padding-left: 25px;
-  padding-right: 25px;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
 .totalContainer {
@@ -77,5 +79,11 @@
 @media (max-width: 943px) {
   .container {
     display: none;
+  }
+  .smallView {
+    height: 100vh;
+    padding: 35px 22px;
+    width: 125px;
+    /* display: block; */
   }
 }

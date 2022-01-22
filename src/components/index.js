@@ -21,8 +21,7 @@ export {
   Header,
   PendingCard,
   PlanCard,
-  BookCard, DashPage, MyFree
+  BookCard,
+  DashPage,
+  MyFree,
 };
-
-
-
