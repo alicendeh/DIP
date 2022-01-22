@@ -91,7 +91,7 @@ function ModalComponent({ show, handleClose, name }) {
         <Modal.Body>
           Are you sure Delete
           <i>
-            <b> {name}'s</b>
+            <b> {name}</b>
           </i>
         </Modal.Body>
         <Modal.Footer>
