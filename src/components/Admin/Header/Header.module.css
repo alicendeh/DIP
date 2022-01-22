@@ -8,6 +8,12 @@
   outline: none;
   padding: 12px 7px;
 }
+.selectContainer {
+  border: none;
+  outline: none;
+  /* padding: 12px 7px; */
+  width: 323px;
+}
 i {
   padding: 7px;
 }
@@ -17,4 +23,31 @@ i {
 
 .cross:hover {
   cursor: pointer;
+}
+
+.free {
+  background-color: rgba(0, 213, 33, 0.4);
+}
+
+.cancelFree {
+  /* background-color: red; */
+  justify-content: flex-end;
+  align-items: flex-end;
+  flex-direction: row;
+  position: relative;
+  right: 0px;
+}
+
+.premium {
+  background-color: rgba(247, 173, 0, 0.68);
+  padding: 0 7px;
+}
+
+.mode {
+  justify-content: space-around;
+  display: flex;
+  align-items: center;
+  width: 122px;
+  border-radius: 7px;
+  color: var(--white);
 }
