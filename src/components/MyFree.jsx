@@ -12,7 +12,7 @@ function MyFree({ children }) {
         <div className="container">
           <Link to="/" className="navbar-brand" href="#">
             <img src="/Dip.jpeg" className="img-responsive" height="60" />
-            Dream Institution For Professionalism
+            {/* Dream Institution For Professionalism */}
           </Link>
 
           <button

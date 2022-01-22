@@ -5,6 +5,7 @@ import Registeration from "./pages/Registeration/Registeration";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { AdminLayout, AllUsers, Books, Upload, Profile } from "./pages";
 import Dashboard from "./pages/Dashboard/Dashboard";
+import NotFound from "./pages/NotFound/NotFound";
 
 function ScrollToTop({ children }) {
   const { pathname } = useLocation();
@@ -29,6 +30,8 @@ function Navigation() {
           <Route exact path="/profile" element={<Profile />} />
 
           <Route exact path="/dashboard" element={<Dashboard />} />
+
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </ScrollToTop>
     </BrowserRouter>
