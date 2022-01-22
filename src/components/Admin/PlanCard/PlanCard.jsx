@@ -50,14 +50,7 @@ function PlanCard({ user }) {
             Approved
           </div>
         </div>
-        <div
-          style={
-            {
-              // width: "200px",
-            }
-          }
-          className={` containerCenter ${styles.imgContainer}`}
-        >
+        <div className={` containerCenter ${styles.imgContainer}`}>
           <img src="/Group.png" alt="tick-icon" />
         </div>
       </div>

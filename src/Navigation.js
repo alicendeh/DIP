@@ -3,7 +3,7 @@ import Home from "./pages/Home/Home";
 import Login from "./pages/Login/Login";
 import Registeration from "./pages/Registeration/Registeration";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
-import { AdminLayout, AllUsers, Books, Upload, Profile } from "./pages";
+import { AllUsers, Books, Upload, Profile } from "./pages";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import NotFound from "./pages/NotFound/NotFound";
 
@@ -23,12 +23,10 @@ function Navigation() {
           <Route exact path="/" element={<Home />} />
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/signup" element={<Registeration />} />
-          {/* <Route exact path="/admin" element={<AdminLayout />} /> */}
           <Route exact path="/users" element={<AllUsers />} />
           <Route exact path="/books" element={<Books />} />
           <Route exact path="/upload" element={<Upload />} />
           <Route exact path="/profile" element={<Profile />} />
-
           <Route exact path="/dashboard" element={<Dashboard />} />
 
           <Route path="*" element={<NotFound />} />

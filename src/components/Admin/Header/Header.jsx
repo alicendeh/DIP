@@ -15,7 +15,7 @@ function Header({ hidden, title }) {
 
   return (
     <div className={`containerRow`}>
-      <p className="display-4">{title} </p>
+      <p className="display-6">{title} </p>
       <div
         className={`${styles.inputContainer} d-flex 
       ${hidden && `${styles.hideContainer}`}
@@ -31,7 +31,7 @@ function Header({ hidden, title }) {
         />
         {searchValue.length >= 1 ? (
           <i
-            className={`fas fa-times  ${styles.cross}`}
+            className={`fas fa-times pr-3 containerCenter  ${styles.cross}`}
             onClick={clearInput}
           ></i>
         ) : (

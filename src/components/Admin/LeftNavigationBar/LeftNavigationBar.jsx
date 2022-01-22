@@ -15,7 +15,7 @@ function LeftNavigationBar() {
   return (
     <div className={`containerColumn ${styles.container}`}>
       <div>
-        <img src="/logo_without_bg.png" width="90" alt="logo" />
+        <img src="/logo_without_bg.png" width="70" alt="logo" />
       </div>
       <div className={`containerColumn ${styles.iconContainer}`}>
         {ICON_DATA_SET.map((icon, index) => (
