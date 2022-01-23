@@ -1,7 +1,54 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Registeration.module.css";
-import { Link } from "react-router-dom";
-function Registeration() {
+import { Link, Navigate } from "react-router-dom";
+import { register } from "../../redux/actions/authUser";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { useDispatch } from "react-redux";
+import { Modal, Button } from "react-bootstrap";
+import { registerUsers } from "../../redux/actions/authUser";
+import axios from "axios";
+
+function MyVerticallyCenteredModal(props) {
+  return (
+    <Modal
+      {...props}
+      size="lg"
+      aria-labelledby="contained-modal-title-vcenter"
+      centered
+    >
+      {/* <Modal.Header className="mheader" closeButton>
+        <div className="contain" style={{ width: "80px", height: "80px" }}>
+          <img src="/8.png" alt="" style={{ width: "100%", height: "100%" }} />
+        </div>
+      </Modal.Header> */}
+      <Modal.Body>
+        <div className="containt d-flex">
+          <h4>Request sent and Pending</h4>{" "}
+          <i
+            class="fas fa-check-double pt-2 pl-2"
+            style={{ color: "#009717" }}
+          ></i>
+        </div>
+        <p>
+          Request Sent, But you need to wait for the Admin to grant you access!
+          For you to enjoy the free Plan!
+        </p>
+      </Modal.Body>
+    </Modal>
+  );
+}
+
+function Registeration({ isAuthenticated, register }) {
+  const dispatch = useDispatch();
+
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+
+  const [modalShow, setModalShow] = React.useState(false);
   const [toggleEyePassword, setToggleEyePassword] = useState(false);
   const [toggleEyePassword1, setToggleEyePassword1] = useState(false);
   const [validationPassword, setValidationPassword] = useState(false);
@@ -9,7 +56,7 @@ function Registeration() {
     name: "",
     email: "",
     sponsorName: "",
-    upLineLeadersName: "",
+    leadersName: "",
     password: "",
     password2: "",
   });
@@ -30,9 +77,28 @@ function Registeration() {
     if (password !== password2) {
       setValidationPassword(true);
     } else {
-      // register({ name, lname, gender, email, password });
+      const data = { name, email, sponsorName, leadersName, password };
+
+      // register({ name, email, sponsorName, leadersName, password });
+      const res = await axios.post(
+        `${process.env.REACT_APP_URL}/users/CreateAccount`,
+        data,
+        config
+      );
     }
   };
+
+  // if (isAuthenticated) {
+  //   setTimeout(() => {
+  //     return (
+  //       <MyVerticallyCenteredModal
+  //         show={setModalShow(true)}
+  //         onHide={() => setModalShow(false)}
+  //       />
+  //     );
+  //   }, 1000);
+  // }
+  // <Navigate/ to="/dashboard" />;
 
   return (
     <div className={`${styles.main}`}>
@@ -106,7 +172,7 @@ function Registeration() {
                     type="text"
                     className={`${styles.int} form-control`}
                     id="inputEmail4"
-                    name="upLineLeadersName"
+                    name="leadersName"
                     value={leadersName}
                     onChange={(e) => onchange(e)}
                     required
@@ -258,5 +324,11 @@ function Registeration() {
     </div>
   );
 }
-
+// Registeration.propTypes = {
+//   register: PropTypes.func.isRequired,
+//   isAuthenticated: PropTypes.bool,
+// };
+// const mapToProps = (state) => ({
+//   // isAuthenticated: state.auth.isAuthenticated,
+// });
 export default Registeration;
