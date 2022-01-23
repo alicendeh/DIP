@@ -1,4 +1,7 @@
-import { ADMIN_GETS_ALL_USERS_REQUEST } from "../ActionType";
+import {
+  ADMIN_GETS_ALL_USERS_REQUEST,
+  ADMIN_GETS_STATISTICS_DATA,
+} from "../ActionType";
 
 const adminGetsUsersequest = (users) => {
   return {
@@ -7,4 +10,11 @@ const adminGetsUsersequest = (users) => {
   };
 };
 
-export { adminGetsUsersequest };
+const adminGetsStatisticsData = (data) => {
+  return {
+    type: ADMIN_GETS_STATISTICS_DATA,
+    payload: data,
+  };
+};
+
+export { adminGetsUsersequest, adminGetsStatisticsData };
