@@ -6,11 +6,13 @@ import {
   LOGOUT,
   REGISTER_SUCCESS,
   REGISTER_FAILED,
+  IS_LOADING,
 } from "../ActionType";
+
 const initialState = {
   token: localStorage.getItem("token"),
   isAuthenticated: null,
-  Loading: true,
+  Loading: false,
   user: null,
 };
 export default function (state = initialState, action) {
@@ -25,17 +27,13 @@ export default function (state = initialState, action) {
       };
 
     case REGISTER_SUCCESS:
+      localStorage.setItem("token", payload.token);
       return {
         ...state,
-        
+        ...payload,
+        Loading: false,
       };
-    //   localStorage.setItem("token", payload.token);
-    //   return {
-    //     ...state,
-    //     ...payload,
-    //     isAuthenticated: true,
-    //     Loading: false,
-    //   };
+
     case REGISTER_FAILED:
     case AUTH_ERROR:
     case LOGOUT:
@@ -47,6 +45,11 @@ export default function (state = initialState, action) {
         isAuthenticated: false,
         Loading: false,
         user: null,
+      };
+    case IS_LOADING:
+      return {
+        ...state,
+        Loading: true,
       };
     default:
       return state;

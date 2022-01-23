@@ -6,7 +6,9 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAILED,
   LOGOUT,
+  IS_LOADING,
 } from "../ActionType";
+
 import axios from "axios";
 import setAuthToken from "../../components/utils/setAuthToken";
 //load User
@@ -29,49 +31,18 @@ export const loadUser = () => async (dispatch) => {
 };
 
 export const registerUsers = (user) => {
-  console.log(user);
   return {
     type: REGISTER_SUCCESS,
     payload: user,
   };
-  //   console.log(user);
 };
 
-// export const register =
-//   ({ name, email, sponsorName, leadersname, password }) =>
-//   async (dispatch) => {
-//     //config
-//     const config = {
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//     };
-//     const body = { name, email, sponsorName, leadersname, password };
-//     console.log(body, "here");
-
-//     try {
-//       const res = await axios.post(
-//         `${process.env.REACT_APP_URL}/users/CreateAccount`,
-//         body,
-//         config
-//       );
-//       dispatch({
-//         type: REGISTER_SUCCESS,
-//         payload: res.data,
-//       });
-//       dispatch(loadUser());
-//     } catch (err) {
-//       const errors = err.response.data.errors;
-//       if (errors) {
-//         // errors.forEach((error) => dispatch(setAlert(error.msg, "danger")));
-//         console.log(errors);
-//       }
-//       dispatch({
-//         type: REGISTER_FAILED,
-//       });
-//     }
-//   };
-//Login User
+export const isLoading = (val) => {
+  return {
+    type: IS_LOADING,
+    payload: val,
+  };
+};
 
 export const login =
   ({ email, password }) =>

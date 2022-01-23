@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Registeration.module.css";
 import { Link, Navigate } from "react-router-dom";
-import { register } from "../../redux/actions/authUser";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Modal, Button } from "react-bootstrap";
-import { registerUsers } from "../../redux/actions/authUser";
-import axios from "axios";
+import { registerUsers, isLoading } from "../../redux/actions/userAction";
+import { _registerUser } from "../../Helpers/userHelper";
 
 function MyVerticallyCenteredModal(props) {
   return (
@@ -40,13 +39,9 @@ function MyVerticallyCenteredModal(props) {
 }
 
 function Registeration({ isAuthenticated, register }) {
-  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
 
-  const config = {
-    headers: {
-      "Content-Type": "application/json",
-    },
-  };
+  const dispatch = useDispatch();
 
   const [modalShow, setModalShow] = React.useState(false);
   const [toggleEyePassword, setToggleEyePassword] = useState(false);
@@ -60,6 +55,10 @@ function Registeration({ isAuthenticated, register }) {
     password: "",
     password2: "",
   });
+
+  useEffect(() => {
+    console.log(user.Loading);
+  }, []);
   const handletoggleEyePassword = () => {
     setToggleEyePassword(!toggleEyePassword);
   };
@@ -73,32 +72,15 @@ function Registeration({ isAuthenticated, register }) {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
   const onsubmit = async (e) => {
+    dispatch(isLoading(true));
     e.preventDefault();
     if (password !== password2) {
       setValidationPassword(true);
     } else {
       const data = { name, email, sponsorName, leadersName, password };
-
-      // register({ name, email, sponsorName, leadersName, password });
-      const res = await axios.post(
-        `${process.env.REACT_APP_URL}/users/CreateAccount`,
-        data,
-        config
-      );
+      _registerUser(data).then((response) => dispatch(registerUsers(response)));
     }
   };
-
-  // if (isAuthenticated) {
-  //   setTimeout(() => {
-  //     return (
-  //       <MyVerticallyCenteredModal
-  //         show={setModalShow(true)}
-  //         onHide={() => setModalShow(false)}
-  //       />
-  //     );
-  //   }, 1000);
-  // }
-  // <Navigate/ to="/dashboard" />;
 
   return (
     <div className={`${styles.main}`}>
@@ -274,9 +256,22 @@ function Registeration({ isAuthenticated, register }) {
                   </span>
                 </div>
                 <div class="col-12">
-                  <button type="submit" className="col-12 btn btn-primary ">
-                    Sign in
-                  </button>
+                  {user.Loading ? (
+                    <div
+                      className=" col-12 btn btn-primary "
+                      style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <div className="spinner"></div>
+                    </div>
+                  ) : (
+                    <button type="submit" className="col-12 btn btn-primary">
+                      <span>Sign up</span>
+                    </button>
+                  )}
                 </div>
                 <div className="text-muted d-flex justify-content-center align-items-center">
                   <small style={{ color: "#bb2d00" }}>
