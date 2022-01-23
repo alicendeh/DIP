@@ -12,7 +12,7 @@ function AllUsers() {
 
   const config = {
     headers: {
-      dipToken: token,
+      "dip-token": token,
     },
   };
   const dispatch = useDispatch();

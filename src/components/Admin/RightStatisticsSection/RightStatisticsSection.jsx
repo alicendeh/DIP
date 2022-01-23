@@ -1,9 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./RightStatisticsSection.module.css";
 import { Avater } from "../../../components";
 import { STATISTICS_DATA, COLOR_ARRAY } from "../../../DATA";
+import { adminGetsStatisticsData } from "../../../redux/actions/adminAction";
 
 function RightStatisticsSection() {
+  useEffect(() => {
+    getAllStatisticsInformation();
+  }, []);
+  const getAllStatisticsInformation = async () => {};
   return (
     <div className={`${styles.container}`}>
       <div>
