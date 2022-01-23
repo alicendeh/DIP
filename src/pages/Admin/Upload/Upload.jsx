@@ -10,18 +10,21 @@ import {
   Row,
   FloatingLabel,
 } from "react-bootstrap";
+import { _addABook } from "../../../Helpers/adminHelper";
+
 function Upload() {
   const [validated, setValidated] = useState(false);
   const [selectedImage, setSelectedImage] = useState();
   const [formData, setFormData] = useState({
-    bookname: "",
+    name: "",
     author: "",
-    email: "",
     description: "",
   });
+
   const [selectedPdf, setSelectedPdf] = useState();
   const [toggle, setToggle] = useState("free", "premium");
-  const { bookname, author, description } = formData;
+  const { name, author, description } = formData;
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -35,10 +38,13 @@ function Upload() {
     let image = e.target.files[0];
     setSelectedImage(image);
   };
+
   const handleSelectFreeOrPremium = (e) => {
     setToggle(e.target.value);
   };
-  const handleSubmit = (event) => {
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
       event.preventDefault();
@@ -46,6 +52,16 @@ function Upload() {
     }
 
     setValidated(true);
+    let data = {
+      name: formData.name,
+      author: formData.author,
+      plan: toggle,
+      coverPage: selectedImage,
+      pdf: selectedPdf,
+    };
+    let res = _addABook(data).then((response) =>
+      console.log(response, "response")
+    );
   };
 
   return (
@@ -61,8 +77,8 @@ function Upload() {
                   <Form.Control
                     required
                     type="text"
-                    name="bookname"
-                    value={bookname}
+                    name="name"
+                    value={name}
                     onChange={(e) => handleChange(e)}
                     placeholder="Name of book"
                   />

@@ -1,5 +1,11 @@
 import axios from "axios";
 
+const config = {
+  headers: {
+    "Content-Type": "application/json",
+  },
+};
+
 const _getPlanChangeRequests = async () => {
   try {
     const res = await axios.get(
@@ -33,4 +39,16 @@ const _getAllStatistics = async () => {
   }
 };
 
-export { _getPlanChangeRequests, _getAllUsers, _getAllStatistics };
+const _addABook = async (data) => {
+  try {
+    // let res = await axios.post(
+    //   `${process.env.REACT_APP_URL}/admin/books/CreateBook`,
+    //   config
+    // );
+    return data;
+  } catch (err) {
+    return err;
+  }
+};
+
+export { _getPlanChangeRequests, _getAllUsers, _getAllStatistics, _addABook };
