@@ -1,9 +1,36 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { AdminLayout } from "../../../pages";
 import { Header, PendingCard, PlanCard } from "../../../components";
 import { PENDING_USERS, CONFIREMED_USERS } from "../../../DATA";
+import { useSelector, useDispatch } from "react-redux";
+import { adminGetsUsersequest } from "../../../redux/actions/adminAction";
+import axios from "axios";
 
 function AllUsers() {
+  const token =
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjFlZDFjNzdlN2VmNzc2ZWJmMDIwMWVmIiwicm9sZSI6InVzZXIifSwiaWF0IjoxNjQyOTI5MjcxLCJleHAiOjE2NDI5NjUyNzF9.ZWnWv1XwM5fNKrjmzKMsdNZgdyPdw30HyMPwWtLFpqs";
+
+  const config = {
+    headers: {
+      dipToken: token,
+    },
+  };
+  const dispatch = useDispatch();
+  useEffect(() => {
+    getPlanChangeRequest();
+  }, []);
+
+  const getPlanChangeRequest = async () => {
+    try {
+      const res = await axios.get(
+        `https://dreaminstitute.herokuapp.com/users/LoadUser`
+      );
+      dispatch(adminGetsUsersequest(res.data));
+    } catch (err) {
+      console.log(err, "error here");
+    }
+  };
+
   return (
     <AdminLayout>
       <Header title={"Users"} />
