@@ -3,32 +3,25 @@ import { AdminLayout } from "../../../pages";
 import { Header, PendingCard, PlanCard } from "../../../components";
 import { PENDING_USERS, CONFIREMED_USERS } from "../../../DATA";
 import { useSelector, useDispatch } from "react-redux";
-import { adminGetsUsersequest } from "../../../redux/actions/adminAction";
 import axios from "axios";
+import {
+  adminGetsUsersequest,
+  adminGetsAllUsers,
+} from "../../../redux/actions/adminAction";
+import {
+  _getPlanChangeRequests,
+  _getAllUsers,
+} from "../../../Helpers/adminHelper";
 
 function AllUsers() {
-  const token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjFlZDFjNzdlN2VmNzc2ZWJmMDIwMWVmIiwicm9sZSI6InVzZXIifSwiaWF0IjoxNjQyOTI5MjcxLCJleHAiOjE2NDI5NjUyNzF9.ZWnWv1XwM5fNKrjmzKMsdNZgdyPdw30HyMPwWtLFpqs";
-
-  const config = {
-    headers: {
-      "dip-token": token,
-    },
-  };
   const dispatch = useDispatch();
-  useEffect(() => {
-    getPlanChangeRequest();
-    console.log(process.env.REACT_APP_URL, "hee");
-  }, []);
 
-  const getPlanChangeRequest = async () => {
-    try {
-      const res = await axios.get(`${process.env.REACT_APP_URL}`);
-      dispatch(adminGetsUsersequest(res.data));
-    } catch (err) {
-      console.log(err, "error here");
-    }
-  };
+  useEffect(() => {
+    _getPlanChangeRequests().then((data) =>
+      dispatch(adminGetsUsersequest(data))
+    );
+    _getAllUsers().then((data) => dispatch(adminGetsAllUsers(data)));
+  }, []);
 
   return (
     <AdminLayout>

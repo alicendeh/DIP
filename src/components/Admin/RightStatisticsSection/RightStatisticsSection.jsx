@@ -3,12 +3,13 @@ import styles from "./RightStatisticsSection.module.css";
 import { Avater } from "../../../components";
 import { STATISTICS_DATA, COLOR_ARRAY } from "../../../DATA";
 import { adminGetsStatisticsData } from "../../../redux/actions/adminAction";
+import { _getAllStatistics } from "../../../Helpers/adminHelper";
 
 function RightStatisticsSection() {
   useEffect(() => {
-    getAllStatisticsInformation();
+    _getAllStatistics().then((data) => adminGetsStatisticsData(data));
   }, []);
-  const getAllStatisticsInformation = async () => {};
+
   return (
     <div className={`${styles.container}`}>
       <div>

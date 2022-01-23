@@ -1,11 +1,13 @@
 import {
   ADMIN_GETS_ALL_USERS_REQUEST,
   ADMIN_GETS_STATISTICS_DATA,
+  ADMIN_GETS_ALL_USERS,
 } from "../ActionType";
 
 const INITIAL_STATE = {
   incomingUsersRequest: [],
   statisticsData: [],
+  users: [],
 };
 
 const getUsersRequest = (state = INITIAL_STATE, { type, payload }) => {
@@ -19,6 +21,11 @@ const getUsersRequest = (state = INITIAL_STATE, { type, payload }) => {
       return {
         ...state,
         statisticsData: payload,
+      };
+    case ADMIN_GETS_ALL_USERS:
+      return {
+        ...state,
+        users: payload,
       };
     default:
       return state;
