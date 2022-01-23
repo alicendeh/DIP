@@ -1,7 +1,11 @@
-import { ADMIN_GETS_ALL_USERS_REQUEST } from "../ActionType";
+import {
+  ADMIN_GETS_ALL_USERS_REQUEST,
+  ADMIN_GETS_STATISTICS_DATA,
+} from "../ActionType";
 
 const INITIAL_STATE = {
   incomingUsersRequest: [],
+  statisticsData: [],
 };
 
 const getUsersRequest = (state = INITIAL_STATE, { type, payload }) => {
@@ -10,6 +14,11 @@ const getUsersRequest = (state = INITIAL_STATE, { type, payload }) => {
       return {
         ...state,
         incomingUsersRequest: payload,
+      };
+    case ADMIN_GETS_STATISTICS_DATA:
+      return {
+        ...state,
+        statisticsData: payload,
       };
     default:
       return state;

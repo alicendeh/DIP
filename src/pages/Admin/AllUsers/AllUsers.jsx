@@ -12,19 +12,18 @@ function AllUsers() {
 
   const config = {
     headers: {
-      dipToken: token,
+      "dip-token": token,
     },
   };
   const dispatch = useDispatch();
   useEffect(() => {
     getPlanChangeRequest();
+    console.log(process.env.REACT_APP_URL, "hee");
   }, []);
 
   const getPlanChangeRequest = async () => {
     try {
-      const res = await axios.get(
-        `https://dreaminstitute.herokuapp.com/users/LoadUser`
-      );
+      const res = await axios.get(`${process.env.REACT_APP_URL}`);
       dispatch(adminGetsUsersequest(res.data));
     } catch (err) {
       console.log(err, "error here");
