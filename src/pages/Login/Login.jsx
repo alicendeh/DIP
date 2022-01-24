@@ -91,16 +91,6 @@ function Login() {
                     onChange={(e) => onchange(e)}
                   />
                 </div>
-                {/* <div class="col-md-12">
-                  <label for="inputPassword4" className="form-label">
-                    Password
-                  </label>
-                  <input
-                    type="password"
-                    className="form-control"
-                    id="inputPassword4"
-                  />
-                </div> */}
                 <div class="col-md-12">
                   <label for="inputPassword4" className="form-label">
                     Password

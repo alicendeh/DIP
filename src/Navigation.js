@@ -7,6 +7,7 @@ import { AllUsers, Books, Upload, Profile } from "./pages";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import NotFound from "./pages/NotFound/NotFound";
 import Upgrade from "./pages/Upgrade/Upgrade";
+import { useDispatch, useSelector } from "react-redux";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 function ScrollToTop({ children }) {
   const { pathname } = useLocation();
@@ -17,6 +18,7 @@ function ScrollToTop({ children }) {
 }
 
 function Navigation() {
+  const user = useSelector((state) => state.user);
   return (
     <BrowserRouter>
       <ScrollToTop>
@@ -24,13 +26,18 @@ function Navigation() {
           <Route exact path="/" element={<Home />} />
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/signup" element={<Registeration />} />
-
-          <Route exact path="/users" element={<AllUsers />} />
-          <Route exact path="/books" element={<Books />} />
-          <Route exact path="/upload" element={<Upload />} />
-          <Route exact path="/profile" element={<Profile />} />
-          <Route exact path="/dashboard" element={<Dashboard />} />
-          <Route exact path="/upgradetopremium" element={<Upgrade />} />
+          {!user.isAuthenticated ? (
+            <Route exact path="/login" element={<Login />} />
+          ) : (
+            <>
+              <Route exact path="/users" element={<AllUsers />} />
+              <Route exact path="/books" element={<Books />} />
+              <Route exact path="/upload" element={<Upload />} />
+              <Route exact path="/profile" element={<Profile />} />
+              <Route exact path="/dashboard" element={<Dashboard />} />
+              <Route exact path="/upgradetopremium" element={<Upgrade />} />
+            </>
+          )}
 
           <Route path="*" element={<NotFound />} />
         </Routes>

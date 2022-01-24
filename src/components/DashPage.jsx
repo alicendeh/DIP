@@ -33,7 +33,17 @@ function DashPage({ children }) {
                   Hi, Fodjo Frank
                 </Link>
               </li>
-
+              <div
+                style={{
+                  width: "300px",
+                  height: "250px",
+                  backgroundColor: "red",
+                }}
+              >
+                <i
+                  className={`fas fa-sign-out-alt fa-2x ${styles.logout} icon`}
+                ></i>
+              </div>
               {/* <div className="d-flex" style={{ gap: "6px " }}> */}
               <div
                 className="profile rounded-circle"
