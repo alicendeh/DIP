@@ -44,6 +44,13 @@ export const isLoading = (val) => {
   };
 };
 
+export const loginUser = (user) => {
+  return {
+    type: LOGIN_SUCCESS,
+    payload: user,
+  };
+};
+
 export const login =
   ({ email, password }) =>
   async (dispatch) => {

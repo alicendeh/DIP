@@ -19,3 +19,17 @@ export const _registerUser = async (data) => {
     return err.response.data.message;
   }
 };
+
+export const login = async (data) => {
+  try {
+    const res = await axios.post(
+      `${process.env.REACT_APP_URL}/users/login`,
+      data,
+      config
+    );
+    return res.data;
+  } catch (err) {
+    console.log(err.response.data.message, "hhhhe");
+    return err.response.data.message;
+  }
+};
