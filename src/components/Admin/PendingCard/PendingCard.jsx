@@ -2,18 +2,42 @@ import React, { useState } from "react";
 import styles from "./PendingCard.module.css";
 import { Avater } from "../../../components";
 import { Button, Modal } from "react-bootstrap";
+import {
+  _upgradeUsersPlan,
+  _denyUsersPlanUpgrade,
+} from "../../../Helpers/adminHelper";
+import { useDispatch } from "react-redux";
 
 function PendingCard({ user }) {
   const [show, setShow] = useState(false);
+  const [showAceptModal, setshowAceptModal] = useState(false);
+  const dispatch = useDispatch();
 
   const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);
 
-  const { name, email, avater, plan, date } = user;
+  const handleAcceptModal = () => setshowAceptModal(true);
+  const handleCloseAcceptModal = () => setshowAceptModal(false);
+
+  const { name } = user;
 
   return (
     <div className={styles.mainCOntainer}>
-      <ModalComponent name={name} show={show} handleClose={handleClose} />
+      <ModalComponent
+        name={name}
+        id={user._id}
+        desiredPlan={user.planType}
+        show={show}
+        handleClose={handleClose}
+        dispatch={dispatch}
+        user={user}
+      />
+      <AcceptModal
+        show={showAceptModal}
+        handleClose={handleCloseAcceptModal}
+        dispatch={dispatch}
+        user={user}
+      />
       <div className={styles.card}>
         <div className={styles.colorContainer}></div>
         <div
@@ -29,9 +53,13 @@ function PendingCard({ user }) {
         <div className={`containerCenter`}>
           <div className={styles.line}></div>
         </div>
-        <div className={`containerCenter`}>
+        <div className={`containerCenter ${styles.userInfoContainer}`}>
           <div>
-            <Avater imageUrl={user.avater} />
+            <Avater
+              imageUrl={
+                user.avater.length < 1 ? "/Default-avatar.jpg" : user.avater
+              }
+            />
           </div>
           <div className={styles.txtContainer}>
             {user.name} <br />
@@ -53,7 +81,10 @@ function PendingCard({ user }) {
           </div>
         </div>
         <div className="containerCenter">
-          <div className={`btn btn-primary mr-3  ${styles.buttons}`}>
+          <div
+            className={`btn btn-primary mr-3  ${styles.buttons}`}
+            onClick={handleAcceptModal}
+          >
             Accept
           </div>
           <div
@@ -70,7 +101,16 @@ function PendingCard({ user }) {
 
 export default PendingCard;
 
-function ModalComponent({ show, handleClose, name }) {
+function ModalComponent({ user, handleClose, show }) {
+  const { plan, _id, name, planType } = user;
+
+  const denyUpgrade = (currentPlan, userID) => {
+    handleClose();
+    _denyUsersPlanUpgrade(currentPlan, userID).then((res) =>
+      window.location.reload()
+    );
+  };
+
   return (
     <>
       <Modal show={show} onHide={handleClose}>
@@ -82,14 +122,61 @@ function ModalComponent({ show, handleClose, name }) {
           <b>
             <i>{name}'s</i>
           </b>
-          request ?{" "}
+          request ? for a{" "}
+          <b>
+            <i>{planType}</i>
+          </b>
+          plan
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary" onClick={handleClose}>
-            Proceed
+          <Button variant="primary" onClick={() => denyUpgrade(plan, _id)}>
+            Yes
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </>
+  );
+}
+
+function AcceptModal({ user, handleClose, show }) {
+  const { plan, _id, name, planType } = user;
+
+  const acceptPlanChange = (desiredPlan, userID) => {
+    handleClose();
+    _upgradeUsersPlan(desiredPlan, userID).then((response) =>
+      window.location.reload()
+    );
+  };
+
+  return (
+    <>
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Validate Request</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          Validate
+          <b>
+            <i>{name}'s</i>
+          </b>
+          request ? for a{" "}
+          <b>
+            <i>{planType}</i>
+          </b>
+          plan
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button
+            variant="primary"
+            onClick={() => acceptPlanChange(planType, _id)}
+          >
+            Validate
           </Button>
         </Modal.Footer>
       </Modal>

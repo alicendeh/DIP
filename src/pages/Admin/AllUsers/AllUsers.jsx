@@ -1,45 +1,81 @@
 import React, { useState, useEffect } from "react";
 import { AdminLayout } from "../../../pages";
-import { Header, PendingCard, PlanCard } from "../../../components";
-import { PENDING_USERS, CONFIREMED_USERS } from "../../../DATA";
+import { Header, PendingCard, PlanCard, Unexpected } from "../../../components";
 import { useSelector, useDispatch } from "react-redux";
-import axios from "axios";
 import {
   adminGetsUsersequest,
   adminGetsAllUsers,
+  loadingState,
+  errorDetected,
 } from "../../../redux/actions/adminAction";
 import {
   _getPlanChangeRequests,
   _getAllUsers,
 } from "../../../Helpers/adminHelper";
+import { _loadeCurrentlyLogedInUser } from "../../../Helpers/userHelper";
+import { loadUser } from "../../../redux/actions/userAction";
 
 function AllUsers() {
+  const usersData = useSelector((state) => state.admin);
+  const { incomingUsersRequest, users, error, loading } = usersData;
   const dispatch = useDispatch();
 
   useEffect(() => {
-    _getPlanChangeRequests().then((data) =>
-      dispatch(adminGetsUsersequest(data))
-    );
-    _getAllUsers().then((data) => dispatch(adminGetsAllUsers(data)));
+    dispatch(loadingState(true));
+    _loadeCurrentlyLogedInUser().then((data) => dispatch(loadUser(data)));
+    _getPlanChangeRequests().then((data) => {
+      if (data.code === 400) {
+        return dispatch(errorDetected(data.errorMessage));
+      } else {
+        dispatch(adminGetsUsersequest(data));
+      }
+    });
+    _getAllUsers().then((data) => {
+      if (data.code === 400) {
+        return dispatch(errorDetected(data.errorMessage));
+      } else {
+        dispatch(adminGetsAllUsers(data));
+      }
+    });
   }, []);
 
   return (
     <AdminLayout>
       <Header title={"Users"} />
-      <div>
-        {PENDING_USERS.map((user, index) => (
-          <div key={index}>
-            <PendingCard user={user} index={index} />
-          </div>
-        ))}
-      </div>
-      <div>
-        {CONFIREMED_USERS.map((user, index) => (
-          <div key={index}>
-            <PlanCard user={user} />
-          </div>
-        ))}
-      </div>
+      {error != null ? (
+        <Unexpected />
+      ) : (
+        <div>
+          {loading ? (
+            <div className={`containerCenter spinnerContainer`}>
+              <div className="spinner"></div>
+            </div>
+          ) : (
+            <div>
+              <div>
+                {typeof incomingUsersRequest !== undefined &&
+                  incomingUsersRequest.length > 0 &&
+                  incomingUsersRequest.map((user, index) => (
+                    <div key={index}>
+                      <PendingCard user={user} index={index} />
+                    </div>
+                  ))}
+              </div>
+              <div>
+                <div>
+                  {typeof users !== undefined &&
+                    users.length > 0 &&
+                    users.map((user, index) => (
+                      <div key={index}>
+                        <PlanCard user={user} />
+                      </div>
+                    ))}
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+      )}
     </AdminLayout>
   );
 }

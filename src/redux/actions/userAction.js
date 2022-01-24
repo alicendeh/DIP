@@ -7,28 +7,30 @@ import {
   LOGIN_FAILED,
   LOGOUT,
   IS_LOADING,
+  LOAD_USER,
 } from "../ActionType";
 
 import axios from "axios";
 import setAuthToken from "../../components/utils/setAuthToken";
-//load User
-export const loadUser = () => async (dispatch) => {
-  if (localStorage.token) {
-    setAuthToken(localStorage.token);
-  }
 
-  try {
-    const res = await axios.get(`${process.env.REACT_APP_URL}/users/LoadUser`);
-    dispatch({
-      type: USER_LOADED,
-      payload: res.data,
-    });
-  } catch (error) {
-    dispatch({
-      type: AUTH_ERROR,
-    });
-  }
-};
+// //load User
+// export const loadUser = () => async (dispatch) => {
+//   if (localStorage.token) {
+//     setAuthToken(localStorage.token);
+//   }
+
+//   try {
+//     const res = await axios.get(`${process.env.REACT_APP_URL}/users/LoadUser`);
+//     dispatch({
+//       type: USER_LOADED,
+//       payload: res.data,
+//     });
+//   } catch (error) {
+//     dispatch({
+//       type: AUTH_ERROR,
+//     });
+//   }
+// };
 
 export const registerUsers = (user) => {
   return {
@@ -44,6 +46,11 @@ export const isLoading = (val) => {
   };
 };
 
+export const loadUser = (user) => {
+  return {
+    type: LOAD_USER,
+  };
+};
 export const loginUser = (user) => {
   return {
     type: LOGIN_SUCCESS,

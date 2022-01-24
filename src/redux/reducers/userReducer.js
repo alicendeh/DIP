@@ -7,6 +7,7 @@ import {
   REGISTER_SUCCESS,
   REGISTER_FAILED,
   IS_LOADING,
+  LOAD_USER,
 } from "../ActionType";
 
 const initialState = {
@@ -34,6 +35,11 @@ export default function (state = initialState, action) {
         ...payload,
         isAuthenticated: true,
         Loading: false,
+      };
+    case LOAD_USER:
+      return {
+        ...state,
+        user: payload.user,
       };
 
     case REGISTER_FAILED:

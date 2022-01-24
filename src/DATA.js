@@ -17,33 +17,33 @@ export const ICON_DATA_SET = [
   },
 ];
 
-export const STATISTICS_DATA = [
-  {
-    label: "interactivity",
-    val: 22,
-    total: 100,
-  },
-  {
-    label: "Users",
-    val: 100,
-    total: 100,
-  },
-  {
-    label: "Pending",
-    val: 10,
-    total: 100,
-  },
-  {
-    label: "Premium",
-    val: 70,
-    total: 100,
-  },
-  {
-    label: "Free",
-    val: 30,
-    total: 100,
-  },
-];
+// export const STATISTICS_DATA = [
+//   {
+//     label: "interactivity",
+//     val: 22,
+//     total: 100,
+//   },
+//   {
+//     label: "Users",
+//     val: 100,
+//     total: 100,
+//   },
+//   {
+//     label: "Pending",
+//     val: 10,
+//     total: 100,
+//   },
+//   {
+//     label: "Premium",
+//     val: 70,
+//     total: 100,
+//   },
+//   {
+//     label: "Free",
+//     val: 30,
+//     total: 100,
+//   },
+// ];
 
 export const COLOR_ARRAY = [
   " var(--primary)",

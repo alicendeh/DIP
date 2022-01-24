@@ -6,6 +6,11 @@
   background-color: var(--yellow);
   width: 7px;
 }
+.none {
+  background-color: var(--purple);
+  width: 7px;
+}
+
 .line {
   width: 1px;
   background-color: var(--secondary);
@@ -13,6 +18,9 @@
 }
 .imgContainer {
   width: 170px;
+}
+.userInfoContainer {
+  /* width: 250px; */
 }
 
 .round {
