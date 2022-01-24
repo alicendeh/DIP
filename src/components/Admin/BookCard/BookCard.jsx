@@ -2,16 +2,24 @@ import React, { useState } from "react";
 import styles from "./BookCard.module.css";
 import { Avater } from "../../../components";
 import { Button, Modal } from "react-bootstrap";
+import { _viewAllBooks, _deleteBook } from "../../../Helpers/adminHelper";
+import moment from "moment";
 
 function BookCard({ book }) {
   const [show, setShow] = useState(false);
 
   const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);
-  const { name, author, avater, plan, date, views } = book;
+  const { name, plan } = book;
+
   return (
     <div className={styles.mainCOntainer}>
-      <ModalComponent name={name} show={show} handleClose={handleClose} />
+      <ModalComponent
+        name={name}
+        book={book}
+        show={show}
+        handleClose={handleClose}
+      />
 
       <div className={styles.card}>
         <div
@@ -31,14 +39,16 @@ function BookCard({ book }) {
             flexDirection: "column",
           }}
         >
-          {book.date}
+          {moment(parseInt(book.date)).format("MMMM Do YYYY")}
         </div>
         <div className={`containerCenter`}>
           <div className={styles.line}></div>
         </div>
         <div className={`containerCenter`}>
           <div>
-            <Avater imageUrl={book.avater} />
+            <Avater
+              imageUrl={book.coverPage ? book.coverPage : "/defaultBook.png"}
+            />
           </div>
           <div className={styles.txtContainer}>
             {book.name} <br />
@@ -81,7 +91,13 @@ function BookCard({ book }) {
 
 export default BookCard;
 
-function ModalComponent({ show, handleClose, name }) {
+function ModalComponent({ show, handleClose, name, book }) {
+  const deleteBook = (bookID) => {
+    handleClose();
+    _deleteBook(bookID).then((response) => {
+      window.location.reload();
+    });
+  };
   return (
     <>
       <Modal show={show} onHide={handleClose}>
@@ -98,7 +114,7 @@ function ModalComponent({ show, handleClose, name }) {
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary" onClick={handleClose}>
+          <Button variant="primary" onClick={() => deleteBook(book._id)}>
             Proceed
           </Button>
         </Modal.Footer>
@@ -106,3 +122,35 @@ function ModalComponent({ show, handleClose, name }) {
     </>
   );
 }
+
+// function EditBookInfo({  book }) {
+//   const deleteBook = (bookID) => {
+//     handleClose();
+//     _deleteBook(bookID).then((response) => {
+//       window.location.reload();
+//     });
+//   };
+//   return (
+//     <>
+//       <Modal show={show} onHide={handleClose}>
+//         <Modal.Header closeButton>
+//           <Modal.Title>Edit book ?</Modal.Title>
+//         </Modal.Header>
+//         <Modal.Body>
+//          Edit
+//           <i>
+//             <b> {name}</b>
+//           </i>
+//         </Modal.Body>
+//         <Modal.Footer>
+//           <Button variant="secondary" onClick={handleClose}>
+//             Close
+//           </Button>
+//           <Button variant="primary" onClick={() => deleteBook(book._id)}>
+//             Proceed
+//           </Button>
+//         </Modal.Footer>
+//       </Modal>
+//     </>
+//   );
+// }

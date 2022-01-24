@@ -11,7 +11,7 @@ import {
 } from "../ActionType";
 
 const initialState = {
-  token: localStorage.getItem("token"),
+  // token: localStorage.getItem("token"),
   isAuthenticated: null,
   Loading: false,
   user: null,
@@ -19,14 +19,6 @@ const initialState = {
 export default function (state = initialState, action) {
   const { type, payload } = action;
   switch (type) {
-    case USER_LOADED:
-      return {
-        ...state,
-        isAuthenticated: true,
-        Loading: false,
-        user: payload,
-      };
-
     case REGISTER_SUCCESS:
     case LOGIN_SUCCESS:
       localStorage.setItem("token", payload.token);
@@ -54,6 +46,7 @@ export default function (state = initialState, action) {
         Loading: false,
         user: null,
       };
+
     case IS_LOADING:
       return {
         ...state,

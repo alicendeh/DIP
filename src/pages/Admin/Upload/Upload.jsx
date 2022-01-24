@@ -2,17 +2,19 @@ import React, { useState } from "react";
 import styles from "./Upload.module.css";
 import { AdminLayout } from "../..";
 import { Header } from "../../../components";
-import {
-  Form,
-  Col,
-  Button,
-  InputGroup,
-  Row,
-  FloatingLabel,
-} from "react-bootstrap";
+import { Form, Col, Button, Row, FloatingLabel } from "react-bootstrap";
 import { _addABook } from "../../../Helpers/adminHelper";
+import { Navigate } from "react-router-dom";
+import {
+  loadingState,
+  currentlyAddedBook,
+} from "../../../redux/actions/adminAction";
+import { useDispatch, useSelector } from "react-redux";
 
 function Upload() {
+  const dispatch = useDispatch();
+  const adminState = useSelector((state) => state.admin);
+
   const [validated, setValidated] = useState(false);
   const [selectedImage, setSelectedImage] = useState();
   const [formData, setFormData] = useState({
@@ -20,8 +22,8 @@ function Upload() {
     author: "",
     description: "",
   });
-
-  const [selectedPdf, setSelectedPdf] = useState();
+  const [failureToSend, setfailureToSend] = useState(null);
+  const [images, setimages] = useState();
   const [toggle, setToggle] = useState("free", "premium");
   const { name, author, description } = formData;
 
@@ -31,7 +33,7 @@ function Upload() {
 
   const handlePdfDocument = (e) => {
     let pdf = e.target.files[0];
-    setSelectedPdf(pdf);
+    setimages(pdf);
   };
 
   const handleImageChange = (e) => {
@@ -44,6 +46,7 @@ function Upload() {
   };
 
   const handleSubmit = async (event) => {
+    dispatch(loadingState(true));
     event.preventDefault();
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
@@ -52,16 +55,24 @@ function Upload() {
     }
 
     setValidated(true);
-    let data = {
-      name: formData.name,
-      author: formData.author,
-      plan: toggle,
-      coverPage: selectedImage,
-      pdf: selectedPdf,
-    };
-    let res = _addABook(data).then((response) =>
-      console.log(response, "response")
-    );
+
+    const dataToSend = new FormData();
+    dataToSend.append("images", images);
+    dataToSend.append("name", formData.name);
+    dataToSend.append("author", formData.author);
+    dataToSend.append("plan", toggle);
+    dataToSend.append("images", selectedImage);
+
+    _addABook(dataToSend).then((response) => {
+      if (response.status === 400) {
+        setfailureToSend(response.data.message);
+      } else {
+        dispatch(currentlyAddedBook(response));
+
+        console.log(response);
+        // <Navigate to="/books" />;
+      }
+    });
   };
 
   return (
@@ -155,9 +166,27 @@ function Upload() {
                   <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                 </Form.Group>
               </Row>
-              <Row className=" px-3">
+              {/* <Row className=" px-3">
                 <Button type="submit">Submit form</Button>
-              </Row>
+              </Row> */}
+              <div class="col-12">
+                {/* {adminState.loading ? (
+                  <div
+                    className=" col-12 btn btn-primary "
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                    }}
+                  >
+                    <div className="spinner"></div>
+                  </div>
+                ) : ( */}
+                <Row className=" px-3">
+                  <Button type="submit">Submit form</Button>
+                </Row>
+                {/* )} */}
+              </div>
             </Form>
           </div>
         </div>

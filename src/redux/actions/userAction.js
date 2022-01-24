@@ -2,7 +2,6 @@ import {
   REGISTER_SUCCESS,
   REGISTER_FAILED,
   AUTH_ERROR,
-  USER_LOADED,
   LOGIN_SUCCESS,
   LOGIN_FAILED,
   LOGOUT,
@@ -49,6 +48,7 @@ export const isLoading = (val) => {
 export const loadUser = (user) => {
   return {
     type: LOAD_USER,
+    payload: user,
   };
 };
 export const loginUser = (user) => {

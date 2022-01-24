@@ -99,15 +99,66 @@ const _denyUsersPlanUpgrade = async (currentPlan, userID) => {
 
 const _addABook = async (data) => {
   try {
-    // let res = await axios.post(
-    //   `${process.env.REACT_APP_URL}/admin/books/CreateBook`,
-    //   config
-    // );
-    return data;
+    let res = await axios.post(
+      `${process.env.REACT_APP_URL}/admin/books/CreateBook`,
+      data
+    );
+
+    return res.data;
   } catch (err) {
-    return err;
+    console.log(err.response);
+    if (err.response.data) {
+      return { errorMessage: err.response.data.msg, code: 400 };
+    } else {
+      return { errorMessage: err.message, code: 400 };
+    }
   }
 };
+
+const _viewAllBooks = async () => {
+  try {
+    const res = await axios.get(
+      `${process.env.REACT_APP_URL}/admin/books/GetAllBook`
+    );
+    return res.data;
+  } catch (err) {
+    if (err.response.data) {
+      return { errorMessage: err.response.data.msg, code: 400 };
+    } else {
+      return { errorMessage: err.message, code: 400 };
+    }
+  }
+};
+
+const _deleteBook = async (bookID) => {
+  try {
+    const res = await axios.delete(
+      `${process.env.REACT_APP_URL}/admin/books/delete/${bookID}`
+    );
+    return res.data;
+  } catch (err) {
+    if (err.response.data) {
+      return { errorMessage: err.response.data.msg, code: 400 };
+    } else {
+      return { errorMessage: err.message, code: 400 };
+    }
+  }
+};
+
+// const _editBook = async bookID =>{
+//   try {
+//     const res = await axios.delete(
+//       `${process.env.REACT_APP_URL}/admin/books/delete/${bookID}`
+//     );
+//     return res.data;
+//   } catch (err) {
+//     if (err.response.data) {
+//       return { errorMessage: err.response.data.msg, code: 400 };
+//     } else {
+//       return { errorMessage: err.message, code: 400 };
+//     }
+//   }
+// }
 
 export {
   _getPlanChangeRequests,
@@ -116,4 +167,6 @@ export {
   _addABook,
   _upgradeUsersPlan,
   _denyUsersPlanUpgrade,
+  _viewAllBooks,
+  _deleteBook,
 };

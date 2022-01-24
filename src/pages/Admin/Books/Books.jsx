@@ -1,11 +1,25 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { AdminLayout } from "../../../pages";
 import { BookCard, Header, Unexpected } from "../../../components";
-import { BOOKS_DATA_SET } from "../../../DATA";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { _viewAllBooks } from "../../../Helpers/adminHelper";
+import { getAllBooks, loadingState } from "../../../redux/actions/adminAction";
+import { loadUser } from "../../../redux/actions/userAction";
+import { _loadeCurrentlyLogedInUser } from "../../../Helpers/userHelper";
+
 function Books() {
+  const dispatch = useDispatch();
+
   const data = useSelector((state) => state.admin);
-  const { error } = data;
+
+  useEffect(() => {
+    dispatch(loadingState(true));
+    _loadeCurrentlyLogedInUser().then((data) => dispatch(loadUser(data)));
+    _viewAllBooks().then((response) => dispatch(getAllBooks(response)));
+  }, []);
+
+  const { error, allBooks, loading } = data;
+
   return (
     <AdminLayout>
       <Header title={"Books"} />
@@ -13,11 +27,19 @@ function Books() {
         <Unexpected />
       ) : (
         <div>
-          {BOOKS_DATA_SET.map((book, index) => (
-            <div key={index}>
-              <BookCard book={book} index={index} />
+          {loading ? (
+            <div className={`containerCenter spinnerContainer`}>
+              <div className="spinner"></div>
             </div>
-          ))}
+          ) : (
+            <div>
+              {allBooks.map((book, index) => (
+                <div key={index}>
+                  <BookCard book={book} index={index} />
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       )}
     </AdminLayout>

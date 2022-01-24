@@ -18,6 +18,7 @@ import { loadUser } from "../../../redux/actions/userAction";
 function AllUsers() {
   const usersData = useSelector((state) => state.admin);
   const { incomingUsersRequest, users, error, loading } = usersData;
+
   const dispatch = useDispatch();
 
   useEffect(() => {
