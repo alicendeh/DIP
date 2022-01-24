@@ -30,15 +30,14 @@ function Navigation() {
             <Route exact path="/login" element={<Login />} />
           ) : (
             <>
-              <Route exact path="/users" element={<AllUsers />} />
-              <Route exact path="/books" element={<Books />} />
-              <Route exact path="/upload" element={<Upload />} />
-              <Route exact path="/profile" element={<Profile />} />
               <Route exact path="/dashboard" element={<Dashboard />} />
-              <Route exact path="/upgradetopremium" element={<Upgrade />} />
             </>
           )}
-
+          <Route exact path="/users" element={<AllUsers />} />
+          <Route exact path="/books" element={<Books />} />
+          <Route exact path="/upload" element={<Upload />} />
+          <Route exact path="/profile" element={<Profile />} />
+          <Route exact path="/upgradetopremium" element={<Upgrade />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </ScrollToTop>

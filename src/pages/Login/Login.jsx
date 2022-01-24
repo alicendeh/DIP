@@ -31,6 +31,7 @@ function Login() {
   if (user.isAuthenticated) {
     navigate("/dashboard");
   }
+  console.log(user.isAuthenticated);
   return (
     <div className={`${styles.main}`}>
       <div className={styles.box}>
@@ -132,9 +133,22 @@ function Login() {
                   </div>
                 </div>
                 <div class="col-12">
-                  <button type="submit" className="col-12 btn btn-primary ">
-                    Sign in
-                  </button>
+                  {user.Loading ? (
+                    <div
+                      className=" col-12 btn btn-primary "
+                      style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <div className="spinner"></div>
+                    </div>
+                  ) : (
+                    <button type="submit" className="col-12 btn btn-primary">
+                      <span>Sign In</span>
+                    </button>
+                  )}
                 </div>
                 <div className="text-muted d-flex justify-content-center align-items-center">
                   <small style={{ color: "#bb2d00" }}>

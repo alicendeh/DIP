@@ -1,6 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Route } from "react-router-dom";
 import styles from "../pages/Dashboard/Dashboard.module.css";
+import { logout } from "../redux/actions/userAction";
 function DashPage({ children }) {
   return (
     <main>
@@ -33,17 +34,6 @@ function DashPage({ children }) {
                   Hi, Fodjo Frank
                 </Link>
               </li>
-              <div
-                style={{
-                  width: "300px",
-                  height: "250px",
-                  backgroundColor: "red",
-                }}
-              >
-                <i
-                  className={`fas fa-sign-out-alt fa-2x ${styles.logout} icon`}
-                ></i>
-              </div>
               {/* <div className="d-flex" style={{ gap: "6px " }}> */}
               <div
                 className="profile rounded-circle"
@@ -61,6 +51,18 @@ function DashPage({ children }) {
                 />
               </div>
               {/* </div> */}
+              <div className="pt-4 pl-2" style={{ cursor: "pointer" }}>
+                <Link
+                  to="/"
+                  className="nav-link actived"
+                  aria-current="page"
+                  onClick={logout()}
+                >
+                  <i
+                    className={`fas fa-sign-out-alt fa-2x ${styles.logout} icon`}
+                  ></i>
+                </Link>
+              </div>
             </ul>
           </div>
         </div>

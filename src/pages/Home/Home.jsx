@@ -3,8 +3,11 @@ import { Link } from "react-router-dom";
 import { Mission, Vision, MyPage } from "../../components";
 import Fade from "react-reveal/Fade";
 import styles from "./Home.module.css";
+import { useDispatch, useSelector } from "react-redux";
 
 function Home() {
+  const user = useSelector((state) => state.user);
+  console.log(user.isAuthenticated);
   return (
     <MyPage>
       {" "}
