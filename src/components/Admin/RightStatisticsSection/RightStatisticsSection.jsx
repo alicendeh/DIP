@@ -37,11 +37,9 @@ function RightStatisticsSection() {
         <div className={`containerCenter d-flex justify-content-end `}>
           <p className="pt-3 pr-3 ">
             hi,
-            <span className="font-weight-bold"> {user.name}</span>
+            <span className="font-weight-bold"> Alice Ndeh</span>
           </p>
-          <Avater
-            imageUrl={user.avater ? user.avater : "/defaultUserPic.webp"}
-          />
+          <Avater imageUrl={"/cld-sample.jpg"} />
         </div>
         <div className={styles.overViewC0ntainer}>
           <p>OverView</p>
