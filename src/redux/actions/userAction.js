@@ -49,6 +49,11 @@ export const isLoading = (val) => {
 export const loadUser = (user) => {
   return {
     type: LOAD_USER,
+  };
+};
+export const loginUser = (user) => {
+  return {
+    type: LOGIN_SUCCESS,
     payload: user,
   };
 };

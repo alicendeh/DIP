@@ -8,42 +8,10 @@ import { Modal, Button } from "react-bootstrap";
 import { registerUsers, isLoading } from "../../redux/actions/userAction";
 import { _registerUser } from "../../Helpers/userHelper";
 
-function MyVerticallyCenteredModal(props) {
-  return (
-    <Modal
-      {...props}
-      size="lg"
-      aria-labelledby="contained-modal-title-vcenter"
-      centered
-    >
-      {/* <Modal.Header className="mheader" closeButton>
-        <div className="contain" style={{ width: "80px", height: "80px" }}>
-          <img src="/8.png" alt="" style={{ width: "100%", height: "100%" }} />
-        </div>
-      </Modal.Header> */}
-      <Modal.Body>
-        <div className="containt d-flex">
-          <h4>Request sent and Pending</h4>{" "}
-          <i
-            class="fas fa-check-double pt-2 pl-2"
-            style={{ color: "#009717" }}
-          ></i>
-        </div>
-        <p>
-          Request Sent, But you need to wait for the Admin to grant you access!
-          For you to enjoy the free Plan!
-        </p>
-      </Modal.Body>
-    </Modal>
-  );
-}
-
-function Registeration({ isAuthenticated, register }) {
+function Registeration() {
   const user = useSelector((state) => state.user);
 
   const dispatch = useDispatch();
-
-  const [modalShow, setModalShow] = React.useState(false);
   const [toggleEyePassword, setToggleEyePassword] = useState(false);
   const [toggleEyePassword1, setToggleEyePassword1] = useState(false);
   const [validationPassword, setValidationPassword] = useState(false);
@@ -81,7 +49,9 @@ function Registeration({ isAuthenticated, register }) {
       _registerUser(data).then((response) => dispatch(registerUsers(response)));
     }
   };
-
+  if (user.isAuthenticated) {
+    <Navigate to="/dashboard" />;
+  }
   return (
     <div className={`${styles.main}`}>
       <div className={styles.box}>

@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Login.module.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { login } from "../../Helpers/userHelper";
+import { loginUser, isLoading } from "../../redux/actions/userAction";
+import { useDispatch, useSelector } from "react-redux";
 function Login() {
+  const user = useSelector((state) => state.user);
+  let navigate = useNavigate();
+  const dispatch = useDispatch();
   const [toggleEyePassword, setToggleEyePassword] = useState(false);
   const [formData, setFormData] = useState({
     email: "",
@@ -15,9 +21,16 @@ function Login() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
   const onsubmit = async (e) => {
+    dispatch(isLoading(false));
     e.preventDefault();
+    console.log(email, password, "ss");
+    const data = { email, password };
+    login(data).then((response) => dispatch(loginUser(response)));
   };
-
+  console.log(user.isAuthenticated);
+  if (user.isAuthenticated) {
+    navigate("/dashboard");
+  }
   return (
     <div className={`${styles.main}`}>
       <div className={styles.box}>
@@ -64,7 +77,7 @@ function Login() {
               </p>
             </div>
             <div className="formsap row d-flex justify-content-center align-items-center">
-              <form class="row g-3">
+              <form class="row g-3" onSubmit={(e) => onsubmit(e)}>
                 <div class="col-md-12">
                   <label for="inputEmail4" class="form-label">
                     Email
@@ -73,6 +86,9 @@ function Login() {
                     type="email"
                     className={`${styles.int} form-control`}
                     id="inputEmail4"
+                    name="email"
+                    value={email}
+                    onChange={(e) => onchange(e)}
                   />
                 </div>
                 {/* <div class="col-md-12">
