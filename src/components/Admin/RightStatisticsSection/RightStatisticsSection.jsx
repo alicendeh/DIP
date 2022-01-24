@@ -1,13 +1,34 @@
 import React, { useEffect } from "react";
 import styles from "./RightStatisticsSection.module.css";
 import { Avater } from "../../../components";
-import { STATISTICS_DATA, COLOR_ARRAY } from "../../../DATA";
-import { adminGetsStatisticsData } from "../../../redux/actions/adminAction";
+import { COLOR_ARRAY } from "../../../DATA";
+import {
+  adminGetsStatisticsData,
+  loadingState,
+  errorDetected,
+} from "../../../redux/actions/adminAction";
+import { loadUser } from "../../../redux/actions/userAction";
+
 import { _getAllStatistics } from "../../../Helpers/adminHelper";
+import { _loadeCurrentlyLogedInUser } from "../../../Helpers/userHelper";
+import { useDispatch, useSelector } from "react-redux";
 
 function RightStatisticsSection() {
+  const statisticsData = useSelector((state) => state.admin.statisticsData);
+  const loading = useSelector((state) => state.admin.loading);
+
+  const dispatch = useDispatch();
+
   useEffect(() => {
-    _getAllStatistics().then((data) => adminGetsStatisticsData(data));
+    dispatch(loadingState(true));
+    _loadeCurrentlyLogedInUser().then((data) => dispatch(loadUser(data)));
+    _getAllStatistics().then((response) => {
+      if (response.code === 400) {
+        return dispatch(errorDetected(response.errorMessage));
+      } else {
+        dispatch(adminGetsStatisticsData(response));
+      }
+    });
   }, []);
 
   return (
@@ -26,37 +47,46 @@ function RightStatisticsSection() {
             <div
               className={`containerColumn ${styles.total} ${styles.totalBooks} `}
             >
-              <p>75</p>
+              <p> 20 </p>
               <p>Books</p>
             </div>
             <div
               className={`containerColumn ${styles.total} ${styles.totalViews} `}
             >
-              <p>125</p>
+              <p>422 </p>
               <p>Views</p>
             </div>
           </div>
           <div className="pt-4">
-            {STATISTICS_DATA.map((statistic, index) => (
-              <div key={index} className={`pt-4 ${styles.stats}`}>
-                <div className={`containerRow`}>
-                  <p>{statistic.label} </p>
-                  <p>
-                    {statistic.val}/ {statistic.total}{" "}
-                  </p>
-                </div>
-                <div className={styles.main}>
-                  <div
-                    style={{
-                      backgroundColor: COLOR_ARRAY[index],
-                      width: `${statistic.val}%`,
-                      height: "100%",
-                      borderRadius: "7px",
-                    }}
-                  ></div>
-                </div>
+            {loading ? (
+              <div className={`containerCenter spinnerContainer`}>
+                <div className="spinner"></div>
               </div>
-            ))}
+            ) : (
+              <div>
+                {statisticsData &&
+                  statisticsData.map((statistic, index) => (
+                    <div key={index} className={`pt-4 ${styles.stats}`}>
+                      <div className={`containerRow`}>
+                        <p>{statistic.label} </p>
+                        <p>
+                          {statistic.value}/ {statisticsData[0].value}
+                        </p>
+                      </div>
+                      <div className={styles.main}>
+                        <div
+                          style={{
+                            backgroundColor: COLOR_ARRAY[index],
+                            width: `${statistic.value}px`,
+                            height: "100%",
+                            borderRadius: "7px",
+                          }}
+                        ></div>
+                      </div>
+                    </div>
+                  ))}
+              </div>
+            )}
           </div>
         </div>
       </div>

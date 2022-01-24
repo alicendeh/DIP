@@ -3,15 +3,16 @@ import styles from "./PlanCard.module.css";
 import { Avater } from "../../../components";
 
 function PlanCard({ user }) {
-  const { name, email, avater, plan, date } = user;
   return (
     <div>
       <div className={styles.card}>
         <div
           className={
-            plan === "Free"
-              ? `${styles.colorContainer}`
-              : `${styles.colorContainerPremium}`
+            user.plan !== "none"
+              ? user.plan === "free"
+                ? `${styles.colorContainer}`
+                : `${styles.colorContainerPremium}`
+              : `${styles.none}`
           }
         ></div>
         <div
@@ -27,9 +28,13 @@ function PlanCard({ user }) {
         <div className={`containerCenter`}>
           <div className={styles.line}></div>
         </div>
-        <div className={`containerCenter`}>
+        <div className={`containerCenter ${styles.userInfoContainer}`}>
           <div>
-            <Avater imageUrl={user.avater} />
+            <Avater
+              imageUrl={
+                user.avater.length < 1 ? "/Default-avatar.jpg" : user.avater
+              }
+            />
           </div>
           <div className={styles.txtContainer}>
             {user.name} <br />
