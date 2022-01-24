@@ -32,12 +32,12 @@ function Profile() {
   return (
     <AdminLayout>
       <Header title={"Profile"} hidden />
-      <div className="pt-5 pb-5">
+      <div className=" pb-5 " style={{ paddingTop: "6em" }}>
         <Form>
           <Row>
-            <div className="d-flex">
+            <div className="d-flex col-lg-4">
               <div className={`${styles.round}`}>
-                <div className={`${styles.profilePic} col-4`}>
+                <div className={`${styles.profilePic} `}>
                   <label for="img" className="take-photo">
                     <img
                       for="img"
@@ -47,6 +47,7 @@ function Profile() {
                           : "/1.png"
                       }
                       className="img-fluid rounded border card"
+                      style={{ width: "100%", height: "100%" }}
                     />
                     <input
                       type="file"
@@ -61,6 +62,71 @@ function Profile() {
                 </div>
                 <p className="petit">Click the camera to upload image</p>
               </div>
+            </div>
+            <div className="other-form col-lg-8">
+              <Row className="mb-3">
+                <Form.Group as={Col} md="6" controlId="validationCustom01">
+                  <Form.Label>Name </Form.Label>
+                  <Form.Control
+                    required
+                    type="text"
+                    // name="name"
+                    // value={name}
+                    // onChange={(e) => handleChange(e)}
+                    placeholder="Name of book"
+                  />
+                  <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                </Form.Group>
+                <Form.Group as={Col} md="6" controlId="validationCustom02">
+                  <Form.Label>Email</Form.Label>
+                  <Form.Control
+                    required
+                    type="text"
+                    placeholder="Author"
+                    // name="author"
+                    // value={author}
+                    // onChange={(e) => handleChange(e)}
+                  />
+                  <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                </Form.Group>
+              </Row>
+              <Row className="mb-3">
+                <Form.Group as={Col} md="12" controlId="validationCustom02">
+                  <Form.Label> Change Password</Form.Label>
+                  <Form.Control
+                    required
+                    type="password"
+                    // name="author"
+                    // value={author}
+                    // onChange={(e) => handleChange(e)}
+                  />
+                  <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                </Form.Group>
+                <Form.Group as={Col} md="12" controlId="validationCustom02">
+                  <Form.Label> Confirm Password</Form.Label>
+                  <Form.Control
+                    required
+                    type="password"
+                    // name="author"
+                    // value={author}
+                    // onChange={(e) => handleChange(e)}
+                  />
+                  <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                </Form.Group>
+                <Form.Group as={Col} md="12" controlId="validationCustom04">
+                  <Form.Label>Role</Form.Label>
+                  <Form.Select
+                    aria-label="Default select example"
+                    // onChange={(e) => handleSelectFreeOrPremium(e)}
+                  >
+                    <option value="1">Admin</option>
+                    {/* <option value="2">Premium</option> */}
+                  </Form.Select>
+                </Form.Group>
+                <Row className=" pt-3">
+                  <Button type="submit">Submit form</Button>
+                </Row>
+              </Row>
             </div>
           </Row>
         </Form>

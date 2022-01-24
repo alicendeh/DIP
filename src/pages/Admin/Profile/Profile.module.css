@@ -9,3 +9,7 @@
   justify-content: center;
   align-items: center;
 }
+.take-photo {
+  width: 300px;
+  height: 400px;
+}

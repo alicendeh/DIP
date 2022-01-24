@@ -2,6 +2,7 @@ import React from "react";
 import { DashPage } from "../../components";
 import styles from "./Dashboard.module.css";
 import { Modal, Button } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
 function MyVerticallyCenteredModal(props) {
   return (
     <Modal
@@ -34,6 +35,8 @@ function MyVerticallyCenteredModal(props) {
 
 function Dashboard() {
   const [modalShow, setModalShow] = React.useState(false);
+  const user = useSelector((state) => state.user);
+  console.log(user.isAuthenticated);
   return (
     <DashPage>
       <div className={`${styles.main1} row whole pt-5 pb-4 d-flex `}>
