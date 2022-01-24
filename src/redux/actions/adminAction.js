@@ -4,6 +4,8 @@ import {
   ADMIN_GETS_ALL_USERS,
   IS_LOADING,
   SET_ERROR,
+  CURRENT_BOOK,
+  ALL_BOOKS,
 } from "../ActionType";
 
 const adminGetsUsersequest = (users) => {
@@ -43,10 +45,26 @@ const errorDetected = (err) => {
   }
 };
 
+const currentlyAddedBook = (book) => {
+  return {
+    type: CURRENT_BOOK,
+    payload: book,
+  };
+};
+
+const getAllBooks = (books) => {
+  return {
+    type: ALL_BOOKS,
+    payload: books,
+  };
+};
+
 export {
   adminGetsUsersequest,
   adminGetsStatisticsData,
   adminGetsAllUsers,
   loadingState,
   errorDetected,
+  currentlyAddedBook,
+  getAllBooks,
 };

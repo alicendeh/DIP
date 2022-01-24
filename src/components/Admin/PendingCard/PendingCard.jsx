@@ -7,7 +7,7 @@ import {
   _denyUsersPlanUpgrade,
 } from "../../../Helpers/adminHelper";
 import { useDispatch } from "react-redux";
-
+import moment from "moment";
 function PendingCard({ user }) {
   const [show, setShow] = useState(false);
   const [showAceptModal, setshowAceptModal] = useState(false);
@@ -48,7 +48,7 @@ function PendingCard({ user }) {
             flexDirection: "column",
           }}
         >
-          {user.date}
+          {moment(parseInt(user.date)).format("MMMM Do YYYY")}
         </div>
         <div className={`containerCenter`}>
           <div className={styles.line}></div>

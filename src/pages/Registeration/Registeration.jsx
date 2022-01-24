@@ -24,9 +24,6 @@ function Registeration() {
     password2: "",
   });
 
-  useEffect(() => {
-    console.log(user.Loading);
-  }, []);
   const handletoggleEyePassword = () => {
     setToggleEyePassword(!toggleEyePassword);
   };

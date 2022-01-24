@@ -8,7 +8,6 @@ import {
   errorDetected,
 } from "../../../redux/actions/adminAction";
 import { loadUser } from "../../../redux/actions/userAction";
-
 import { _getAllStatistics } from "../../../Helpers/adminHelper";
 import { _loadeCurrentlyLogedInUser } from "../../../Helpers/userHelper";
 import { useDispatch, useSelector } from "react-redux";
@@ -16,7 +15,8 @@ import { useDispatch, useSelector } from "react-redux";
 function RightStatisticsSection() {
   const statisticsData = useSelector((state) => state.admin.statisticsData);
   const loading = useSelector((state) => state.admin.loading);
-
+  const userData = useSelector((state) => state.user);
+  const { user } = userData;
   const dispatch = useDispatch();
 
   useEffect(() => {

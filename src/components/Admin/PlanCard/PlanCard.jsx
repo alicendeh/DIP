@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./PlanCard.module.css";
 import { Avater } from "../../../components";
+import moment from "moment";
 
 function PlanCard({ user }) {
   return (
@@ -23,7 +24,9 @@ function PlanCard({ user }) {
             flexDirection: "column",
           }}
         >
-          <span className={styles.dt}> {user.date}</span>
+          <span className={styles.dt}>
+            {moment(parseInt(user.date)).format("MMMM Do YYYY")}
+          </span>
         </div>
         <div className={`containerCenter`}>
           <div className={styles.line}></div>
