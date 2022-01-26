@@ -46,15 +46,17 @@ function AllUsers() {
 
   useEffect(() => {
     if (usersFilteredList.length > 0) {
-      let pending = usersFilteredList.filter(
-        (item) => item.isRequestingAccess === true
-      );
-      setpendinDataSet(pending);
-
       let users = usersFilteredList.filter(
         (item) => item.isRequestingAccess === false
       );
       setuserDataSet(users);
+
+      let pending = usersFilteredList.filter(
+        (item) => item.isRequestingAccess === true
+      );
+      console.log(pending, "pending`");
+
+      setpendinDataSet(pending);
     }
   }, [usersFilteredList]);
 
@@ -74,16 +76,27 @@ function AllUsers() {
             </div>
           ) : (
             <div>
-              <div>
-                {pendinDataSet.length > 0 ? (
+              {usersFilteredList.length > 0 ? (
+                <div>
                   <div>
-                    {pendinDataSet.map((user, index) => (
-                      <div key={index}>
-                        <PendingCard user={user} index={index} />
-                      </div>
-                    ))}
+                    {pendinDataSet.length > 0 &&
+                      pendinDataSet.map((user, index) => (
+                        <div key={index}>
+                          <PendingCard user={user} index={index} />
+                        </div>
+                      ))}
                   </div>
-                ) : (
+                  <div>
+                    {userDataSet.length > 0 &&
+                      userDataSet.map((user, index) => (
+                        <div key={index}>
+                          <PlanCard user={user} index={index} />
+                        </div>
+                      ))}
+                  </div>
+                </div>
+              ) : (
+                <div>
                   <div>
                     {typeof incomingUsersRequest !== undefined &&
                       incomingUsersRequest.length > 0 &&
@@ -93,32 +106,66 @@ function AllUsers() {
                         </div>
                       ))}
                   </div>
-                )}
-              </div>
-              <div>
-                <div>
-                  {userDataSet.length > 0 ? (
-                    <div>
-                      {userDataSet.map((user, index) => (
+                  <div>
+                    {typeof users !== undefined &&
+                      users.length > 0 &&
+                      users.map((user, index) => (
                         <div key={index}>
                           <PlanCard user={user} />
                         </div>
                       ))}
-                    </div>
-                  ) : (
-                    <div>
-                      {typeof users !== undefined &&
-                        users.length > 0 &&
-                        users.map((user, index) => (
-                          <div key={index}>
-                            <PlanCard user={user} />
-                          </div>
-                        ))}
-                    </div>
-                  )}
+                  </div>
                 </div>
-              </div>
+              )}
             </div>
+            // <div>
+            //   <div>
+            //     {usersFilteredList.length > 0 ? (
+            //       <div>
+            //         {pendinDataSet.length > 0 && (
+            //           <div>
+            //             {pendinDataSet.map((data, index) => (
+            //               <PendingCard data={data} index={index} />
+            //             ))}
+            //           </div>
+            //         )}
+            //       </div>
+            //     ) : (
+            //       <div>
+            //         {typeof incomingUsersRequest !== undefined &&
+            //           incomingUsersRequest.length > 0 &&
+            //           incomingUsersRequest.map((user, index) => (
+            //             <div key={index}>
+            //               <PendingCard user={user} index={index} />
+            //             </div>
+            //           ))}
+            //       </div>
+            //     )}
+            //   </div>
+            //   <div>
+            //     <div>
+            //       {userDataSet.length > 0 ? (
+            //         <div>
+            //           {userDataSet.map((user, index) => (
+            //             <div key={index}>
+            //               <PlanCard user={user} />
+            //             </div>
+            //           ))}
+            //         </div>
+            //       ) : (
+            //         <div>
+            //           {typeof users !== undefined &&
+            //             users.length > 0 &&
+            //             users.map((user, index) => (
+            //               <div key={index}>
+            //                 <PlanCard user={user} />
+            //               </div>
+            //             ))}
+            //         </div>
+            //       )}
+            //     </div>
+            //   </div>
+            // </div>
           )}
         </div>
       )}

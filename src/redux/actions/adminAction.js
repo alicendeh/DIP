@@ -8,6 +8,7 @@ import {
   ALL_BOOKS,
   UPLOAD_SPINNER,
   FILTRATION_RESULT,
+  FILTERED_BOOKS,
 } from "../ActionType";
 
 const adminGetsUsersequest = (users) => {
@@ -75,6 +76,13 @@ const usersFilteredList = (data) => {
   };
 };
 
+const booksFilteredList = (data) => {
+  return {
+    type: FILTERED_BOOKS,
+    payload: data,
+  };
+};
+
 export {
   adminGetsUsersequest,
   adminGetsStatisticsData,
@@ -85,4 +93,5 @@ export {
   getAllBooks,
   submitBookSPinner,
   usersFilteredList,
+  booksFilteredList,
 };

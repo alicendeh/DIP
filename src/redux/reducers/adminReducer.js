@@ -8,6 +8,7 @@ import {
   ALL_BOOKS,
   UPLOAD_SPINNER,
   FILTRATION_RESULT,
+  FILTERED_BOOKS,
 } from "../ActionType";
 
 const INITIAL_STATE = {
@@ -20,6 +21,7 @@ const INITIAL_STATE = {
   allBooks: [],
   bookSPinner: false,
   usersFilteredList: [],
+  booksFilteredList: [],
 };
 
 const getUsersRequest = (state = INITIAL_STATE, { type, payload }) => {
@@ -81,6 +83,11 @@ const getUsersRequest = (state = INITIAL_STATE, { type, payload }) => {
       return {
         ...state,
         usersFilteredList: payload,
+      };
+    case FILTERED_BOOKS:
+      return {
+        ...state,
+        booksFilteredList: payload,
       };
 
     default:

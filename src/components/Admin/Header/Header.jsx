@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Header.module.css";
 import { Dropdown } from "react-bootstrap";
-import { usersFilteredList } from "../../../redux/actions/adminAction";
+import {
+  usersFilteredList,
+  booksFilteredList,
+} from "../../../redux/actions/adminAction";
 import { useDispatch } from "react-redux";
 
-function Header({ hidden, title, filtrationList }) {
+function Header({ hidden, title, filtrationList, from }) {
   const [searchValue, setSearchValue] = useState("");
   const [currentSelectValue, setcurrentSelectValue] = useState("");
   const [toggleSideMenu, settoggleSideMenu] = useState(false);
@@ -16,45 +19,78 @@ function Header({ hidden, title, filtrationList }) {
     let newText = e.target.value.toLowerCase();
     if (newText !== "") {
       let itemToFilter = newText.toLowerCase();
-      let result = filtrationList.filter(
-        (item) =>
-          item.name.toLowerCase().includes(itemToFilter) ||
-          item.email.toLowerCase().includes(itemToFilter) ||
-          item.plan.toLowerCase().includes(itemToFilter)
-      );
-      dispatch(usersFilteredList(result));
+
+      if (from === "books Array") {
+        let results = filtrationList.filter(
+          (item) =>
+            item.name.toLowerCase().includes(itemToFilter) ||
+            item.author.toLowerCase().includes(itemToFilter) ||
+            item.plan.toLowerCase().includes(itemToFilter)
+        );
+        dispatch(booksFilteredList(results));
+      } else {
+        let result = filtrationList.filter(
+          (item) =>
+            item.name.toLowerCase().includes(itemToFilter) ||
+            item.email.toLowerCase().includes(itemToFilter) ||
+            item.plan.toLowerCase().includes(itemToFilter)
+        );
+        console.log("sup", result);
+
+        dispatch(usersFilteredList(result));
+      }
     } else {
-      dispatch(usersFilteredList(filtrationList));
+      if (from === "books Array") {
+        dispatch(booksFilteredList(filtrationList));
+      } else {
+        dispatch(usersFilteredList(filtrationList));
+      }
     }
   };
 
   const clearInput = () => {
     setSearchValue("");
+    if (from === "books Array") {
+      dispatch(booksFilteredList(filtrationList));
+    }
     dispatch(usersFilteredList(filtrationList));
   };
 
   const cancelMode = () => {
-    dispatch(usersFilteredList(filtrationList));
-
+    if (from === "books Array") {
+      dispatch(booksFilteredList(filtrationList));
+    } else {
+      dispatch(usersFilteredList(filtrationList));
+    }
     setcurrentSelectValue("");
   };
 
-  useEffect(() => {
-    console.log(currentSelectValue, "here");
-  }, [currentSelectValue]);
-
   const selectFunction = (e) => {
     setcurrentSelectValue(e);
-    if (e == "#/free") {
-      let res = filtrationList.filter((item) =>
-        item.plan.toLowerCase().includes("free")
-      );
-      dispatch(usersFilteredList(res));
+    if (from === "books Array") {
+      if (e == "#/free") {
+        let res = filtrationList.filter((item) =>
+          item.plan.toLowerCase().includes("free")
+        );
+        dispatch(booksFilteredList(res));
+      } else {
+        let res = filtrationList.filter((item) =>
+          item.plan.toLowerCase().includes("premium")
+        );
+        dispatch(booksFilteredList(res));
+      }
     } else {
-      let res = filtrationList.filter((item) =>
-        item.plan.toLowerCase().includes("premium")
-      );
-      dispatch(usersFilteredList(res));
+      if (e == "#/free") {
+        let res = filtrationList.filter((item) =>
+          item.plan.toLowerCase().includes("free")
+        );
+        dispatch(usersFilteredList(res));
+      } else {
+        let res = filtrationList.filter((item) =>
+          item.plan.toLowerCase().includes("premium")
+        );
+        dispatch(usersFilteredList(res));
+      }
     }
   };
   return (
