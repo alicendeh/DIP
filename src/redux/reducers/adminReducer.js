@@ -6,6 +6,9 @@ import {
   SET_ERROR,
   CURRENT_BOOK,
   ALL_BOOKS,
+  UPLOAD_SPINNER,
+  FILTRATION_RESULT,
+  FILTERED_BOOKS,
 } from "../ActionType";
 
 const INITIAL_STATE = {
@@ -16,6 +19,9 @@ const INITIAL_STATE = {
   error: null,
   newBook: [],
   allBooks: [],
+  bookSPinner: false,
+  usersFilteredList: [],
+  booksFilteredList: [],
 };
 
 const getUsersRequest = (state = INITIAL_STATE, { type, payload }) => {
@@ -57,15 +63,31 @@ const getUsersRequest = (state = INITIAL_STATE, { type, payload }) => {
     case CURRENT_BOOK:
       return {
         ...state,
-        loading: false,
+        bookSPinner: false,
         newBook: payload,
       };
     case ALL_BOOKS:
-      console.log(payload, "here");
       return {
         ...state,
         loading: false,
         allBooks: payload.books,
+      };
+    case UPLOAD_SPINNER:
+      return {
+        ...state,
+        bookSPinner: payload,
+        error: null,
+      };
+
+    case FILTRATION_RESULT:
+      return {
+        ...state,
+        usersFilteredList: payload,
+      };
+    case FILTERED_BOOKS:
+      return {
+        ...state,
+        booksFilteredList: payload,
       };
 
     default:

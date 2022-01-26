@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import styles from "./Upload.module.css";
+import React, { useState, useEffect } from "react";
 import { AdminLayout } from "../..";
 import { Header } from "../../../components";
-import { Form, Col, Button, Row, FloatingLabel } from "react-bootstrap";
+import { Form, Col, Button, Row, Modal } from "react-bootstrap";
 import { _addABook } from "../../../Helpers/adminHelper";
 import { Navigate } from "react-router-dom";
+
 import {
-  loadingState,
+  submitBookSPinner,
   currentlyAddedBook,
 } from "../../../redux/actions/adminAction";
 import { useDispatch, useSelector } from "react-redux";
@@ -20,12 +20,12 @@ function Upload() {
   const [formData, setFormData] = useState({
     name: "",
     author: "",
-    description: "",
   });
   const [failureToSend, setfailureToSend] = useState(null);
   const [images, setimages] = useState();
+  const [showSuccessModal, setshowSuccessModal] = useState(false);
   const [toggle, setToggle] = useState("free", "premium");
-  const { name, author, description } = formData;
+  const { name, author } = formData;
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -46,7 +46,6 @@ function Upload() {
   };
 
   const handleSubmit = async (event) => {
-    dispatch(loadingState(true));
     event.preventDefault();
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
@@ -55,6 +54,7 @@ function Upload() {
     }
 
     setValidated(true);
+    dispatch(submitBookSPinner(true));
 
     const dataToSend = new FormData();
     dataToSend.append("images", images);
@@ -64,20 +64,28 @@ function Upload() {
     dataToSend.append("images", selectedImage);
 
     _addABook(dataToSend).then((response) => {
-      if (response.status === 400) {
+      console.log(response);
+      if (response.code === 400) {
+        console.log("alice");
+        dispatch(submitBookSPinner(false));
+
         setfailureToSend(response.data.message);
       } else {
+        console.log("yaya");
         dispatch(currentlyAddedBook(response));
-
-        console.log(response);
-        // <Navigate to="/books" />;
+        setshowSuccessModal(true);
       }
     });
   };
 
+  const handleClose = () => {
+    setshowSuccessModal(false);
+  };
   return (
     <AdminLayout>
       <Header title={"Upload A Book"} hidden />
+      <SuccessModal show={showSuccessModal} handleClose={handleClose} />
+
       <div className="pt-5 pb-5">
         <div className="row">
           <div className="col-lg-12">
@@ -109,20 +117,6 @@ function Upload() {
                 </Form.Group>
               </Row>
               <Row className="mb-3">
-                <FloatingLabel
-                  controlId="floatingTextarea2"
-                  label="  Book Description"
-                  className="mb-3 "
-                >
-                  <Form.Control
-                    as="textarea"
-                    placeholder="Describe the book"
-                    name="description"
-                    value={description}
-                    onChange={(e) => handleChange(e)}
-                    style={{ height: "200px" }}
-                  />
-                </FloatingLabel>
                 <Form.Group as={Col} md="6" controlId="validationCustom04">
                   <Form.Label>Type</Form.Label>
                   <Form.Select
@@ -170,7 +164,7 @@ function Upload() {
                 <Button type="submit">Submit form</Button>
               </Row> */}
               <div class="col-12">
-                {/* {adminState.loading ? (
+                {adminState.bookSPinner ? (
                   <div
                     className=" col-12 btn btn-primary "
                     style={{
@@ -181,11 +175,11 @@ function Upload() {
                   >
                     <div className="spinner"></div>
                   </div>
-                ) : ( */}
-                <Row className=" px-3">
-                  <Button type="submit">Submit form</Button>
-                </Row>
-                {/* )} */}
+                ) : (
+                  <Row className=" px-3">
+                    <Button type="submit">Submit form</Button>
+                  </Row>
+                )}
               </div>
             </Form>
           </div>
@@ -196,3 +190,16 @@ function Upload() {
 }
 
 export default Upload;
+
+function SuccessModal({ title, show, handleClose }) {
+  return (
+    <>
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Successful</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Book Succesfully added</Modal.Body>
+      </Modal>
+    </>
+  );
+}

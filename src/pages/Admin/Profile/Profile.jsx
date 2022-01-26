@@ -31,7 +31,7 @@ function Profile() {
 
   return (
     <AdminLayout>
-      <Header title={"Profile"} hidden />
+      <Header title={"Profile"} hidden={true} />
       <div className=" pb-5 " style={{ paddingTop: "6em" }}>
         <Form>
           <Row>

@@ -6,6 +6,9 @@ import {
   SET_ERROR,
   CURRENT_BOOK,
   ALL_BOOKS,
+  UPLOAD_SPINNER,
+  FILTRATION_RESULT,
+  FILTERED_BOOKS,
 } from "../ActionType";
 
 const adminGetsUsersequest = (users) => {
@@ -59,6 +62,27 @@ const getAllBooks = (books) => {
   };
 };
 
+const submitBookSPinner = (value) => {
+  return {
+    type: UPLOAD_SPINNER,
+    payload: value,
+  };
+};
+
+const usersFilteredList = (data) => {
+  return {
+    type: FILTRATION_RESULT,
+    payload: data,
+  };
+};
+
+const booksFilteredList = (data) => {
+  return {
+    type: FILTERED_BOOKS,
+    payload: data,
+  };
+};
+
 export {
   adminGetsUsersequest,
   adminGetsStatisticsData,
@@ -67,4 +91,7 @@ export {
   errorDetected,
   currentlyAddedBook,
   getAllBooks,
+  submitBookSPinner,
+  usersFilteredList,
+  booksFilteredList,
 };

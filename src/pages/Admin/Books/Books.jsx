@@ -11,6 +11,7 @@ function Books() {
   const dispatch = useDispatch();
 
   const data = useSelector((state) => state.admin);
+  const { error, allBooks, loading, booksFilteredList } = data;
 
   useEffect(() => {
     dispatch(loadingState(true));
@@ -18,11 +19,9 @@ function Books() {
     _viewAllBooks().then((response) => dispatch(getAllBooks(response)));
   }, []);
 
-  const { error, allBooks, loading } = data;
-
   return (
     <AdminLayout>
-      <Header title={"Books"} />
+      <Header title={"Books"} filtrationList={allBooks} from={"books Array"} />
       {error != null ? (
         <Unexpected />
       ) : (
@@ -33,11 +32,23 @@ function Books() {
             </div>
           ) : (
             <div>
-              {allBooks.map((book, index) => (
-                <div key={index}>
-                  <BookCard book={book} index={index} />
+              {booksFilteredList.length > 0 ? (
+                <div>
+                  {booksFilteredList.map((book, index) => (
+                    <div key={index}>
+                      <BookCard book={book} index={index} />
+                    </div>
+                  ))}
                 </div>
-              ))}
+              ) : (
+                <div>
+                  {allBooks.map((book, index) => (
+                    <div key={index}>
+                      <BookCard book={book} index={index} />
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
           )}
         </div>
