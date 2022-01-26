@@ -1,26 +1,32 @@
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Navigate, Route, useLocation, Outlet } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { Navigate, Route, useNavigate } from "react-router-dom";
+import NotFound from "../../pages/NotFound/NotFound";
 
-const PrivateRoute = ({
-  component: Component,
-  // auth: { isAuthenticated, Loading },
-  ...rest
-}) => {
+const PrivateRoute = ({ component: Component, roles, route, ...rest }) => {
+  const navigate = useNavigate();
   const user = useSelector((state) => state.user);
-  //   const location = useLocation();
-  return (
-    <Route
-      {...rest}
-      render={(props) =>
-        !user.isAuthenticated && !user.Loading ? (
-          <Navigate to="/login" />
-        ) : (
-          <Outlet />
-        )
-      }
-    />
-  );
+  const userHasRequiredRole = roles.includes(user.user.role);
+  console.log(user); //user
+  console.log(userHasRequiredRole); // false
+
+  if (user.isAuthenticated && user.user.role == "user") {
+    return <Component />;
+  }
+  //  else if (userHasRequiredRole && route == "/user") {
+  //   return <NotFound msg={"Oops you can't access this page"} />;
+  // }
+  if (user.isAuthenticated && user.user.role == "admin") {
+    return <Component />;
+  }
+  // else if (route == "/dashboard") {
+  //   return <NotFound msg={"Oops you can't access this page"} />;
+  // }
+
+  if (user.isAuthenticated && !userHasRequiredRole && route == "/users") {
+    return <NotFound msg={"Oops you can't access this page"} />;
+  }
+  return <Navigate to="/login" />;
 };
 
 export default PrivateRoute;

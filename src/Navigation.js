@@ -27,20 +27,56 @@ function Navigation() {
           <Route exact path="/" element={<Home />} />
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/signup" element={<Registeration />} />
-          {/* {!user.isAuthenticated ? (
-            <Route exact path="/login" element={<Login />} />
-          ) : (
-            <>
-              <Route exact path="/dashboard" element={<Dashboard />} />
-            </>
-          )} */}
-          <Route exact path="/dashboard" element={<Dashboard />} />
-          <Route exact path="/users" element={<AllUsers />} />
-          <Route exact path="/books" element={<Books />} />
-          <Route exact path="/upload" element={<Upload />} />
+          <Route
+            exact
+            path="/dashboard"
+            element={
+              <PrivateRoute
+                roles={"user"}
+                route="/dashboard"
+                component={Dashboard}
+              />
+            }
+          />
+          <Route
+            exact
+            path="/users"
+            element={
+              <PrivateRoute
+                roles={"admin"}
+                route="/users"
+                component={AllUsers}
+              />
+            }
+          />
+          <Route
+            exact
+            path="/books"
+            element={
+              <PrivateRoute roles={"admin"} route="/users" component={Books} />
+            }
+          />
+          <Route
+            exact
+            path="/upload"
+            element={
+              <PrivateRoute roles={"admin"} route="/users" component={Upload} />
+            }
+          />
           <Route exact path="/profile" element={<Profile />} />
-          <Route exact path="/upgradetopremium" element={<Upgrade />} />
-          <Route path="*" element={<NotFound />} />
+          <Route
+            exact
+            path="/upgradetopremium"
+            element={
+              <PrivateRoute
+                roles={"admin"}
+                route="/users"
+                component={Upgrade}
+              />
+            }
+          />
+
+          <Route path="*" element={<NotFound msg={"Page Not Found"} />} />
         </Routes>
       </ScrollToTop>
     </BrowserRouter>

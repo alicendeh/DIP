@@ -11,12 +11,12 @@ function Login() {
 
   useEffect(() => {
     if (user) {
-      console.log(user, "here");
+      // console.log(user, "here");
       if (user.user !== null && user.user !== undefined) {
-        console.log("in here", user.user);
+        // console.log("in here", user.user);
         user.user.role === "admin"
-          ? window.location.replace("/users")
-          : window.location.replace("/dashboard");
+          ? navigate("/users")
+          : navigate("/dashboard");
       }
     }
   }, [user]);
@@ -48,6 +48,8 @@ function Login() {
       _loadeCurrentlyLogedInUser().then((data) => dispatch(loadUser(data)));
       setErr(response.code);
       setErrMsg(response.errorMessage);
+
+      console.log(errMsg);
     });
   };
   return (
@@ -174,7 +176,7 @@ function Login() {
                     <Link to="/signup">Signup</Link>
                   </small>
                 </div>
-                <span>{err != null && <Alert msg={errMsg} />}</span>
+                <span>{err != null ? <Alert msg={errMsg} /> : null}</span>
               </form>
             </div>
           </div>
