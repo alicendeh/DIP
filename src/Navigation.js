@@ -10,6 +10,7 @@ import Upgrade from "./pages/Upgrade/Upgrade";
 import { useDispatch, useSelector } from "react-redux";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import Alert from "./components/Alert/Alert";
+import PendingView from "./pages/PendingView/PendingView";
 function ScrollToTop({ children }) {
   const { pathname } = useLocation();
   useEffect(() => {
@@ -27,17 +28,17 @@ function Navigation() {
           <Route exact path="/" element={<Home />} />
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/signup" element={<Registeration />} />
-
+          <Route exact path="/pending" element={<PendingView />} />
           <Route exact path="/login" element={<Login />} />
 
           <Route exact path="/dashboard" element={<Dashboard />} />
-
-          <Route exact path="/users" element={<AllUsers />} />
-          <Route exact path="/books" element={<Books />} />
-          <Route exact path="/upload" element={<Upload />} />
-          <Route exact path="/profile" element={<Profile />} />
-          <Route exact path="/upgradetopremium" element={<Upgrade />} />
-
+          <>
+            <Route exact path="/users" element={<AllUsers />} />
+            <Route exact path="/books" element={<Books />} />
+            <Route exact path="/upload" element={<Upload />} />
+            <Route exact path="/profile" element={<Profile />} />
+            <Route exact path="/upgradetopremium" element={<Upgrade />} />
+          </>
           <Route path="*" element={<NotFound msg={"Page Not Found"} />} />
         </Routes>
       </ScrollToTop>

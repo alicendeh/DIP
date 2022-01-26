@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Login.module.css";
+import { browserHistory } from "react-router";
 import { Link, useNavigate } from "react-router-dom";
 import { login, _loadeCurrentlyLogedInUser } from "../../Helpers/userHelper";
 import { loginUser, isLoading, loadUser } from "../../redux/actions/userAction";
@@ -11,9 +12,9 @@ function Login() {
 
   useEffect(() => {
     if (user) {
-      // console.log(user, "here");
+      console.log(user, "here");
       if (user.user !== null && user.user !== undefined) {
-        // console.log("in here", user.user);
+        console.log("in here", user.user);
         user.user.role === "admin"
           ? navigate("/users")
           : navigate("/dashboard");
