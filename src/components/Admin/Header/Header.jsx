@@ -52,8 +52,9 @@ function Header({ hidden, title, filtrationList, from }) {
     setSearchValue("");
     if (from === "books Array") {
       dispatch(booksFilteredList(filtrationList));
+    } else {
+      dispatch(usersFilteredList(filtrationList));
     }
-    dispatch(usersFilteredList(filtrationList));
   };
 
   const cancelMode = () => {

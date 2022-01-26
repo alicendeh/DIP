@@ -27,7 +27,7 @@ function BookCard({ book }) {
         <div
           className={`
         ${
-          plan === "Free"
+          plan === "free"
             ? `${styles.colorContainer}`
             : `${styles.colorContainerPremium}`
         }
