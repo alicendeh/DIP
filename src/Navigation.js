@@ -27,11 +27,11 @@ function Navigation() {
           <Route exact path="/" element={<Home />} />
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/signup" element={<Registeration />} />
-          {!user.isAuthenticated ? (
-            <Route exact path="/login" element={<Login />} />
-          ) : (
-            <Route exact path="/dashboard" element={<Dashboard />} />
-          )}
+
+          <Route exact path="/login" element={<Login />} />
+
+          <Route exact path="/dashboard" element={<Dashboard />} />
+
           <Route exact path="/users" element={<AllUsers />} />
           <Route exact path="/books" element={<Books />} />
           <Route exact path="/upload" element={<Upload />} />
