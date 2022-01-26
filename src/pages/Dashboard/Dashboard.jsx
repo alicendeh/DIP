@@ -1,9 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { DashPage } from "../../components";
 import styles from "./Dashboard.module.css";
 import { Modal, Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
+import {
+  _loadeCurrentlyLogedInUser,
+  _userRequestFreePlan,
+  _userRequestPremiumPlan,
+} from "../../Helpers/userHelper";
+import { loadUser } from "../../redux/actions/userAction";
+
 function MyVerticallyCenteredModal(props) {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    _loadeCurrentlyLogedInUser().then((data) => dispatch(loadUser(data)));
+  }, []);
+
   return (
     <Modal
       {...props}
@@ -36,7 +49,19 @@ function MyVerticallyCenteredModal(props) {
 function Dashboard() {
   const [modalShow, setModalShow] = React.useState(false);
   const user = useSelector((state) => state.user);
-  console.log(user.isAuthenticated);
+
+  const sendFreePlanUpgrade = () => {
+    _userRequestFreePlan().then((response) => {
+      setModalShow(true);
+    });
+  };
+
+  const sendPremiumUpgrade = () => {
+    _userRequestPremiumPlan().then((response) => {
+      // setModalShow(true);
+      console.log(response);
+    });
+  };
   return (
     <DashPage>
       <div className={`${styles.main1} row whole pt-5 pb-4 d-flex `}>
@@ -116,7 +141,7 @@ function Dashboard() {
                 <button
                   type="submit"
                   className="col-12 btn btn-success "
-                  onClick={() => setModalShow(true)}
+                  onClick={sendFreePlanUpgrade}
                 >
                   Request Access
                 </button>
@@ -222,7 +247,11 @@ function Dashboard() {
                 </p>
               </div>
               <div class="col-12 pb-3">
-                <button type="submit" className="col-12 btn btn-primary ">
+                <button
+                  type="submit"
+                  className="col-12 btn btn-primary"
+                  onClick={sendPremiumUpgrade}
+                >
                   Request Access
                 </button>
               </div>

@@ -58,4 +58,57 @@ export const login = async (data) => {
   }
 };
 
-export { _registerUser, _loadeCurrentlyLogedInUser };
+const _userRequestFreePlan = async () => {
+  try {
+    const res = await axios.put(
+      `${process.env.REACT_APP_URL}/usersFunctionality/RequestPlanUpdate`,
+      {
+        isRequestingAccess: true,
+        planType: "free",
+      },
+      config
+    );
+    return res.data;
+  } catch (err) {
+    console.log(err.response.data.message, "error");
+    if (err.response.data) {
+      return {
+        errorMessage: err.response.data.msg,
+        code: 400,
+      };
+    } else {
+      return { errorMessage: err.message, code: 400 };
+    }
+  }
+};
+
+const _userRequestPremiumPlan = async () => {
+  try {
+    const res = await axios.put(
+      `${process.env.REACT_APP_URL}/usersFunctionality/RequestPlanUpdate`,
+      {
+        isRequestingAccess: true,
+        planType: "premium",
+      },
+      config
+    );
+    return res.data;
+  } catch (err) {
+    console.log(err.response.data.message, "error");
+    if (err.response.data) {
+      return {
+        errorMessage: err.response.data.msg,
+        code: 400,
+      };
+    } else {
+      return { errorMessage: err.message, code: 400 };
+    }
+  }
+};
+
+export {
+  _registerUser,
+  _loadeCurrentlyLogedInUser,
+  _userRequestFreePlan,
+  _userRequestPremiumPlan,
+};
