@@ -9,7 +9,9 @@ function BookCard({ book }) {
   const [show, setShow] = useState(false);
 
   const handleShow = () => setShow(true);
-  const handleClose = () => setShow(false);
+  const handleClose = () => {
+    setShow(false);
+  };
   const { name, plan } = book;
 
   return (
@@ -47,7 +49,11 @@ function BookCard({ book }) {
         <div className={`containerCenter`}>
           <div>
             <Avater
-              imageUrl={book.coverPage ? book.coverPage : "/defaultBook.png"}
+              imageUrl={
+                book.coverPage !== "default"
+                  ? book.coverPage
+                  : "/defaultBook.png"
+              }
             />
           </div>
           <div className={styles.txtContainer}>

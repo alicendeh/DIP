@@ -17,7 +17,11 @@ import { loadUser } from "../../../redux/actions/userAction";
 
 function AllUsers() {
   const usersData = useSelector((state) => state.admin);
-  const { incomingUsersRequest, users, error, loading } = usersData;
+  const { incomingUsersRequest, users, error, loading, usersFilteredList } =
+    usersData;
+
+  const [pendinDataSet, setpendinDataSet] = useState([]);
+  const [userDataSet, setuserDataSet] = useState([]);
 
   const dispatch = useDispatch();
 
@@ -40,9 +44,26 @@ function AllUsers() {
     });
   }, []);
 
+  useEffect(() => {
+    if (usersFilteredList.length > 0) {
+      let pending = usersFilteredList.filter(
+        (item) => item.isRequestingAccess === true
+      );
+      setpendinDataSet(pending);
+
+      let users = usersFilteredList.filter(
+        (item) => item.isRequestingAccess === false
+      );
+      setuserDataSet(users);
+    }
+  }, [usersFilteredList]);
+
   return (
     <AdminLayout>
-      <Header title={"Users"} />
+      <Header
+        title={"Users"}
+        filtrationList={[...incomingUsersRequest, ...users]}
+      />
       {error != null ? (
         <Unexpected />
       ) : (
@@ -54,23 +75,47 @@ function AllUsers() {
           ) : (
             <div>
               <div>
-                {typeof incomingUsersRequest !== undefined &&
-                  incomingUsersRequest.length > 0 &&
-                  incomingUsersRequest.map((user, index) => (
-                    <div key={index}>
-                      <PendingCard user={user} index={index} />
-                    </div>
-                  ))}
+                {pendinDataSet.length > 0 ? (
+                  <div>
+                    {pendinDataSet.map((user, index) => (
+                      <div key={index}>
+                        <PendingCard user={user} index={index} />
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <div>
+                    {typeof incomingUsersRequest !== undefined &&
+                      incomingUsersRequest.length > 0 &&
+                      incomingUsersRequest.map((user, index) => (
+                        <div key={index}>
+                          <PendingCard user={user} index={index} />
+                        </div>
+                      ))}
+                  </div>
+                )}
               </div>
               <div>
                 <div>
-                  {typeof users !== undefined &&
-                    users.length > 0 &&
-                    users.map((user, index) => (
-                      <div key={index}>
-                        <PlanCard user={user} />
-                      </div>
-                    ))}
+                  {userDataSet.length > 0 ? (
+                    <div>
+                      {userDataSet.map((user, index) => (
+                        <div key={index}>
+                          <PlanCard user={user} />
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <div>
+                      {typeof users !== undefined &&
+                        users.length > 0 &&
+                        users.map((user, index) => (
+                          <div key={index}>
+                            <PlanCard user={user} />
+                          </div>
+                        ))}
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
