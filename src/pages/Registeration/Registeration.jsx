@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Registeration.module.css";
-import { Link, Navigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,6 +10,7 @@ import { _registerUser } from "../../Helpers/userHelper";
 
 function Registeration() {
   const user = useSelector((state) => state.user);
+  let navigate = useNavigate();
 
   const dispatch = useDispatch();
   const [toggleEyePassword, setToggleEyePassword] = useState(false);
@@ -47,7 +48,7 @@ function Registeration() {
     }
   };
   if (user.isAuthenticated) {
-    <Navigate to="/dashboard" />;
+    navigate("/dashboard");
   }
   return (
     <div className={`${styles.main}`}>

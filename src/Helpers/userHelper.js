@@ -1,7 +1,8 @@
 import axios from "axios";
+import { useDispatch } from "react-redux";
 import setAuthToken from "../components/utils/setAuthToken";
 import { loadUser } from "../redux/actions/userAction";
-
+// import { Alert } from "../components/Alert/Alert";
 const config = {
   headers: {
     "Content-Type": "application/json",
@@ -42,10 +43,18 @@ export const login = async (data) => {
       data,
       config
     );
+    loadUser();
     return res.data;
   } catch (err) {
     console.log(err.response.data.message, "hhhhe");
-    return err.response.data.message;
+    if (err.response.data) {
+      return {
+        errorMessage: err.response.data.msg,
+        code: 400,
+      };
+    } else {
+      return { errorMessage: err.message, code: 400 };
+    }
   }
 };
 

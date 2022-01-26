@@ -1,37 +1,55 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Login.module.css";
 import { Link, useNavigate } from "react-router-dom";
-import { login } from "../../Helpers/userHelper";
-import { loginUser, isLoading } from "../../redux/actions/userAction";
+import { login, _loadeCurrentlyLogedInUser } from "../../Helpers/userHelper";
+import { loginUser, isLoading, loadUser } from "../../redux/actions/userAction";
 import { useDispatch, useSelector } from "react-redux";
+import Alert from "../../components/Alert/Alert";
 function Login() {
   const user = useSelector((state) => state.user);
   let navigate = useNavigate();
+
+  useEffect(() => {
+    if (user) {
+      console.log(user, "here");
+      if (user.user !== null && user.user !== undefined) {
+        console.log("in here", user.user);
+        user.user.role === "admin"
+          ? window.location.replace("/users")
+          : window.location.replace("/dashboard");
+      }
+    }
+  }, [user]);
+
   const dispatch = useDispatch();
+  const [err, setErr] = useState();
+  const [errMsg, setErrMsg] = useState();
   const [toggleEyePassword, setToggleEyePassword] = useState(false);
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
+
   const handletoggleEyePassword = () => {
     setToggleEyePassword(!toggleEyePassword);
   };
+
   const { email, password } = formData;
+
   const onchange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
   const onsubmit = async (e) => {
     dispatch(isLoading(false));
     e.preventDefault();
-    console.log(email, password, "ss");
     const data = { email, password };
-    login(data).then((response) => dispatch(loginUser(response)));
+    login(data).then((response) => {
+      dispatch(loginUser(response));
+      _loadeCurrentlyLogedInUser().then((data) => dispatch(loadUser(data)));
+      setErr(response.code);
+      setErrMsg(response.errorMessage);
+    });
   };
-  console.log(user.isAuthenticated);
-  if (user.isAuthenticated) {
-    navigate("/dashboard");
-  }
-  console.log(user.isAuthenticated);
   return (
     <div className={`${styles.main}`}>
       <div className={styles.box}>
@@ -156,6 +174,7 @@ function Login() {
                     <Link to="/signup">Signup</Link>
                   </small>
                 </div>
+                <span>{err != null && <Alert msg={errMsg} />}</span>
               </form>
             </div>
           </div>
