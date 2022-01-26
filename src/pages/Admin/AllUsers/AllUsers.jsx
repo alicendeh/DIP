@@ -17,7 +17,11 @@ import { loadUser } from "../../../redux/actions/userAction";
 
 function AllUsers() {
   const usersData = useSelector((state) => state.admin);
-  const { incomingUsersRequest, users, error, loading } = usersData;
+  const { incomingUsersRequest, users, error, loading, usersFilteredList } =
+    usersData;
+
+  const [pendinDataSet, setpendinDataSet] = useState([]);
+  const [userDataSet, setuserDataSet] = useState([]);
 
   const dispatch = useDispatch();
 
@@ -40,9 +44,28 @@ function AllUsers() {
     });
   }, []);
 
+  useEffect(() => {
+    if (usersFilteredList.length > 0) {
+      let users = usersFilteredList.filter(
+        (item) => item.isRequestingAccess === false
+      );
+      setuserDataSet(users);
+
+      let pending = usersFilteredList.filter(
+        (item) => item.isRequestingAccess === true
+      );
+      console.log(pending, "pending`");
+
+      setpendinDataSet(pending);
+    }
+  }, [usersFilteredList]);
+
   return (
     <AdminLayout>
-      <Header title={"Users"} />
+      <Header
+        title={"Users"}
+        filtrationList={[...incomingUsersRequest, ...users]}
+      />
       {error != null ? (
         <Unexpected />
       ) : (
@@ -53,27 +76,96 @@ function AllUsers() {
             </div>
           ) : (
             <div>
-              <div>
-                {typeof incomingUsersRequest !== undefined &&
-                  incomingUsersRequest.length > 0 &&
-                  incomingUsersRequest.map((user, index) => (
-                    <div key={index}>
-                      <PendingCard user={user} index={index} />
-                    </div>
-                  ))}
-              </div>
-              <div>
+              {usersFilteredList.length > 0 ? (
                 <div>
-                  {typeof users !== undefined &&
-                    users.length > 0 &&
-                    users.map((user, index) => (
-                      <div key={index}>
-                        <PlanCard user={user} />
-                      </div>
-                    ))}
+                  <div>
+                    {pendinDataSet.length > 0 &&
+                      pendinDataSet.map((user, index) => (
+                        <div key={index}>
+                          <PendingCard user={user} index={index} />
+                        </div>
+                      ))}
+                  </div>
+                  <div>
+                    {userDataSet.length > 0 &&
+                      userDataSet.map((user, index) => (
+                        <div key={index}>
+                          <PlanCard user={user} index={index} />
+                        </div>
+                      ))}
+                  </div>
                 </div>
-              </div>
+              ) : (
+                <div>
+                  <div>
+                    {typeof incomingUsersRequest !== undefined &&
+                      incomingUsersRequest.length > 0 &&
+                      incomingUsersRequest.map((user, index) => (
+                        <div key={index}>
+                          <PendingCard user={user} index={index} />
+                        </div>
+                      ))}
+                  </div>
+                  <div>
+                    {typeof users !== undefined &&
+                      users.length > 0 &&
+                      users.map((user, index) => (
+                        <div key={index}>
+                          <PlanCard user={user} />
+                        </div>
+                      ))}
+                  </div>
+                </div>
+              )}
             </div>
+            // <div>
+            //   <div>
+            //     {usersFilteredList.length > 0 ? (
+            //       <div>
+            //         {pendinDataSet.length > 0 && (
+            //           <div>
+            //             {pendinDataSet.map((data, index) => (
+            //               <PendingCard data={data} index={index} />
+            //             ))}
+            //           </div>
+            //         )}
+            //       </div>
+            //     ) : (
+            //       <div>
+            //         {typeof incomingUsersRequest !== undefined &&
+            //           incomingUsersRequest.length > 0 &&
+            //           incomingUsersRequest.map((user, index) => (
+            //             <div key={index}>
+            //               <PendingCard user={user} index={index} />
+            //             </div>
+            //           ))}
+            //       </div>
+            //     )}
+            //   </div>
+            //   <div>
+            //     <div>
+            //       {userDataSet.length > 0 ? (
+            //         <div>
+            //           {userDataSet.map((user, index) => (
+            //             <div key={index}>
+            //               <PlanCard user={user} />
+            //             </div>
+            //           ))}
+            //         </div>
+            //       ) : (
+            //         <div>
+            //           {typeof users !== undefined &&
+            //             users.length > 0 &&
+            //             users.map((user, index) => (
+            //               <div key={index}>
+            //                 <PlanCard user={user} />
+            //               </div>
+            //             ))}
+            //         </div>
+            //       )}
+            //     </div>
+            //   </div>
+            // </div>
           )}
         </div>
       )}

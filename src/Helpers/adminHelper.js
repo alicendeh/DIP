@@ -106,7 +106,6 @@ const _addABook = async (data) => {
 
     return res.data;
   } catch (err) {
-    console.log(err.response);
     if (err.response.data) {
       return { errorMessage: err.response.data.msg, code: 400 };
     } else {
@@ -144,21 +143,6 @@ const _deleteBook = async (bookID) => {
     }
   }
 };
-
-// const _editBook = async bookID =>{
-//   try {
-//     const res = await axios.delete(
-//       `${process.env.REACT_APP_URL}/admin/books/delete/${bookID}`
-//     );
-//     return res.data;
-//   } catch (err) {
-//     if (err.response.data) {
-//       return { errorMessage: err.response.data.msg, code: 400 };
-//     } else {
-//       return { errorMessage: err.message, code: 400 };
-//     }
-//   }
-// }
 
 export {
   _getPlanChangeRequests,

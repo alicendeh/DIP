@@ -17,6 +17,7 @@ i {
   padding: 7px;
 }
 .hideContainer {
+  /* background-color: red; */
   display: none;
 }
 
