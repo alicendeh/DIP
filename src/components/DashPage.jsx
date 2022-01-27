@@ -2,7 +2,10 @@ import React from "react";
 import { Link, Route } from "react-router-dom";
 import styles from "../pages/Dashboard/Dashboard.module.css";
 import { logout } from "../redux/actions/userAction";
+import { useSelector } from "react-redux";
+
 function DashPage({ children }) {
+  const user = useSelector((state) => state.user);
   return (
     <main>
       {/* Top header */}
@@ -31,7 +34,14 @@ function DashPage({ children }) {
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
               <li className="nav-item pt-4">
                 <Link to="/" className="nav-link actived" aria-current="page">
-                  Hi, Fodjo Frank
+                  Hi,{" "}
+                  <b
+                    style={{
+                      color: "#000",
+                    }}
+                  >
+                    {user.user && user.user.name}{" "}
+                  </b>
                 </Link>
               </li>
               {/* <div className="d-flex" style={{ gap: "6px " }}> */}
@@ -45,7 +55,11 @@ function DashPage({ children }) {
                 }}
               >
                 <img
-                  src="/7.jpeg"
+                  src={
+                    user.user && user.user.avater !== ""
+                      ? user.avater
+                      : "/defaultUserPic.webp"
+                  }
                   alt=""
                   style={{ width: "100%", height: "100%", borderRadius: "50%" }}
                 />
