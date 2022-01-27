@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import Alert from "./components/Alert/Alert";
 import PendingView from "./pages/PendingView/PendingView";
+import Rejected from "./pages/Rejected/Rejected";
 function ScrollToTop({ children }) {
   const { pathname } = useLocation();
   useEffect(() => {
@@ -29,6 +30,7 @@ function Navigation() {
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/signup" element={<Registeration />} />
           <Route exact path="/pending" element={<PendingView />} />
+          <Route exact path="/rejected" element={<Rejected />} />
           <Route exact path="/login" element={<Login />} />
 
           <Route exact path="/dashboard" element={<Dashboard />} />
