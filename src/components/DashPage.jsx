@@ -2,7 +2,11 @@ import React from "react";
 import { Link, Route } from "react-router-dom";
 import styles from "../pages/Dashboard/Dashboard.module.css";
 import { logout } from "../redux/actions/userAction";
+import { useDispatch, useSelector } from "react-redux";
 function DashPage({ children }) {
+  const user = useSelector((state) => state.user);
+  // const profileName= user.user.na
+
   return (
     <main>
       {/* Top header */}
@@ -31,7 +35,7 @@ function DashPage({ children }) {
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
               <li className="nav-item pt-4">
                 <Link to="/" className="nav-link actived" aria-current="page">
-                  Hi, Fodjo Frank
+                  Hi, {user.user.name}
                 </Link>
               </li>
               {/* <div className="d-flex" style={{ gap: "6px " }}> */}
@@ -85,7 +89,7 @@ function DashPage({ children }) {
       >
         <div className="container text-md-left">
           <div className="row">
-            <div className="col-md-4 mt-md-0 mt-3">
+            <div className="col-md-6 mt-md-0 mt-3">
               <h5 className="text-uppercase">Footer Content</h5>
               <p>
                 Here you can use rows and columns to organize your footer

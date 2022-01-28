@@ -41,7 +41,7 @@ function Dashboard() {
     <DashPage>
       <div className={`${styles.main1} row whole pt-5 pb-4 d-flex `}>
         <div
-          className="col-lg-4 col-md-12 col-sm-12 "
+          className="col-lg-4 col-md-12 ml-lg-5 col-sm-12 box1"
           style={{
             borderRadius: "10px",
             border: "3px solid #009717",
@@ -129,9 +129,18 @@ function Dashboard() {
           </div>
         </div>
         <div
-          className="col-lg-6 col-md-12 col-sm-12"
+          className="col-lg-6 col-md-12 ml-lg-5 col-sm-12  "
           style={{ borderRadius: "10px", border: "3px solid #005FB0" }}
         >
+          {/* <div
+            className="box2"
+            style={{
+              height: "auto",
+              width: "fit-content",
+              borderRadius: "10px",
+              border: "3px solid #005FB0",
+            }}
+          > */}
           <div className="text-center pt-3">
             <h1 style={{ color: " #008514" }}>PREMIUM</h1>
             <h4 style={{ color: "#0360AF" }}>PLAN</h4>
@@ -221,7 +230,7 @@ function Dashboard() {
                   version
                 </p>
               </div>
-              <div class="col-12 pb-3">
+              <div class="col-12  px-3 pb-3">
                 <button type="submit" className="col-12 btn btn-primary ">
                   Request Access
                 </button>
@@ -230,6 +239,7 @@ function Dashboard() {
           </div>
         </div>
       </div>
+      {/* </div> */}
     </DashPage>
   );
 }
