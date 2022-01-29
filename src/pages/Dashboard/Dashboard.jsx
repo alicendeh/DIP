@@ -47,7 +47,7 @@ function Dashboard() {
   const user = useSelector((state) => state.user);
 
   useEffect(() => {
-    console.log("in");
+    console.log("alice ndeh");
     _loadeCurrentlyLogedInUser().then((data) => dispatch(loadUser(data)));
   }, []);
 
