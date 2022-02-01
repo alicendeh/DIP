@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Modal, Button } from "react-bootstrap";
 import { registerUsers, isLoading } from "../../redux/actions/userAction";
 import { _registerUser } from "../../Helpers/userHelper";
+import Alert from "../../components/Alert/Alert";
 
 function Registeration() {
   const user = useSelector((state) => state.user);
@@ -16,6 +17,7 @@ function Registeration() {
   const [toggleEyePassword, setToggleEyePassword] = useState(false);
   const [toggleEyePassword1, setToggleEyePassword1] = useState(false);
   const [validationPassword, setValidationPassword] = useState(false);
+  const [err, setErr] = useState();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -44,7 +46,11 @@ function Registeration() {
       setValidationPassword(true);
     } else {
       const data = { name, email, sponsorName, leadersName, password };
-      _registerUser(data).then((response) => dispatch(registerUsers(response)));
+      _registerUser(data).then((response) => {
+        console.log(response);
+        dispatch(registerUsers(response));
+        setErr(response);
+      });
     }
   };
   if (user.isAuthenticated) {
@@ -224,7 +230,7 @@ function Registeration() {
                   </span>
                 </div>
                 <div class="col-12">
-                  {user.Loading ? (
+                  {user.Loading && err == null ? (
                     <div
                       className=" col-12 btn btn-primary "
                       style={{
@@ -247,6 +253,7 @@ function Registeration() {
                     <Link to="/login">Sigin</Link>
                   </small>
                 </div>
+                <span>{err != null ? <Alert msg={err} /> : null}</span>
               </form>
             </div>
           </div>
