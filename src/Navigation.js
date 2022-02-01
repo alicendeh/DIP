@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Home from "./pages/Home/Home";
 import Login from "./pages/Login/Login";
 import Registeration from "./pages/Registeration/Registeration";
@@ -14,14 +14,49 @@ import PendingView from "./pages/PendingView/PendingView";
 import Rejected from "./pages/Rejected/Rejected";
 function ScrollToTop({ children }) {
   const { pathname } = useLocation();
+  const user = useSelector((state) => state.user);
+
+  let possiblePathsForAdmin = Array(
+    "/books",
+    "/users",
+    "/upload",
+    "/profile",
+    "/",
+    "/signup",
+    "/login"
+  );
+  let possiblePathsForUsers = Array("/dashboard", "/", "/signup", "/login");
+  let generalPath = ["/", "/signup", "/login"];
+  const [currentPath, setCurrentPath] = useState("");
+
   useEffect(() => {
     window.scrollTo(0, 0);
+    // console.log(user);
+
+    // if (user.user !== null && user.user.role === "admin") {
+    //   let res = possiblePathsForAdmin.includes(pathname);
+    //   if (res == false) {
+    //     console.log("false");
+    //     window.location.replace("/users");
+    //   }
+    // } else if (user.user !== null && user.user.role === "user") {
+    //   let res = possiblePathsForUsers.includes(pathname);
+    //   if (res == false) {
+    //     console.log("false");
+    //     window.location.replace("/dashboard");
+    //   }
+    // } else {
+    //   let res = generalPath.includes(pathname);
+    //   if (res == false) {
+    //     window.location.replace(pathname);
+    //   }
+    // }
   }, [pathname]);
+
   return <div className="App">{children}</div>;
 }
 
 function Navigation() {
-  const user = useSelector((state) => state.user);
   return (
     <BrowserRouter>
       <ScrollToTop>

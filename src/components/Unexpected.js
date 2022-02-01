@@ -10,7 +10,7 @@ function Unexpected() {
       className={`${styles.notfound} d-flex flex-column justify-content-center align-items-center`}
     >
       <h3 style={{ color: "#7B7B7B" }} className="pt-3">
-        {error}!!!
+        {error}!!
       </h3>
       <div className={`${styles.notimage}`}>
         <img src="/not.png" alt="" style={{ width: "80%", height: "90%" }} />
