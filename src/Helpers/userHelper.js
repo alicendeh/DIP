@@ -49,7 +49,7 @@ export const login = async (data) => {
     console.log(err.response.data.message, "hhhhe");
     if (err.response.data) {
       return {
-        errorMessage: err.response.data.msg,
+        errorMessage: err.response.data.message,
         code: 400,
       };
     } else {
