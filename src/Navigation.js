@@ -12,7 +12,6 @@ import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import Alert from "./components/Alert/Alert";
 import PendingView from "./pages/PendingView/PendingView";
 import Rejected from "./pages/Rejected/Rejected";
-import Premium from "./pages/Premium/Premium";
 function ScrollToTop({ children }) {
   const { pathname } = useLocation();
   const user = useSelector((state) => state.user);

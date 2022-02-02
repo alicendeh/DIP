@@ -2,10 +2,12 @@ import React from "react";
 import { Link, Route } from "react-router-dom";
 import styles from "../pages/Dashboard/Dashboard.module.css";
 import { logout } from "../redux/actions/userAction";
-import { useSelector } from "react-redux";
+import { LOGOUT } from "../redux/ActionType";
+import { useSelector, useDispatch } from "react-redux";
 
 function DashPage({ children }) {
   const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
   return (
     <main>
       {/* Top header */}
@@ -70,7 +72,11 @@ function DashPage({ children }) {
                   to="/"
                   className="nav-link actived"
                   aria-current="page"
-                  onClick={logout()}
+                  onClick={() =>
+                    dispatch({
+                      type: LOGOUT,
+                    })
+                  }
                 >
                   <i
                     className={`fas fa-sign-out-alt fa-2x ${styles.logout} icon`}

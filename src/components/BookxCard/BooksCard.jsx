@@ -1,54 +1,39 @@
 import React from "react";
+import { Card } from "react-bootstrap";
 import styles from "./BooksCard.module.css";
 function BooksCard() {
   return (
-    <div>
-      <div class="col-md-4 ">
-        <div class={`${styles.card} p-3 mb-2 `}>
-          <div class="d-flex justify-content-between">
-            <div class="d-flex flex-row align-items-center">
-              {/* <div class="icon">
-                {" "}
-                <i class="bx bxl-mailchimp"></i>{" "}
-              </div> */}
-              <div class={`${styles.details} ms-2 `}>
-                <h6 class="mb-0">Mailchimp</h6> <span>1 days ago</span>
-              </div>
-            </div>
-            <div class={`${styles.badge} ms-2 `}>
-              {" "}
-              <span>Design</span>{" "}
-            </div>
+    <Card
+      border="light"
+      style={{
+        marginLeft: "2em",
+        width: "18rem",
+        boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px",
+      }}
+    >
+      <Card.Header className={styles.header}>
+        <div className="d-flex flex-row align-items-center">
+          <div className={styles.icon}>
+            {" "}
+            <img
+              src="/defaultUserPic.webp"
+              style={{ width: "100%", height: "100%", borderRadius: "50%" }}
+            />{" "}
           </div>
-          <div class="mt-5">
-            <h3 class="heading">
-              Senior Product
-              <br />
-              Designer-Singapore
-            </h3>
-            <div class="mt-5">
-              <div class={`${styles.progress} ms-2 `}>
-                <div
-                  class={`${styles.progress} ms-2 `}
-                  role="progressbar"
-                  style="width: 50%"
-                  aria-valuenow="50"
-                  aria-valuemin="0"
-                  aria-valuemax="100"
-                ></div>
-              </div>
-              <div class="mt-3">
-                {" "}
-                <span class={`${styles.text1} ms-2 `}>
-                  32 Applied{" "}
-                  <span class={`${styles.text2} ms-2 `}>of 50 capacity</span>
-                </span>{" "}
-              </div>
-            </div>
+          <div className={` ${styles.details} ms-2`}>
+            <h6 className="mb-0">Mailchimp</h6> <span>1 days ago</span>
           </div>
         </div>
-      </div>
-    </div>
+      </Card.Header>
+      <Card.Body>
+        <Card.Title>Light Card Title</Card.Title>
+        <Card.Text>
+          Some quick example text to build on the card title the card's content.
+        </Card.Text>
+        <div className="mt-5"></div>
+      </Card.Body>
+    </Card>
+    // {` ${styles.box} d-flex col-md-4 mr-3`}
   );
 }
 
