@@ -5,7 +5,7 @@ import styles from "./Premium.module.css";
 function Premium() {
   return (
     <MyFree>
-      <div className={`${styles.all} row pt-5 pb-5 flex-lg-wrap`}>
+      <div className={`${styles.all} row pt-3 pb-5 flex-lg-wrap`}>
         <BooksCard />
         <BooksCard />
         <BooksCard />

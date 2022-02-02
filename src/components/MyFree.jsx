@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styles from "../pages/Dashboard/Dashboard.module.css";
+import { Form } from "react-bootstrap";
 function MyFree({ children }) {
   return (
     <main>
@@ -27,6 +28,15 @@ function MyFree({ children }) {
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
+            <div className="aid ml-5" style={{ width: "40%" }}>
+              <Form.Select
+                aria-label="Default select example"
+                className="col-md-3"
+              >
+                <option value="1">Free</option>
+                <option value="2">Premium</option>
+              </Form.Select>
+            </div>
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
               <li className="nav-item pt-4">
                 <Link to="/" className="nav-link actived" aria-current="page">
@@ -38,8 +48,8 @@ function MyFree({ children }) {
               <div
                 className="profile rounded-circle"
                 style={{
-                  width: "70px",
-                  height: "70px",
+                  width: "50px",
+                  height: "50px",
                   borderRadius: "50%",
                   backgroundColor: "violet",
                 }}
