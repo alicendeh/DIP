@@ -2,15 +2,22 @@ import React, { useState, useEffect } from "react";
 import styles from "./LeftNavigationBar.module.css";
 import { ICON_DATA_SET } from "../../../DATA";
 import { Link, useLocation } from "react-router-dom";
+import { logout } from "../../../redux/actions/adminAction";
+import { useDispatch } from "react-redux";
 
 function LeftNavigationBar() {
   const location = useLocation();
+  const dispatch = useDispatch();
 
   const [currentPath, setCurrentPath] = useState();
 
   useEffect(() => {
     setCurrentPath(location.pathname);
   }, []);
+
+  const onLogout = () => {
+    dispatch(logout());
+  };
 
   return (
     <div className={`containerColumn ${styles.container}`}>
@@ -30,7 +37,7 @@ function LeftNavigationBar() {
           </Link>
         ))}
       </div>
-      <div>
+      <div onClick={onLogout}>
         <i className={`fas fa-sign-out-alt fa-2x ${styles.logout} icon`}></i>
       </div>
     </div>

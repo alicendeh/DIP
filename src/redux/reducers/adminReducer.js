@@ -9,6 +9,7 @@ import {
   UPLOAD_SPINNER,
   FILTRATION_RESULT,
   FILTERED_BOOKS,
+  LOGOUT,
 } from "../ActionType";
 
 const INITIAL_STATE = {
@@ -89,7 +90,9 @@ const getUsersRequest = (state = INITIAL_STATE, { type, payload }) => {
         ...state,
         booksFilteredList: payload,
       };
-
+    case LOGOUT:
+      window.location.replace("/");
+      localStorage.removeItem("token");
     default:
       return state;
   }

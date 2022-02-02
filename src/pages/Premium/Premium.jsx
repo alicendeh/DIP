@@ -6,9 +6,9 @@ function Premium() {
   return (
     <MyFree>
       <div className={`${styles.all} row pt-5 pb-4`}>
+        {/* <BooksCard />
         <BooksCard />
-        <BooksCard />
-        <BooksCard />
+        <BooksCard /> */}
       </div>
     </MyFree>
   );

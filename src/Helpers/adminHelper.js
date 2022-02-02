@@ -57,6 +57,7 @@ const _upgradeUsersPlan = async (planType, userID) => {
     let data = {
       plan: planType,
       isRequestingAccess: false,
+      planType: "none",
     };
     console.log(data, userID, "data");
     let res = await axios.put(
