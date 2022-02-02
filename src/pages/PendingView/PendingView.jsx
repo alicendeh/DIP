@@ -1,5 +1,13 @@
 import React from "react";
 import { DashPage } from "../../components";
+import Lottie from "react-lottie";
+import animationData from "../../annimations/81133-waiting (1).json";
+
+const defaultOptions = {
+  loop: true,
+  autoplay: true,
+  animationData: animationData,
+};
 
 function PendingView() {
   return (
@@ -18,11 +26,12 @@ function PendingView() {
           <h3 style={{ textAlign: "center", color: "grey" }}>
             Your Request is still on Hold please just be patient
           </h3>
-          <img
+          {/* <img
             src="/unexpected.png"
             alt=""
             style={{ width: "100%", height: "100%" }}
-          />
+          /> */}
+          <Lottie options={defaultOptions} height={400} width={"70%"} />
         </div>
       </div>
     </DashPage>

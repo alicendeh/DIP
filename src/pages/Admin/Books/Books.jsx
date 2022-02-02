@@ -6,6 +6,14 @@ import { _viewAllBooks } from "../../../Helpers/adminHelper";
 import { getAllBooks, loadingState } from "../../../redux/actions/adminAction";
 import { loadUser } from "../../../redux/actions/userAction";
 import { _loadeCurrentlyLogedInUser } from "../../../Helpers/userHelper";
+import Lottie from "react-lottie";
+import animationData from "../../../annimations/72929-reading-book.json";
+
+const defaultOptions = {
+  loop: true,
+  autoplay: true,
+  animationData: animationData,
+};
 
 function Books() {
   const dispatch = useDispatch();
@@ -32,21 +40,36 @@ function Books() {
             </div>
           ) : (
             <div>
-              {booksFilteredList.length > 0 ? (
+              {allBooks.length > 0 ? (
                 <div>
-                  {booksFilteredList.map((book, index) => (
-                    <div key={index}>
-                      <BookCard book={book} index={index} />
+                  {booksFilteredList.length > 0 ? (
+                    <div>
+                      {booksFilteredList.map((book, index) => (
+                        <div key={index}>
+                          <BookCard book={book} index={index} />
+                        </div>
+                      ))}
                     </div>
-                  ))}
+                  ) : (
+                    <div>
+                      {allBooks.map((book, index) => (
+                        <div key={index}>
+                          <BookCard book={book} index={index} />
+                        </div>
+                      ))}
+                    </div>
+                  )}
                 </div>
               ) : (
-                <div>
-                  {allBooks.map((book, index) => (
-                    <div key={index}>
-                      <BookCard book={book} index={index} />
-                    </div>
-                  ))}
+                <div className="containerColumn fw-bold ">
+                  <Lottie options={defaultOptions} height={400} width={"70%"} />
+                  <p
+                    style={{
+                      fontSize: 21,
+                    }}
+                  >
+                    All books will appear hear
+                  </p>
                 </div>
               )}
             </div>

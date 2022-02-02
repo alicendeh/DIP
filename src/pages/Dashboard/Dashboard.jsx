@@ -48,7 +48,7 @@ function Dashboard() {
   const user = useSelector((state) => state.user);
 
   useEffect(() => {
-    console.log("in");
+    console.log("alice ndeh");
     _loadeCurrentlyLogedInUser().then((data) => dispatch(loadUser(data)));
   }, []);
 
@@ -66,7 +66,7 @@ function Dashboard() {
   return (
     <div>
       {user.user !== null && user.user.plan === "premium" ? (
-        <Premium />
+        <div>jhi</div>
       ) : (
         <div>
           {user.user !== null && user.user.isRequestingAccess === true ? (

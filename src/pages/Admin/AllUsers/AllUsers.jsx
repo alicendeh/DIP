@@ -14,6 +14,14 @@ import {
 } from "../../../Helpers/adminHelper";
 import { _loadeCurrentlyLogedInUser } from "../../../Helpers/userHelper";
 import { loadUser } from "../../../redux/actions/userAction";
+import Lottie from "react-lottie";
+import animationData from "../../../annimations/89683-user-reviews.json";
+
+const defaultOptions = {
+  loop: true,
+  autoplay: true,
+  animationData: animationData,
+};
 
 function AllUsers() {
   const usersData = useSelector((state) => state.admin);
@@ -73,45 +81,60 @@ function AllUsers() {
           </div>
         ) : (
           <div>
-            {usersFilteredList.length > 0 ? (
+            {users.length > 0 || incomingUsersRequest.length > 0 ? (
               <div>
-                <div>
-                  {pendinDataSet.length > 0 &&
-                    pendinDataSet.map((user, index) => (
-                      <div key={index}>
-                        <PendingCard user={user} index={index} />
-                      </div>
-                    ))}
-                </div>
-                <div>
-                  {userDataSet.length > 0 &&
-                    userDataSet.map((user, index) => (
-                      <div key={index}>
-                        <PlanCard user={user} index={index} />
-                      </div>
-                    ))}
-                </div>
+                {usersFilteredList.length > 0 ? (
+                  <div>
+                    <div>
+                      {pendinDataSet.length > 0 &&
+                        pendinDataSet.map((user, index) => (
+                          <div key={index}>
+                            <PendingCard user={user} index={index} />
+                          </div>
+                        ))}
+                    </div>
+                    <div>
+                      {userDataSet.length > 0 &&
+                        userDataSet.map((user, index) => (
+                          <div key={index}>
+                            <PlanCard user={user} index={index} />
+                          </div>
+                        ))}
+                    </div>
+                  </div>
+                ) : (
+                  <div>
+                    <div>
+                      {typeof incomingUsersRequest !== undefined &&
+                        incomingUsersRequest.length > 0 &&
+                        incomingUsersRequest.map((user, index) => (
+                          <div key={index}>
+                            <PendingCard user={user} index={index} />
+                          </div>
+                        ))}
+                    </div>
+                    <div>
+                      {typeof users !== undefined &&
+                        users.length > 0 &&
+                        users.map((user, index) => (
+                          <div key={index}>
+                            <PlanCard user={user} />
+                          </div>
+                        ))}
+                    </div>
+                  </div>
+                )}
               </div>
             ) : (
-              <div>
-                <div>
-                  {typeof incomingUsersRequest !== undefined &&
-                    incomingUsersRequest.length > 0 &&
-                    incomingUsersRequest.map((user, index) => (
-                      <div key={index}>
-                        <PendingCard user={user} index={index} />
-                      </div>
-                    ))}
-                </div>
-                <div>
-                  {typeof users !== undefined &&
-                    users.length > 0 &&
-                    users.map((user, index) => (
-                      <div key={index}>
-                        <PlanCard user={user} />
-                      </div>
-                    ))}
-                </div>
+              <div className="containerColumn fw-bold ">
+                <Lottie options={defaultOptions} height={400} width={"70%"} />
+                <p
+                  style={{
+                    fontSize: 21,
+                  }}
+                >
+                  All Users will appear hear
+                </p>
               </div>
             )}
           </div>

@@ -9,6 +9,7 @@ import {
   UPLOAD_SPINNER,
   FILTRATION_RESULT,
   FILTERED_BOOKS,
+  LOGOUT,
 } from "../ActionType";
 
 const adminGetsUsersequest = (users) => {
@@ -83,6 +84,12 @@ const booksFilteredList = (data) => {
   };
 };
 
+const logout = () => {
+  return {
+    type: LOGOUT,
+  };
+};
+
 export {
   adminGetsUsersequest,
   adminGetsStatisticsData,
@@ -94,4 +101,5 @@ export {
   submitBookSPinner,
   usersFilteredList,
   booksFilteredList,
+  logout,
 };

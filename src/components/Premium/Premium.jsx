@@ -10,6 +10,7 @@ function Premium() {
         <BooksCard />
         <BooksCard />
         <BooksCard />
+        <BooksCard />
       </div>
     </MyFree>
   );
