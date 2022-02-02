@@ -12,6 +12,7 @@ import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import Alert from "./components/Alert/Alert";
 import PendingView from "./pages/PendingView/PendingView";
 import Rejected from "./pages/Rejected/Rejected";
+import Premium from "./pages/Premium/Premium";
 function ScrollToTop({ children }) {
   const { pathname } = useLocation();
   const user = useSelector((state) => state.user);
@@ -31,26 +32,6 @@ function ScrollToTop({ children }) {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    // console.log(user);
-
-    // if (user.user !== null && user.user.role === "admin") {
-    //   let res = possiblePathsForAdmin.includes(pathname);
-    //   if (res == false) {
-    //     console.log("false");
-    //     window.location.replace("/users");
-    //   }
-    // } else if (user.user !== null && user.user.role === "user") {
-    //   let res = possiblePathsForUsers.includes(pathname);
-    //   if (res == false) {
-    //     console.log("false");
-    //     window.location.replace("/dashboard");
-    //   }
-    // } else {
-    //   let res = generalPath.includes(pathname);
-    //   if (res == false) {
-    //     window.location.replace(pathname);
-    //   }
-    // }
   }, [pathname]);
 
   return <div className="App">{children}</div>;
@@ -69,6 +50,7 @@ function Navigation() {
           <Route exact path="/login" element={<Login />} />
 
           <Route exact path="/dashboard" element={<Dashboard />} />
+          {/* <Route exact path="/premium " element={<Premium />} /> */}
           <>
             <Route exact path="/users" element={<AllUsers />} />
             <Route exact path="/books" element={<Books />} />

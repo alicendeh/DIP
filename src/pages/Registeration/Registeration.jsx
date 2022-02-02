@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Modal, Button } from "react-bootstrap";
 import { registerUsers, isLoading } from "../../redux/actions/userAction";
 import { _registerUser } from "../../Helpers/userHelper";
+import Alert from "../../components/Alert/Alert";
 
 function Registeration() {
   const user = useSelector((state) => state.user);
@@ -16,6 +17,7 @@ function Registeration() {
   const [toggleEyePassword, setToggleEyePassword] = useState(false);
   const [toggleEyePassword1, setToggleEyePassword1] = useState(false);
   const [validationPassword, setValidationPassword] = useState(false);
+  const [err, setErr] = useState();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -44,9 +46,14 @@ function Registeration() {
       setValidationPassword(true);
     } else {
       const data = { name, email, sponsorName, leadersName, password };
-      _registerUser(data).then((response) => dispatch(registerUsers(response)));
+      _registerUser(data).then((response) => {
+        console.log(response);
+        dispatch(registerUsers(response));
+        setErr(response);
+      });
     }
   };
+  console.log(user.isAuthenticated);
   if (user.isAuthenticated) {
     navigate("/dashboard");
   }
@@ -69,7 +76,7 @@ function Registeration() {
             </div>
             <div className="formsap row d-flex justify-content-center align-items-center">
               <form class="row g-3 m-0 " onSubmit={(e) => onsubmit(e)}>
-                <div className="col-md-6">
+                <div className="col-md-6 m-0">
                   <label for="validationCustom01" class="form-label">
                     Name
                   </label>
@@ -86,7 +93,7 @@ function Registeration() {
                     Please provide a valid city.
                   </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-6 m-0">
                   <label for="inputEmail4" class="form-label">
                     Email
                   </label>
@@ -100,28 +107,28 @@ function Registeration() {
                     required
                   />
                 </div>
-                <div class="col-md-12">
+                <div class="col-md-12 m-0">
                   <label for="inputEmail4" class="form-label">
                     Sponor's Name
                   </label>
                   <input
                     type="text"
                     className={`${styles.int} form-control`}
-                    id="inputEmail4"
+                    id="inputName"
                     name="sponsorName"
                     value={sponsorName}
                     onChange={(e) => onchange(e)}
                     required
                   />
                 </div>
-                <div class="col-md-12">
-                  <label for="inputEmail4" class="form-label">
+                <div class="col-md-12 m-0 ">
+                  <label for="inputName" class="form-label">
                     Upline Leader's Name
                   </label>
                   <input
                     type="text"
                     className={`${styles.int} form-control`}
-                    id="inputEmail4"
+                    id="inputName"
                     name="leadersName"
                     value={leadersName}
                     onChange={(e) => onchange(e)}
@@ -224,7 +231,7 @@ function Registeration() {
                   </span>
                 </div>
                 <div class="col-12">
-                  {user.Loading ? (
+                  {user.Loading && err == null ? (
                     <div
                       className=" col-12 btn btn-primary "
                       style={{
@@ -247,6 +254,7 @@ function Registeration() {
                     <Link to="/login">Sigin</Link>
                   </small>
                 </div>
+                <span>{err != null ? <Alert msg={err} /> : null}</span>
               </form>
             </div>
           </div>

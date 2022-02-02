@@ -45,12 +45,15 @@ function Login() {
     e.preventDefault();
     const data = { email, password };
     login(data).then((response) => {
-      dispatch(loginUser(response));
-      _loadeCurrentlyLogedInUser().then((data) => dispatch(loadUser(data)));
-      setErr(response.code);
-      setErrMsg(response.errorMessage);
+      if (response.code == 400) {
+        setErrMsg(response.errorMessage);
+        console.log(response.errorMessage, "error");
+      } else {
+        dispatch(loginUser(response));
+        _loadeCurrentlyLogedInUser().then((data) => dispatch(loadUser(data)));
+      }
 
-      console.log(errMsg);
+      // console.log(response.errorMessage);
     });
   };
   return (
@@ -177,7 +180,7 @@ function Login() {
                     <Link to="/signup">Signup</Link>
                   </small>
                 </div>
-                <span>{err != null ? <Alert msg={errMsg} /> : null}</span>
+                <span>{errMsg != null ? <Alert msg={errMsg} /> : null}</span>
               </form>
             </div>
           </div>
