@@ -6,6 +6,8 @@ import { _viewAllBooks, _deleteBook } from "../../../Helpers/adminHelper";
 import moment from "moment";
 
 function BookCard({ book }) {
+  const openPdf = () => {};
+
   const [show, setShow] = useState(false);
 
   const handleShow = () => setShow(true);
@@ -13,7 +15,6 @@ function BookCard({ book }) {
     setShow(false);
   };
   const { name, plan } = book;
-
   return (
     <div className={styles.mainCOntainer}>
       <ModalComponent
@@ -77,6 +78,7 @@ function BookCard({ book }) {
         </div>
         <div className={`containerCenter`}>
           <i
+            onClick={() => openPdf(book)}
             className={` fas fa-eye
         ${plan === "Free" ? `${styles.eyeIconFree}` : `${styles.eyeIcon}`}
         `}
