@@ -63,7 +63,6 @@ function Dashboard() {
       console.log(response);
     });
   };
-  console.log(user.user.plan);
   return (
     <div>
       {user.user !== null && user.user.plan === "premium" ? (
