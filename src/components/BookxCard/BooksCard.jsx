@@ -1,52 +1,39 @@
 import React from "react";
+import { Card } from "react-bootstrap";
 import styles from "./BooksCard.module.css";
 function BooksCard() {
   return (
-    <div className="col-md-4 ">
-      <div className={`${styles.card} p-3 mb-2 `}>
-        <div className="d-flex justify-content-between">
-          <div className="d-flex flex-row align-items-center">
-            <div className={`${styles.icon} `}>
-              {" "}
-              {/* <i className="bx bxl-mailchimp"></i>{" "} */}
-            </div>
-            <div className={`${styles.details} ms-2 `}>
-              <h6 className="mb-0">Mailchimp</h6> <span>1 days ago</span>
-            </div>
-          </div>
-          <div className={`${styles.badge} ms-2 `}>
+    <Card
+      border="light"
+      style={{
+        marginLeft: "2em",
+        width: "18rem",
+        boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px",
+      }}
+    >
+      <Card.Header className={styles.header}>
+        <div className="d-flex flex-row align-items-center">
+          <div className={styles.icon}>
             {" "}
-            <span>Design</span>{" "}
+            <img
+              src="/defaultUserPic.webp"
+              style={{ width: "100%", height: "100%", borderRadius: "50%" }}
+            />{" "}
+          </div>
+          <div className={` ${styles.details} ms-2`}>
+            <h6 className="mb-0">Mailchimp</h6> <span>1 days ago</span>
           </div>
         </div>
-        <div className="mt-5">
-          <h3 className="heading">
-            Senior Product
-            <br />
-            Designer-Singapore
-          </h3>
-          <div className="mt-5">
-            <div className={`${styles.progress} ms-2 `}>
-              <div
-                className={`${styles.progress} ms-2 `}
-                role="progressbar"
-                style="width: 50%"
-                aria-valuenow="50"
-                aria-valuemin="0"
-                aria-valuemax="100"
-              ></div>
-            </div>
-            <div className="mt-3">
-              {" "}
-              <span className={`${styles.text1} ms-2 `}>
-                32 Applied{" "}
-                <span className={`${styles.text2} ms-2 `}>of 50 capacity</span>
-              </span>{" "}
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+      </Card.Header>
+      <Card.Body>
+        <Card.Title>Light Card Title</Card.Title>
+        <Card.Text>
+          Some quick example text to build on the card title the card's content.
+        </Card.Text>
+        <div className="mt-5"></div>
+      </Card.Body>
+    </Card>
+    // {` ${styles.box} d-flex col-md-4 mr-3`}
   );
 }
 
