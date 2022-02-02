@@ -53,6 +53,7 @@ function Registeration() {
       });
     }
   };
+  console.log(user.isAuthenticated);
   if (user.isAuthenticated) {
     navigate("/dashboard");
   }

@@ -10,6 +10,7 @@ import {
 } from "../../Helpers/userHelper";
 import { loadUser } from "../../redux/actions/userAction";
 import PendingView from "../../pages/PendingView/PendingView";
+import Premium from "../Premium/Premium";
 
 function MyVerticallyCenteredModal(props) {
   return (
@@ -62,10 +63,11 @@ function Dashboard() {
       console.log(response);
     });
   };
+  console.log(user.user.plan);
   return (
     <div>
-      {user.user !== null && user.user.plan ? (
-        <div>hi</div>
+      {user.user !== null && user.user.plan === "premium" ? (
+        <Premium />
       ) : (
         <div>
           {user.user !== null && user.user.isRequestingAccess === true ? (
