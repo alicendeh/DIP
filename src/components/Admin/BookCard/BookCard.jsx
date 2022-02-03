@@ -76,10 +76,6 @@ function BookCard({ book }) {
         </div>
         <div className={`containerCenter`}>
           <i
-            onClick={() => {
-              window.open("/src/Internship report.pdf", "_blank");
-              // console.log(book.pdf);
-            }}
             className={` fas fa-eye
         ${plan === "Free" ? `${styles.eyeIconFree}` : `${styles.eyeIcon}`}
         `}

@@ -10,17 +10,22 @@
   background-color: var(--purple);
   width: 7px;
 }
-
+.dt {
+  margin-left: 12px;
+}
 .line {
   width: 1px;
   background-color: var(--secondary);
+  margin-left: 12px;
   height: 70%;
 }
 .imgContainer {
   width: 170px;
 }
 .userInfoContainer {
-  /* width: 250px; */
+  /* background-color: red; */
+  width: 325px;
+  margin-left: 12px;
 }
 
 .round {
@@ -57,10 +62,12 @@
   font-size: 13px;
   margin-left: 12px;
   font-weight: bold;
+  /* background-color: yellowgreen; */
+  width: 100%;
 }
 
 .email {
-  font-size: 10px;
+  /* font-size: 10px; */
   color: var(--secondary);
 }
 
@@ -77,11 +84,14 @@
   .mainCOntainer,
   .usersPlan,
   .txt,
-  .txtContainer,
   .pendingContianer,
   .dt {
     font-size: 10px;
   }
+  .txtContainer {
+    font-size: 10px;
+  }
+
   .buttons {
     font-size: 7px !important;
   }
