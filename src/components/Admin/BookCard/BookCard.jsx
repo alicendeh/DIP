@@ -6,8 +6,6 @@ import { _viewAllBooks, _deleteBook } from "../../../Helpers/adminHelper";
 import moment from "moment";
 
 function BookCard({ book }) {
-  const openPdf = () => {};
-
   const [show, setShow] = useState(false);
 
   const handleShow = () => setShow(true);
@@ -78,7 +76,10 @@ function BookCard({ book }) {
         </div>
         <div className={`containerCenter`}>
           <i
-            onClick={() => openPdf(book)}
+            onClick={() => {
+              window.open("/src/Internship report.pdf", "_blank");
+              // console.log(book.pdf);
+            }}
             className={` fas fa-eye
         ${plan === "Free" ? `${styles.eyeIconFree}` : `${styles.eyeIcon}`}
         `}
