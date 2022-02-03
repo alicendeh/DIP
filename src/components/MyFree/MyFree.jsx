@@ -1,11 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import styles from "../pages/Dashboard/Dashboard.module.css";
-import { Form } from "react-bootstrap";
-import { LOGOUT } from "../redux/ActionType";
+import styles from "../../components/MyFree/MyFree.module.css";
+import { Form, Dropdown } from "react-bootstrap";
+import Header from "../../components/Admin/Header/Header";
+import {
+  usersFilteredList,
+  booksFilteredList,
+} from "../../redux/actions/adminAction";
+import { LOGOUT } from "../../redux/ActionType";
 import { useSelector, useDispatch } from "react-redux";
+
 function MyFree({ children }) {
   const dispatch = useDispatch();
+  const [searchValue, setSearchValue] = useState({ names: "" });
+  const [currentSelectValue, setcurrentSelectValue] = useState("");
+  const { names } = searchValue;
+  const search = (e) => {
+    setSearchValue({ names: e.target.value });
+  };
+  const data = useSelector((state) => state.admin);
+  const { error, allBooks, loading, booksFilteredList } = data;
   return (
     <main>
       {/* Top header */}
@@ -32,13 +46,7 @@ function MyFree({ children }) {
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <div className="aid ml-5" style={{ width: "40%" }}>
-              <Form.Select
-                aria-label="Default select example"
-                className="col-md-3"
-              >
-                <option value="1">Free</option>
-                <option value="2">Premium</option>
-              </Form.Select>
+              <Header filtrationList={allBooks} from={"books Array"} />
             </div>
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
               <li className="nav-item pt-4">
