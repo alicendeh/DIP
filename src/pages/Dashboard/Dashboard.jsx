@@ -66,7 +66,7 @@ function Dashboard() {
   return (
     <div>
       {user.user !== null && user.user.plan === "premium" ? (
-        <div>jhi</div>
+        <Premium />
       ) : (
         <div>
           {user.user !== null && user.user.isRequestingAccess === true ? (

@@ -20,7 +20,7 @@ const _registerUser = async (data) => {
     return res.data;
   } catch (err) {
     console.log(err.response.data.message, "hhhhe");
-    return err.response.data.message;
+    return { errorMessage: err.response.data.message, code: 400 };
   }
 };
 

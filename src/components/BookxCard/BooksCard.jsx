@@ -13,16 +13,22 @@ function BooksCard() {
       }}
     >
       <Card.Header className={styles.header}>
-        <div className="d-flex flex-row align-items-center">
-          <div className={styles.icon}>
-            {" "}
-            <img
-              src="/defaultUserPic.webp"
-              style={{ width: "100%", height: "100%", borderRadius: "50%" }}
-            />{" "}
-          </div>
-          <div className={` ${styles.details} ms-2`}>
-            <h6 className="mb-0">Mailchimp</h6> <span>1 days ago</span>
+        <div className="d-flex justify-content-between">
+          <div className="d-flex flex-row align-items-center">
+            <div className={styles.icon}>
+              {" "}
+              <img
+                src="/defaultUserPic.webp"
+                style={{ width: "100%", height: "100%", borderRadius: "50%" }}
+              />{" "}
+            </div>
+            <div className={` ${styles.details} ms-2`}>
+              <h6 className="mb-0">Mailchimp</h6> <span>1 days ago</span>
+            </div>
+            <div className={` ${styles.badge} pl-5 `}>
+              {" "}
+              <span>Premium</span>{" "}
+            </div>
           </div>
         </div>
       </Card.Header>
@@ -31,7 +37,15 @@ function BooksCard() {
         <Card.Text>
           Some quick example text to build on the card title the card's content.
         </Card.Text>
-        <div className="mt-5"></div>
+        <div className="mt-5 d-flex justify-content-between">
+          <button type="button" class="btn btn-outline-success col-md-6">
+            View
+          </button>
+          <span className={`${styles.text2} mt-3 `}>
+            126 views{" "}
+            <i className="far fa-eye p-0" style={{ fontSize: "17px" }}></i>{" "}
+          </span>
+        </div>
       </Card.Body>
     </Card>
     // {` ${styles.box} d-flex col-md-4 mr-3`}

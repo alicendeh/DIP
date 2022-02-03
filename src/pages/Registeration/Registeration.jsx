@@ -47,16 +47,21 @@ function Registeration() {
     } else {
       const data = { name, email, sponsorName, leadersName, password };
       _registerUser(data).then((response) => {
-        console.log(response);
-        dispatch(registerUsers(response));
-        setErr(response);
+        if (response.code === 400) {
+          console.log("i found an error");
+          setErr(response.errorMessage);
+        } else {
+          dispatch(registerUsers(response));
+          navigate("/dashboard");
+        }
       });
     }
   };
-  console.log(user.isAuthenticated);
-  if (user.isAuthenticated) {
-    navigate("/dashboard");
-  }
+  // console.log(user);
+  // console.log(user.isAuthenticated);
+  // if (user.isAuthenticated && user.user != null) {
+  //
+  // }
   return (
     <div className={`${styles.main}`}>
       <div className={styles.box}>
@@ -100,7 +105,7 @@ function Registeration() {
                   <input
                     type="text"
                     className={`${styles.int} form-control`}
-                    id="inputEmail4"
+                    // id="inputEmail4"
                     name="email"
                     value={email}
                     onChange={(e) => onchange(e)}
@@ -159,7 +164,7 @@ function Registeration() {
                       }}
                       type={toggleEyePassword1 ? "text" : "password"}
                       className="form-control"
-                      id="inputPassword4"
+                      // id="inputPassword4"
                       name="password"
                       value={password}
                       onChange={(e) => onchange(e)}
@@ -231,7 +236,7 @@ function Registeration() {
                   </span>
                 </div>
                 <div class="col-12">
-                  {user.Loading && err == null ? (
+                  {user.Loading && err == null && validationPassword != true ? (
                     <div
                       className=" col-12 btn btn-primary "
                       style={{

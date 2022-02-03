@@ -2,7 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styles from "../pages/Dashboard/Dashboard.module.css";
 import { Form } from "react-bootstrap";
+import { LOGOUT } from "../redux/ActionType";
+import { useSelector, useDispatch } from "react-redux";
 function MyFree({ children }) {
+  const dispatch = useDispatch();
   return (
     <main>
       {/* Top header */}
@@ -62,6 +65,22 @@ function MyFree({ children }) {
               </div>
               {/* </div> */}
             </ul>
+            <div className="pt-4 pl-2" style={{ cursor: "pointer" }}>
+              <Link
+                to="/"
+                className="nav-link actived"
+                aria-current="page"
+                onClick={() =>
+                  dispatch({
+                    type: LOGOUT,
+                  })
+                }
+              >
+                <i
+                  className={`fas fa-sign-out-alt fa-2x ${styles.logout} icon`}
+                ></i>
+              </Link>
+            </div>
           </div>
         </div>
       </nav>
