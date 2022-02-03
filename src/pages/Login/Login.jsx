@@ -12,9 +12,7 @@ function Login() {
 
   useEffect(() => {
     if (user) {
-      console.log(user, "here");
       if (user.user !== null && user.user !== undefined) {
-        console.log("in here", user.user);
         user.user.role === "admin"
           ? navigate("/users")
           : navigate("/dashboard");
