@@ -4,8 +4,11 @@ import styles from "../pages/Dashboard/Dashboard.module.css";
 import { Form } from "react-bootstrap";
 import { LOGOUT } from "../redux/ActionType";
 import { useSelector, useDispatch } from "react-redux";
+
 function MyFree({ children }) {
   const dispatch = useDispatch();
+
+  const user = useSelector((state) => state.user.user);
   return (
     <main>
       {/* Top header */}
@@ -43,7 +46,14 @@ function MyFree({ children }) {
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
               <li className="nav-item pt-4">
                 <Link to="/" className="nav-link actived" aria-current="page">
-                  Hi, Fodjo Frank
+                  Hi,{" "}
+                  <b
+                    style={{
+                      color: "#000",
+                    }}
+                  >
+                    {user && user.name}{" "}
+                  </b>
                 </Link>
               </li>
 
@@ -51,14 +61,18 @@ function MyFree({ children }) {
               <div
                 className="profile rounded-circle"
                 style={{
-                  width: "50px",
-                  height: "50px",
+                  width: "70px",
+                  height: "70px",
                   borderRadius: "50%",
                   backgroundColor: "violet",
                 }}
               >
                 <img
-                  src="/7.jpeg"
+                  src={
+                    user && user.avater !== ""
+                      ? user.avater
+                      : "/defaultUserPic.webp"
+                  }
                   alt=""
                   style={{ width: "100%", height: "100%", borderRadius: "50%" }}
                 />

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { DashPage } from "../../components";
+import { DashPage, AccessToFree } from "../../components";
 import styles from "./Dashboard.module.css";
 import { Modal, Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
@@ -72,7 +72,7 @@ function Dashboard() {
       {user.user !== null && user.user.plan === "premium" && <Premium />}
       {user.user !== null &&
         user.user.plan === "free" &&
-        user.user.isRequestingAccess === false && <div>free</div>}
+        user.user.isRequestingAccess === false && <AccessToFree />}
       {user.user !== null && user.user.isRequestingAccess === true && (
         <PendingView />
       )}

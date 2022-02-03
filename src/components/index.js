@@ -11,6 +11,7 @@ import BookCard from "./Admin/BookCard/BookCard";
 import DashPage from "./DashPage";
 import MyFree from "./MyFree";
 import Unexpected from "./Unexpected";
+import AccessToFree from "./AccessToFree/AccessToFree";
 
 export {
   MyPage,
@@ -26,4 +27,5 @@ export {
   DashPage,
   MyFree,
   Unexpected,
+  AccessToFree,
 };
