@@ -274,6 +274,10 @@ function Dashboard() {
                         Request Access
                       </button>
                     </div>
+                    <MyVerticallyCenteredModal
+                      show={modalShow}
+                      onHide={() => setModalShow(false)}
+                    />
                   </div>
                 </div>
               </div>

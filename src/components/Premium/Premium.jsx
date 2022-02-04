@@ -48,29 +48,31 @@ function Premium() {
   }, []);
   return (
     <MyFree>
-      <div className={`${styles.all} row pt-3 pb-5 flex-lg-wrap`}>
+      <div className={`${styles.all} row pt-3 pb-5 d-flex flex-lg-wrap`}>
         {error != null ? (
           <Unexpected />
         ) : (
-          <div>
+          <div className="col-12">
             {loading ? (
               <div className={`containerCenter spinnerContainer`}>
                 <div className="spinner"></div>
               </div>
             ) : (
-              <div>
+              <div className="col-12 col-md-12 col-sm-12">
                 {allBooks.length > 0 ? (
                   <div>
                     {booksFilteredList.length > 0 ? (
-                      <div>
+                      <div className="d-flex">
                         {booksFilteredList.map((book, index) => (
-                          <div key={index}>
+                          <div key={index} className="d-flex">
                             <BooksCard book={book} index={index} />
                           </div>
                         ))}
                       </div>
                     ) : (
-                      <div>
+                      <div
+                        className={` ${styles.flow} d-flex col-md-12  col-sm-12 `}
+                      >
                         {allBooks.map((book, index) => (
                           <div key={index}>
                             <BooksCard book={book} index={index} />
