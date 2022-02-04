@@ -11,6 +11,7 @@ import { LOGOUT } from "../../redux/ActionType";
 import { useSelector, useDispatch } from "react-redux";
 
 function MyFree({ children }) {
+  const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const [searchValue, setSearchValue] = useState({ names: "" });
   const [currentSelectValue, setcurrentSelectValue] = useState("");
@@ -51,7 +52,7 @@ function MyFree({ children }) {
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
               <li className="nav-item pt-4">
                 <Link to="/" className="nav-link actived" aria-current="page">
-                  Hi, Fodjo Frank
+                  Hi, {user.user.name}
                 </Link>
               </li>
 
@@ -66,7 +67,11 @@ function MyFree({ children }) {
                 }}
               >
                 <img
-                  src="/7.jpeg"
+                  src={
+                    user.user && user.user.avater !== ""
+                      ? user.avater
+                      : "/defaultUserPic.webp"
+                  }
                   alt=""
                   style={{ width: "100%", height: "100%", borderRadius: "50%" }}
                 />
