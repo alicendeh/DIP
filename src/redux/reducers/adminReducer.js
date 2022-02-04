@@ -10,6 +10,8 @@ import {
   FILTRATION_RESULT,
   FILTERED_BOOKS,
   LOGOUT,
+  ALL_FREE_BOOKS,
+  FILTERED_FREE_BOOKS,
 } from "../ActionType";
 
 const INITIAL_STATE = {
@@ -20,9 +22,11 @@ const INITIAL_STATE = {
   error: null,
   newBook: [],
   allBooks: [],
+  allFreeBooks: [],
   bookSPinner: false,
   usersFilteredList: [],
   booksFilteredList: [],
+  freeBooksFilteredList: [],
 };
 
 const getUsersRequest = (state = INITIAL_STATE, { type, payload }) => {
@@ -73,6 +77,12 @@ const getUsersRequest = (state = INITIAL_STATE, { type, payload }) => {
         loading: false,
         allBooks: payload.books,
       };
+    case ALL_FREE_BOOKS:
+      return {
+        ...state,
+        loading: false,
+        allFreeBooks: payload.books,
+      };
     case UPLOAD_SPINNER:
       return {
         ...state,
@@ -89,6 +99,11 @@ const getUsersRequest = (state = INITIAL_STATE, { type, payload }) => {
       return {
         ...state,
         booksFilteredList: payload,
+      };
+    case FILTERED_FREE_BOOKS:
+      return {
+        ...state,
+        freeBooksFilteredList: payload,
       };
     case LOGOUT:
       window.location.replace("/");

@@ -10,6 +10,8 @@ import {
   FILTRATION_RESULT,
   FILTERED_BOOKS,
   LOGOUT,
+  FILTERED_FREE_BOOKS,
+  ALL_FREE_BOOKS,
 } from "../ActionType";
 
 const adminGetsUsersequest = (users) => {
@@ -63,6 +65,13 @@ const getAllBooks = (books) => {
   };
 };
 
+const getAllFreeBooks = (books) => {
+  return {
+    type: ALL_FREE_BOOKS,
+    payload: books,
+  };
+};
+
 const submitBookSPinner = (value) => {
   return {
     type: UPLOAD_SPINNER,
@@ -84,6 +93,12 @@ const booksFilteredList = (data) => {
   };
 };
 
+const freeBooksFilteredList = (data) => {
+  return {
+    type: FILTERED_FREE_BOOKS,
+    payload: data,
+  };
+};
 const logout = () => {
   return {
     type: LOGOUT,
@@ -98,8 +113,10 @@ export {
   errorDetected,
   currentlyAddedBook,
   getAllBooks,
+  getAllFreeBooks,
   submitBookSPinner,
   usersFilteredList,
   booksFilteredList,
   logout,
+  freeBooksFilteredList,
 };

@@ -92,6 +92,7 @@ function Registeration() {
                     name="name"
                     value={name}
                     onChange={(e) => onchange(e)}
+                    maxlength="15"
                     required
                   />
                   <div class="invalid-feedback">

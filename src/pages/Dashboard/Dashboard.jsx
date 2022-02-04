@@ -70,12 +70,18 @@ function Dashboard() {
   return (
     <div>
       {user.user !== null && user.user.plan === "premium" && <Premium />}
+
       {user.user !== null &&
         user.user.plan === "free" &&
-        user.user.isRequestingAccess === false && <AccessToFree />}
-      {user.user !== null && user.user.isRequestingAccess === true && (
-        <PendingView />
-      )}
+        (user.user.isRequestingAccess === true ||
+          user.user.isRequestingAccess === false) && <AccessToFree />}
+
+      {user.user !== null &&
+        user.user.isRequestingAccess === true &&
+        user.user.plan === "none" && <PendingView />}
+
+      {/* {user.user !== null && user.user.isRequestingAccess ===true && user.user.plan === "free" } */}
+
       {user.user !== null &&
         user.user.isRequestingAccess === false &&
         user.user.plan === "none" && (

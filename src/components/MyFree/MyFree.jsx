@@ -14,13 +14,12 @@ function MyFree({ children }) {
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const [searchValue, setSearchValue] = useState({ names: "" });
-  const [currentSelectValue, setcurrentSelectValue] = useState("");
   const { names } = searchValue;
   const search = (e) => {
     setSearchValue({ names: e.target.value });
   };
   const data = useSelector((state) => state.admin);
-  const { error, allBooks, loading, booksFilteredList } = data;
+  const { error, allBooks, allFreeBooks, loading, booksFilteredList } = data;
   return (
     <main>
       {/* Top header */}
@@ -47,7 +46,11 @@ function MyFree({ children }) {
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <div className="aid ml-5" style={{ width: "40%" }}>
-              <Header filtrationList={allBooks} from={"books Array"} />
+              <Header
+                filtrationList={allBooks}
+                filtrationFree={allFreeBooks}
+                from={"free books plan"}
+              />
             </div>
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
               <li className="nav-item pt-4">
