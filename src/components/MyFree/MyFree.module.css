@@ -9,7 +9,9 @@
 .hideSideMenu {
   animation: closeMenu 0.4s ease-out forwards;
 }
-
+.profileHide {
+  display: none;
+}
 @keyframes openMenu {
   0% {
     transform: translateX(-100%);
@@ -71,6 +73,18 @@
 .logout {
   color: var(--primary);
 } */
+@media (min-width: 300px) {
+  .hideName {
+    display: none;
+  }
+  .profileHide {
+    display: block;
+    margin-left: 2em;
+  }
+  .hideProfile {
+    display: none;
+  }
+}
 
 @media (min-width: 768px) and (max-width: 990.98px) {
   .whole {
@@ -87,7 +101,7 @@
   }
 }
 
-@media (min-width: 992px) and (max-width: 1248px) {
+@media (min-width: 992px) and (max-width: 1548px) {
   .whole {
     width: 100%;
     display: flex;
@@ -102,5 +116,15 @@
   }
   .box2 {
     width: 100%;
+  }
+  .hideName {
+    display: block;
+  }
+  .profileHide {
+    display: none;
+    margin-left: 2em;
+  }
+  .hideProfile {
+    display: block;
   }
 }

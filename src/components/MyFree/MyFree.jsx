@@ -54,32 +54,47 @@ function MyFree({ children }) {
             </div>
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
               <li className="nav-item pt-4">
-                <Link to="/" className="nav-link actived" aria-current="page">
+                <Link
+                  to="/userprofile"
+                  className={` ${styles.hideName}  nav-link actived`}
+                  aria-current="page"
+                >
                   Hi, {user.user.name}
                 </Link>
               </li>
 
               {/* <div className="d-flex" style={{ gap: "6px " }}> */}
               <div
-                className="profile rounded-circle"
+                className={` ${styles.hideProfile}  profile rounded-circle`}
                 style={{
                   width: "50px",
                   height: "50px",
                   borderRadius: "50%",
                   backgroundColor: "violet",
+                  marginTop: "15px",
                 }}
               >
-                <img
-                  src={
-                    user.user && user.user.avater !== ""
-                      ? user.avater
-                      : "/defaultUserPic.webp"
-                  }
-                  alt=""
-                  style={{ width: "100%", height: "100%", borderRadius: "50%" }}
-                />
+                <Link to="/userprofile">
+                  {" "}
+                  <img
+                    src={
+                      user.user && user.user.avater !== ""
+                        ? user.avater
+                        : "/defaultUserPic.webp"
+                    }
+                    alt=""
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      borderRadius: "50%",
+                      cursor: "pointer",
+                    }}
+                  />
+                </Link>
               </div>
-              {/* </div> */}
+              <p className={`${styles.profileHide} `}>
+                <Link to="/userprofile">Profile</Link>
+              </p>
             </ul>
             <div className="pt-4 pl-2" style={{ cursor: "pointer" }}>
               <Link

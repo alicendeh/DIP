@@ -140,12 +140,12 @@ function Header({ hidden, title, filtrationList, filtrationFree, from }) {
       />
       <div className={styles.headeritleContainer}>
         <p className={`display-6 `}>{title} </p>
-        <i
+        {/* <i
           onClick={() => settoggleSideMenu(!toggleSideMenu)}
           className={`fas fa-bars hide ${styles.menu}`}
-        ></i>
+        ></i> */}
       </div>
-      <div className={`${hidden && styles.hideContainer}`}>
+      <div className={`${styles.hideContainer}`}>
         <div
           className={`${styles.inputContainer} d-flex 
  

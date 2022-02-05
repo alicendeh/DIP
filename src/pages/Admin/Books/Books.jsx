@@ -8,6 +8,8 @@ import { loadUser } from "../../../redux/actions/userAction";
 import { _loadeCurrentlyLogedInUser } from "../../../Helpers/userHelper";
 import Lottie from "react-lottie";
 import animationData from "../../../annimations/72929-reading-book.json";
+import { Online, Offline } from "react-detect-offline";
+import Network from "../../../components/Network/Network";
 
 const defaultOptions = {
   loop: true,
@@ -29,53 +31,66 @@ function Books() {
 
   return (
     <AdminLayout>
-      <Header title={"Books"} filtrationList={allBooks} from={"books Array"} />
-      {error != null ? (
-        <Unexpected />
-      ) : (
-        <div>
-          {loading ? (
-            <div className={`containerCenter spinnerContainer`}>
-              <div className="spinner"></div>
-            </div>
-          ) : (
-            <div>
-              {allBooks.length > 0 ? (
-                <div>
-                  {booksFilteredList.length > 0 ? (
-                    <div>
-                      {booksFilteredList.map((book, index) => (
-                        <div key={index}>
-                          <BookCard book={book} index={index} />
-                        </div>
-                      ))}
-                    </div>
-                  ) : (
-                    <div>
-                      {allBooks.map((book, index) => (
-                        <div key={index}>
-                          <BookCard book={book} index={index} />
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              ) : (
-                <div className="containerColumn fw-bold ">
-                  <Lottie options={defaultOptions} height={400} width={"70%"} />
-                  <p
-                    style={{
-                      fontSize: 21,
-                    }}
-                  >
-                    All books will appear hear
-                  </p>
-                </div>
-              )}
-            </div>
-          )}
-        </div>
-      )}
+      <Online>
+        <Header
+          title={"Books"}
+          filtrationList={allBooks}
+          from={"books Array"}
+        />
+        {error != null ? (
+          <Unexpected />
+        ) : (
+          <div>
+            {loading ? (
+              <div className={`containerCenter spinnerContainer`}>
+                <div className="spinner"></div>
+              </div>
+            ) : (
+              <div>
+                {allBooks.length > 0 ? (
+                  <div>
+                    {booksFilteredList.length > 0 ? (
+                      <div>
+                        {booksFilteredList.map((book, index) => (
+                          <div key={index}>
+                            <BookCard book={book} index={index} />
+                          </div>
+                        ))}
+                      </div>
+                    ) : (
+                      <div>
+                        {allBooks.map((book, index) => (
+                          <div key={index}>
+                            <BookCard book={book} index={index} />
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                ) : (
+                  <div className="containerColumn fw-bold ">
+                    <Lottie
+                      options={defaultOptions}
+                      height={400}
+                      width={"70%"}
+                    />
+                    <p
+                      style={{
+                        fontSize: 21,
+                      }}
+                    >
+                      All books will appear hear
+                    </p>
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+        )}
+      </Online>
+      <Offline>
+        <Network />{" "}
+      </Offline>
     </AdminLayout>
   );
 }
