@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styles from "./Profile.module.css";
 import { AdminLayout } from "../../../pages";
 import { Header } from "../../../components";
+import { useSelector } from "react-redux";
 import {
   Form,
   Col,
@@ -11,6 +12,7 @@ import {
   FloatingLabel,
 } from "react-bootstrap";
 function Profile() {
+  const user = useSelector((state) => state.user);
   const [formData, setFormData] = useState({
     fname: "",
     lname: "",
@@ -38,13 +40,13 @@ function Profile() {
             <div className="d-flex col-lg-4">
               <div className={`${styles.round}`}>
                 <div className={`${styles.profilePic} `}>
-                  <label for="img" className="take-photo">
+                  <label for="img" className={`${styles.takephoto} `}>
                     <img
                       for="img"
                       src={
                         selectedImage
                           ? URL.createObjectURL(selectedImage)
-                          : "/1.png"
+                          : "/defaultUserPic.webp"
                       }
                       className="img-fluid rounded border card"
                       style={{ width: "100%", height: "100%" }}
@@ -60,7 +62,7 @@ function Profile() {
                     />
                   </label>
                 </div>
-                <p className="petit">Click the camera to upload image</p>
+                <p className="petit">Click the image to upload image</p>
               </div>
             </div>
             <div className="other-form col-lg-8">
@@ -71,7 +73,7 @@ function Profile() {
                     required
                     type="text"
                     // name="name"
-                    // value={name}
+                    value={user.user.name}
                     // onChange={(e) => handleChange(e)}
                     placeholder="Name of book"
                   />
@@ -124,7 +126,7 @@ function Profile() {
                   </Form.Select>
                 </Form.Group>
                 <Row className=" pt-3">
-                  <Button type="submit">Submit form</Button>
+                  <Button type="submit">Edit Profile</Button>
                 </Row>
               </Row>
             </div>

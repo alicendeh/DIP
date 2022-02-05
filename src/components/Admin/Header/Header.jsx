@@ -122,11 +122,15 @@ function Header({ hidden, title, filtrationList, filtrationFree, from }) {
   };
   return (
     <div className={`containerRow ${styles.header}`}>
-      {/* <SideBar openSideBar={toggleSideMenu} /> */}
+      <SideBar
+        openSideBar={toggleSideMenu}
+        show={toggleSideMenu}
+        onHide={() => settoggleSideMenu(false)}
+      />
       <div className={styles.headeritleContainer}>
         <p className={`display-6 `}>{title} </p>
         <i
-          // onClick={() => settoggleSideMenu(!toggleSideMenu)}
+          onClick={() => settoggleSideMenu(!toggleSideMenu)}
           className={`fas fa-bars hide ${styles.menu}`}
         ></i>
       </div>
