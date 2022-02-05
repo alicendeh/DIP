@@ -65,6 +65,7 @@ const _upgradeUsersPlan = async (planType, userID) => {
       data,
       config
     );
+    console.log(res.data, "resdata");
     return res.data;
   } catch (err) {
     if (err.response.data) {
@@ -88,6 +89,7 @@ const _denyUsersPlanUpgrade = async (currentPlan, userID) => {
       data,
       config
     );
+    console.log(res.data);
     return res.data;
   } catch (err) {
     if (err.response.data) {

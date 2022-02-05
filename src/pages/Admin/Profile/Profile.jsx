@@ -95,24 +95,12 @@ function Profile() {
               <Row className="mb-3">
                 <Form.Group as={Col} md="12" controlId="validationCustom02">
                   <Form.Label> Change Password</Form.Label>
-                  <Form.Control
-                    required
-                    type="password"
-                    // name="author"
-                    // value={author}
-                    // onChange={(e) => handleChange(e)}
-                  />
+                  <Form.Control required type="password" />
                   <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                 </Form.Group>
                 <Form.Group as={Col} md="12" controlId="validationCustom02">
                   <Form.Label> Confirm Password</Form.Label>
-                  <Form.Control
-                    required
-                    type="password"
-                    // name="author"
-                    // value={author}
-                    // onChange={(e) => handleChange(e)}
-                  />
+                  <Form.Control required type="password" />
                   <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                 </Form.Group>
                 <Form.Group as={Col} md="12" controlId="validationCustom04">

@@ -16,7 +16,7 @@ function Header({ hidden, title, filtrationList, filtrationFree, from }) {
   const user = useSelector((state) => state.user);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
+  const decline = localStorage.getItem("reject");
   const search = (e) => {
     setSearchValue(e.target.value);
     let newText = e.target.value.toLowerCase();
@@ -69,9 +69,9 @@ function Header({ hidden, title, filtrationList, filtrationFree, from }) {
 
   const cancelMode = () => {
     if (from === "books Array") {
-      dispatch(booksFilteredList(filtrationList));
-    } else {
       dispatch(usersFilteredList(filtrationList));
+    } else {
+      dispatch(booksFilteredList(filtrationList));
     }
     setcurrentSelectValue("");
   };
@@ -83,24 +83,24 @@ function Header({ hidden, title, filtrationList, filtrationFree, from }) {
         let res = filtrationList.filter((item) =>
           item.plan.toLowerCase().includes("free")
         );
-        dispatch(booksFilteredList(res));
+        dispatch(usersFilteredList(res));
       } else {
         let res = filtrationList.filter((item) =>
           item.plan.toLowerCase().includes("premium")
         );
-        dispatch(booksFilteredList(res));
+        dispatch(usersFilteredList(res));
       }
     } else {
       if (e == "#/free") {
         let res = filtrationList.filter((item) =>
           item.plan.toLowerCase().includes("free")
         );
-        dispatch(usersFilteredList(res));
+        dispatch(booksFilteredList(res));
       } else {
         let res = filtrationList.filter((item) =>
           item.plan.toLowerCase().includes("premium")
         );
-        dispatch(usersFilteredList(res));
+        dispatch(booksFilteredList(res));
       }
     }
     if (from === "free books plan") {
@@ -111,12 +111,23 @@ function Header({ hidden, title, filtrationList, filtrationFree, from }) {
         dispatch(freeBooksFilteredList(res));
       } else if (
         user.user.plan == "free" &&
+        user.user.isRequestingAccess === false &&
+        e == "#/premium"
+      ) {
+        navigate("/upgradetopremium");
+      } else if (
+        user.user.plan == "free" &&
         e == "#/premium" &&
         user.user.isRequestingAccess === true
       ) {
         navigate("/pending");
-      } else {
-        navigate("/upgradetopremium");
+      } else if (
+        user.user.plan == "free" &&
+        user.user.isRequestingAccess === false &&
+        e == "#/premium" &&
+        decline === true
+      ) {
+        navigate("/rejeced");
       }
     }
   };
