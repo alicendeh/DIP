@@ -37,6 +37,7 @@ function BookCard({ book }) {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
+            marginLeft: "12px",
             flexDirection: "column",
           }}
         >
@@ -45,7 +46,16 @@ function BookCard({ book }) {
         <div className={`containerCenter`}>
           <div className={styles.line}></div>
         </div>
-        <div className={`containerCenter`}>
+
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            marginLeft: "12px",
+          }}
+          containerCenter
+          className={` ${styles.bookContainer}  `}
+        >
           <div>
             <Avater
               imageUrl={
@@ -60,18 +70,20 @@ function BookCard({ book }) {
             <span className={styles.email}> {book.author}</span>
           </div>
         </div>
+
         <div
           style={{
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
             justifyContent: "center",
+            width: "123px",
+            marginLeftRight: "12px",
           }}
         >
           <span className={styles.usersPlan}>{book.plan} </span>
           <div className={`${styles.pendingContianer} `}>
             <div className={styles.round}></div>
-            {book.views}
           </div>
         </div>
         <div className={`containerCenter`}>

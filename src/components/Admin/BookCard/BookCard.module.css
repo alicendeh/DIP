@@ -10,6 +10,7 @@
   width: 1px;
   background-color: var(--secondary);
   height: 70%;
+  margin-left: 12px;
 }
 .eyeIcon {
   transition: 1s all;
@@ -48,12 +49,14 @@
 .card:hover {
   transform: translateX(30px);
 }
-
+.bookContainer {
+  width: 225px;
+}
 .txt {
   font-size: 11px;
 }
 .usersPlan {
-  font-size: 14px;
+  font-size: 13px;
   font-weight: bold;
 }
 
