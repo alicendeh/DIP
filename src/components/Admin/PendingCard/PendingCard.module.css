@@ -6,6 +6,10 @@
   width: 1px;
   background-color: var(--secondary);
   height: 70%;
+  margin-left: 12px;
+}
+.dt {
+  margin-left: 12px;
 }
 
 .round {
@@ -17,6 +21,8 @@
 }
 
 .userInfoContainer {
+  width: 325px;
+  margin-left: 12px;
   /* width: 250px; */
 }
 .card {

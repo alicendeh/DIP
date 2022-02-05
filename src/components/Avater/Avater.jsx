@@ -16,7 +16,7 @@ function Avater({ imageUrl, w, h }) {
           height: "100%",
           borderRadius: "25px",
         }}
-        alt="user-avater"
+        alt="avater"
       />
     </div>
   );
