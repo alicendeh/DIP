@@ -65,6 +65,7 @@ const _upgradeUsersPlan = async (planType, userID) => {
       data,
       config
     );
+    console.log(res.data, "resdata");
     return res.data;
   } catch (err) {
     if (err.response.data) {
@@ -88,6 +89,7 @@ const _denyUsersPlanUpgrade = async (currentPlan, userID) => {
       data,
       config
     );
+    console.log(res.data);
     return res.data;
   } catch (err) {
     if (err.response.data) {
@@ -145,6 +147,21 @@ const _deleteBook = async (bookID) => {
   }
 };
 
+const _getFreeBooks = async () => {
+  try {
+    const res = await axios.get(
+      `${process.env.REACT_APP_URL}/admin/books/GetAllFreeBooks`
+    );
+    return res.data;
+  } catch (err) {
+    if (err.response.data) {
+      return { errorMessage: err.response.data.msg, code: 400 };
+    } else {
+      return { errorMessage: err.message, code: 400 };
+    }
+  }
+};
+
 export {
   _getPlanChangeRequests,
   _getAllUsers,
@@ -154,4 +171,5 @@ export {
   _denyUsersPlanUpgrade,
   _viewAllBooks,
   _deleteBook,
+  _getFreeBooks,
 };

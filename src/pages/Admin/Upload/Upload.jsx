@@ -89,9 +89,9 @@ function Upload() {
       <div className="pt-5 pb-5">
         <div className="row">
           <div className="col-lg-12">
-            <Form noValidate validated={validated} onSubmit={handleSubmit}>
+            <Form onSubmit={handleSubmit}>
               <Row className="mb-3">
-                <Form.Group as={Col} md="6" controlId="validationCustom01">
+                <Form.Group as={Col} md="6">
                   <Form.Label>Name Of Book</Form.Label>
                   <Form.Control
                     required
@@ -103,7 +103,7 @@ function Upload() {
                   />
                   <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                 </Form.Group>
-                <Form.Group as={Col} md="6" controlId="validationCustom02">
+                <Form.Group as={Col} md="6">
                   <Form.Label>Author Of Book</Form.Label>
                   <Form.Control
                     required
@@ -117,7 +117,7 @@ function Upload() {
                 </Form.Group>
               </Row>
               <Row className="mb-3">
-                <Form.Group as={Col} md="6" controlId="validationCustom04">
+                <Form.Group as={Col} md="6">
                   <Form.Label>Type</Form.Label>
                   <Form.Select
                     aria-label="Default select example"
@@ -127,7 +127,7 @@ function Upload() {
                     <option value="premium">Premium</option>
                   </Form.Select>
                 </Form.Group>
-                <Form.Group as={Col} md="6" controlId="validationCustom02">
+                <Form.Group as={Col} md="6">
                   <Form.Label>Upload Book</Form.Label>
                   <Form.Control
                     required
@@ -141,12 +141,7 @@ function Upload() {
                 </Form.Group>
               </Row>
               <Row>
-                <Form.Group
-                  as={Col}
-                  md="12"
-                  controlId="validationCustom02"
-                  className="mb-3"
-                >
+                <Form.Group as={Col} md="12" className="mb-3">
                   <Form.Label>Upload Cover Page</Form.Label>
                   <Form.Control
                     required

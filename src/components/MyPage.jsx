@@ -21,9 +21,13 @@ function MyPage({ children }) {
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
-            <span className="navbar-toggler-icon"></span>
+            <span>
+              {" "}
+              <i class="fas fa-bars"></i>
+            </span>
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
+            {/* <div className="bg-light shadow-3 p-4"> */}
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0 ">
               <li className="nav-item">
                 <Link to="/" className="nav-link actived" aria-current="page">
@@ -72,6 +76,7 @@ function MyPage({ children }) {
                 </button>
               </div>
             </ul>
+            {/* </div> */}
           </div>
         </div>
       </nav>

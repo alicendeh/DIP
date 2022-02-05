@@ -11,6 +11,7 @@ import {
 import { loadUser } from "../../redux/actions/userAction";
 import PendingView from "../../pages/PendingView/PendingView";
 import Premium from "../../components/Premium/Premium";
+import Rejected from "../Rejected/Rejected";
 
 function MyVerticallyCenteredModal(props) {
   return (
@@ -45,8 +46,10 @@ function MyVerticallyCenteredModal(props) {
 function Dashboard() {
   const dispatch = useDispatch();
   const [modalShow, setModalShow] = React.useState(false);
+  const [show, setShow] = React.useState(true);
   const user = useSelector((state) => state.user);
-
+  const decline = localStorage.getItem("rejected");
+  console.log(decline);
   useEffect(() => {
     _loadeCurrentlyLogedInUser().then((data) => dispatch(loadUser(data)));
   }, []);
@@ -70,12 +73,34 @@ function Dashboard() {
   return (
     <div>
       {user.user !== null && user.user.plan === "premium" && <Premium />}
+
       {user.user !== null &&
         user.user.plan === "free" &&
-        user.user.isRequestingAccess === false && <AccessToFree />}
-      {user.user !== null && user.user.isRequestingAccess === true && (
-        <PendingView />
-      )}
+        (user.user.isRequestingAccess === true ||
+          user.user.isRequestingAccess === false) && <AccessToFree />}
+
+      {user.user !== null &&
+        user.user.isRequestingAccess === true &&
+        user.user.plan === "none" && <PendingView />}
+
+      {
+        user.user !== null &&
+          user.user.isRequestingAccess === false &&
+          user.user.plan === "free" &&
+          decline === true && <Rejected />
+        // <MyVerticallyCenteredModal
+        //   show={show}
+        //   onHide={() => setShow(false)}
+        // />
+      }
+
+      {/*  
+      {user.user !== null &&
+        user.user.isRequestingAccess === true &&
+        user.user.plan === "free" && <PendingView />} */}
+
+      {/* {user.user !== null && user.user.isRequestingAccess ===true && user.user.plan === "free" } */}
+
       {user.user !== null &&
         user.user.isRequestingAccess === false &&
         user.user.plan === "none" && (

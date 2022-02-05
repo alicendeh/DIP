@@ -104,13 +104,16 @@ export default PendingCard;
 function ModalComponent({ user, handleClose, show }) {
   const { plan, _id, name, planType } = user;
 
+  const [rejected, setRejected] = useState(false);
   const denyUpgrade = (currentPlan, userID) => {
     handleClose();
-    _denyUsersPlanUpgrade(currentPlan, userID).then((res) =>
-      window.location.reload()
+    _denyUsersPlanUpgrade(currentPlan, userID).then(
+      (res) => window.location.reload(),
+      setRejected(true)
     );
   };
-
+  console.log(rejected);
+  localStorage.setItem("rejected", rejected);
   return (
     <>
       <Modal show={show} onHide={handleClose}>

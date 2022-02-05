@@ -4,22 +4,33 @@ import { Dropdown } from "react-bootstrap";
 import {
   usersFilteredList,
   booksFilteredList,
+  freeBooksFilteredList,
 } from "../../../redux/actions/adminAction";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
-function Header({ hidden, title, filtrationList, from }) {
+function Header({ hidden, title, filtrationList, filtrationFree, from }) {
   const [searchValue, setSearchValue] = useState("");
   const [currentSelectValue, setcurrentSelectValue] = useState("");
   const [toggleSideMenu, settoggleSideMenu] = useState(false);
-
+  const user = useSelector((state) => state.user);
+  const navigate = useNavigate();
   const dispatch = useDispatch();
-
+  const decline = localStorage.getItem("reject");
   const search = (e) => {
     setSearchValue(e.target.value);
     let newText = e.target.value.toLowerCase();
     if (newText !== "") {
       let itemToFilter = newText.toLowerCase();
-
+      if (from === "free books plan") {
+        let info = filtrationFree.filter(
+          (item) =>
+            item.name.toLowerCase().includes(itemToFilter) ||
+            item.author.toLowerCase().includes(itemToFilter) ||
+            item.plan.toLowerCase().includes(itemToFilter)
+        );
+        dispatch(freeBooksFilteredList(info));
+      }
       if (from === "books Array") {
         let results = filtrationList.filter(
           (item) =>
@@ -35,7 +46,6 @@ function Header({ hidden, title, filtrationList, from }) {
             item.email.toLowerCase().includes(itemToFilter) ||
             item.plan.toLowerCase().includes(itemToFilter)
         );
-        console.log("sup", result);
 
         dispatch(usersFilteredList(result));
       }
@@ -59,9 +69,9 @@ function Header({ hidden, title, filtrationList, from }) {
 
   const cancelMode = () => {
     if (from === "books Array") {
-      dispatch(booksFilteredList(filtrationList));
-    } else {
       dispatch(usersFilteredList(filtrationList));
+    } else {
+      dispatch(booksFilteredList(filtrationList));
     }
     setcurrentSelectValue("");
   };
@@ -73,34 +83,65 @@ function Header({ hidden, title, filtrationList, from }) {
         let res = filtrationList.filter((item) =>
           item.plan.toLowerCase().includes("free")
         );
-        dispatch(booksFilteredList(res));
+        dispatch(usersFilteredList(res));
       } else {
         let res = filtrationList.filter((item) =>
           item.plan.toLowerCase().includes("premium")
         );
-        dispatch(booksFilteredList(res));
+        dispatch(usersFilteredList(res));
       }
     } else {
       if (e == "#/free") {
         let res = filtrationList.filter((item) =>
           item.plan.toLowerCase().includes("free")
         );
-        dispatch(usersFilteredList(res));
+        dispatch(booksFilteredList(res));
       } else {
         let res = filtrationList.filter((item) =>
           item.plan.toLowerCase().includes("premium")
         );
-        dispatch(usersFilteredList(res));
+        dispatch(booksFilteredList(res));
+      }
+    }
+    if (from === "free books plan") {
+      if (user.user.plan == "free" && e == "#/free") {
+        let res = filtrationFree.filter((item) =>
+          item.plan.toLowerCase().includes("free")
+        );
+        dispatch(freeBooksFilteredList(res));
+      } else if (
+        user.user.plan == "free" &&
+        user.user.isRequestingAccess === false &&
+        e == "#/premium"
+      ) {
+        navigate("/upgradetopremium");
+      } else if (
+        user.user.plan == "free" &&
+        e == "#/premium" &&
+        user.user.isRequestingAccess === true
+      ) {
+        navigate("/pending");
+      } else if (
+        user.user.plan == "free" &&
+        user.user.isRequestingAccess === false &&
+        e == "#/premium" &&
+        decline === true
+      ) {
+        navigate("/rejeced");
       }
     }
   };
   return (
     <div className={`containerRow ${styles.header}`}>
-      {/* <SideBar openSideBar={toggleSideMenu} /> */}
+      <SideBar
+        openSideBar={toggleSideMenu}
+        show={toggleSideMenu}
+        onHide={() => settoggleSideMenu(false)}
+      />
       <div className={styles.headeritleContainer}>
         <p className={`display-6 `}>{title} </p>
         <i
-          // onClick={() => settoggleSideMenu(!toggleSideMenu)}
+          onClick={() => settoggleSideMenu(!toggleSideMenu)}
           className={`fas fa-bars hide ${styles.menu}`}
         ></i>
       </div>

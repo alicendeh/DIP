@@ -2,7 +2,12 @@ import React from "react";
 import { DashPage } from "../../components";
 import styles from "./Upgrade.module.css";
 import { Modal, Button } from "react-bootstrap";
-
+import { loadUser } from "../../redux/actions/userAction";
+import {
+  _loadeCurrentlyLogedInUser,
+  _userRequestPremiumPlan,
+} from "../../Helpers/userHelper";
+import { useDispatch } from "react-redux";
 function MyVerticallyCenteredModal(props) {
   return (
     <Modal
@@ -35,6 +40,12 @@ function MyVerticallyCenteredModal(props) {
 
 function Upgrade() {
   const [modalShow, setModalShow] = React.useState(false);
+  const dispatch = useDispatch();
+  const sendPremiumUpgrade = () => {
+    _userRequestPremiumPlan().then((response) => {
+      _loadeCurrentlyLogedInUser().then((data) => dispatch(loadUser(data)));
+    });
+  };
   return (
     <DashPage>
       <div className="pt-5 pb-5 ">
@@ -135,7 +146,10 @@ function Upgrade() {
                 <button
                   type="submit"
                   className="col-12 btn btn-primary "
-                  onClick={() => setModalShow(true)}
+                  onClick={() => {
+                    sendPremiumUpgrade();
+                    setModalShow(true);
+                  }}
                 >
                   Request Access
                 </button>
