@@ -21,9 +21,13 @@ function AccessToFree() {
   const dispatch = useDispatch();
   const data = useSelector((state) => state.admin);
   const { error, allFreeBooks, loading, freeBooksFilteredList } = data;
+
   useEffect(() => {
     dispatch(loadingState(true));
-    _loadeCurrentlyLogedInUser().then((data) => dispatch(loadUser(data)));
+    _loadeCurrentlyLogedInUser().then((data) => {
+      dispatch(loadUser(data));
+    });
+
     _getFreeBooks().then((response) => dispatch(getAllFreeBooks(response)));
   }, []);
 

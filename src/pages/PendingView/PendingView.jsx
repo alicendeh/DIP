@@ -24,13 +24,9 @@ function PendingView() {
       >
         <div className="view" style={{ width: "60%", height: "70%" }}>
           <h3 style={{ textAlign: "center", color: "grey" }}>
-            Your Request is still on Hold please just be patient
+            Your Request is on Hold please be patient
           </h3>
-          {/* <img
-            src="/unexpected.png"
-            alt=""
-            style={{ width: "100%", height: "100%" }}
-          /> */}
+
           <Lottie options={defaultOptions} height={400} width={"70%"} />
         </div>
       </div>
