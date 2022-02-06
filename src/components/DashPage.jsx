@@ -59,7 +59,7 @@ function DashPage({ children }) {
                 <img
                   src={
                     user.user && user.user.avater !== ""
-                      ? user.avater
+                      ? user.user.avater
                       : "/defaultUserPic.webp"
                   }
                   alt=""

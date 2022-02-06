@@ -76,7 +76,7 @@ function Profile() {
                       required
                       type="text"
                       // name="name"
-                      value={user.user.name}
+                      // value={user.user.name}
                       // onChange={(e) => handleChange(e)}
                       placeholder="Name of book"
                     />
@@ -86,7 +86,7 @@ function Profile() {
                     <Form.Label>Email</Form.Label>
                     <Form.Control
                       required
-                      type="text"
+                      type="email"
                       placeholder="Author"
                       // name="author"
                       // value={author}

@@ -106,9 +106,29 @@ const _userRequestPremiumPlan = async () => {
   }
 };
 
+const _updateUserInfo = async (data) => {
+  try {
+    let res = await axios.put(
+      `${process.env.REACT_APP_URL}/users/UpdateProfile`,
+      data,
+      config
+    );
+    return res.data;
+  } catch (err) {
+    if (err.response.data) {
+      return {
+        errorMessage: err.response.data.msg,
+        code: 400,
+      };
+    } else {
+      return { errorMessage: err.message, code: 400 };
+    }
+  }
+};
 export {
   _registerUser,
   _loadeCurrentlyLogedInUser,
   _userRequestFreePlan,
   _userRequestPremiumPlan,
+  _updateUserInfo,
 };

@@ -8,6 +8,7 @@ import {
   REGISTER_FAILED,
   IS_LOADING,
   LOAD_USER,
+  UPDATED_USER_INFO,
 } from "../ActionType";
 
 const initialState = {
@@ -29,6 +30,7 @@ export default function (state = initialState, action) {
         Loading: false,
       };
     case LOAD_USER:
+    case UPDATED_USER_INFO:
       return {
         ...state,
         user: payload.user,

@@ -7,6 +7,7 @@ import {
   LOGOUT,
   IS_LOADING,
   LOAD_USER,
+  UPDATED_USER_INFO,
 } from "../ActionType";
 
 import axios from "axios";
@@ -92,4 +93,11 @@ export const logout = () => (dispatch) => {
   dispatch({
     type: LOGOUT,
   });
+};
+
+export const updatedUserInfo = (user) => {
+  return {
+    type: UPDATED_USER_INFO,
+    payload: user,
+  };
 };

@@ -12,6 +12,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 function MyFree({ children }) {
   const user = useSelector((state) => state.user);
+
   const dispatch = useDispatch();
   const [searchValue, setSearchValue] = useState({ names: "" });
   const { names } = searchValue;
@@ -79,7 +80,7 @@ function MyFree({ children }) {
                   <img
                     src={
                       user.user && user.user.avater !== ""
-                        ? user.avater
+                        ? user.user.avater
                         : "/defaultUserPic.webp"
                     }
                     alt=""
