@@ -147,11 +147,9 @@ function AcceptModal({ user, handleClose, show }) {
   const { plan, _id, name, planType } = user;
 
   const acceptPlanChange = (desiredPlan, userID) => {
-    console.log(desiredPlan, userID, "what i send");
     handleClose();
     _upgradeUsersPlan(desiredPlan, userID).then((response) => {
       window.location.reload();
-      console.log(response, "in response");
     });
   };
 

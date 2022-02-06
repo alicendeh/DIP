@@ -83,6 +83,7 @@ function Login() {
               </p>
               <div
                 className={`${styles.look} py-2 d-flex justify-content-center align-items-center`}
+                onClick={() => window.location.assign("/signup")}
               >
                 <div
                   className={`${styles.circle} d-flex justify-content-center align-items-center`}

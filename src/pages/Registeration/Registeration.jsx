@@ -307,6 +307,7 @@ function Registeration() {
                 premium plan{" "}
               </p>
               <div
+                onClick={() => window.location.assign("/login")}
                 className={`${styles.look} py-2 d-flex justify-content-center align-items-center`}
               >
                 <div
