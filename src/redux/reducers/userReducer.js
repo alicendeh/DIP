@@ -29,6 +29,7 @@ export default function (state = initialState, action) {
         Loading: false,
       };
     case LOAD_USER:
+      console.log(payload, "sio");
       return {
         ...state,
         user: payload.user,

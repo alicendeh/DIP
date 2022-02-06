@@ -13,10 +13,12 @@ function Header({ hidden, title, filtrationList, filtrationFree, from }) {
   const [searchValue, setSearchValue] = useState("");
   const [currentSelectValue, setcurrentSelectValue] = useState("");
   const [toggleSideMenu, settoggleSideMenu] = useState(false);
+
   const user = useSelector((state) => state.user);
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const decline = localStorage.getItem("reject");
+
   const search = (e) => {
     setSearchValue(e.target.value);
     let newText = e.target.value.toLowerCase();
@@ -117,15 +119,8 @@ function Header({ hidden, title, filtrationList, filtrationFree, from }) {
         navigate("/upgradetopremium");
       } else if (
         user.user.plan == "free" &&
-        e == "#/premium" &&
-        user.user.isRequestingAccess === true
-      ) {
-        navigate("/pending");
-      } else if (
-        user.user.plan == "free" &&
         user.user.isRequestingAccess === false &&
-        e == "#/premium" &&
-        decline === true
+        e == "#/premium"
       ) {
         navigate("/rejeced");
       }

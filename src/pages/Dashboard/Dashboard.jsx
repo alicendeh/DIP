@@ -62,8 +62,6 @@ function Dashboard() {
   const sendFreePlanUpgrade = () => {
     _userRequestFreePlan().then((response) => {
       _loadeCurrentlyLogedInUser().then((data) => dispatch(loadUser(data)));
-
-      console.log(response, "res here");
     });
   };
 

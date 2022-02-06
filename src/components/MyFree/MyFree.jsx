@@ -13,8 +13,11 @@ import { useSelector, useDispatch } from "react-redux";
 function MyFree({ children }) {
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
+
   const [searchValue, setSearchValue] = useState({ names: "" });
+
   const { names } = searchValue;
+
   const search = (e) => {
     setSearchValue({ names: e.target.value });
   };
