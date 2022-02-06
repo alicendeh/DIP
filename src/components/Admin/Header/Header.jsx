@@ -119,6 +119,12 @@ function Header({ hidden, title, filtrationList, filtrationFree, from }) {
         navigate("/upgradetopremium");
       } else if (
         user.user.plan == "free" &&
+        e == "#/premium" &&
+        user.user.isRequestingAccess === true
+      ) {
+        navigate("/pending");
+      } else if (
+        user.user.plan == "free" &&
         user.user.isRequestingAccess === false &&
         e == "#/premium"
       ) {

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { DashPage } from "../../components";
 import styles from "./Upgrade.module.css";
 import { Modal, Button } from "react-bootstrap";
@@ -13,16 +13,74 @@ import PendingView from "../PendingView/PendingView";
 function MyVerticallyCenteredModal(props) {
   return (
     <Modal
+      show={props.show}
+      {...props}
+      size="lg"
+      aria-labelledby="contained-modal-title-vcenter"
+      centered
+    >
+      <Modal.Body>
+        <div
+          className="pend"
+          style={{
+            // width: "100vw",
+            // height: "100%",
+            display: "flex",
+            justifyContent: "center",
+            alignContent: "center",
+          }}
+        >
+          <div
+            className="view"
+            style={{
+              width: "40%",
+              height: "50%",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignContent: "center",
+            }}
+          >
+            <img
+              src="./rejection.png"
+              alt=""
+              style={{ width: "100%", height: "100%" }}
+            />
+            <h3 style={{ textAlign: "center", color: "grey" }}>
+              Sorry, Your Request was rejected
+            </h3>
+          </div>
+        </div>
+      </Modal.Body>
+      <Modal.Footer>
+        <div
+          className="btn btn-danger"
+          onClick={() => {
+            localStorage.removeItem("I_REQUESTED");
+            props.close(false);
+          }}
+        >
+          close
+        </div>
+      </Modal.Footer>
+    </Modal>
+  );
+}
+
+function SentModal(props) {
+  return (
+    <Modal
       {...props}
       size="lg"
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >
       {/* <Modal.Header className="mheader" closeButton>
-          <div className="contain" style={{ width: "80px", height: "80px" }}>
-            <img src="/8.png" alt="" style={{ width: "100%", height: "100%" }} />
-          </div>
-        </Modal.Header> */}
+        <div className="contain" style={{ width: "80px", height: "80px" }}>
+          <img src="/8.png" alt="" style={{ width: "100%", height: "100%" }} />
+        </div>
+      </Modal.Header> */}
+
       <Modal.Body>
         <div className="containt d-flex">
           <h4>Request sent and Pending</h4>{" "}
@@ -33,32 +91,43 @@ function MyVerticallyCenteredModal(props) {
         </div>
         <p>
           Request Sent, But you need to wait for the Admin to grant you access!
-          For you to enjoy the Premium Plan!
+          For you to enjoy the free Plan!
         </p>
       </Modal.Body>
     </Modal>
   );
 }
-
 function Upgrade() {
+  const [requestedAccess, setrequestedAccess] = useState(null);
+
   useEffect(() => {
     _loadeCurrentlyLogedInUser().then((data) => {
       dispatch(loadUser(data));
     });
+    let checkAcessRequest = localStorage.getItem("I_REQUESTED");
+    setrequestedAccess(checkAcessRequest);
   }, []);
 
   const [modalShow, setModalShow] = React.useState(false);
+  const [showRejectionModal, setshowRejectionModal] = useState(true);
 
   const user = useSelector((state) => state.user.user);
   const dispatch = useDispatch();
   const sendPremiumUpgrade = () => {
     _userRequestPremiumPlan().then((response) => {
       _loadeCurrentlyLogedInUser().then((data) => dispatch(loadUser(data)));
+      localStorage.setItem("I_REQUESTED", true);
     });
   };
 
   return (
     <div>
+      {user && requestedAccess && user.isRequestingAccess === false && (
+        <MyVerticallyCenteredModal
+          show={showRejectionModal}
+          close={setshowRejectionModal}
+        />
+      )}
       {user && user.isRequestingAccess === false && user.plan === "free" && (
         <DashPage>
           <div className="pt-5 pb-5 ">
@@ -169,10 +238,7 @@ function Upgrade() {
                   </div>
                 </div>
               </div>
-              <MyVerticallyCenteredModal
-                show={modalShow}
-                onHide={() => setModalShow(false)}
-              />
+              <SentModal show={modalShow} onHide={() => setModalShow(false)} />
             </div>
           </div>
         </DashPage>

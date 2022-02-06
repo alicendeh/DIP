@@ -23,6 +23,8 @@ function Premium() {
   const data = useSelector((state) => state.admin);
   const { error, allBooks, loading, booksFilteredList } = data;
   useEffect(() => {
+    localStorage.removeItem("I_REQUESTED");
+
     dispatch(loadingState(true));
     _loadeCurrentlyLogedInUser().then((data) => dispatch(loadUser(data)));
     _viewAllBooks().then((response) => dispatch(getAllBooks(response)));
