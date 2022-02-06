@@ -112,7 +112,6 @@ function ModalComponent({ user, handleClose, show }) {
       setRejected(true)
     );
   };
-  console.log(rejected);
   localStorage.setItem("rejected", rejected);
   return (
     <>

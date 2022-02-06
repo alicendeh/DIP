@@ -62,8 +62,7 @@ const _upgradeUsersPlan = async (planType, userID) => {
     console.log(data, userID, "data");
     let res = await axios.put(
       `${process.env.REACT_APP_URL}/allUsers/UpdateUsersPlan/${userID}`,
-      data,
-      config
+      data
     );
     console.log(res.data, "resdata");
     return res.data;
@@ -86,8 +85,7 @@ const _denyUsersPlanUpgrade = async (currentPlan, userID) => {
     console.log(data, userID, "data");
     let res = await axios.put(
       `${process.env.REACT_APP_URL}/allUsers/UpdateUsersPlan/${userID}`,
-      data,
-      config
+      data
     );
     console.log(res.data);
     return res.data;
