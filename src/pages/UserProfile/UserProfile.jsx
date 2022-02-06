@@ -74,7 +74,12 @@ function UserProfile() {
                 </Form.Group>
                 <Form.Group as={Col} md="6">
                   <Form.Label>Email</Form.Label>
-                  <Form.Control required type="text" />
+                  <Form.Control
+                    required
+                    type="text"
+                    value={user.user.email}
+                    disabled
+                  />
                   <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                 </Form.Group>
               </Row>

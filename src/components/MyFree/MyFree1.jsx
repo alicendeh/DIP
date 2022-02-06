@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "../../components/MyFree/MyFree.module.css";
 import { Form, Dropdown } from "react-bootstrap";
-import Header from "../../components/Admin/Header/Header";
 import {
   usersFilteredList,
   booksFilteredList,
@@ -11,7 +10,7 @@ import { LOGOUT } from "../../redux/ActionType";
 import { useSelector, useDispatch } from "react-redux";
 import Header1 from "../Admin/Header/Header1";
 
-function MyFree({ children }) {
+function MyFree1({ children }) {
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const [searchValue, setSearchValue] = useState({ names: "" });
@@ -51,6 +50,7 @@ function MyFree({ children }) {
                 filtrationList={allBooks}
                 filtrationFree={allFreeBooks}
                 from={"free books plan"}
+                to={"books Array"}
               />
             </div>
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
@@ -221,4 +221,4 @@ function MyFree({ children }) {
   );
 }
 
-export default MyFree;
+export default MyFree1;

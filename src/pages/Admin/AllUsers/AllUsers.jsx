@@ -75,77 +75,72 @@ function AllUsers() {
         title={"Users"}
         filtrationList={[...incomingUsersRequest, ...users]}
       />
-      <Online>
-        <div>
-          {loading ? (
-            <div className={`containerCenter spinnerContainer`}>
-              <div className="spinner"></div>
-            </div>
-          ) : (
-            <div>
-              {users.length > 0 || incomingUsersRequest.length > 0 ? (
-                <div>
-                  {usersFilteredList.length > 0 ? (
+      <div>
+        {loading ? (
+          <div className={`containerCenter spinnerContainer`}>
+            <div className="spinner"></div>
+          </div>
+        ) : (
+          <div>
+            {users.length > 0 || incomingUsersRequest.length > 0 ? (
+              <div>
+                {usersFilteredList.length > 0 ? (
+                  <div>
                     <div>
-                      <div>
-                        {pendinDataSet.length > 0 &&
-                          pendinDataSet.map((user, index) => (
-                            <div key={index}>
-                              <PendingCard user={user} index={index} />
-                            </div>
-                          ))}
-                      </div>
-                      <div>
-                        {userDataSet.length > 0 &&
-                          userDataSet.map((user, index) => (
-                            <div key={index}>
-                              <PlanCard user={user} index={index} />
-                            </div>
-                          ))}
-                      </div>
+                      {pendinDataSet.length > 0 &&
+                        pendinDataSet.map((user, index) => (
+                          <div key={index}>
+                            <PendingCard user={user} index={index} />
+                          </div>
+                        ))}
                     </div>
-                  ) : (
                     <div>
-                      <div>
-                        {typeof incomingUsersRequest !== undefined &&
-                          incomingUsersRequest.length > 0 &&
-                          incomingUsersRequest.map((user, index) => (
-                            <div key={index}>
-                              <PendingCard user={user} index={index} />
-                            </div>
-                          ))}
-                      </div>
-                      <div>
-                        {typeof users !== undefined &&
-                          users.length > 0 &&
-                          users.map((user, index) => (
-                            <div key={index}>
-                              <PlanCard user={user} />
-                            </div>
-                          ))}
-                      </div>
+                      {userDataSet.length > 0 &&
+                        userDataSet.map((user, index) => (
+                          <div key={index}>
+                            <PlanCard user={user} index={index} />
+                          </div>
+                        ))}
                     </div>
-                  )}
-                </div>
-              ) : (
-                <div className="containerColumn fw-bold ">
-                  <Lottie options={defaultOptions} height={400} width={"70%"} />
-                  <p
-                    style={{
-                      fontSize: 21,
-                    }}
-                  >
-                    All Users will appear hear
-                  </p>
-                </div>
-              )}
-            </div>
-          )}
-        </div>
-      </Online>
-      <Offline>
-        <Network />{" "}
-      </Offline>
+                  </div>
+                ) : (
+                  <div>
+                    <div>
+                      {typeof incomingUsersRequest !== undefined &&
+                        incomingUsersRequest.length > 0 &&
+                        incomingUsersRequest.map((user, index) => (
+                          <div key={index}>
+                            <PendingCard user={user} index={index} />
+                          </div>
+                        ))}
+                    </div>
+                    <div>
+                      {typeof users !== undefined &&
+                        users.length > 0 &&
+                        users.map((user, index) => (
+                          <div key={index}>
+                            <PlanCard user={user} />
+                          </div>
+                        ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <div className="containerColumn fw-bold ">
+                <Lottie options={defaultOptions} height={400} width={"70%"} />
+                <p
+                  style={{
+                    fontSize: 21,
+                  }}
+                >
+                  All Users will appear hear
+                </p>
+              </div>
+            )}
+          </div>
+        )}
+      </div>
     </AdminLayout>
   );
 }
