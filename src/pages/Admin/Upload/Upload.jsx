@@ -4,7 +4,6 @@ import { Header } from "../../../components";
 import { Form, Col, Button, Row, Modal } from "react-bootstrap";
 import { _addABook } from "../../../Helpers/adminHelper";
 import { Navigate } from "react-router-dom";
-import { Online, Offline } from "react-detect-offline";
 import {
   submitBookSPinner,
   currentlyAddedBook,
@@ -83,105 +82,103 @@ function Upload() {
   };
   return (
     <AdminLayout>
-      <Online>
-        <Header title={"Upload A Book"} hidden />
-        <SuccessModal show={showSuccessModal} handleClose={handleClose} />
+      <Header title={"Upload A Book"} hidden />
+      <SuccessModal show={showSuccessModal} handleClose={handleClose} />
 
-        <div className="pt-5 pb-5">
-          <div className="row">
-            <div className="col-lg-12">
-              <Form onSubmit={handleSubmit}>
-                <Row className="mb-3">
-                  <Form.Group as={Col} md="6">
-                    <Form.Label>Name Of Book</Form.Label>
-                    <Form.Control
-                      required
-                      type="text"
-                      name="name"
-                      value={name}
-                      onChange={(e) => handleChange(e)}
-                      placeholder="Name of book"
-                    />
-                    <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-                  </Form.Group>
-                  <Form.Group as={Col} md="6">
-                    <Form.Label>Author Of Book</Form.Label>
-                    <Form.Control
-                      required
-                      type="text"
-                      placeholder="Author"
-                      name="author"
-                      value={author}
-                      onChange={(e) => handleChange(e)}
-                    />
-                    <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-                  </Form.Group>
-                </Row>
-                <Row className="mb-3">
-                  <Form.Group as={Col} md="6">
-                    <Form.Label>Type</Form.Label>
-                    <Form.Select
-                      aria-label="Default select example"
-                      onChange={(e) => handleSelectFreeOrPremium(e)}
-                    >
-                      <option value="free">Free</option>
-                      <option value="premium">Premium</option>
-                    </Form.Select>
-                  </Form.Group>
-                  <Form.Group as={Col} md="6">
-                    <Form.Label>Upload Book</Form.Label>
-                    <Form.Control
-                      required
-                      type="file"
-                      name="upload"
-                      accept="application/pdf , application/msword,application/vnd.ms-excel,application/vnd.ms-powerpoint,text/plain"
-                      placeholder="Select A Book"
-                      onChange={(e) => handlePdfDocument(e)}
-                    />
-                    <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-                  </Form.Group>
-                </Row>
-                <Row>
-                  <Form.Group as={Col} md="12" className="mb-3">
-                    <Form.Label>Upload Cover Page</Form.Label>
-                    <Form.Control
-                      required
-                      type="file"
-                      id="img"
-                      name="image"
-                      accept="image/*"
-                      placeholder="Select A Book"
-                      onChange={(e) => handleImageChange(e)}
-                    />
-                    <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-                  </Form.Group>
-                </Row>
-                {/* <Row className=" px-3">
+      <div className="pt-5 pb-5">
+        <div className="row">
+          <div className="col-lg-12">
+            <Form onSubmit={handleSubmit}>
+              <Row className="mb-3">
+                <Form.Group as={Col} md="6">
+                  <Form.Label>Name Of Book</Form.Label>
+                  <Form.Control
+                    required
+                    type="text"
+                    name="name"
+                    value={name}
+                    onChange={(e) => handleChange(e)}
+                    placeholder="Name of book"
+                  />
+                  <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                </Form.Group>
+                <Form.Group as={Col} md="6">
+                  <Form.Label>Author Of Book</Form.Label>
+                  <Form.Control
+                    required
+                    type="text"
+                    placeholder="Author"
+                    name="author"
+                    value={author}
+                    onChange={(e) => handleChange(e)}
+                  />
+                  <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                </Form.Group>
+              </Row>
+              <Row className="mb-3">
+                <Form.Group as={Col} md="6">
+                  <Form.Label>Type</Form.Label>
+                  <Form.Select
+                    aria-label="Default select example"
+                    onChange={(e) => handleSelectFreeOrPremium(e)}
+                  >
+                    <option value="free">Free</option>
+                    <option value="premium">Premium</option>
+                  </Form.Select>
+                </Form.Group>
+                <Form.Group as={Col} md="6">
+                  <Form.Label>Upload Book</Form.Label>
+                  <Form.Control
+                    required
+                    type="file"
+                    name="upload"
+                    accept="application/pdf , application/msword,application/vnd.ms-excel,application/vnd.ms-powerpoint,text/plain"
+                    placeholder="Select A Book"
+                    onChange={(e) => handlePdfDocument(e)}
+                  />
+                  <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                </Form.Group>
+              </Row>
+              <Row>
+                <Form.Group as={Col} md="12" className="mb-3">
+                  <Form.Label>Upload Cover Page</Form.Label>
+                  <Form.Control
+                    required
+                    type="file"
+                    id="img"
+                    name="image"
+                    accept="image/*"
+                    placeholder="Select A Book"
+                    onChange={(e) => handleImageChange(e)}
+                  />
+                  <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                </Form.Group>
+              </Row>
+              {/* <Row className=" px-3">
                 <Button type="submit">Submit form</Button>
               </Row> */}
-                <div class="col-12">
-                  {adminState.bookSPinner ? (
-                    <div
-                      className=" col-12 btn btn-primary "
-                      style={{
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center",
-                      }}
-                    >
-                      <div className="spinner"></div>
-                    </div>
-                  ) : (
-                    <Row className=" px-3">
-                      <Button type="submit">Submit form</Button>
-                    </Row>
-                  )}
-                </div>
-              </Form>
-            </div>
+              <div class="col-12">
+                {adminState.bookSPinner ? (
+                  <div
+                    className=" col-12 btn btn-primary "
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                    }}
+                  >
+                    <div className="spinner"></div>
+                  </div>
+                ) : (
+                  <Row className=" px-3">
+                    <Button type="submit">Submit form</Button>
+                  </Row>
+                )}
+              </div>
+            </Form>
           </div>
         </div>
-      </Online>
+      </div>
     </AdminLayout>
   );
 }

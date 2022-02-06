@@ -13,6 +13,8 @@ import Alert from "./components/Alert/Alert";
 import PendingView from "./pages/PendingView/PendingView";
 import Rejected from "./pages/Rejected/Rejected";
 import UserProfile from "./pages/UserProfile/UserProfile";
+import { Online, Offline } from "react-detect-offline";
+import Network from "./components/Network/Network";
 function ScrollToTop({ children }) {
   const { pathname } = useLocation();
   const user = useSelector((state) => state.user);
@@ -41,26 +43,31 @@ function Navigation() {
   return (
     <BrowserRouter>
       <ScrollToTop>
-        <Routes>
-          <Route exact path="/" element={<Home />} />
-          <Route exact path="/login" element={<Login />} />
-          <Route exact path="/signup" element={<Registeration />} />
-          <Route exact path="/pending" element={<PendingView />} />
-          <Route exact path="/rejected" element={<Rejected />} />
-          <Route exact path="/userprofile" element={<UserProfile />} />
-          <Route exact path="/login" element={<Login />} />
+        <Online>
+          <Routes>
+            <Route exact path="/" element={<Home />} />
+            <Route exact path="/login" element={<Login />} />
+            <Route exact path="/signup" element={<Registeration />} />
+            <Route exact path="/pending" element={<PendingView />} />
+            <Route exact path="/rejected" element={<Rejected />} />
+            <Route exact path="/userprofile" element={<UserProfile />} />
+            <Route exact path="/login" element={<Login />} />
 
-          <Route exact path="/dashboard" element={<Dashboard />} />
-          {/* <Route exact path="/premium " element={<Premium />} /> */}
-          <>
-            <Route exact path="/users" element={<AllUsers />} />
-            <Route exact path="/books" element={<Books />} />
-            <Route exact path="/upload" element={<Upload />} />
-            <Route exact path="/profile" element={<Profile />} />
-            <Route exact path="/upgradetopremium" element={<Upgrade />} />
-          </>
-          <Route path="*" element={<NotFound msg={"Page Not Found"} />} />
-        </Routes>
+            <Route exact path="/dashboard" element={<Dashboard />} />
+            {/* <Route exact path="/premium " element={<Premium />} /> */}
+            <>
+              <Route exact path="/users" element={<AllUsers />} />
+              <Route exact path="/books" element={<Books />} />
+              <Route exact path="/upload" element={<Upload />} />
+              <Route exact path="/profile" element={<Profile />} />
+              <Route exact path="/upgradetopremium" element={<Upgrade />} />
+            </>
+            <Route path="*" element={<NotFound msg={"Page Not Found"} />} />
+          </Routes>
+        </Online>
+        <Offline>
+          <Network />
+        </Offline>
       </ScrollToTop>
     </BrowserRouter>
   );

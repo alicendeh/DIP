@@ -10,6 +10,7 @@ import PlanCard from "./Admin/PlanCard/PlanCard";
 import BookCard from "./Admin/BookCard/BookCard";
 import DashPage from "./DashPage";
 import MyFree from "./MyFree/MyFree";
+import MyFree1 from "./MyFree/MyFree1";
 import Unexpected from "./Unexpected";
 import AccessToFree from "./AccessToFree/AccessToFree";
 
@@ -26,6 +27,7 @@ export {
   BookCard,
   DashPage,
   MyFree,
+  MyFree1,
   Unexpected,
   AccessToFree,
 };

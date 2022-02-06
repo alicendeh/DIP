@@ -71,235 +71,230 @@ function Dashboard() {
   };
   return (
     <div>
-      <Online>
-        {user.user !== null && user.user.plan === "premium" && <Premium />}
+      {user.user !== null && user.user.plan === "premium" && <Premium />}
 
-        {user.user !== null &&
-          user.user.plan === "free" &&
-          (user.user.isRequestingAccess === true ||
-            user.user.isRequestingAccess === false) && <AccessToFree />}
+      {user.user !== null &&
+        user.user.plan === "free" &&
+        (user.user.isRequestingAccess === true ||
+          user.user.isRequestingAccess === false) && <AccessToFree />}
 
-        {user.user !== null &&
-          user.user.isRequestingAccess === true &&
-          user.user.plan === "none" && <PendingView />}
+      {user.user !== null &&
+        user.user.isRequestingAccess === true &&
+        user.user.plan === "none" && <PendingView />}
 
-        {user.user !== null &&
-          user.user.isRequestingAccess === false &&
-          user.user.plan === "none" && (
-            <DashPage>
-              <div className={`${styles.main1} row whole pt-5 pb-5 d-flex `}>
-                <div
-                  className="col-lg-4 col-md-12 col-sm-12 "
-                  style={{
-                    borderRadius: "10px",
-                    border: "3px solid #009717",
-                  }}
-                >
-                  <div className="text-center pt-3">
-                    <h1 style={{ color: "#0360AF" }}>FREE</h1>
-                    <h4 style={{ color: "#008514" }}>PLAN</h4>
-                    <div className="pt-2">
-                      <div className="plan-1 d-flex" style={{ gap: "10px" }}>
-                        <i
-                          class="fas fa-check-circle pt-1"
-                          style={{ color: "#747170" }}
-                        ></i>
-                        <p>
-                          The next generation of the web's favorite icon toolkit
-                          is now available
-                        </p>
-                      </div>
-                      <div className="plan-1 d-flex" style={{ gap: "10px" }}>
-                        <i
-                          class="fas fa-check-circle pt-1"
-                          style={{ color: "#747170" }}
-                        ></i>
-                        <p>
-                          The next generation of the web's favorite icon toolkit
-                          is now available
-                        </p>
-                      </div>
-                      <div className="plan-1 d-flex" style={{ gap: "10px" }}>
-                        <i
-                          class="fas fa-times-circle pt-1"
-                          style={{ color: "#747170" }}
-                        ></i>
-                        <p>
-                          The next generation of the web's favorite icon toolkit
-                          is now available
-                        </p>
-                      </div>
+      {user.user !== null &&
+        user.user.isRequestingAccess === false &&
+        user.user.plan === "none" && (
+          <DashPage>
+            <div className={`${styles.main1} row whole pt-5 pb-5 d-flex `}>
+              <div
+                className="col-lg-4 col-md-12 col-sm-12 "
+                style={{
+                  borderRadius: "10px",
+                  border: "3px solid #009717",
+                }}
+              >
+                <div className="text-center pt-3">
+                  <h1 style={{ color: "#0360AF" }}>FREE</h1>
+                  <h4 style={{ color: "#008514" }}>PLAN</h4>
+                  <div className="pt-2">
+                    <div className="plan-1 d-flex" style={{ gap: "10px" }}>
+                      <i
+                        class="fas fa-check-circle pt-1"
+                        style={{ color: "#747170" }}
+                      ></i>
+                      <p>
+                        The next generation of the web's favorite icon toolkit
+                        is now available
+                      </p>
+                    </div>
+                    <div className="plan-1 d-flex" style={{ gap: "10px" }}>
+                      <i
+                        class="fas fa-check-circle pt-1"
+                        style={{ color: "#747170" }}
+                      ></i>
+                      <p>
+                        The next generation of the web's favorite icon toolkit
+                        is now available
+                      </p>
+                    </div>
+                    <div className="plan-1 d-flex" style={{ gap: "10px" }}>
+                      <i
+                        class="fas fa-times-circle pt-1"
+                        style={{ color: "#747170" }}
+                      ></i>
+                      <p>
+                        The next generation of the web's favorite icon toolkit
+                        is now available
+                      </p>
+                    </div>
 
-                      <div className="plan-1 d-flex" style={{ gap: "10px" }}>
-                        <i
-                          class="fas fa-times-circle pt-1"
-                          style={{ color: "#747170" }}
-                        ></i>
-                        <p>
-                          The next generation of the web's favorite icon toolkit
-                          is now available
-                        </p>
-                      </div>
-                      <div className="plan-1 d-flex" style={{ gap: "10px" }}>
-                        <i
-                          class="fas fa-check-circle pt-1"
-                          style={{ color: "#747170" }}
-                        ></i>
-                        <p>
-                          The next generation of the web's favorite icon toolkit
-                          is now available
-                        </p>
-                      </div>
-                      <div className="plan-1 d-flex" style={{ gap: "10px" }}>
-                        <i
-                          class="fas fa-times-circle pt-1"
-                          style={{ color: "#747170" }}
-                        ></i>
-                        <p>
-                          The next generation of the web's favorite icon toolkit
-                          is now available
-                        </p>
-                      </div>
-                      <div class="col-12 pb-3">
-                        <button
-                          type="submit"
-                          className="col-12 btn btn-success "
-                          onClick={sendFreePlanUpgrade}
-                        >
-                          Request Access
-                        </button>
-                      </div>
-                    </div>{" "}
+                    <div className="plan-1 d-flex" style={{ gap: "10px" }}>
+                      <i
+                        class="fas fa-times-circle pt-1"
+                        style={{ color: "#747170" }}
+                      ></i>
+                      <p>
+                        The next generation of the web's favorite icon toolkit
+                        is now available
+                      </p>
+                    </div>
+                    <div className="plan-1 d-flex" style={{ gap: "10px" }}>
+                      <i
+                        class="fas fa-check-circle pt-1"
+                        style={{ color: "#747170" }}
+                      ></i>
+                      <p>
+                        The next generation of the web's favorite icon toolkit
+                        is now available
+                      </p>
+                    </div>
+                    <div className="plan-1 d-flex" style={{ gap: "10px" }}>
+                      <i
+                        class="fas fa-times-circle pt-1"
+                        style={{ color: "#747170" }}
+                      ></i>
+                      <p>
+                        The next generation of the web's favorite icon toolkit
+                        is now available
+                      </p>
+                    </div>
+                    <div class="col-12 pb-3">
+                      <button
+                        type="submit"
+                        className="col-12 btn btn-success "
+                        onClick={sendFreePlanUpgrade}
+                      >
+                        Request Access
+                      </button>
+                    </div>
+                  </div>{" "}
+                  <MyVerticallyCenteredModal
+                    show={modalShow}
+                    onHide={() => setModalShow(false)}
+                  />
+                </div>
+              </div>
+              <div
+                className="col-lg-6 col-md-12 col-sm-12"
+                style={{
+                  borderRadius: "10px",
+                  border: "3px solid #005FB0",
+                }}
+              >
+                <div className="text-center pt-3">
+                  <h1 style={{ color: " #008514" }}>PREMIUM</h1>
+                  <h4 style={{ color: "#0360AF" }}>PLAN</h4>
+                  <div className="pt-2">
+                    <div
+                      className="plan-1 d-flex justify-content-center"
+                      style={{ gap: "10px" }}
+                    >
+                      <i
+                        class="fas fa-check-circle pt-1"
+                        style={{ color: "#747170" }}
+                      ></i>
+                      <p>
+                        The next generation of the web's favorite icon library +
+                        toolkit is now available as a Beta release! Try out the
+                        Free version
+                      </p>
+                    </div>
+                    <div
+                      className="plan-1 d-flex justify-content-center"
+                      style={{ gap: "10px" }}
+                    >
+                      <i
+                        class="fas fa-check-circle pt-1"
+                        style={{ color: "#747170" }}
+                      ></i>
+                      <p>
+                        The next generation of the web's favorite icon library +
+                        toolkit is now available as a Beta release! Try out the
+                        Free version
+                      </p>
+                    </div>
+                    <div
+                      className="plan-1 d-flex justify-content-center"
+                      style={{ gap: "10px" }}
+                    >
+                      <i
+                        class="fas fa-times-circle pt-1"
+                        style={{ color: "#747170" }}
+                      ></i>
+                      <p>
+                        The next generation of the web's favorite icon library +
+                        toolkit is now available as a Beta release! Try out the
+                        Free version
+                      </p>
+                    </div>
+
+                    <div
+                      className="plan-1 d-flex justify-content-center"
+                      style={{ gap: "10px" }}
+                    >
+                      <i
+                        class="fas fa-times-circle pt-1"
+                        style={{ color: "#747170" }}
+                      ></i>
+                      <p>
+                        The next generation of the web's favorite icon library +
+                        toolkit is now available as a Beta release! Try out the
+                        Free version
+                      </p>
+                    </div>
+                    <div
+                      className="plan-1 d-flex justify-content-center"
+                      style={{ gap: "10px" }}
+                    >
+                      <i
+                        class="fas fa-check-circle pt-1"
+                        style={{ color: "#747170" }}
+                      ></i>
+                      <p>
+                        The next generation of the web's favorite icon library +
+                        toolkit is now available as a Beta release! Try out the
+                        Free version
+                      </p>
+                    </div>
+                    <div
+                      className="plan-1 d-flex justify-content-center"
+                      style={{ gap: "10px" }}
+                    >
+                      <i
+                        class="fas fa-times-circle pt-1"
+                        style={{ color: "#747170" }}
+                      ></i>
+                      <p>
+                        The next generation of the web's favorite icon library +
+                        toolkit is now available as a Beta release! Try out the
+                        Free version
+                      </p>
+                    </div>
+                    <div class="col-12 pb-3">
+                      <button
+                        type="submit"
+                        className="col-12 btn btn-primary"
+                        onClick={sendPremiumUpgrade}
+                      >
+                        Request Access
+                      </button>
+                    </div>
                     <MyVerticallyCenteredModal
                       show={modalShow}
                       onHide={() => setModalShow(false)}
                     />
                   </div>
                 </div>
-                <div
-                  className="col-lg-6 col-md-12 col-sm-12"
-                  style={{
-                    borderRadius: "10px",
-                    border: "3px solid #005FB0",
-                  }}
-                >
-                  <div className="text-center pt-3">
-                    <h1 style={{ color: " #008514" }}>PREMIUM</h1>
-                    <h4 style={{ color: "#0360AF" }}>PLAN</h4>
-                    <div className="pt-2">
-                      <div
-                        className="plan-1 d-flex justify-content-center"
-                        style={{ gap: "10px" }}
-                      >
-                        <i
-                          class="fas fa-check-circle pt-1"
-                          style={{ color: "#747170" }}
-                        ></i>
-                        <p>
-                          The next generation of the web's favorite icon library
-                          + toolkit is now available as a Beta release! Try out
-                          the Free version
-                        </p>
-                      </div>
-                      <div
-                        className="plan-1 d-flex justify-content-center"
-                        style={{ gap: "10px" }}
-                      >
-                        <i
-                          class="fas fa-check-circle pt-1"
-                          style={{ color: "#747170" }}
-                        ></i>
-                        <p>
-                          The next generation of the web's favorite icon library
-                          + toolkit is now available as a Beta release! Try out
-                          the Free version
-                        </p>
-                      </div>
-                      <div
-                        className="plan-1 d-flex justify-content-center"
-                        style={{ gap: "10px" }}
-                      >
-                        <i
-                          class="fas fa-times-circle pt-1"
-                          style={{ color: "#747170" }}
-                        ></i>
-                        <p>
-                          The next generation of the web's favorite icon library
-                          + toolkit is now available as a Beta release! Try out
-                          the Free version
-                        </p>
-                      </div>
-
-                      <div
-                        className="plan-1 d-flex justify-content-center"
-                        style={{ gap: "10px" }}
-                      >
-                        <i
-                          class="fas fa-times-circle pt-1"
-                          style={{ color: "#747170" }}
-                        ></i>
-                        <p>
-                          The next generation of the web's favorite icon library
-                          + toolkit is now available as a Beta release! Try out
-                          the Free version
-                        </p>
-                      </div>
-                      <div
-                        className="plan-1 d-flex justify-content-center"
-                        style={{ gap: "10px" }}
-                      >
-                        <i
-                          class="fas fa-check-circle pt-1"
-                          style={{ color: "#747170" }}
-                        ></i>
-                        <p>
-                          The next generation of the web's favorite icon library
-                          + toolkit is now available as a Beta release! Try out
-                          the Free version
-                        </p>
-                      </div>
-                      <div
-                        className="plan-1 d-flex justify-content-center"
-                        style={{ gap: "10px" }}
-                      >
-                        <i
-                          class="fas fa-times-circle pt-1"
-                          style={{ color: "#747170" }}
-                        ></i>
-                        <p>
-                          The next generation of the web's favorite icon library
-                          + toolkit is now available as a Beta release! Try out
-                          the Free version
-                        </p>
-                      </div>
-                      <div class="col-12 pb-3">
-                        <button
-                          type="submit"
-                          className="col-12 btn btn-primary"
-                          onClick={sendPremiumUpgrade}
-                        >
-                          Request Access
-                        </button>
-                      </div>
-                      <MyVerticallyCenteredModal
-                        show={modalShow}
-                        onHide={() => setModalShow(false)}
-                      />
-                    </div>
-                  </div>
-                </div>
               </div>
-            </DashPage>
-          )}
-        {user.user === null && (
-          <div className={`containerCenter spinnerContainer`}>
-            <div className="spinner"></div>
-          </div>
+            </div>
+          </DashPage>
         )}
-      </Online>
-      <Offline>
-        <Network />{" "}
-      </Offline>
+      {user.user === null && (
+        <div className={`containerCenter spinnerContainer`}>
+          <div className="spinner"></div>
+        </div>
+      )}
     </div>
   );
 }

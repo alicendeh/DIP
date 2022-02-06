@@ -9,23 +9,21 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-function Header({ hidden, title, filtrationList, filtrationFree, from }) {
+function Header1({ title, filtrationList, filtrationFree, from, to }) {
   const [searchValue, setSearchValue] = useState("");
   const [currentSelectValue, setcurrentSelectValue] = useState("");
   const [toggleSideMenu, settoggleSideMenu] = useState(false);
-
   const user = useSelector((state) => state.user);
-
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
   const search = (e) => {
     setSearchValue(e.target.value);
     let newText = e.target.value.toLowerCase();
     if (newText !== "") {
       let itemToFilter = newText.toLowerCase();
 
-      if (from === "books Array") {
+      if (to === "books Array") {
+        console.log("hey baby");
         let results = filtrationList.filter(
           (item) =>
             item.name.toLowerCase().includes(itemToFilter) ||
@@ -33,17 +31,7 @@ function Header({ hidden, title, filtrationList, filtrationFree, from }) {
             item.plan.toLowerCase().includes(itemToFilter)
         );
         dispatch(booksFilteredList(results));
-      } else {
-        let result = filtrationList.filter(
-          (item) =>
-            item.name.toLowerCase().includes(itemToFilter) ||
-            item.email.toLowerCase().includes(itemToFilter) ||
-            item.plan.toLowerCase().includes(itemToFilter)
-        );
-
-        dispatch(usersFilteredList(result));
-      }
-      if (from === "free books plan") {
+      } else if (from === "free books plan") {
         let info = filtrationFree.filter(
           (item) =>
             item.name.toLowerCase().includes(itemToFilter) ||
@@ -53,35 +41,33 @@ function Header({ hidden, title, filtrationList, filtrationFree, from }) {
         dispatch(freeBooksFilteredList(info));
       }
     } else {
-      if (from === "books Array") {
+      if (to === "books Array") {
         dispatch(booksFilteredList(filtrationList));
-      } else {
-        dispatch(usersFilteredList(filtrationList));
       }
     }
   };
 
   const clearInput = () => {
     setSearchValue("");
-    if (from === "books Array") {
+    if (to === "books Array") {
       dispatch(booksFilteredList(filtrationList));
     } else {
-      dispatch(usersFilteredList(filtrationList));
+      dispatch(freeBooksFilteredList(filtrationFree));
     }
   };
 
   const cancelMode = () => {
-    if (from === "books Array") {
-      dispatch(usersFilteredList(filtrationList));
-    } else {
+    if (to === "books Array") {
       dispatch(booksFilteredList(filtrationList));
+    } else {
+      dispatch(freeBooksFilteredList(filtrationFree));
     }
     setcurrentSelectValue("");
   };
 
   const selectFunction = (e) => {
     setcurrentSelectValue(e);
-    if (from === "books Array") {
+    if (to === "books Array") {
       if (e == "#/free") {
         let res = filtrationList.filter((item) =>
           item.plan.toLowerCase().includes("free")
@@ -124,12 +110,6 @@ function Header({ hidden, title, filtrationList, filtrationFree, from }) {
         user.user.isRequestingAccess === true
       ) {
         navigate("/pending");
-      } else if (
-        user.user.plan == "free" &&
-        user.user.isRequestingAccess === false &&
-        e == "#/premium"
-      ) {
-        navigate("/rejeced");
       }
     }
   };
@@ -218,7 +198,7 @@ function Header({ hidden, title, filtrationList, filtrationFree, from }) {
   );
 }
 
-export default Header;
+export default Header1;
 
 const SideBar = ({ openSideBar }) => {
   return (
