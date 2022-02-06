@@ -307,12 +307,8 @@ function Registeration() {
               className={`${styles.look} py-2 d-flex justify-content-center align-items-center`}
             >
               <div
-<<<<<<< HEAD
-                className={`${styles.circle} d-flex justify-content-center align-items-center`}
-=======
                 onClick={() => window.location.assign("/login")}
                 className={`${styles.look} py-2 d-flex justify-content-center align-items-center`}
->>>>>>> 38162450106554e1288ca786dc11d79d955cf7bf
               >
                 <i class="fas fa-arrow-right" style={{ fontSize: "20px" }}></i>
               </div>
@@ -323,11 +319,4 @@ function Registeration() {
     </div>
   );
 }
-// Registeration.propTypes = {
-//   register: PropTypes.func.isRequired,
-//   isAuthenticated: PropTypes.bool,
-// };
-// const mapToProps = (state) => ({
-//   // isAuthenticated: state.auth.isAuthenticated,
-// });
 export default Registeration;
