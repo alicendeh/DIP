@@ -14,6 +14,7 @@ import {
   ALL_FREE_BOOKS,
   UPDATED_ADMIN_INFO,
   LOAD_ADMIN,
+  SUPER_ADMIN_GETS_ALL_ADMIN,
 } from "../ActionType";
 
 const adminGetsUsersequest = (users) => {

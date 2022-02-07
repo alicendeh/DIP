@@ -22,6 +22,21 @@ const _getAllUsers = async () => {
   }
 };
 
+const _getAllAdmins = async () => {
+  try {
+    let res = await axios.get(
+      `${process.env.REACT_APP_URL}/superAdmin/getAllAdmin`
+    );
+    return res.data;
+  } catch (err) {
+    if (err.response.data) {
+      return { errorMessage: err.response.data.msg, code: 400 };
+    } else {
+      return { errorMessage: err.message, code: 400 };
+    }
+  }
+};
+
 const _getAllStatistics = async () => {
   try {
     let res = await axios.get(
@@ -129,15 +144,13 @@ const _loadeCurrentlyLogedInUser = async () => {
   }
 };
 export {
-  _getPlanChangeRequests,
   _getAllUsers,
   _getAllStatistics,
   _addABook,
-  _upgradeUsersPlan,
-  _denyUsersPlanUpgrade,
   _viewAllBooks,
   _deleteBook,
   _getFreeBooks,
   _updateAdminInfo,
   _loadeCurrentlyLogedInUser,
+  _getAllAdmins,
 };

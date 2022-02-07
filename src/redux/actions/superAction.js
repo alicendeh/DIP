@@ -14,6 +14,7 @@ import {
   ALL_FREE_BOOKS,
   UPDATED_ADMIN_INFO,
   LOAD_ADMIN,
+  SUPER_ADMIN_GETS_ALL_ADMIN,
 } from "../ActionType";
 
 const adminGetsUsersequest = (users) => {
@@ -30,6 +31,12 @@ const adminGetsStatisticsData = (data) => {
   };
 };
 
+const superadminGetsAdmin = (users) => {
+  return {
+    type: SUPER_ADMIN_GETS_ALL_ADMIN,
+    payload: users,
+  };
+};
 const loadingState = (val) => {
   return {
     type: IS_LOADING,
@@ -134,4 +141,5 @@ export {
   booksFilteredList,
   logout,
   freeBooksFilteredList,
+  superadminGetsAdmin,
 };

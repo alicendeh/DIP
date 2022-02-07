@@ -14,6 +14,7 @@ import {
   FILTERED_FREE_BOOKS,
   LOAD_ADMIN,
   UPDATED_ADMIN_INFO,
+  SUPER_ADMIN_GETS_ALL_ADMIN,
 } from "../ActionType";
 
 const INITIAL_STATE = {
@@ -46,6 +47,13 @@ const getUsersRequest = (state = INITIAL_STATE, { type, payload }) => {
       return {
         ...state,
         users: payload.allUsers,
+        loading: false,
+        error: null,
+      };
+    case SUPER_ADMIN_GETS_ALL_ADMIN:
+      return {
+        ...state,
+        admins: payload.admin,
         loading: false,
         error: null,
       };
