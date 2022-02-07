@@ -17,6 +17,8 @@ function Login() {
       if (user.user !== null && user.user !== undefined) {
         user.user.role === "admin"
           ? navigate("/users")
+          : user.user.role == "superadmin"
+          ? navigate("/all-admins-users")
           : navigate("/dashboard");
       }
     }

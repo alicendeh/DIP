@@ -16,8 +16,6 @@ import { _loadeCurrentlyLogedInUser } from "../../../Helpers/userHelper";
 import { loadUser } from "../../../redux/actions/userAction";
 import Lottie from "react-lottie";
 import animationData from "../../../annimations/89683-user-reviews.json";
-import { Offline, Online } from "react-detect-offline";
-import Network from "../../../components/Network/Network";
 
 const defaultOptions = {
   loop: true,

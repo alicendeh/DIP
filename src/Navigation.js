@@ -20,6 +20,7 @@ import AddAdmin from "./pages/SuperAdmin/AddAdmin/AddAdmin";
 import SuperBooks from "./pages/SuperAdmin/Books/SuperBooks";
 import UploadBooks from "./pages/SuperAdmin/UploadBook/UploadBooks";
 import SuperProfile from "./pages/SuperAdmin/SuperProfile/SuperProfile";
+import FetchUses from "./pages/SuperAdmin/ViewAll/FetchUses";
 function ScrollToTop({ children }) {
   const { pathname } = useLocation();
   const user = useSelector((state) => state.user);
