@@ -9,21 +9,6 @@ import { useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
 
 function AdminLayout({ children }) {
-  // const location = useLocation();
-  // let possiblePaths = Array("/books", "/users", "/upload", "/profile");
-  // const [currentPath, setCurrentPath] = useState("");
-
-  // useEffect(() => {
-  //   setCurrentPath(location.pathname);
-  // }, []);
-  // useEffect(() => {
-  //   let res = possiblePaths.includes(location.pathname);
-  //   if (res == false) {
-  //     console.log("false");
-  //     window.location.replace(currentPath);
-  //   }
-  // }, [location.pathname]);
-
   const admin = useSelector((state) => state.admin);
   const { error } = admin;
   return (

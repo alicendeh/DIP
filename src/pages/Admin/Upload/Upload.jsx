@@ -57,10 +57,10 @@ function Upload() {
 
     const dataToSend = new FormData();
     dataToSend.append("images", images);
+    dataToSend.append("images", selectedImage);
     dataToSend.append("name", formData.name);
     dataToSend.append("author", formData.author);
     dataToSend.append("plan", toggle);
-    dataToSend.append("images", selectedImage);
 
     _addABook(dataToSend).then((response) => {
       console.log(response);

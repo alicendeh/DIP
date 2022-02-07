@@ -9,6 +9,14 @@ import {
 } from "../../Helpers/userHelper";
 import { useDispatch, useSelector } from "react-redux";
 import PendingView from "../PendingView/PendingView";
+import animationData from "../../annimations/56132-error.json";
+import Lottie from "react-lottie";
+
+const defaultOptions = {
+  loop: true,
+  autoplay: true,
+  animationData: animationData,
+};
 
 function MyVerticallyCenteredModal(props) {
   return (
@@ -41,11 +49,10 @@ function MyVerticallyCenteredModal(props) {
               alignContent: "center",
             }}
           >
-            <img
-              src="./rejection.png"
-              alt=""
-              style={{ width: "100%", height: "100%" }}
-            />
+            <div className="containerColumn fw-bold ">
+              <Lottie options={defaultOptions} height={400} width={"70%"} />
+            </div>
+
             <h3 style={{ textAlign: "center", color: "grey" }}>
               Sorry, Your Request was rejected
             </h3>

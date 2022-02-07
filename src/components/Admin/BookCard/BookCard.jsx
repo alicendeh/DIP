@@ -4,15 +4,28 @@ import { Avater } from "../../../components";
 import { Button, Modal } from "react-bootstrap";
 import { _viewAllBooks, _deleteBook } from "../../../Helpers/adminHelper";
 import moment from "moment";
+import axios from "axios";
 
 function BookCard({ book }) {
   const [show, setShow] = useState(false);
-
+  const [pdfContent, setPdfContent] = useState(null);
+  const [showPdf, setShowPdf] = useState(false);
   const handleShow = () => setShow(true);
   const handleClose = () => {
     setShow(false);
   };
   const { name, plan } = book;
+
+  const openPdf = async (data) => {
+    try {
+      let pdfURL = `${process.env.REACT_APP_URL}/admin/books/images/${data.pdf}`;
+
+      window.open(pdfURL, "_blank");
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <div className={styles.mainCOntainer}>
       <ModalComponent
@@ -21,7 +34,9 @@ function BookCard({ book }) {
         show={show}
         handleClose={handleClose}
       />
-
+      {/* {showPdf && (
+        <a href={pdfContent && pdfContent.coverPage} target="_blank" />
+      )} */}
       <div className={styles.card}>
         <div
           className={`
@@ -58,11 +73,7 @@ function BookCard({ book }) {
         >
           <div>
             <Avater
-              imageUrl={
-                book.coverPage !== "default"
-                  ? book.coverPage
-                  : "/defaultBook.png"
-              }
+              imageUrl={book.coverPage ? book.coverPage : "/defaultBook.png"}
             />
           </div>
           <div className={styles.txtContainer}>
@@ -88,6 +99,7 @@ function BookCard({ book }) {
         </div>
         <div className={`containerCenter`}>
           <i
+            onClick={() => openPdf(book)}
             className={` fas fa-eye
         ${plan === "Free" ? `${styles.eyeIconFree}` : `${styles.eyeIcon}`}
         `}
