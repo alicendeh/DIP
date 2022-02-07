@@ -1,9 +1,9 @@
 import axios from "axios";
 
+import setAuthToken from "../components/utils/setAuthToken";
 const config = {
   headers: {
     "Content-Type": "application/json",
-    "dip-token": localStorage.getItem("token"),
   },
 };
 
@@ -157,7 +157,36 @@ const _getFreeBooks = async () => {
     }
   }
 };
-
+const _updateAdminInfo = async (data) => {
+  try {
+    let res = await axios.put(
+      `${process.env.REACT_APP_URL}/users/UpdateProfile`,
+      data,
+      config
+    );
+    return res.data;
+  } catch (err) {
+    if (err.response.data) {
+      return {
+        errorMessage: err.response.data.msg,
+        code: 400,
+      };
+    } else {
+      return { errorMessage: err.message, code: 400 };
+    }
+  }
+};
+const _loadeCurrentlyLogedInUser = async () => {
+  if (localStorage.getItem("token")) {
+    setAuthToken(localStorage.getItem("token"));
+  }
+  try {
+    const res = await axios.get(`${process.env.REACT_APP_URL}/users/LoadUser`);
+    return res.data;
+  } catch (err) {
+    return err;
+  }
+};
 export {
   _getPlanChangeRequests,
   _getAllUsers,
@@ -168,4 +197,6 @@ export {
   _viewAllBooks,
   _deleteBook,
   _getFreeBooks,
+  _updateAdminInfo,
+  _loadeCurrentlyLogedInUser,
 };

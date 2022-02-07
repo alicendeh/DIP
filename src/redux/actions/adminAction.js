@@ -12,6 +12,8 @@ import {
   LOGOUT,
   FILTERED_FREE_BOOKS,
   ALL_FREE_BOOKS,
+  UPDATED_ADMIN_INFO,
+  LOAD_ADMIN,
 } from "../ActionType";
 
 const adminGetsUsersequest = (users) => {
@@ -102,6 +104,19 @@ const freeBooksFilteredList = (data) => {
 const logout = () => {
   return {
     type: LOGOUT,
+  };
+};
+export const updatedAdminInfo = (user) => {
+  return {
+    type: UPDATED_ADMIN_INFO,
+    payload: user,
+  };
+};
+
+export const loadAdmin = (user) => {
+  return {
+    type: LOAD_ADMIN,
+    payload: user,
   };
 };
 

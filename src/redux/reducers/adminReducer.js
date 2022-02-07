@@ -12,6 +12,8 @@ import {
   LOGOUT,
   ALL_FREE_BOOKS,
   FILTERED_FREE_BOOKS,
+  LOAD_ADMIN,
+  UPDATED_ADMIN_INFO,
 } from "../ActionType";
 
 const INITIAL_STATE = {
@@ -53,6 +55,14 @@ const getUsersRequest = (state = INITIAL_STATE, { type, payload }) => {
         loading: false,
         error: null,
       };
+    case LOAD_ADMIN:
+    case UPDATED_ADMIN_INFO:
+      return {
+        ...state,
+        user: payload.user,
+        isAuthenticated: true,
+      };
+
     case IS_LOADING:
       return {
         ...state,
