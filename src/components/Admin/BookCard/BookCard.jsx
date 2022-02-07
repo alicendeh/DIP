@@ -106,9 +106,9 @@ function BookCard({ book }) {
           ></i>
         </div>
         <div className="containerCenter">
-          <div className={`btn btn-primary mr-3 `}>
+          {/* <div className={`btn btn-primary mr-3 `}>
             <i className="fas fa-edit"></i>
-          </div>
+          </div> */}
           <div className={`btn btn-danger mr-3 `} onClick={handleShow}>
             <i className="fas fa-times"></i>
           </div>

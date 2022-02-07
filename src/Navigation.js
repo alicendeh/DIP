@@ -49,40 +49,38 @@ function Navigation() {
   return (
     <BrowserRouter>
       <ScrollToTop>
-        <Online>
-          <Routes>
-            <Route exact path="/" element={<Home />} />
-            <Route exact path="/login" element={<Login />} />
-            <Route exact path="/signup" element={<Registeration />} />
-            <Route exact path="/pending" element={<PendingView />} />
-            <Route exact path="/rejected" element={<Rejected />} />
-            <Route exact path="/userprofile" element={<UserProfile />} />
-            <Route exact path="/login" element={<Login />} />
+        <Routes>
+          <Route exact path="/" element={<Home />} />
+          <Route exact path="/login" element={<Login />} />
+          <Route exact path="/signup" element={<Registeration />} />
+          <Route exact path="/pending" element={<PendingView />} />
+          <Route exact path="/rejected" element={<Rejected />} />
+          <Route exact path="/userprofile" element={<UserProfile />} />
+          <Route exact path="/login" element={<Login />} />
 
-            <Route exact path="/dashboard" element={<Dashboard />} />
-            {/* <Route exact path="/premium " element={<Premium />} /> */}
-            <>
-              <Route exact path="/users" element={<AllUsers />} />
-              <Route exact path="/books" element={<Books />} />
-              <Route exact path="/upload" element={<Upload />} />
-              <Route exact path="/profile" element={<Profile />} />
-              <Route exact path="/upgradetopremium" element={<Upgrade />} />
-              <Route
-                exact
-                path="/all-admins-users"
-                element={<ViewAdminsUsers />}
-              />
-              <Route exact path="/add-admin" element={<AddAdmin />} />
-              <Route exact path="/all-super-books" element={<SuperBooks />} />
-              <Route exact path="/upload-books" element={<UploadBooks />} />
-              <Route exact path="/super-profile" element={<SuperProfile />} />
-            </>
-            <Route path="*" element={<NotFound msg={"Page Not Found"} />} />
-          </Routes>
-        </Online>
-        <Offline>
+          <Route exact path="/dashboard" element={<Dashboard />} />
+          {/* <Route exact path="/premium " element={<Premium />} /> */}
+          <>
+            <Route exact path="/users" element={<AllUsers />} />
+            <Route exact path="/books" element={<Books />} />
+            <Route exact path="/upload" element={<Upload />} />
+            <Route exact path="/profile" element={<Profile />} />
+            <Route exact path="/upgradetopremium" element={<Upgrade />} />
+            <Route
+              exact
+              path="/all-admins-users"
+              element={<ViewAdminsUsers />}
+            />
+            <Route exact path="/add-admin" element={<AddAdmin />} />
+            <Route exact path="/all-super-books" element={<SuperBooks />} />
+            <Route exact path="/upload-books" element={<UploadBooks />} />
+            <Route exact path="/super-profile" element={<SuperProfile />} />
+          </>
+          <Route path="*" element={<NotFound msg={"Page Not Found"} />} />
+        </Routes>
+        {/* <Offline>
           <Network />
-        </Offline>
+        </Offline> */}
       </ScrollToTop>
     </BrowserRouter>
   );

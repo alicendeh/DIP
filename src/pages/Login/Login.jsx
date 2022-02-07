@@ -84,10 +84,10 @@ function Login() {
             </p>
             <div
               className={`${styles.look} py-2 d-flex justify-content-center align-items-center`}
+              onClick={() => window.location.assign("/signup")}
             >
               <div
-                className={`${styles.look} py-2 d-flex justify-content-center align-items-center`}
-                onClick={() => window.location.assign("/signup")}
+                className={`${styles.circle} d-flex justify-content-center align-items-center`}
               >
                 <i class="fas fa-arrow-left" style={{ fontSize: "20px" }}></i>
               </div>

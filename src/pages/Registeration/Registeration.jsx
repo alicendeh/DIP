@@ -304,11 +304,11 @@ function Registeration() {
               premium plan{" "}
             </p>
             <div
+              onClick={() => window.location.assign("/login")}
               className={`${styles.look} py-2 d-flex justify-content-center align-items-center`}
             >
               <div
-                onClick={() => window.location.assign("/login")}
-                className={`${styles.look} py-2 d-flex justify-content-center align-items-center`}
+                className={`${styles.circle} d-flex justify-content-center align-items-center`}
               >
                 <i class="fas fa-arrow-right" style={{ fontSize: "20px" }}></i>
               </div>
@@ -319,4 +319,11 @@ function Registeration() {
     </div>
   );
 }
+// Registeration.propTypes = {
+//   register: PropTypes.func.isRequired,
+//   isAuthenticated: PropTypes.bool,
+// };
+// const mapToProps = (state) => ({
+//   // isAuthenticated: state.auth.isAuthenticated,
+// });
 export default Registeration;

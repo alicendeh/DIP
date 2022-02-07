@@ -1,7 +1,18 @@
 import React from "react";
 import { Card } from "react-bootstrap";
 import styles from "./BooksCard.module.css";
+
 function BooksCard({ book }) {
+  const openPdf = async (data) => {
+    try {
+      let pdfURL = `${process.env.REACT_APP_URL}/admin/books/images/${data.pdf}`;
+
+      window.open(pdfURL, "_blank");
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <Card
       border="light"
@@ -48,7 +59,11 @@ function BooksCard({ book }) {
           </button>
           <span className={`${styles.text2} mt-3 `}>
             126 views{" "}
-            <i className="far fa-eye p-0" style={{ fontSize: "17px" }}></i>{" "}
+            <i
+              className="far fa-eye p-0"
+              onClick={() => openPdf(book)}
+              style={{ fontSize: "17px", cursor: "pointer" }}
+            ></i>{" "}
           </span>
         </div>
       </Card.Body>
