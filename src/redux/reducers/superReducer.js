@@ -1,7 +1,7 @@
 import {
-  ADMIN_GETS_ALL_USERS_REQUEST,
-  ADMIN_GETS_ALL_USERS,
-  ADMIN_GETS__ALL_STATISTICS_DATA,
+  SUPER_ADMIN_GETS_ALL_USERS_REQUEST,
+  SUPER_ADMIN_GETS_ALL_USERS,
+  SUPER_ADMIN_GETS__ALL_STATISTICS_DATA,
   IS_LOADING,
   SET_ERROR,
   CURRENT_BOOK,
@@ -19,6 +19,7 @@ import {
 const INITIAL_STATE = {
   incomingUsersRequest: [],
   statisticsData: [],
+  admins: [],
   users: [],
   loading: false,
   error: null,
@@ -33,7 +34,7 @@ const INITIAL_STATE = {
 
 const getUsersRequest = (state = INITIAL_STATE, { type, payload }) => {
   switch (type) {
-    case ADMIN_GETS_ALL_USERS_REQUEST:
+    case SUPER_ADMIN_GETS_ALL_USERS_REQUEST:
       return {
         ...state,
         incomingUsersRequest: payload.user,
@@ -41,20 +42,14 @@ const getUsersRequest = (state = INITIAL_STATE, { type, payload }) => {
         error: null,
       };
 
-    case ADMIN_GETS_ALL_USERS:
+    case SUPER_ADMIN_GETS_ALL_USERS:
       return {
         ...state,
         users: payload.allUsers,
         loading: false,
         error: null,
       };
-    case ADMIN_GETS__ALL_STATISTICS_DATA:
-      return {
-        ...state,
-        statisticsData: payload,
-        loading: false,
-        error: null,
-      };
+
     case LOAD_ADMIN:
     case UPDATED_ADMIN_INFO:
       return {

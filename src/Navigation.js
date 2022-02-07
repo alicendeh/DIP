@@ -15,6 +15,12 @@ import Rejected from "./pages/Rejected/Rejected";
 import UserProfile from "./pages/UserProfile/UserProfile";
 import { Online, Offline } from "react-detect-offline";
 import Network from "./components/Network/Network";
+import ViewAdminsUsers from "./pages/SuperAdmin/ViewAll/ViewAdminsUsers";
+import AddAdmin from "./pages/SuperAdmin/AddAdmin/AddAdmin";
+import SuperBooks from "./pages/SuperAdmin/Books/SuperBooks";
+import UploadBooks from "./pages/SuperAdmin/UploadBook/UploadBooks";
+import SuperProfile from "./pages/SuperAdmin/SuperProfile/SuperProfile";
+import FetchUses from "./pages/SuperAdmin/ViewAll/FetchUses";
 function ScrollToTop({ children }) {
   const { pathname } = useLocation();
   const user = useSelector((state) => state.user);
@@ -61,6 +67,15 @@ function Navigation() {
               <Route exact path="/upload" element={<Upload />} />
               <Route exact path="/profile" element={<Profile />} />
               <Route exact path="/upgradetopremium" element={<Upgrade />} />
+              <Route
+                exact
+                path="/all-admins-users"
+                element={<ViewAdminsUsers />}
+              />
+              <Route exact path="/add-admin" element={<AddAdmin />} />
+              <Route exact path="/all-super-books" element={<SuperBooks />} />
+              <Route exact path="/upload-books" element={<UploadBooks />} />
+              <Route exact path="/super-profile" element={<SuperProfile />} />
             </>
             <Route path="*" element={<NotFound msg={"Page Not Found"} />} />
           </Routes>

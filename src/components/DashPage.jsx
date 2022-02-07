@@ -16,9 +16,11 @@ function DashPage({ children }) {
         style={{ boxShadow: "rgba(17, 12, 46, 0.15) 0px 48px 100px 0px" }}
       >
         <div className="container">
-          <Link to="/" className="navbar-brand" href="#">
+          <Link to="/" className="navbar-brand d-flex" href="#">
             <img src="/Dip.jpeg" className="img-responsive" height="60" />
-            Dream Institution For Professionalism
+            <p style={{ marginTop: "0.8em", fontSize: "16px" }}>
+              Dream Institution For Professionalism
+            </p>
           </Link>
 
           <button
@@ -34,8 +36,8 @@ function DashPage({ children }) {
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
-              <li className="nav-item pt-4">
-                <Link to="/" className="nav-link actived" aria-current="page">
+              <li className="nav-item pt-2">
+                <Link to="" className="nav-link actived" aria-current="page">
                   Hi,{" "}
                   <b
                     style={{
@@ -50,8 +52,9 @@ function DashPage({ children }) {
               <div
                 className="profile rounded-circle"
                 style={{
-                  width: "70px",
-                  height: "70px",
+                  width: "50px",
+                  height: "50px",
+                  marginTop: "0em",
                   borderRadius: "50%",
                   backgroundColor: "violet",
                 }}
@@ -67,7 +70,7 @@ function DashPage({ children }) {
                 />
               </div>
               {/* </div> */}
-              <div className="pt-4 pl-2" style={{ cursor: "pointer" }}>
+              <div className="pt-2 pl-2" style={{ cursor: "pointer" }}>
                 <Link
                   to="/"
                   className="nav-link actived"

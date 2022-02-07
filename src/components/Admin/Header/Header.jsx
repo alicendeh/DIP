@@ -43,15 +43,6 @@ function Header({ hidden, title, filtrationList, filtrationFree, from }) {
 
         dispatch(usersFilteredList(result));
       }
-      if (from === "free books plan") {
-        let info = filtrationFree.filter(
-          (item) =>
-            item.name.toLowerCase().includes(itemToFilter) ||
-            item.author.toLowerCase().includes(itemToFilter) ||
-            item.plan.toLowerCase().includes(itemToFilter)
-        );
-        dispatch(freeBooksFilteredList(info));
-      }
     } else {
       if (from === "books Array") {
         dispatch(booksFilteredList(filtrationList));

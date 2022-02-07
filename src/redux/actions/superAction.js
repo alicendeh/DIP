@@ -1,7 +1,7 @@
 import {
-  ADMIN_GETS_ALL_USERS_REQUEST,
+  SUPER_ADMIN_GETS_ALL_USERS_REQUEST,
   ADMIN_GETS__ALL_STATISTICS_DATA,
-  ADMIN_GETS_ALL_USERS,
+  SUPER_ADMIN_GETS_ALL_USERS,
   IS_LOADING,
   SET_ERROR,
   CURRENT_BOOK,
@@ -18,7 +18,7 @@ import {
 
 const adminGetsUsersequest = (users) => {
   return {
-    type: ADMIN_GETS_ALL_USERS_REQUEST,
+    type: SUPER_ADMIN_GETS_ALL_USERS_REQUEST,
     payload: users,
   };
 };
@@ -39,7 +39,7 @@ const loadingState = (val) => {
 
 const adminGetsAllUsers = (users) => {
   return {
-    type: ADMIN_GETS_ALL_USERS,
+    type: SUPER_ADMIN_GETS_ALL_USERS,
     payload: users,
   };
 };

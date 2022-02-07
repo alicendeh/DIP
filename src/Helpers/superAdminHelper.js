@@ -7,21 +7,6 @@ const config = {
   },
 };
 
-const _getPlanChangeRequests = async () => {
-  try {
-    const res = await axios.get(
-      `${process.env.REACT_APP_URL}/allUsers/AllRequest`
-    );
-    return res.data;
-  } catch (err) {
-    if (err.response.data) {
-      return { errorMessage: err.response.data.msg, code: 400 };
-    } else {
-      return { errorMessage: err.message, code: 400 };
-    }
-  }
-};
-
 const _getAllUsers = async () => {
   try {
     let res = await axios.get(
@@ -42,50 +27,6 @@ const _getAllStatistics = async () => {
     let res = await axios.get(
       `${process.env.REACT_APP_URL}/allUsers/statistics`
     );
-    return res.data;
-  } catch (err) {
-    if (err.response.data) {
-      return { errorMessage: err.response.data.msg, code: 400 };
-    } else {
-      return { errorMessage: err.message, code: 400 };
-    }
-  }
-};
-
-const _upgradeUsersPlan = async (planType, userID) => {
-  try {
-    let data = {
-      plan: planType,
-      isRequestingAccess: false,
-      planType: "none",
-    };
-    let res = await axios.put(
-      `${process.env.REACT_APP_URL}/allUsers/UpdateUsersPlan/${userID}`,
-      data
-    );
-    return res.data;
-  } catch (err) {
-    if (err.response.data) {
-      return { errorMessage: err.response.data.msg, code: 400 };
-    } else {
-      return { errorMessage: err.message, code: 400 };
-    }
-  }
-};
-
-const _denyUsersPlanUpgrade = async (currentPlan, userID) => {
-  try {
-    let data = {
-      planType: currentPlan,
-      isRequestingAccess: false,
-    };
-
-    console.log(data, userID, "data");
-    let res = await axios.put(
-      `${process.env.REACT_APP_URL}/allUsers/UpdateUsersPlan/${userID}`,
-      data
-    );
-    console.log(res.data);
     return res.data;
   } catch (err) {
     if (err.response.data) {

@@ -13,6 +13,7 @@ import MyFree from "./MyFree/MyFree";
 import MyFree1 from "./MyFree/MyFree1";
 import Unexpected from "./Unexpected";
 import AccessToFree from "./AccessToFree/AccessToFree";
+import SuperAdminLeftNavigation from "./Admin/LeftNavigationBar/SuperAdminLeftNavigation";
 
 export {
   MyPage,
@@ -30,4 +31,5 @@ export {
   MyFree1,
   Unexpected,
   AccessToFree,
+  SuperAdminLeftNavigation,
 };
