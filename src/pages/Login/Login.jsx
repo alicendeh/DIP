@@ -164,7 +164,7 @@ function Login() {
                   </div>
                 </div>
                 <div class="col-12">
-                  {user.Loading ? (
+                  {user.Loading && errMsg == null ? (
                     <div
                       className=" col-12 btn btn-primary "
                       style={{

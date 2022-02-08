@@ -36,10 +36,10 @@ function ViewAdminsUsers() {
   const [userDataSet, setuserDataSet] = useState([]);
 
   const dispatch = useDispatch();
-  const [toggle, setToggle] = useState(true);
-  const changeToggle = () => {
+  const [toggle, setToggle] = useState(false);
+  useEffect(() => {
     setToggle(true);
-  };
+  }, []);
 
   useEffect(() => {
     dispatch(loadingState(true));
@@ -84,7 +84,7 @@ function ViewAdminsUsers() {
           <Nav.Link onClick={() => setToggle(true)}>All Users</Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link onClick={() => setToggle(!toggle)}>Admins</Nav.Link>
+          <Nav.Link onClick={() => setToggle(false)}>Admins</Nav.Link>
         </Nav.Item>
       </Nav>
       {toggle ? <FetchUses /> : <FetchAdmins />}

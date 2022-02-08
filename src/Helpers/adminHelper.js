@@ -187,6 +187,30 @@ const _loadeCurrentlyLogedInUser = async () => {
     return err;
   }
 };
+
+const _getAllAdmins = async () => {
+  try {
+    const res = await axios.get(
+      `${process.env.REACT_APP_URL}/superAdmin/getAllAdmin`
+    );
+    console.log(res.data, "data heee");
+    return res.data;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+const _removeAdmin = async (id) => {
+  try {
+    const res = await axios.get(
+      `${process.env.REACT_APP_URL}/superAdmin/deleteAdmin/${id}`
+    );
+    console.log(res.data, "data heee");
+    return res.data;
+  } catch (err) {
+    console.log(err);
+  }
+};
 export {
   _getPlanChangeRequests,
   _getAllUsers,
@@ -199,4 +223,6 @@ export {
   _getFreeBooks,
   _updateAdminInfo,
   _loadeCurrentlyLogedInUser,
+  _getAllAdmins,
+  _removeAdmin,
 };
