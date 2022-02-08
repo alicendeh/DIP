@@ -68,18 +68,17 @@ function Header1({ title, filtrationList, filtrationFree, from, to }) {
   const selectFunction = (e) => {
     setcurrentSelectValue(e);
     if (to === "books Array") {
-      if (e == "#/free") {
-        let res = filtrationList.filter((item) =>
-          item.plan.toLowerCase().includes("free")
-        );
-        dispatch(usersFilteredList(res));
-      } else {
-        let res = filtrationList.filter((item) =>
-          item.plan.toLowerCase().includes("premium")
-        );
-        dispatch(usersFilteredList(res));
-      }
-    } else {
+      // if (e == "#/free") {
+      //   let res = filtrationList.filter((item) =>
+      //     item.plan.toLowerCase().includes("free")
+      //   );
+      //   dispatch(usersFilteredList(res));
+      // } else {
+      //   let res = filtrationList.filter((item) =>
+      //     item.plan.toLowerCase().includes("premium")
+      //   );
+      //   dispatch(usersFilteredList(res));
+      // }
       if (e == "#/free") {
         let res = filtrationList.filter((item) =>
           item.plan.toLowerCase().includes("free")
@@ -91,8 +90,7 @@ function Header1({ title, filtrationList, filtrationFree, from, to }) {
         );
         dispatch(booksFilteredList(res));
       }
-    }
-    if (from === "free books plan") {
+    } else if (from === "free books plan") {
       if (user.user.plan == "free" && e == "#/free") {
         let res = filtrationFree.filter((item) =>
           item.plan.toLowerCase().includes("free")

@@ -52,6 +52,7 @@ function MyFree({ children }) {
                 filtrationList={allBooks}
                 filtrationFree={allFreeBooks}
                 from={"free books plan"}
+                to={"books Array"}
               />
             </div>
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
