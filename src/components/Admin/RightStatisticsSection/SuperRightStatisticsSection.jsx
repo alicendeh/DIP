@@ -62,11 +62,6 @@ function SuperRightStatisticsSection() {
             </div>
           </div>
           <div className="pt-4">
-            {/* {loading ? (
-              <div className={`containerCenter spinnerContainer`}>
-                <div className="spinner"></div>
-              </div>
-            ) : ( */}
             <div>
               {statisticsData &&
                 statisticsData.map((statistic, index) => (
