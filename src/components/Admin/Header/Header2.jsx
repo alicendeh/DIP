@@ -4,17 +4,22 @@ import { Dropdown } from "react-bootstrap";
 import {
   usersFilteredList,
   booksFilteredList,
-  freeBooksFilteredList,
-} from "../../../redux/actions/adminAction";
+  adminFilteredList,
+} from "../../../redux/actions/superAction";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 
-function Header({ hidden, title, filtrationList, filtrationFree, from }) {
+function Header({
+  hidden,
+  title,
+  filtrationList,
+  allUsers,
+  filtrationFree,
+  from,
+}) {
   const [searchValue, setSearchValue] = useState("");
   const [currentSelectValue, setcurrentSelectValue] = useState("");
   const [toggleSideMenu, settoggleSideMenu] = useState(false);
 
-  const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
   const search = (e) => {
@@ -23,7 +28,17 @@ function Header({ hidden, title, filtrationList, filtrationFree, from }) {
     if (newText !== "") {
       let itemToFilter = newText.toLowerCase();
 
+      let result = allUsers.filter(
+        (item) =>
+          item.name.toLowerCase().includes(itemToFilter) ||
+          item.email.toLowerCase().includes(itemToFilter) ||
+          item.plan.toLowerCase().includes(itemToFilter)
+      );
+      dispatch(usersFilteredList(result));
+      //   dispatch(adminFilteredList(result));
       if (from === "books Array") {
+        console.log(filtrationList);
+
         let results = filtrationList.filter(
           (item) =>
             item.name.toLowerCase().includes(itemToFilter) ||
@@ -32,21 +47,12 @@ function Header({ hidden, title, filtrationList, filtrationFree, from }) {
         );
         dispatch(booksFilteredList(results));
       }
-
-      let result = filtrationList.filter(
-        (item) =>
-          item.name.toLowerCase().includes(itemToFilter) ||
-          item.email.toLowerCase().includes(itemToFilter) ||
-          item.plan.toLowerCase().includes(itemToFilter)
-      );
-
-      dispatch(usersFilteredList(result));
-      dispatch(usersFilteredList(result));
     } else {
       if (from === "books Array") {
         dispatch(booksFilteredList(filtrationList));
       } else {
         dispatch(usersFilteredList(filtrationList));
+        dispatch(adminFilteredList(filtrationList));
       }
     }
   };
@@ -55,65 +61,51 @@ function Header({ hidden, title, filtrationList, filtrationFree, from }) {
     setSearchValue("");
     if (from === "books Array") {
       dispatch(booksFilteredList(filtrationList));
+      dispatch(usersFilteredList(filtrationList));
     } else {
       dispatch(usersFilteredList(filtrationList));
-      dispatch(usersFilteredList(filtrationList));
+      dispatch(adminFilteredList(filtrationList));
     }
   };
 
   const cancelMode = () => {
     if (from === "books Array") {
-      dispatch(usersFilteredList(filtrationList));
+      dispatch(booksFilteredList(filtrationList));
       dispatch(usersFilteredList(filtrationList));
     } else {
-      dispatch(booksFilteredList(filtrationList));
+      dispatch(usersFilteredList(filtrationList));
+      dispatch(adminFilteredList(filtrationList));
     }
     setcurrentSelectValue("");
   };
 
   const selectFunction = (e) => {
     setcurrentSelectValue(e);
-    if (from === "books Array") {
-      if (e == "#/free") {
-        let res = filtrationList.filter((item) =>
-          item.plan.toLowerCase().includes("free")
-        );
-        dispatch(usersFilteredList(res));
-        dispatch(usersFilteredList(res));
-      } else {
-        let res = filtrationList.filter((item) =>
-          item.plan.toLowerCase().includes("premium")
-        );
-        dispatch(usersFilteredList(res));
-        dispatch(usersFilteredList(res));
-      }
+    if (e == "#/free") {
+      let res = allUsers.filter((item) =>
+        item.plan.toLowerCase().includes("free")
+      );
+      dispatch(usersFilteredList(res));
+      console.log(res, "hey");
+      dispatch(adminFilteredList(res));
     } else {
-      if (e == "#/free") {
-        let res = filtrationList.filter((item) =>
-          item.plan.toLowerCase().includes("free")
-        );
-        dispatch(booksFilteredList(res));
-      } else {
-        let res = filtrationList.filter((item) =>
-          item.plan.toLowerCase().includes("premium")
-        );
-        dispatch(booksFilteredList(res));
-      }
+      let res = allUsers.filter((item) =>
+        item.plan.toLowerCase().includes("premium")
+      );
+      dispatch(usersFilteredList(res));
+      dispatch(adminFilteredList(res));
     }
-    // if (from === "free books plan") {
-    //   if (user.user.plan == "free" && e == "#/free") {
-    //     let res = filtrationFree.filter((item) =>
-    //       item.plan.toLowerCase().includes("free")
-    //     );
-    //     dispatch(freeBooksFilteredList(res));
-    //   } else if (
-    //     user.user.plan == "free" &&
-    //     user.user.isRequestingAccess === false &&
-    //     e == "#/premium"
-    //   ) {
-    //     navigate("/upgradetopremium");
-    //   }
-    // }
+    if (e == "#/free") {
+      let res = filtrationList.filter((item) =>
+        item.plan.toLowerCase().includes("free")
+      );
+      dispatch(booksFilteredList(res));
+    } else {
+      let res = filtrationList.filter((item) =>
+        item.plan.toLowerCase().includes("premium")
+      );
+      dispatch(booksFilteredList(res));
+    }
   };
   return (
     <div className={`containerRow ${styles.header}`}>
@@ -124,10 +116,6 @@ function Header({ hidden, title, filtrationList, filtrationFree, from }) {
       />
       <div className={styles.headeritleContainer}>
         <p className={`display-6 `}>{title} </p>
-        {/* <i
-          onClick={() => settoggleSideMenu(!toggleSideMenu)}
-          className={`fas fa-bars hide ${styles.menu}`}
-        ></i> */}
       </div>
       <div className={`${styles.hideContainer}`}>
         <div

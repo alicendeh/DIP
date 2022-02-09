@@ -15,6 +15,8 @@ import {
   LOAD_ADMIN,
   UPDATED_ADMIN_INFO,
   SUPER_ADMIN_GETS_ALL_ADMIN,
+  FILTRATION_ADMIN_RESULT,
+  FILTRATION_USER_RESULT,
 } from "../ActionType";
 
 const INITIAL_STATE = {
@@ -29,6 +31,7 @@ const INITIAL_STATE = {
   allFreeBooks: [],
   bookSPinner: false,
   usersFilteredList: [],
+  adminFilteredList: [],
   booksFilteredList: [],
   freeBooksFilteredList: [],
 };
@@ -103,10 +106,15 @@ const getUsersRequest = (state = INITIAL_STATE, { type, payload }) => {
         error: null,
       };
 
-    case FILTRATION_RESULT:
+    case FILTRATION_USER_RESULT:
       return {
         ...state,
         usersFilteredList: payload,
+      };
+    case FILTRATION_ADMIN_RESULT:
+      return {
+        ...state,
+        adminFilteredList: payload,
       };
     case FILTERED_BOOKS:
       return {

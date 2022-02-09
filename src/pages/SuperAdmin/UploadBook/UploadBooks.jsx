@@ -82,7 +82,8 @@ function Upload() {
   };
   return (
     <SuperAdminLayout>
-      <Header title={"Upload A Book"} hidden />
+      {/* <Header title={"Upload A Book"} hidden /> */}
+      <h1 style={{ marginBottom: "2em" }}>Upload A Book</h1>
       <SuccessModal show={showSuccessModal} handleClose={handleClose} />
 
       <div className="pt-5 pb-5">
@@ -90,7 +91,7 @@ function Upload() {
           <div className="col-lg-12">
             <Form onSubmit={handleSubmit}>
               <Row className="mb-3">
-                <Form.Group as={Col} md="6">
+                <Form.Group as={Col} md="12">
                   <Form.Label>Name Of Book</Form.Label>
                   <Form.Control
                     required
@@ -102,7 +103,7 @@ function Upload() {
                   />
                   <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                 </Form.Group>
-                <Form.Group as={Col} md="6">
+                <Form.Group as={Col} md="12">
                   <Form.Label>Author Of Book</Form.Label>
                   <Form.Control
                     required
@@ -116,7 +117,7 @@ function Upload() {
                 </Form.Group>
               </Row>
               <Row className="mb-3">
-                <Form.Group as={Col} md="6">
+                <Form.Group as={Col} md="12">
                   <Form.Label>Type</Form.Label>
                   <Form.Select
                     aria-label="Default select example"
@@ -126,7 +127,7 @@ function Upload() {
                     <option value="premium">Premium</option>
                   </Form.Select>
                 </Form.Group>
-                <Form.Group as={Col} md="6">
+                <Form.Group as={Col} md="12">
                   <Form.Label>Upload Book</Form.Label>
                   <Form.Control
                     required

@@ -85,7 +85,8 @@ function SuperProfile() {
   return (
     <SuperAdminLayout>
       <MyVerticallyCenteredModal show={modalShow} close={setModalShow} />
-      <Header title={"Profile"} hidden={true} />
+      {/* <Header title={"Profile"} hidden={true} /> */}
+      <h1>Profile</h1>
       <div className=" pb-5 " style={{ paddingTop: "6em" }}>
         <Form onSubmit={(e) => onsubmit(e)}>
           <Row>

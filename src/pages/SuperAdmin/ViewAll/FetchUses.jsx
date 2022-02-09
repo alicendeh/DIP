@@ -30,7 +30,6 @@ function FetchUses() {
 
   const [pendinDataSet, setpendinDataSet] = useState([]);
   const [userDataSet, setuserDataSet] = useState([]);
-
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -48,6 +47,7 @@ function FetchUses() {
         return dispatch(errorDetected(data.errorMessage));
       } else {
         dispatch(adminGetsAllUsers(data));
+        // console.log(data);
       }
     });
   }, []);
@@ -62,7 +62,6 @@ function FetchUses() {
       let pending = usersFilteredList.filter(
         (item) => item.isRequestingAccess === true
       );
-      console.log(pending, "pending`");
 
       setpendinDataSet(pending);
     }
@@ -89,12 +88,19 @@ function FetchUses() {
                       ))}
                   </div>
                   <div>
-                    {userDataSet.length > 0 &&
+                    {/* {userDataSet.length > 0 &&
                       userDataSet.map((user, index) => (
                         <div key={index}>
                           <PlanCard user={user} index={index} />
                         </div>
-                      ))}
+                      ))} */}
+                  </div>
+                  <div>
+                    {usersFilteredList.map((user, index) => (
+                      <div key={index}>
+                        <PlanCard user={user} />
+                      </div>
+                    ))}
                   </div>
                 </div>
               ) : (

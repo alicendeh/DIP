@@ -3,8 +3,10 @@ import Vision from "./Vision";
 import Mission from "./Mission";
 import LeftNavigationBar from "./Admin/LeftNavigationBar/LeftNavigationBar";
 import RightStatisticsSection from "./Admin/RightStatisticsSection/RightStatisticsSection";
+import SuperRightStatisticsSection from "./Admin/RightStatisticsSection/SuperRightStatisticsSection";
 import Avater from "./Avater/Avater";
 import Header from "./Admin/Header/Header";
+import Header2 from "./Admin/Header/Header2";
 import PendingCard from "./Admin/PendingCard/PendingCard";
 import PlanCard from "./Admin/PlanCard/PlanCard";
 import BookCard from "./Admin/BookCard/BookCard";
@@ -23,6 +25,7 @@ export {
   RightStatisticsSection,
   Avater,
   Header,
+  Header2,
   PendingCard,
   PlanCard,
   BookCard,
@@ -32,4 +35,5 @@ export {
   Unexpected,
   AccessToFree,
   SuperAdminLeftNavigation,
+  SuperRightStatisticsSection,
 };

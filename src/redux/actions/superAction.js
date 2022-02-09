@@ -15,6 +15,8 @@ import {
   UPDATED_ADMIN_INFO,
   LOAD_ADMIN,
   SUPER_ADMIN_GETS_ALL_ADMIN,
+  FILTRATION_ADMIN_RESULT,
+  FILTRATION_USER_RESULT,
 } from "../ActionType";
 
 const adminGetsUsersequest = (users) => {
@@ -90,11 +92,16 @@ const submitBookSPinner = (value) => {
 
 const usersFilteredList = (data) => {
   return {
-    type: FILTRATION_RESULT,
+    type: FILTRATION_USER_RESULT,
     payload: data,
   };
 };
-
+const adminFilteredList = (data) => {
+  return {
+    type: FILTRATION_ADMIN_RESULT,
+    payload: data,
+  };
+};
 const booksFilteredList = (data) => {
   return {
     type: FILTERED_BOOKS,
@@ -142,4 +149,5 @@ export {
   logout,
   freeBooksFilteredList,
   superadminGetsAdmin,
+  adminFilteredList,
 };

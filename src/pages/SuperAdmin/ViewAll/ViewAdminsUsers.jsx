@@ -5,7 +5,13 @@ import FetchAdmins from "./FetchAdmins";
 import FetchUses from "./FetchUses";
 import { Nav } from "react-bootstrap";
 import { SuperAdminLayout } from "../..";
-import { Header, PendingCard, PlanCard, Unexpected } from "../../../components";
+import {
+  Header,
+  Header2,
+  PendingCard,
+  PlanCard,
+  Unexpected,
+} from "../../../components";
 import { useSelector, useDispatch } from "react-redux";
 import {
   adminGetsUsersequest,
@@ -30,7 +36,17 @@ const defaultOptions = {
 
 function ViewAdminsUsers() {
   const usersData = useSelector((state) => state.superAdmins);
-  const { incomingUsersRequest, users, loading, usersFilteredList } = usersData;
+  // const data = useSelector((state) => state.admin);
+  // const { error, allBooks, allFreeBooks, loading, booksFilteredList } =
+  //   usersData;
+  const {
+    incomingUsersRequest,
+    allBooks,
+    allFreeBooks,
+    users,
+    loading,
+    usersFilteredList,
+  } = usersData;
 
   const [pendinDataSet, setpendinDataSet] = useState([]);
   const [userDataSet, setuserDataSet] = useState([]);
@@ -70,7 +86,7 @@ function ViewAdminsUsers() {
       let pending = usersFilteredList.filter(
         (item) => item.isRequestingAccess === true
       );
-      console.log(pending, "pending`");
+      // console.log(pending, "pending`");
 
       setpendinDataSet(pending);
     }
@@ -78,7 +94,19 @@ function ViewAdminsUsers() {
 
   return (
     <SuperAdminLayout>
-      <Header title={"Admins & Users"} />
+      {/* <Header
+        title={"Admins & Users"}
+        filtrationList={allBooks}
+        filtrationFree={allFreeBooks}
+        from={"books Array"}
+        // to={"books Array"}
+      /> */}
+      <Header2
+        title={"Admins & Users"}
+        filtrationList={allBooks}
+        allUsers={users}
+        from={"books Array"}
+      />
       <Nav justify variant="tabs" defaultActiveKey="/all-admins-users">
         <Nav.Item>
           <Nav.Link onClick={() => setToggle(true)}>All Users</Nav.Link>

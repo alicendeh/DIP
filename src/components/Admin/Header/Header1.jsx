@@ -31,7 +31,9 @@ function Header1({ title, filtrationList, filtrationFree, from, to }) {
             item.plan.toLowerCase().includes(itemToFilter)
         );
         dispatch(booksFilteredList(results));
-      } else if (from === "free books plan") {
+      }
+      if (from === "free books plan") {
+        console.log("see her");
         let info = filtrationFree.filter(
           (item) =>
             item.name.toLowerCase().includes(itemToFilter) ||
@@ -39,10 +41,6 @@ function Header1({ title, filtrationList, filtrationFree, from, to }) {
             item.plan.toLowerCase().includes(itemToFilter)
         );
         dispatch(freeBooksFilteredList(info));
-      }
-    } else {
-      if (to === "books Array") {
-        dispatch(booksFilteredList(filtrationList));
       }
     }
   };
@@ -90,7 +88,8 @@ function Header1({ title, filtrationList, filtrationFree, from, to }) {
         );
         dispatch(booksFilteredList(res));
       }
-    } else if (from === "free books plan") {
+    }
+    if (from === "free books plan") {
       if (user.user.plan == "free" && e == "#/free") {
         let res = filtrationFree.filter((item) =>
           item.plan.toLowerCase().includes("free")
