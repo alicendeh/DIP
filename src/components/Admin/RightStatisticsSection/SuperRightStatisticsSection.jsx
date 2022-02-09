@@ -62,35 +62,35 @@ function SuperRightStatisticsSection() {
             </div>
           </div>
           <div className="pt-4">
-            {loading ? (
+            {/* {loading ? (
               <div className={`containerCenter spinnerContainer`}>
                 <div className="spinner"></div>
               </div>
-            ) : (
-              <div>
-                {statisticsData &&
-                  statisticsData.map((statistic, index) => (
-                    <div key={index} className={`pt-4 ${styles.stats}`}>
-                      <div className={`containerRow`}>
-                        <p>{statistic.label} </p>
-                        <p>
-                          {statistic.value}/ {statisticsData[0].value}
-                        </p>
-                      </div>
-                      <div className={styles.main}>
-                        <div
-                          style={{
-                            backgroundColor: COLOR_ARRAY[index],
-                            width: `${statistic.value}px`,
-                            height: "100%",
-                            borderRadius: "7px",
-                          }}
-                        ></div>
-                      </div>
+            ) : ( */}
+            <div>
+              {statisticsData &&
+                statisticsData.map((statistic, index) => (
+                  <div key={index} className={`pt-4 ${styles.stats}`}>
+                    <div className={`containerRow`}>
+                      <p>{statistic.label} </p>
+                      <p>
+                        {statistic.value}/ {statisticsData[0].value}
+                      </p>
                     </div>
-                  ))}
-              </div>
-            )}
+                    <div className={styles.main}>
+                      <div
+                        style={{
+                          backgroundColor: COLOR_ARRAY[index],
+                          width: `${statistic.value}px`,
+                          height: "100%",
+                          borderRadius: "7px",
+                        }}
+                      ></div>
+                    </div>
+                  </div>
+                ))}
+            </div>
+            {/* )} */}
           </div>
         </div>
       </div>

@@ -19,7 +19,8 @@ function AdminLayout({ children }) {
         <div className={`${styles.container}`}>
           <SuperLeftNavigation />
           <div className={styles.children}>{children}</div>
-          <RightStatisticsSection />
+          {/* <SuperRightStatisticsSection /> */}
+          <SuperRightStatisticsSection />
         </div>
       ) : (
         <Unexpected />

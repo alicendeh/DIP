@@ -87,14 +87,7 @@ function FetchUses() {
                         </div>
                       ))}
                   </div>
-                  <div>
-                    {/* {userDataSet.length > 0 &&
-                      userDataSet.map((user, index) => (
-                        <div key={index}>
-                          <PlanCard user={user} index={index} />
-                        </div>
-                      ))} */}
-                  </div>
+                  <div></div>
                   <div>
                     {usersFilteredList.map((user, index) => (
                       <div key={index}>
