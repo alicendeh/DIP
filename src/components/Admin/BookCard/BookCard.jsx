@@ -34,6 +34,7 @@ function BookCard({ book }) {
         show={show}
         handleClose={handleClose}
       />
+      {/* <embed src={PDF} type="application/pdf" height={800} width={500} /> */}
       {/* {showPdf && (
         <a href={pdfContent && pdfContent.coverPage} target="_blank" />
       )} */}
