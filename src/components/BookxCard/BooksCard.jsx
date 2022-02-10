@@ -14,6 +14,7 @@ function BooksCard({ book }) {
       let pdfURL = `${process.env.REACT_APP_URL}/admin/books/images/${data.pdf}`;
 
       window.open(pdfURL, "_blank");
+      window.location.reload();
     } catch (err) {
       console.log(err);
     }
@@ -60,14 +61,17 @@ function BooksCard({ book }) {
           Some quick example text to build on the card title the card's content.
         </Card.Text>
         <div className="mt-5 d-flex justify-content-between">
-          <button type="button" class="btn btn-outline-success col-md-6">
+          <button
+            type="button"
+            onClick={() => openPdf(book)}
+            class="btn btn-outline-success col-md-6"
+          >
             View
           </button>
           <span className={`${styles.text2} text-secondary mt-3 `}>
             {book.views} views
             <i
               className="far fa-eye p-0"
-              onClick={() => openPdf(book)}
               style={{ fontSize: "17px", cursor: "pointer" }}
             ></i>{" "}
           </span>
