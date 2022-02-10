@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./RightStatisticsSection.module.css";
 import { Avater } from "../../../components";
 import { COLOR_ARRAY } from "../../../DATA";
@@ -16,6 +16,8 @@ function RightStatisticsSection() {
   const statisticsData = useSelector((state) => state.admin.statisticsData);
   const loading = useSelector((state) => state.admin.loading);
   const userData = useSelector((state) => state.user);
+  const [views, setViews] = useState(null);
+
   const { user } = userData;
   const dispatch = useDispatch();
 
@@ -26,7 +28,9 @@ function RightStatisticsSection() {
       if (response.code === 400) {
         return dispatch(errorDetected(response.errorMessage));
       } else {
-        dispatch(adminGetsStatisticsData(response));
+        dispatch(adminGetsStatisticsData(response.statistic));
+        setViews(response.views.data.totalViews);
+        console.log(response.statistic);
       }
     });
   }, []);
@@ -51,13 +55,13 @@ function RightStatisticsSection() {
             <div
               className={`containerColumn ${styles.total} ${styles.totalBooks} `}
             >
-              <p> 20 </p>
+              <p> {statisticsData[0] && statisticsData[0].value} </p>
               <p>Books</p>
             </div>
             <div
               className={`containerColumn ${styles.total} ${styles.totalViews} `}
             >
-              <p>422 </p>
+              <p>{views && views} </p>
               <p>Views</p>
             </div>
           </div>
@@ -70,23 +74,27 @@ function RightStatisticsSection() {
               <div>
                 {statisticsData &&
                   statisticsData.map((statistic, index) => (
-                    <div key={index} className={`pt-4 ${styles.stats}`}>
-                      <div className={`containerRow`}>
-                        <p>{statistic.label} </p>
-                        <p>
-                          {statistic.value}/ {statisticsData[0].value}
-                        </p>
-                      </div>
-                      <div className={styles.main}>
-                        <div
-                          style={{
-                            backgroundColor: COLOR_ARRAY[index],
-                            width: `${statistic.value}px`,
-                            height: "100%",
-                            borderRadius: "7px",
-                          }}
-                        ></div>
-                      </div>
+                    <div>
+                      {index === 0 ? null : (
+                        <div key={index} className={`pt-4 ${styles.stats}`}>
+                          <div className={`containerRow`}>
+                            <p>{statistic.label} </p>
+                            <p>
+                              {statistic.value}/ {statisticsData[1].value}
+                            </p>
+                          </div>
+                          <div className={styles.main}>
+                            <div
+                              style={{
+                                backgroundColor: COLOR_ARRAY[index],
+                                width: `${statistic.value}px`,
+                                height: "100%",
+                                borderRadius: "7px",
+                              }}
+                            ></div>
+                          </div>
+                        </div>
+                      )}
                     </div>
                   ))}
               </div>
