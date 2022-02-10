@@ -39,10 +39,14 @@ const _getAllUsers = async () => {
 
 const _getAllStatistics = async () => {
   try {
+    let totalViews = await axios.get(
+      `${process.env.REACT_APP_URL}/admin/books/GetAllViews`
+    );
     let res = await axios.get(
       `${process.env.REACT_APP_URL}/allUsers/statistics`
     );
-    return res.data;
+
+    return { statistic: res.data, views: totalViews };
   } catch (err) {
     if (err.response.data) {
       return { errorMessage: err.response.data.msg, code: 400 };
