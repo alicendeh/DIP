@@ -69,7 +69,6 @@ function BookCard({ book }) {
         <div className={`containerCenter`}>
           <div className={styles.line}></div>
         </div>
-
         <div
           style={{
             display: "flex",
@@ -87,6 +86,26 @@ function BookCard({ book }) {
           <div className={styles.txtContainer}>
             {book.name} <br />
             <span className={styles.email}> {book.author}</span>
+          </div>
+        </div>
+
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            width: "123px",
+            marginLeftRight: "12px",
+          }}
+        >
+          <div
+            style={{
+              color: "#000",
+            }}
+            className={`${styles.pendingContianer} `}
+          >
+            {book.views} views
           </div>
         </div>
 

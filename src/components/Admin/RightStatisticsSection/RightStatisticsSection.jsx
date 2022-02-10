@@ -30,7 +30,6 @@ function RightStatisticsSection() {
       } else {
         dispatch(adminGetsStatisticsData(response.statistic));
         setViews(response.views.data.totalViews);
-        console.log(response.statistic);
       }
     });
   }, []);
