@@ -17,6 +17,7 @@ import {
   SUPER_ADMIN_GETS_ALL_ADMIN,
   FILTRATION_ADMIN_RESULT,
   FILTRATION_USER_RESULT,
+  CREATE_ADMIN,
 } from "../ActionType";
 
 const INITIAL_STATE = {
@@ -60,13 +61,16 @@ const getUsersRequest = (state = INITIAL_STATE, { type, payload }) => {
         loading: false,
         error: null,
       };
-
+    case CREATE_ADMIN:
+      return {
+        ...state,
+        admins: { payload },
+      };
     case LOAD_ADMIN:
     case UPDATED_ADMIN_INFO:
       return {
         ...state,
-        user: payload.user,
-        isAuthenticated: true,
+        admins: payload.admin,
       };
 
     case IS_LOADING:

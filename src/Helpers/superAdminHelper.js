@@ -1,10 +1,26 @@
 import axios from "axios";
-
+import { loadAdmin } from "../redux/actions/superAction";
 import setAuthToken from "../components/utils/setAuthToken";
+
 const config = {
   headers: {
     "Content-Type": "application/json",
   },
+};
+
+const _createAdmin = async (data) => {
+  console.log(data, "ddsa");
+  try {
+    const res = await axios.post(
+      `${process.env.REACT_APP_URL}/superAdmin/CreateAdminAccount`,
+      data,
+      config
+    );
+    return res.data;
+  } catch (err) {
+    console.log(err.response.data.message, "hhhhe");
+    return { errorMessage: err.response.data.message, code: 400 };
+  }
 };
 
 const _getAllUsers = async () => {
@@ -153,4 +169,5 @@ export {
   _updateAdminInfo,
   _loadeCurrentlyLogedInUser,
   _getAllAdmins,
+  _createAdmin,
 };

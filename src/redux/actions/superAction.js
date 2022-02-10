@@ -7,7 +7,6 @@ import {
   CURRENT_BOOK,
   ALL_BOOKS,
   UPLOAD_SPINNER,
-  FILTRATION_RESULT,
   FILTERED_BOOKS,
   LOGOUT,
   FILTERED_FREE_BOOKS,
@@ -17,7 +16,15 @@ import {
   SUPER_ADMIN_GETS_ALL_ADMIN,
   FILTRATION_ADMIN_RESULT,
   FILTRATION_USER_RESULT,
+  CREATE_ADMIN,
 } from "../ActionType";
+
+export const createAdmin = (admin) => {
+  return {
+    type: CREATE_ADMIN,
+    payload: admin,
+  };
+};
 
 const adminGetsUsersequest = (users) => {
   return {
@@ -127,10 +134,10 @@ export const updatedAdminInfo = (user) => {
   };
 };
 
-export const loadAdmin = (user) => {
+export const loadAdmin = (admin) => {
   return {
     type: LOAD_ADMIN,
-    payload: user,
+    payload: admin,
   };
 };
 
