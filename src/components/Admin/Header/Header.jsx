@@ -9,7 +9,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-function Header({ hidden, title, filtrationList, filtrationFree, from }) {
+function Header({ hidden, title, filtrationList, filtrationFree, to, from }) {
   const [searchValue, setSearchValue] = useState("");
   const [currentSelectValue, setcurrentSelectValue] = useState("");
   const [toggleSideMenu, settoggleSideMenu] = useState(false);
@@ -22,7 +22,6 @@ function Header({ hidden, title, filtrationList, filtrationFree, from }) {
     let newText = e.target.value.toLowerCase();
     if (newText !== "") {
       let itemToFilter = newText.toLowerCase();
-
       if (from === "books Array") {
         let results = filtrationList.filter(
           (item) =>
@@ -32,22 +31,28 @@ function Header({ hidden, title, filtrationList, filtrationFree, from }) {
         );
         dispatch(booksFilteredList(results));
       }
+    }
+    // else {
+    //   if (from === "books Array") {
+    //     dispatch(booksFilteredList(filtrationList));
+    //   } else {
+    //     dispatch(usersFilteredList(filtrationList));
+    //   }
+    // }
+  };
 
+  const search1 = (e) => {
+    setSearchValue(e.target.value);
+    let newText = e.target.value.toLowerCase();
+    if (newText !== "") {
+      let itemToFilter = newText.toLowerCase();
       let result = filtrationList.filter(
         (item) =>
           item.name.toLowerCase().includes(itemToFilter) ||
           item.email.toLowerCase().includes(itemToFilter) ||
           item.plan.toLowerCase().includes(itemToFilter)
       );
-
       dispatch(usersFilteredList(result));
-      dispatch(usersFilteredList(result));
-    } else {
-      if (from === "books Array") {
-        dispatch(booksFilteredList(filtrationList));
-      } else {
-        dispatch(usersFilteredList(filtrationList));
-      }
     }
   };
 
@@ -57,14 +62,14 @@ function Header({ hidden, title, filtrationList, filtrationFree, from }) {
       dispatch(booksFilteredList(filtrationList));
     } else {
       dispatch(usersFilteredList(filtrationList));
-      dispatch(usersFilteredList(filtrationList));
+      dispatch(booksFilteredList(filtrationList));
     }
   };
 
   const cancelMode = () => {
     if (from === "books Array") {
       dispatch(usersFilteredList(filtrationList));
-      dispatch(usersFilteredList(filtrationList));
+      dispatch(booksFilteredList(filtrationList));
     } else {
       dispatch(booksFilteredList(filtrationList));
     }
@@ -79,27 +84,25 @@ function Header({ hidden, title, filtrationList, filtrationFree, from }) {
           item.plan.toLowerCase().includes("free")
         );
         dispatch(usersFilteredList(res));
-        dispatch(usersFilteredList(res));
       } else {
         let res = filtrationList.filter((item) =>
           item.plan.toLowerCase().includes("premium")
         );
         dispatch(usersFilteredList(res));
-        dispatch(usersFilteredList(res));
-      }
-    } else {
-      if (e == "#/free") {
-        let res = filtrationList.filter((item) =>
-          item.plan.toLowerCase().includes("free")
-        );
-        dispatch(booksFilteredList(res));
-      } else {
-        let res = filtrationList.filter((item) =>
-          item.plan.toLowerCase().includes("premium")
-        );
-        dispatch(booksFilteredList(res));
       }
     }
+    if (e == "#/free") {
+      let res = filtrationList.filter((item) =>
+        item.plan.toLowerCase().includes("free")
+      );
+      dispatch(booksFilteredList(res));
+    } else {
+      let res = filtrationList.filter((item) =>
+        item.plan.toLowerCase().includes("premium")
+      );
+      dispatch(booksFilteredList(res));
+    }
+
     // if (from === "free books plan") {
     //   if (user.user.plan == "free" && e == "#/free") {
     //     let res = filtrationFree.filter((item) =>
@@ -167,7 +170,10 @@ function Header({ hidden, title, filtrationList, filtrationFree, from }) {
             <input
               type="text"
               value={searchValue}
-              onChange={(e) => search(e)}
+              onChange={(e) => {
+                search1(e);
+                search(e);
+              }}
               className={styles.input}
               placeholder="Search..."
             />
