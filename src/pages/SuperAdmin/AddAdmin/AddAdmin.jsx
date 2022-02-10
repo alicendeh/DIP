@@ -20,6 +20,7 @@ function AddAdmin() {
   const [validationPassword, setValidationPassword] = useState(false);
   const [showSuccessModal, setshowSuccessModal] = useState(false);
   const { name, email, password, password2 } = formData;
+  const [loader, setLoader] = useState(false);
 
   const handletoggleEyePassword = () => {
     setToggleEyePassword(!toggleEyePassword);
@@ -31,6 +32,7 @@ function AddAdmin() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
   const onsubmit = async (e) => {
+    setLoader(true);
     e.preventDefault();
     if (password !== password2) {
       setValidationPassword(true);
@@ -40,9 +42,11 @@ function AddAdmin() {
         if (response.code === 400) {
           console.log("i found an error");
           setErr(response.errorMessage);
+          setLoader(false);
         } else {
           dispatch(createAdmin(response));
           setshowSuccessModal(true);
+          setLoader(false);
         }
       });
     }
@@ -180,7 +184,7 @@ function AddAdmin() {
             </div>
 
             <div class="col-12">
-              {user.Loading && err == null && validationPassword != true ? (
+              {loader ? (
                 <div
                   className=" col-12 btn btn-primary "
                   style={{
@@ -189,7 +193,16 @@ function AddAdmin() {
                     alignItems: "center",
                   }}
                 >
-                  <div className="spinner"></div>
+                  <div
+                    className=" col-12 btn btn-primary "
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                    }}
+                  >
+                    <div className="spinner"></div>
+                  </div>
                 </div>
               ) : (
                 <button type="submit" className="col-12 btn btn-success">

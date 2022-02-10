@@ -19,8 +19,14 @@ const _registerUser = async (data) => {
     loadUser();
     return res.data;
   } catch (err) {
-    console.log(err.response.data.message, "hhhhe");
-    return { errorMessage: err.response.data.message, code: 400 };
+    if (err.response.data) {
+      return {
+        errorMessage: err.response.data.msg,
+        code: 400,
+      };
+    } else {
+      return { errorMessage: err.message, code: 400 };
+    }
   }
 };
 
@@ -46,10 +52,9 @@ export const login = async (data) => {
     loadUser();
     return res.data;
   } catch (err) {
-    console.log(err.response.data.message, "hhhhe");
     if (err.response.data) {
       return {
-        errorMessage: err.response.data.message,
+        errorMessage: err.response.data.msg,
         code: 400,
       };
     } else {
@@ -71,6 +76,7 @@ const _userRequestFreePlan = async () => {
     return res.data;
   } catch (err) {
     console.log(err.response.data.message, "error");
+
     if (err.response.data) {
       return {
         errorMessage: err.response.data.msg,
