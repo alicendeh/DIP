@@ -22,7 +22,17 @@ function Header({ hidden, title, filtrationList, filtrationFree, to, from }) {
     let newText = e.target.value.toLowerCase();
     if (newText !== "") {
       let itemToFilter = newText.toLowerCase();
+      let result = filtrationList.filter(
+        (item) =>
+          item.name.toLowerCase().includes(itemToFilter) ||
+          item.email.toLowerCase().includes(itemToFilter) ||
+          item.plan.toLowerCase().includes(itemToFilter)
+      );
+      dispatch(usersFilteredList(result));
+
       if (from === "books Array") {
+        console.log(filtrationList);
+
         let results = filtrationList.filter(
           (item) =>
             item.name.toLowerCase().includes(itemToFilter) ||
@@ -31,65 +41,62 @@ function Header({ hidden, title, filtrationList, filtrationFree, to, from }) {
         );
         dispatch(booksFilteredList(results));
       }
+    } else {
+      if (from === "books Array") {
+        dispatch(booksFilteredList(filtrationList));
+      } else {
+        dispatch(usersFilteredList(filtrationList));
+      }
     }
-    // else {
-    //   if (from === "books Array") {
-    //     dispatch(booksFilteredList(filtrationList));
-    //   } else {
-    //     dispatch(usersFilteredList(filtrationList));
-    //   }
-    // }
   };
-
   const search1 = (e) => {
     setSearchValue(e.target.value);
     let newText = e.target.value.toLowerCase();
     if (newText !== "") {
       let itemToFilter = newText.toLowerCase();
-      let result = filtrationList.filter(
+      let results = filtrationList.filter(
         (item) =>
           item.name.toLowerCase().includes(itemToFilter) ||
           item.email.toLowerCase().includes(itemToFilter) ||
-          item.plan.toLowerCase().includes(itemToFilter)
+          item.plan.toLowerCase().includes(itemToFilter),
+        console.log("see")
       );
-      dispatch(usersFilteredList(result));
     }
   };
-
   const clearInput = () => {
     setSearchValue("");
     if (from === "books Array") {
       dispatch(booksFilteredList(filtrationList));
+      dispatch(usersFilteredList(filtrationList));
     } else {
       dispatch(usersFilteredList(filtrationList));
-      dispatch(booksFilteredList(filtrationList));
     }
   };
 
   const cancelMode = () => {
     if (from === "books Array") {
+      dispatch(booksFilteredList(filtrationList));
       dispatch(usersFilteredList(filtrationList));
-      dispatch(booksFilteredList(filtrationList));
     } else {
-      dispatch(booksFilteredList(filtrationList));
+      dispatch(usersFilteredList(filtrationList));
+      // dispatch(adminFilteredList(filtrationList));
     }
     setcurrentSelectValue("");
   };
 
   const selectFunction = (e) => {
     setcurrentSelectValue(e);
-    if (from === "books Array") {
-      if (e == "#/free") {
-        let res = filtrationList.filter((item) =>
-          item.plan.toLowerCase().includes("free")
-        );
-        dispatch(usersFilteredList(res));
-      } else {
-        let res = filtrationList.filter((item) =>
-          item.plan.toLowerCase().includes("premium")
-        );
-        dispatch(usersFilteredList(res));
-      }
+    if (e == "#/free") {
+      let res = filtrationList.filter((item) =>
+        item.plan.toLowerCase().includes("free")
+      );
+      dispatch(usersFilteredList(res));
+      console.log(res, "hey");
+    } else {
+      let res = filtrationList.filter((item) =>
+        item.plan.toLowerCase().includes("premium")
+      );
+      dispatch(usersFilteredList(res));
     }
     if (e == "#/free") {
       let res = filtrationList.filter((item) =>
@@ -102,22 +109,23 @@ function Header({ hidden, title, filtrationList, filtrationFree, to, from }) {
       );
       dispatch(booksFilteredList(res));
     }
-
-    // if (from === "free books plan") {
-    //   if (user.user.plan == "free" && e == "#/free") {
-    //     let res = filtrationFree.filter((item) =>
-    //       item.plan.toLowerCase().includes("free")
-    //     );
-    //     dispatch(freeBooksFilteredList(res));
-    //   } else if (
-    //     user.user.plan == "free" &&
-    //     user.user.isRequestingAccess === false &&
-    //     e == "#/premium"
-    //   ) {
-    //     navigate("/upgradetopremium");
-    //   }
-    // }
   };
+
+  // if (from === "free books plan") {
+  //   if (user.user.plan == "free" && e == "#/free") {
+  //     let res = filtrationFree.filter((item) =>
+  //       item.plan.toLowerCase().includes("free")
+  //     );
+  //     dispatch(freeBooksFilteredList(res));
+  //   } else if (
+  //     user.user.plan == "free" &&
+  //     user.user.isRequestingAccess === false &&
+  //     e == "#/premium"
+  //   ) {
+  //     navigate("/upgradetopremium");
+  //   }
+  // }
+  // };
   return (
     <div className={`containerRow ${styles.header}`}>
       <SideBar
