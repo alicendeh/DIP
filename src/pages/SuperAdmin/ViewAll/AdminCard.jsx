@@ -5,8 +5,8 @@ import { Button, Modal } from "react-bootstrap";
 import {
   _upgradeUsersPlan,
   _denyUsersPlanUpgrade,
-  _removeAdmin,
 } from "../../../Helpers/adminHelper";
+import { _removeAdmin } from "../../../Helpers/superAdminHelper";
 import { useDispatch } from "react-redux";
 import moment from "moment";
 
@@ -22,7 +22,7 @@ function AdminCard({ user }) {
   const handleCloseAcceptModal = () => setshowAceptModal(false);
 
   const { name } = user;
-  console.log(user.admins, "heerr");
+  console.log(user, "heerr");
   return (
     <div className={styles.mainCOntainer}>
       <ModalComponent
@@ -101,9 +101,10 @@ export default AdminCard;
 function ModalComponent({ user, handleClose, show }) {
   const { plan, _id, name, planType } = user;
 
-  const removeAdminAccount = (adminID) => {
+  const removeAdminAccount = (userID) => {
+    console.log("hey");
     handleClose();
-    _removeAdmin(adminID).then((res) => window.location.reload());
+    _removeAdmin(userID).then((res) => window.location.reload());
   };
 
   return (
