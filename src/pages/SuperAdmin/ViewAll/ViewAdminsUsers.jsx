@@ -44,10 +44,11 @@ function ViewAdminsUsers() {
     allBooks,
     allFreeBooks,
     users,
+    admins,
     loading,
     usersFilteredList,
   } = usersData;
-
+  console.log(admins, "hey");
   const [pendinDataSet, setpendinDataSet] = useState([]);
   const [userDataSet, setuserDataSet] = useState([]);
 
@@ -105,7 +106,9 @@ function ViewAdminsUsers() {
         title={"Admins & Users"}
         filtrationList={allBooks}
         allUsers={users}
+        allAdmins={admins}
         from={"books Array"}
+        to={"Admins"}
       />
       <Nav justify variant="tabs" defaultActiveKey="/all-admins-users">
         <Nav.Item>

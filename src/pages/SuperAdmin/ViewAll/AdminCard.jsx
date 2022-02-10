@@ -1,28 +1,33 @@
 import React, { useState } from "react";
 import styles from "../../../components/Admin/PendingCard/PendingCard.module.css";
 import { Avater } from "../../../components";
-import { Button, Modal } from "react-bootstrap";
+import { Button, Modal, Form } from "react-bootstrap";
 import {
   _upgradeUsersPlan,
   _denyUsersPlanUpgrade,
 } from "../../../Helpers/adminHelper";
 import { _removeAdmin } from "../../../Helpers/superAdminHelper";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import moment from "moment";
 
 function AdminCard({ user }) {
+  const userInfo = useSelector((state) => state.superAdmins);
+
   const [show, setShow] = useState(false);
+  const [show1, setShow1] = useState(false);
   const [showAceptModal, setshowAceptModal] = useState(false);
+  const [showFormModal, setshowFormModal] = useState(false);
   const dispatch = useDispatch();
 
   const handleShow = () => setShow(true);
+  const handleShow1 = () => setshowFormModal(true);
   const handleClose = () => setShow(false);
+  const handleClose1 = () => setshowFormModal(false);
 
   const handleAcceptModal = () => setshowAceptModal(true);
   const handleCloseAcceptModal = () => setshowAceptModal(false);
 
   const { name } = user;
-  console.log(user, "heerr");
   return (
     <div className={styles.mainCOntainer}>
       <ModalComponent
@@ -40,6 +45,13 @@ function AdminCard({ user }) {
         dispatch={dispatch}
         user={user}
       />
+      <FormModal
+        show={showFormModal}
+        handleClose={handleClose1}
+        info={user.email}
+        password={user.password}
+      />
+
       <div className={styles.card}>
         <div className={styles.colorContainer}></div>
         <div
@@ -69,6 +81,9 @@ function AdminCard({ user }) {
             {user.name} <br />
             <span className={styles.email}> {user.email}</span>
           </div>
+        </div>
+        <div style={{ cursor: "pointer" }} onClick={handleShow1}>
+          <i class="fas fa-eye mt-3"></i>
         </div>
         <div
           style={{
@@ -171,6 +186,44 @@ function AcceptModal({ user, handleClose, show }) {
             Validate
           </Button>
         </Modal.Footer>
+      </Modal>
+    </>
+  );
+}
+function FormModal({ title, show, handleClose, info, password }) {
+  return (
+    <>
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>View Credentials</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form>
+            <Form.Group className="mb-3" controlId="formBasicEmail">
+              <Form.Label>Email address</Form.Label>
+              <Form.Control
+                type="email"
+                value={info}
+                placeholder="Enter email"
+              />
+              <Form.Text className="text-muted">
+                We'll never share your email with anyone else.
+              </Form.Text>
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="formBasicPassword">
+              <Form.Label>Password</Form.Label>
+              <Form.Control
+                type="password"
+                value={password}
+                placeholder="Password"
+              />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="formBasicCheckbox">
+              <Form.Check type="checkbox" label="Check me out" />
+            </Form.Group>
+          </Form>
+        </Modal.Body>
       </Modal>
     </>
   );
