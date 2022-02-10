@@ -57,7 +57,7 @@ const getUsersRequest = (state = INITIAL_STATE, { type, payload }) => {
     case SUPER_ADMIN_GETS_ALL_ADMIN:
       return {
         ...state,
-        admins: payload.admin,
+        admins: payload.admins,
         loading: false,
         error: null,
       };

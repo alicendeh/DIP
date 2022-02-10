@@ -22,7 +22,6 @@ function AdminCard({ user }) {
   const handleCloseAcceptModal = () => setshowAceptModal(false);
 
   const { name } = user;
-  console.log(user, "heerr");
   return (
     <div className={styles.mainCOntainer}>
       <ModalComponent

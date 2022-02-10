@@ -13,21 +13,23 @@ function Header({
   title,
   filtrationList,
   allUsers,
+  allAdmins,
   filtrationFree,
   from,
+  to,
 }) {
   const [searchValue, setSearchValue] = useState("");
   const [currentSelectValue, setcurrentSelectValue] = useState("");
   const [toggleSideMenu, settoggleSideMenu] = useState(false);
+  const [nom, setNom] = useState(1);
 
   const dispatch = useDispatch();
-
+  console.log(allAdmins);
   const search = (e) => {
     setSearchValue(e.target.value);
     let newText = e.target.value.toLowerCase();
     if (newText !== "") {
       let itemToFilter = newText.toLowerCase();
-
       let result = allUsers.filter(
         (item) =>
           item.name.toLowerCase().includes(itemToFilter) ||
@@ -35,7 +37,7 @@ function Header({
           item.plan.toLowerCase().includes(itemToFilter)
       );
       dispatch(usersFilteredList(result));
-      //   dispatch(adminFilteredList(result));
+
       if (from === "books Array") {
         console.log(filtrationList);
 
@@ -52,19 +54,32 @@ function Header({
         dispatch(booksFilteredList(filtrationList));
       } else {
         dispatch(usersFilteredList(filtrationList));
-        dispatch(adminFilteredList(filtrationList));
       }
     }
   };
-
+  const search1 = (e) => {
+    setSearchValue(e.target.value);
+    let newText = e.target.value.toLowerCase();
+    if (newText !== "") {
+      let itemToFilter = newText.toLowerCase();
+      let results = allAdmins.filter(
+        (item) =>
+          item.name.toLowerCase().includes(itemToFilter) ||
+          item.email.toLowerCase().includes(itemToFilter) ||
+          item.plan.toLowerCase().includes(itemToFilter),
+        console.log("see")
+      );
+      dispatch(adminFilteredList(results));
+    }
+  };
   const clearInput = () => {
     setSearchValue("");
     if (from === "books Array") {
       dispatch(booksFilteredList(filtrationList));
       dispatch(usersFilteredList(filtrationList));
+      dispatch(adminFilteredList(filtrationList));
     } else {
       dispatch(usersFilteredList(filtrationList));
-      dispatch(adminFilteredList(filtrationList));
     }
   };
 
@@ -74,7 +89,7 @@ function Header({
       dispatch(usersFilteredList(filtrationList));
     } else {
       dispatch(usersFilteredList(filtrationList));
-      dispatch(adminFilteredList(filtrationList));
+      // dispatch(adminFilteredList(filtrationList));
     }
     setcurrentSelectValue("");
   };
@@ -155,7 +170,10 @@ function Header({
             <input
               type="text"
               value={searchValue}
-              onChange={(e) => search(e)}
+              onChange={(e) => {
+                search(e);
+                search1(e);
+              }}
               className={styles.input}
               placeholder="Search..."
             />
