@@ -23,6 +23,21 @@ const _createAdmin = async (data) => {
   }
 };
 
+const _removeAdmin = async (userID) => {
+  try {
+    const res = await axios.delete(
+      `${process.env.REACT_APP_URL}/superAdmin/deleteAdmin/${userID}`
+    );
+    return res.data;
+  } catch (err) {
+    if (err.response.data) {
+      return { errorMessage: err.response.data.msg, code: 400 };
+    } else {
+      return { errorMessage: err.message, code: 400 };
+    }
+  }
+};
+
 const _getAllUsers = async () => {
   try {
     let res = await axios.get(
@@ -170,4 +185,5 @@ export {
   _loadeCurrentlyLogedInUser,
   _getAllAdmins,
   _createAdmin,
+  _removeAdmin,
 };
