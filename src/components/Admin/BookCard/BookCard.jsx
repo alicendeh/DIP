@@ -5,11 +5,14 @@ import { Button, Modal } from "react-bootstrap";
 import { _viewAllBooks, _deleteBook } from "../../../Helpers/adminHelper";
 import moment from "moment";
 import axios from "axios";
+import { Document, Page, pdfjs } from "react-pdf";
 
 function BookCard({ book }) {
   const [show, setShow] = useState(false);
   const [pdfContent, setPdfContent] = useState(null);
   const [showPdf, setShowPdf] = useState(false);
+  const [storePDF, setStorePDF] = useState(null);
+
   const handleShow = () => setShow(true);
   const handleClose = () => {
     setShow(false);
@@ -18,10 +21,12 @@ function BookCard({ book }) {
   const { name, plan } = book;
 
   const openPdf = async (data) => {
+    setShowPdf(true);
     try {
       let pdfURL = `${process.env.REACT_APP_URL}/admin/books/images/${data.pdf}`;
+      setStorePDF(pdfURL);
 
-      window.open(pdfURL, "_blank");
+      // window.open(pdfURL, "_blank", "#toolbar=0");
     } catch (err) {
       console.log(err);
     }
@@ -35,9 +40,10 @@ function BookCard({ book }) {
         show={show}
         handleClose={handleClose}
       />
-      {/* <embed src={PDF} type="application/pdf" height={800} width={500} /> */}
       {/* {showPdf && (
-        <a href={pdfContent && pdfContent.coverPage} target="_blank" />
+        // <Document file={PDF}>
+        //   <Page pageNumber={1} />
+        // </Document>
       )} */}
       <div className={styles.card}>
         <div
@@ -99,13 +105,25 @@ function BookCard({ book }) {
             <div className={styles.round}></div>
           </div>
         </div>
-        <div className={`containerCenter`}>
-          <i
-            onClick={() => openPdf(book)}
-            className={` fas fa-eye
+        <div className="containerCenter">
+          <a
+            style={{
+              color: "#000",
+              textDecoration: "none",
+            }}
+            onContextMenu={(e) => e.preventDefault()}
+            href={storePDF + "#toolbar=0"}
+            target="_blank"
+          >
+            <div className={`containerCenter`}>
+              <i
+                onClick={() => openPdf(book)}
+                className={` fas fa-eye
         ${plan === "Free" ? `${styles.eyeIconFree}` : `${styles.eyeIcon}`}
         `}
-          ></i>
+              ></i>
+            </div>
+          </a>
         </div>
         <div className="containerCenter">
           <div className={`btn btn-danger mr-3 `} onClick={handleShow}>
