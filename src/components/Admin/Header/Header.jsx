@@ -232,16 +232,6 @@ function Header({ hidden, title, filtrationList, from }) {
     let newText = e.target.value.toLowerCase();
     if (newText !== "") {
       let itemToFilter = newText.toLowerCase();
-<<<<<<< HEAD
-      let result = filtrationList.filter(
-        (item) =>
-          item.name.toLowerCase().includes(itemToFilter) ||
-          item.email.toLowerCase().includes(itemToFilter) ||
-          item.plan.toLowerCase().includes(itemToFilter)
-      );
-      dispatch(usersFilteredList(result));
-=======
->>>>>>> fab4ec22831acbed2528977711a85d4c21ddff1d
 
       if (from === "books Array") {
         console.log(filtrationList);
@@ -253,8 +243,6 @@ function Header({ hidden, title, filtrationList, from }) {
             item.plan.toLowerCase().includes(itemToFilter)
         );
         dispatch(booksFilteredList(results));
-<<<<<<< HEAD
-=======
       } else {
         let result = filtrationList.filter(
           (item) =>
@@ -265,7 +253,6 @@ function Header({ hidden, title, filtrationList, from }) {
         console.log("sup", result);
 
         dispatch(usersFilteredList(result));
->>>>>>> fab4ec22831acbed2528977711a85d4c21ddff1d
       }
     } else {
       if (from === "books Array") {
@@ -273,35 +260,12 @@ function Header({ hidden, title, filtrationList, from }) {
       } else {
         dispatch(usersFilteredList(filtrationList));
       }
-<<<<<<< HEAD
-    }
-  };
-  const search1 = (e) => {
-    setSearchValue(e.target.value);
-    let newText = e.target.value.toLowerCase();
-    if (newText !== "") {
-      let itemToFilter = newText.toLowerCase();
-      let results = filtrationList.filter(
-        (item) =>
-          item.name.toLowerCase().includes(itemToFilter) ||
-          item.email.toLowerCase().includes(itemToFilter) ||
-          item.plan.toLowerCase().includes(itemToFilter),
-        console.log("see")
-      );
-=======
->>>>>>> fab4ec22831acbed2528977711a85d4c21ddff1d
     }
   };
   const clearInput = () => {
     setSearchValue("");
     if (from === "books Array") {
       dispatch(booksFilteredList(filtrationList));
-<<<<<<< HEAD
-      dispatch(usersFilteredList(filtrationList));
-    } else {
-      dispatch(usersFilteredList(filtrationList));
-=======
->>>>>>> fab4ec22831acbed2528977711a85d4c21ddff1d
     }
     dispatch(usersFilteredList(filtrationList));
   };
@@ -312,41 +276,12 @@ function Header({ hidden, title, filtrationList, from }) {
       dispatch(usersFilteredList(filtrationList));
     } else {
       dispatch(usersFilteredList(filtrationList));
-<<<<<<< HEAD
-      // dispatch(adminFilteredList(filtrationList));
-=======
->>>>>>> fab4ec22831acbed2528977711a85d4c21ddff1d
     }
     setcurrentSelectValue("");
   };
 
   const selectFunction = (e) => {
     setcurrentSelectValue(e);
-<<<<<<< HEAD
-    if (e == "#/free") {
-      let res = filtrationList.filter((item) =>
-        item.plan.toLowerCase().includes("free")
-      );
-      dispatch(usersFilteredList(res));
-      console.log(res, "hey");
-    } else {
-      let res = filtrationList.filter((item) =>
-        item.plan.toLowerCase().includes("premium")
-      );
-      dispatch(usersFilteredList(res));
-    }
-    if (e == "#/free") {
-      let res = filtrationList.filter((item) =>
-        item.plan.toLowerCase().includes("free")
-      );
-      dispatch(booksFilteredList(res));
-    } else {
-      let res = filtrationList.filter((item) =>
-        item.plan.toLowerCase().includes("premium")
-      );
-      dispatch(booksFilteredList(res));
-    }
-=======
     if (from === "books Array") {
       if (e == "#/free") {
         let res = filtrationList.filter((item) =>
@@ -372,7 +307,6 @@ function Header({ hidden, title, filtrationList, from }) {
         dispatch(usersFilteredList(res));
       }
     }
->>>>>>> fab4ec22831acbed2528977711a85d4c21ddff1d
   };
 
   // if (from === "free books plan") {

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styles from "../../../components/Admin/PendingCard/PendingCard.module.css";
 import { Avater } from "../../../components";
 import { Button, Modal, Form } from "react-bootstrap";
+import { CopyToClipboard } from "react-copy-to-clipboard";
 import {
   _upgradeUsersPlan,
   _denyUsersPlanUpgrade,
@@ -17,6 +18,7 @@ function AdminCard({ user }) {
   const [show1, setShow1] = useState(false);
   const [showAceptModal, setshowAceptModal] = useState(false);
   const [showFormModal, setshowFormModal] = useState(false);
+
   const dispatch = useDispatch();
 
   const handleShow = () => setShow(true);
@@ -191,6 +193,22 @@ function AcceptModal({ user, handleClose, show }) {
   );
 }
 function FormModal({ title, show, handleClose, info, password }) {
+  let name = ["asd", "ghy"];
+
+  const [toggleEyePassword1, setToggleEyePassword1] = useState(false);
+  const [box, setBox] = useState("");
+  const [box1, setBox1] = useState("");
+  const [copied, setCopied] = useState(false);
+  const handletoggleEyePassword1 = () => {
+    setToggleEyePassword1(!toggleEyePassword1);
+    name.split(",");
+    console.log(name.split(","));
+  };
+
+  let arr = `Email: ${info}, Password:${password}`;
+  let arr1 = arr.split(",");
+  console.log(arr1);
+
   return (
     <>
       <Modal show={show} onHide={handleClose}>
@@ -204,6 +222,7 @@ function FormModal({ title, show, handleClose, info, password }) {
               <Form.Control
                 type="email"
                 value={info}
+                onChange={({ target: { info } }) => setBox(info)}
                 placeholder="Enter email"
               />
               <Form.Text className="text-muted">
@@ -211,17 +230,51 @@ function FormModal({ title, show, handleClose, info, password }) {
               </Form.Text>
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="formBasicPassword">
-              <Form.Label>Password</Form.Label>
-              <Form.Control
-                type="password"
-                value={password}
-                placeholder="Password"
-              />
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="formBasicCheckbox">
-              <Form.Check type="checkbox" label="Check me out" />
-            </Form.Group>
+            <div class="col-md-12">
+              <label for="inputPassword4" className="form-label">
+                Password
+              </label>
+              <div
+                className="inputPass "
+                style={{
+                  backgroundColor: "#fff",
+                  display: "flex",
+                  alignItems: "center",
+                }}
+              >
+                <input
+                  style={{
+                    border: "none",
+                    outline: "none",
+                    borderStyle: "none",
+                  }}
+                  type={toggleEyePassword1 ? "text" : "password"}
+                  className="form-control"
+                  name="password"
+                  value={password}
+                  onChange={({ target: { password } }) => setBox(password)}
+                  required
+                />
+
+                <i
+                  class={
+                    toggleEyePassword1
+                      ? "far fa-eye mr-2"
+                      : "fas fa-eye-slash mr-2"
+                  }
+                  style={{ color: "#ccc", cursor: "pointer" }}
+                  onClick={handletoggleEyePassword1}
+                ></i>
+              </div>
+            </div>
+            <CopyToClipboard
+              text={arr}
+              //  onCopy={() => setCopied(true)}
+            >
+              <button className="col-12 btn btn-primary">
+                <span>Copy</span>
+              </button>
+            </CopyToClipboard>
           </Form>
         </Modal.Body>
       </Modal>

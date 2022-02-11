@@ -2,6 +2,7 @@ import axios from "axios";
 import React from "react";
 import { Card } from "react-bootstrap";
 import styles from "./BooksCard.module.css";
+import { Link } from "react-router-dom";
 
 function BooksCard({ book }) {
   const openPdf = async (data) => {
@@ -64,10 +65,12 @@ function BooksCard({ book }) {
           <button
             type="button"
             onClick={() => openPdf(book)}
+            onContextMenu={(e) => e.preventDefault()}
             class="btn btn-outline-success col-md-6"
           >
             View
           </button>
+
           <span className={`${styles.text2} text-secondary mt-3 `}>
             {book.views} views
             <i
