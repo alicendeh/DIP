@@ -32,6 +32,7 @@ function Login() {
     email: "",
     password: "",
   });
+  const [isLoading, setIsLoading] = useState(false);
 
   const handletoggleEyePassword = () => {
     setToggleEyePassword(!toggleEyePassword);
@@ -43,14 +44,19 @@ function Login() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
   const onsubmit = async (e) => {
-    dispatch(isLoading(false));
+    setIsLoading(true);
     e.preventDefault();
     const data = { email, password };
+
     login(data).then((response) => {
       if (response.code == 400) {
+        setIsLoading(false);
+
         setErrMsg(response.errorMessage);
-        console.log(response.errorMessage, "error");
+        // console.log(response, "error");
       } else {
+        setIsLoading(false);
+
         dispatch(loginUser(response));
         _loadeCurrentlyLogedInUser().then((data) => dispatch(loadUser(data)));
       }
@@ -58,6 +64,10 @@ function Login() {
       // console.log(response.errorMessage);
     });
   };
+
+  useEffect(() => {
+    // console.log(errMsg, "boom");
+  }, []);
   return (
     <div className={`${styles.main}`}>
       <div className={styles.box}>
@@ -164,7 +174,7 @@ function Login() {
                   </div>
                 </div>
                 <div class="col-12">
-                  {user.Loading && errMsg == null ? (
+                  {isLoading ? (
                     <div
                       className=" col-12 btn btn-primary "
                       style={{
@@ -187,7 +197,7 @@ function Login() {
                     <Link to="/signup">Signup</Link>
                   </small>
                 </div>
-                <span>{errMsg != null ? <Alert msg={errMsg} /> : null}</span>
+                <span>{errMsg ? <Alert msg={errMsg} /> : null}</span>
               </form>
             </div>
           </div>
