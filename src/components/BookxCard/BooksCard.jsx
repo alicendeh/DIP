@@ -42,7 +42,6 @@ function BooksCard({ book }) {
         <div className="d-flex justify-content-between">
           <div className="d-flex flex-row align-items-center">
             <div className={styles.icon}>
-              {" "}
               <img
                 src={
                   book.coverPage !== "default"
