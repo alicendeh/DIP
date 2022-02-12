@@ -17,11 +17,6 @@ function BooksCard({ book }) {
       let res = await axios.put(
         `${process.env.REACT_APP_URL}/admin/books/updateView/${data._id}`
       );
-      console.log(res.data, "boo");
-      let pdfURL = `${process.env.REACT_APP_URL}/admin/books/images/${data.pdf}`;
-      setPdfLook(pdfURL);
-      window.open(pdfURL, "_blank");
-      window.location.reload();
     } catch (err) {
       console.log(err);
     }
@@ -75,7 +70,7 @@ function BooksCard({ book }) {
           >
             <button
               type="button"
-              // onClick={() => openPdf(book)}
+              onClick={() => openPdf(book)}
               onContextMenu={(e) => e.preventDefault()}
               class="btn btn-outline-success col-md-12"
             >

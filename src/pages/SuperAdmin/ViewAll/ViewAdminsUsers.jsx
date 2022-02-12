@@ -5,13 +5,7 @@ import FetchAdmins from "./FetchAdmins";
 import FetchUses from "./FetchUses";
 import { Nav } from "react-bootstrap";
 import { SuperAdminLayout } from "../..";
-import {
-  Header,
-  Header2,
-  PendingCard,
-  PlanCard,
-  Unexpected,
-} from "../../../components";
+import { Header2 } from "../../../components";
 import { useSelector, useDispatch } from "react-redux";
 import {
   adminGetsUsersequest,
@@ -48,15 +42,19 @@ function ViewAdminsUsers() {
     loading,
     usersFilteredList,
   } = usersData;
-  console.log(admins, "hey");
   const [pendinDataSet, setpendinDataSet] = useState([]);
   const [userDataSet, setuserDataSet] = useState([]);
 
   const dispatch = useDispatch();
-  const [toggle, setToggle] = useState(false);
-  useEffect(() => {
-    setToggle(true);
+  const [toggle, setToggle] = useState(null);
+  useEffect(async () => {
+    let isActive = await localStorage.getItem("IS_TOGGLE_ACTIVE");
+    setToggle(isActive);
   }, []);
+
+  useEffect(() => {
+    console.log(toggle, "togglerrrr");
+  }, [toggle]);
 
   useEffect(() => {
     dispatch(loadingState(true));
@@ -95,30 +93,46 @@ function ViewAdminsUsers() {
 
   return (
     <SuperAdminLayout>
-      {/* <Header
-        title={"Admins & Users"}
-        filtrationList={allBooks}
-        filtrationFree={allFreeBooks}
-        from={"books Array"}
-        // to={"books Array"}
-      /> */}
       <Header2
         title={"Admins & Users"}
         filtrationList={allBooks}
         allUsers={users}
         allAdmins={admins}
-        from={"books Array"}
-        to={"Admins"}
+        from={"SA view all users"}
       />
       <Nav justify variant="tabs" defaultActiveKey="/all-admins-users">
         <Nav.Item>
-          <Nav.Link onClick={() => setToggle(true)}>All Users</Nav.Link>
+          <Nav.Link
+            style={{
+              backgroundColor: toggle && "rgba(0,20,10,0.6)",
+              color: toggle ? "#fff" : "#000",
+            }}
+            onClick={() => {
+              setToggle(true);
+              localStorage.setItem("IS_TOGGLE_ACTIVE", true);
+              console.log("true", "users");
+            }}
+          >
+            All Users
+          </Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link onClick={() => setToggle(false)}>Admins</Nav.Link>
+          <Nav.Link
+            style={{
+              backgroundColor: toggle === false && "rgba(0,20,10,0.6)",
+              color: toggle === false ? "#fff" : "#000",
+            }}
+            onClick={() => {
+              setToggle(false);
+              localStorage.setItem("IS_TOGGLE_ACTIVE", false);
+              console.log("false", "admins");
+            }}
+          >
+            Admins
+          </Nav.Link>
         </Nav.Item>
       </Nav>
-      {toggle ? <FetchUses /> : <FetchAdmins />}
+      {toggle && toggle ? <FetchUses /> : <FetchAdmins />}
     </SuperAdminLayout>
   );
 }

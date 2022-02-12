@@ -8,26 +8,41 @@ import { useDispatch, useSelector } from "react-redux";
 function FetchAdmins() {
   const [data, setData] = useState([]);
   const usersData = useSelector((state) => state.superAdmins);
-  const { incomingUsersRequest, admins, loading, adminFilteredList } =
-    usersData;
+  const [loading, setloading] = useState(false);
+
+  const { adminFilteredList } = usersData;
   const dispatch = useDispatch();
+
   useEffect(() => {
+    setloading(true);
     _getAllAdmins().then((data) => {
       setData(data.admins);
-      console.log(data, "mn");
+      setloading(false);
       return dispatch(superadminGetsAdmin(data));
     });
   }, []);
-  console.log(adminFilteredList);
-  console.log(admins);
+
   return (
     <div>
-      {adminFilteredList.map((user, index) => (
-        <div key={index}>
-          <AdminCard user={user} />
+      {loading ? (
+        <div className={`containerCenter spinnerContainer`}>
+          <div className="spinner"></div>
         </div>
-      ))}
-      <div>{data && data.map((data) => <AdminCard user={data} />)}</div>
+      ) : (
+        <div>
+          {adminFilteredList && adminFilteredList.length > 0 ? (
+            <div>
+              {adminFilteredList.map((user, index) => (
+                <div key={index}>
+                  <AdminCard user={user} />
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div>{data && data.map((data) => <AdminCard user={data} />)}</div>
+          )}
+        </div>
+      )}
     </div>
   );
 }

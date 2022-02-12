@@ -16,31 +16,27 @@ function Header({
   allAdmins,
   filtrationFree,
   from,
-  to,
 }) {
   const [searchValue, setSearchValue] = useState("");
   const [currentSelectValue, setcurrentSelectValue] = useState("");
   const [toggleSideMenu, settoggleSideMenu] = useState(false);
-  const [nom, setNom] = useState(1);
-
+  const adminsDataSet = useSelector((state) => state.superAdmins.admins);
   const dispatch = useDispatch();
-  console.log(allAdmins);
+
   const search = (e) => {
     setSearchValue(e.target.value);
     let newText = e.target.value.toLowerCase();
     if (newText !== "") {
       let itemToFilter = newText.toLowerCase();
-      let result = allUsers.filter(
-        (item) =>
-          item.name.toLowerCase().includes(itemToFilter) ||
-          item.email.toLowerCase().includes(itemToFilter) ||
-          item.plan.toLowerCase().includes(itemToFilter)
-      );
-      dispatch(usersFilteredList(result));
-
-      if (from === "books Array") {
-        console.log(filtrationList);
-
+      if (from === "SA view all users") {
+        let results = allUsers.filter(
+          (item) =>
+            item.name.toLowerCase().includes(itemToFilter) ||
+            item.email.toLowerCase().includes(itemToFilter) ||
+            item.plan.toLowerCase().includes(itemToFilter)
+        );
+        dispatch(usersFilteredList(results));
+      } else if (from === "SA books Array") {
         let results = filtrationList.filter(
           (item) =>
             item.name.toLowerCase().includes(itemToFilter) ||
@@ -49,79 +45,77 @@ function Header({
         );
         dispatch(booksFilteredList(results));
       }
+      // if (adminsDataSet && adminsDataSet.length > 0) {
+      //   let results = adminsDataSet.filter(
+      //     (item) =>
+      //       item.name.toLowerCase().includes(itemToFilter) ||
+      //       item.email.toLowerCase().includes(itemToFilter)
+      //   );
+      //   dispatch(adminFilteredList(results));
+      // }
     } else {
-      if (from === "books Array") {
-        dispatch(booksFilteredList(filtrationList));
+      // if (adminsDataSet && adminsDataSet.length > 0) {
+      //   dispatch(adminFilteredList(adminsDataSet));
+      // }
+      if (from === "SA view all users") {
+        dispatch(usersFilteredList(allUsers));
       } else {
-        dispatch(usersFilteredList(filtrationList));
+        dispatch(booksFilteredList(filtrationList));
       }
     }
   };
-  const search1 = (e) => {
-    setSearchValue(e.target.value);
-    let newText = e.target.value.toLowerCase();
-    if (newText !== "") {
-      let itemToFilter = newText.toLowerCase();
-      let results = allAdmins.filter(
-        (item) =>
-          item.name.toLowerCase().includes(itemToFilter) ||
-          item.email.toLowerCase().includes(itemToFilter) ||
-          item.plan.toLowerCase().includes(itemToFilter),
-        console.log("see")
-      );
-      dispatch(adminFilteredList(results));
-    }
-  };
+
   const clearInput = () => {
+    // if (adminsDataSet && adminsDataSet.length > 0) {
+    //   dispatch(adminFilteredList(adminsDataSet));
+    // }
     setSearchValue("");
-    if (from === "books Array") {
+    if (from === "SA books Array") {
       dispatch(booksFilteredList(filtrationList));
-      dispatch(usersFilteredList(filtrationList));
-      dispatch(adminFilteredList(filtrationList));
     } else {
       dispatch(usersFilteredList(filtrationList));
     }
   };
 
   const cancelMode = () => {
-    if (from === "books Array") {
+    if (from === "SA books Array") {
       dispatch(booksFilteredList(filtrationList));
+    } else if (from === "SA view all users") {
       dispatch(usersFilteredList(filtrationList));
-    } else {
-      dispatch(usersFilteredList(filtrationList));
-      // dispatch(adminFilteredList(filtrationList));
     }
     setcurrentSelectValue("");
   };
 
   const selectFunction = (e) => {
     setcurrentSelectValue(e);
-    if (e == "#/free") {
-      let res = allUsers.filter((item) =>
-        item.plan.toLowerCase().includes("free")
-      );
-      dispatch(usersFilteredList(res));
-      console.log(res, "hey");
-      // dispatch(adminFilteredList(res));
+    if (from === "SA books Array") {
+      if (e == "#/free") {
+        let res = filtrationList.filter((item) =>
+          item.plan.toLowerCase().includes("free")
+        );
+        dispatch(booksFilteredList(res));
+      } else {
+        let res = filtrationList.filter((item) =>
+          item.plan.toLowerCase().includes("premium")
+        );
+        dispatch(booksFilteredList(res));
+      }
     } else {
-      let res = allUsers.filter((item) =>
-        item.plan.toLowerCase().includes("premium")
-      );
-      dispatch(usersFilteredList(res));
-      // dispatch(adminFilteredList(res));
-    }
-    if (e == "#/free") {
-      let res = filtrationList.filter((item) =>
-        item.plan.toLowerCase().includes("free")
-      );
-      dispatch(booksFilteredList(res));
-    } else {
-      let res = filtrationList.filter((item) =>
-        item.plan.toLowerCase().includes("premium")
-      );
-      dispatch(booksFilteredList(res));
+      if (e == "#/free") {
+        let res = allUsers.filter((item) =>
+          item.plan.toLowerCase().includes("free")
+        );
+        dispatch(usersFilteredList(res));
+      } else {
+        let res = allUsers.filter((item) =>
+          item.plan.toLowerCase().includes("premium")
+        );
+
+        dispatch(usersFilteredList(res));
+      }
     }
   };
+
   return (
     <div className={`containerRow ${styles.header}`}>
       <SideBar
@@ -172,7 +166,6 @@ function Header({
               value={searchValue}
               onChange={(e) => {
                 search(e);
-                search1(e);
               }}
               className={styles.input}
               placeholder="Search..."
