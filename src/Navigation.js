@@ -21,6 +21,7 @@ import SuperBooks from "./pages/SuperAdmin/Books/SuperBooks";
 import UploadBooks from "./pages/SuperAdmin/UploadBook/UploadBooks";
 import SuperProfile from "./pages/SuperAdmin/SuperProfile/SuperProfile";
 import FetchUses from "./pages/SuperAdmin/ViewAll/FetchUses";
+import PDFViewer from "./pages/PDFViewer/PDFViewer";
 function ScrollToTop({ children }) {
   const { pathname } = useLocation();
   const user = useSelector((state) => state.user);
@@ -55,6 +56,7 @@ function Navigation() {
           <Route exact path="/signup" element={<Registeration />} />
           <Route exact path="/pending" element={<PendingView />} />
           <Route exact path="/rejected" element={<Rejected />} />
+          <Route exact path="/pdfview" element={<PDFViewer />} />
           <Route exact path="/userprofile" element={<UserProfile />} />
           <Route exact path="/login" element={<Login />} />
 

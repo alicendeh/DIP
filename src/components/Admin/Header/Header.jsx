@@ -234,6 +234,8 @@ function Header({ hidden, title, filtrationList, from }) {
       let itemToFilter = newText.toLowerCase();
 
       if (from === "books Array") {
+        console.log(filtrationList);
+
         let results = filtrationList.filter(
           (item) =>
             item.name.toLowerCase().includes(itemToFilter) ||
@@ -260,7 +262,6 @@ function Header({ hidden, title, filtrationList, from }) {
       }
     }
   };
-
   const clearInput = () => {
     setSearchValue("");
     if (from === "books Array") {
@@ -272,6 +273,7 @@ function Header({ hidden, title, filtrationList, from }) {
   const cancelMode = () => {
     if (from === "books Array") {
       dispatch(booksFilteredList(filtrationList));
+      dispatch(usersFilteredList(filtrationList));
     } else {
       dispatch(usersFilteredList(filtrationList));
     }
@@ -306,6 +308,22 @@ function Header({ hidden, title, filtrationList, from }) {
       }
     }
   };
+
+  // if (from === "free books plan") {
+  //   if (user.user.plan == "free" && e == "#/free") {
+  //     let res = filtrationFree.filter((item) =>
+  //       item.plan.toLowerCase().includes("free")
+  //     );
+  //     dispatch(freeBooksFilteredList(res));
+  //   } else if (
+  //     user.user.plan == "free" &&
+  //     user.user.isRequestingAccess === false &&
+  //     e == "#/premium"
+  //   ) {
+  //     navigate("/upgradetopremium");
+  //   }
+  // }
+  // };
   return (
     <div className={`containerRow ${styles.header}`}>
       {/* <SideBar openSideBar={toggleSideMenu} /> */}
