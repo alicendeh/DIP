@@ -77,7 +77,7 @@ function BooksCard({ book }) {
               type="button"
               // onClick={() => openPdf(book)}
               onContextMenu={(e) => e.preventDefault()}
-              class="btn btn-outline-success col-md-6"
+              class="btn btn-outline-success col-md-12"
             >
               View
             </button>

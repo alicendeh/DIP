@@ -102,13 +102,13 @@ function Header({
       );
       dispatch(usersFilteredList(res));
       console.log(res, "hey");
-      dispatch(adminFilteredList(res));
+      // dispatch(adminFilteredList(res));
     } else {
       let res = allUsers.filter((item) =>
         item.plan.toLowerCase().includes("premium")
       );
       dispatch(usersFilteredList(res));
-      dispatch(adminFilteredList(res));
+      // dispatch(adminFilteredList(res));
     }
     if (e == "#/free") {
       let res = filtrationList.filter((item) =>
