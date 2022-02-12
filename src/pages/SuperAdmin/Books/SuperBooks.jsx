@@ -8,6 +8,7 @@ import { loadUser } from "../../../redux/actions/userAction";
 import { _loadeCurrentlyLogedInUser } from "../../../Helpers/userHelper";
 import Lottie from "react-lottie";
 import animationData from "../../../annimations/72929-reading-book.json";
+import { Header2 } from "../../../components";
 
 const defaultOptions = {
   loop: true,
@@ -29,7 +30,11 @@ function SuperBooks() {
 
   return (
     <SuperAdminLayout>
-      <Header title={"Books"} filtrationList={allBooks} from={"books Array"} />
+      <Header2
+        title={"Books"}
+        filtrationList={allBooks}
+        from={"SA books Array"}
+      />
       {error != null ? (
         <Unexpected />
       ) : (

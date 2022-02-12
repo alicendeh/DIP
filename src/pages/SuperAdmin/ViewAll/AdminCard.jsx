@@ -202,12 +202,10 @@ function FormModal({ title, show, handleClose, info, password }) {
   const handletoggleEyePassword1 = () => {
     setToggleEyePassword1(!toggleEyePassword1);
     name.split(",");
-    console.log(name.split(","));
   };
 
   let arr = `Email: ${info}, Password:${password}`;
   let arr1 = arr.split(",");
-  console.log(arr1);
 
   return (
     <>

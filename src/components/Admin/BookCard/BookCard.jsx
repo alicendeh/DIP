@@ -4,8 +4,7 @@ import { Avater } from "../../../components";
 import { Button, Modal } from "react-bootstrap";
 import { _viewAllBooks, _deleteBook } from "../../../Helpers/adminHelper";
 import moment from "moment";
-import axios from "axios";
-import { Document, Page, pdfjs } from "react-pdf";
+import { Link } from "react-router-dom";
 
 function BookCard({ book }) {
   const [show, setShow] = useState(false);
@@ -125,24 +124,22 @@ function BookCard({ book }) {
           </div>
         </div>
         <div className="containerCenter">
-          <a
-            style={{
-              color: "#000",
-              textDecoration: "none",
+          <Link
+            to="/pdfview"
+            state={{
+              pdfURL: `${process.env.REACT_APP_URL}/admin/books/images/${book.pdf}`,
             }}
-            onContextMenu={(e) => e.preventDefault()}
-            href={storePDF + "#toolbar=0"}
-            target="_blank"
           >
-            <div className={`containerCenter`}>
-              <i
-                onClick={() => openPdf(book)}
-                className={` fas fa-eye
+            <i
+              onClick={() => openPdf(book)}
+              style={{
+                color: "#000",
+              }}
+              className={` fas fa-eye
         ${plan === "Free" ? `${styles.eyeIconFree}` : `${styles.eyeIcon}`}
         `}
-              ></i>
-            </div>
-          </a>
+            ></i>
+          </Link>
         </div>
         <div className="containerCenter">
           <div className={`btn btn-danger mr-3 `} onClick={handleShow}>
