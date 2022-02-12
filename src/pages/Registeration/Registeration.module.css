@@ -79,6 +79,12 @@
     /* display: flex;
       flex-direction: column; */
   }
+  .firstPart {
+    width: 50%;
+  }
+  .secondPart {
+    width: 50%;
+  }
 }
 
 @media (max-width: 767px) {
@@ -93,6 +99,9 @@
   }
   .firstPart {
     display: none;
+  }
+  .secondPart {
+    width: 100%;
   }
   /* .secondPart {
       display: flex;
