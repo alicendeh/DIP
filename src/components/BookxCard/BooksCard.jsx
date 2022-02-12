@@ -3,8 +3,15 @@ import React from "react";
 import { Card } from "react-bootstrap";
 import styles from "./BooksCard.module.css";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useState } from "react";
 
 function BooksCard({ book }) {
+  const [pdfLook, setPdfLook] = useState();
+
+  const books = useSelector((state) => state.admin);
+  const { allFreeBooks } = books;
+  console.log(allFreeBooks[0].pdf);
   const openPdf = async (data) => {
     console.log(data);
     try {
@@ -13,7 +20,7 @@ function BooksCard({ book }) {
       );
       console.log(res.data, "boo");
       let pdfURL = `${process.env.REACT_APP_URL}/admin/books/images/${data.pdf}`;
-
+      setPdfLook(pdfURL);
       window.open(pdfURL, "_blank");
       window.location.reload();
     } catch (err) {
@@ -62,14 +69,21 @@ function BooksCard({ book }) {
           Some quick example text to build on the card title the card's content.
         </Card.Text>
         <div className="mt-5 d-flex justify-content-between">
-          <button
-            type="button"
-            onClick={() => openPdf(book)}
-            onContextMenu={(e) => e.preventDefault()}
-            class="btn btn-outline-success col-md-6"
+          <Link
+            to="/pdfview"
+            state={{
+              pdfURL: `${process.env.REACT_APP_URL}/admin/books/images/${book.pdf}`,
+            }}
           >
-            View
-          </button>
+            <button
+              type="button"
+              // onClick={() => openPdf(book)}
+              onContextMenu={(e) => e.preventDefault()}
+              class="btn btn-outline-success col-md-6"
+            >
+              View
+            </button>
+          </Link>
 
           <span className={`${styles.text2} text-secondary mt-3 `}>
             {book.views} views
