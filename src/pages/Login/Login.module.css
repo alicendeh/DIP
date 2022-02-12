@@ -37,6 +37,7 @@
 }
 .secondPart {
   background-color: white;
+  width: 50%;
 }
 .look :hover {
   transform: scale(1.1);
@@ -76,6 +77,9 @@
     /* display: flex;
     flex-direction: column; */
   }
+  .firstPart {
+    width: 50%;
+  }
 }
 
 @media (max-width: 767px) {
@@ -90,10 +94,7 @@
   .firstPart {
     display: none;
   }
-  /* .secondPart {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  } */
+  .secondPart {
+    width: 100%;
+  }
 }
