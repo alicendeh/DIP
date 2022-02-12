@@ -104,13 +104,40 @@ function MyPage({ children }) {
 
               <ul className="list-unstyled">
                 <li>
-                  <a href="#!">Home page</a>
+                  <a
+                    href="#!"
+                    style={{
+                      textDecoration: "none",
+                      color: "black",
+                      listStyle: "none",
+                    }}
+                  >
+                    Home page
+                  </a>
                 </li>
                 <li>
-                  <a href="#!">Help</a>
+                  <a
+                    href="#!"
+                    style={{
+                      textDecoration: "none",
+                      color: "black",
+                      listStyle: "none",
+                    }}
+                  >
+                    Help
+                  </a>
                 </li>
                 <li>
-                  <a href="#!">Contribute</a>
+                  <a
+                    href="#!"
+                    style={{
+                      textDecoration: "none",
+                      color: "black",
+                      listStyle: "none",
+                    }}
+                  >
+                    Contribute
+                  </a>
                 </li>
               </ul>
             </div>
@@ -120,17 +147,38 @@ function MyPage({ children }) {
 
               <ul className="list-unstyled">
                 <li>
-                  <a href="#!" style={{ textDecoration: "none" }}>
+                  <a
+                    href="#!"
+                    style={{
+                      textDecoration: "none",
+                      color: "black",
+                      listStyle: "none",
+                    }}
+                  >
                     +222 222 222 222
                   </a>
                 </li>
                 <li>
-                  <a href="#!" style={{ textDecoration: "none" }}>
-                    info@agbp.com
+                  <a
+                    href="#!"
+                    style={{
+                      textDecoration: "none",
+                      color: "black",
+                      listStyle: "none",
+                    }}
+                  >
+                    info@dip.com
                   </a>
                 </li>
                 <li>
-                  <a href="#!" style={{ textDecoration: "none" }}>
+                  <a
+                    href="#!"
+                    style={{
+                      textDecoration: "none",
+                      color: "black",
+                      listStyle: "none",
+                    }}
+                  >
                     Yaounde, Lorem ipsum dolo
                   </a>
                 </li>
@@ -141,7 +189,17 @@ function MyPage({ children }) {
 
         <div className="footer-copyright text-center py-3">
           © 2021 Copyright:
-          <a href="https://mdbootstrap.com/"> dip.com</a>
+          <a
+            href="https://mdbootstrap.com/"
+            style={{
+              textDecoration: "none",
+              color: "black",
+              listStyle: "none",
+            }}
+          >
+            {" "}
+            dip.com
+          </a>
         </div>
       </footer>
     </main>

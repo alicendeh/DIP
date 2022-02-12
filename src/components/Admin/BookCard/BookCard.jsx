@@ -4,6 +4,7 @@ import { Avater } from "../../../components";
 import { Button, Modal } from "react-bootstrap";
 import { _viewAllBooks, _deleteBook } from "../../../Helpers/adminHelper";
 import moment from "moment";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import { Document, Page, pdfjs } from "react-pdf";
 
@@ -135,12 +136,20 @@ function BookCard({ book }) {
             target="_blank"
           >
             <div className={`containerCenter`}>
-              <i
-                onClick={() => openPdf(book)}
-                className={` fas fa-eye
+              <Link
+                style={{ color: "black" }}
+                to="/pdfview"
+                state={{
+                  pdfURL: `${process.env.REACT_APP_URL}/admin/books/images/${book.pdf}`,
+                }}
+              >
+                <i
+                  // onClick={() => openPdf(book)}
+                  className={` fas fa-eye
         ${plan === "Free" ? `${styles.eyeIconFree}` : `${styles.eyeIcon}`}
         `}
-              ></i>
+                ></i>
+              </Link>
             </div>
           </a>
         </div>

@@ -22,7 +22,26 @@ function DashPage({ children }) {
               Dream Institution For Professionalism
             </p>
           </Link>
-
+          <Link
+            to="/dashboard"
+            style={{
+              listStyle: "none ",
+              textDecoration: "none ",
+              color: "black",
+              fontWeight: "bold",
+            }}
+          >
+            <p
+              style={{
+                marginTop: "0.7em",
+                marginLeft: "2em",
+                fontSize: "16px",
+              }}
+            >
+              {" "}
+              Dashboard
+            </p>
+          </Link>
           <button
             className="navbar-toggler"
             type="button"
