@@ -11,7 +11,6 @@ function BooksCard({ book }) {
 
   const books = useSelector((state) => state.admin);
   const { allFreeBooks } = books;
-  console.log(allFreeBooks[0].pdf);
   const openPdf = async (data) => {
     console.log(data);
     try {
