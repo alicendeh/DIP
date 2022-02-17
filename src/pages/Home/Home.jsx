@@ -4,11 +4,17 @@ import { Mission, Vision, MyPage } from "../../components";
 import Fade from "react-reveal/Fade";
 import styles from "./Home.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import Network from "../../components/Network/Network";
+// import Network from "../../components/Network/Network";
 import Team from "../../components/Team/Team";
 function Home() {
   const user = useSelector((state) => state.user);
   console.log(user.isAuthenticated);
+
+  // let arr = [3, 2, 2, 4, 3];
+  // for (let index = 5; index <= arr.length; index--) {
+  //   const element = arr[index];
+  //   console.log(element);
+  // }
   return (
     <MyPage>
       {" "}
