@@ -207,7 +207,7 @@ function AddAdmin() {
                 </div>
               ) : (
                 <button type="submit" className="col-12 btn btn-success">
-                  <span>Sign up</span>
+                  <span>Create Admin</span>
                 </button>
               )}
             </div>
