@@ -5,6 +5,7 @@ import styles from "./AddAdmin.module.css";
 import { createAdmin, isLoading } from "../../../redux/actions/superAction";
 import { _createAdmin } from "../../../Helpers/superAdminHelper";
 import { useSelector, useDispatch } from "react-redux";
+import { CopyToClipboard } from "react-copy-to-clipboard";
 function AddAdmin() {
   const [formData, setFormData] = useState({
     name: "",
@@ -57,7 +58,7 @@ function AddAdmin() {
   };
   return (
     <SuperAdminLayout>
-      <SuccessModal show={showSuccessModal} handleClose={handleClose} />
+      <SuccessModal show={showSuccessModal} handleClose={handleClose} mail={email} pass={password} />
       <h2 style={{ paddingLeft: "2em" }}> Add Admins </h2>
       <div className={`${styles.holdtake}`}>
         <div className={`${styles.takeform}`}>
@@ -219,14 +220,29 @@ function AddAdmin() {
 
 export default AddAdmin;
 
-function SuccessModal({ title, show, handleClose }) {
+function SuccessModal({ title, show, handleClose ,mail, pass}) {
+  let arr = `Email: ${mail}, Password:${pass}`;
   return (
     <>
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Successful</Modal.Title>
         </Modal.Header>
-        <Modal.Body>Admin Succesfully Created</Modal.Body>
+        <Modal.Body>Admin Succesfully Created
+Email : {mail},
+Password : {pass}
+
+        </Modal.Body>
+        <Modal.Footer>
+        <CopyToClipboard
+              text={arr}
+              //  onCopy={() => setCopied(true)}
+            >
+              <button className="col-12 btn btn-primary">
+                <span>Copy</span>
+              </button>
+            </CopyToClipboard>
+        </Modal.Footer>
       </Modal>
     </>
   );
