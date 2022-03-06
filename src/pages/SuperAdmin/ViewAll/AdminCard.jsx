@@ -47,12 +47,12 @@ function AdminCard({ user }) {
         dispatch={dispatch}
         user={user}
       />
-      <FormModal
+      {/* <FormModal
         show={showFormModal}
         handleClose={handleClose1}
         info={user.email}
         password={user.password}
-      />
+      /> */}
 
       <div className={styles.card}>
         <div className={styles.colorContainer}></div>
