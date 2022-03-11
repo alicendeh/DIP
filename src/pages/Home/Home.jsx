@@ -22,16 +22,14 @@ function Home() {
         <div className="row home py-2 d-flex  ">
           <Fade left>
             <div className="col-lg-6 col-md-12 ">
-              <div className="text-align-left pt-3 pb-3">
-                <h1 style={{ color: "#1F73B9", fontSize: "3em" }}>
-                  Let's find your Favourite book to improve your Knowledge
+              <div className="text-center pt-3 pb-3">
+                <h1 style={{ color: "#1F73B9", fontSize: "3.5em" }}>
+                  Welcome To Dream Institution For Professionalism
                 </h1>
               </div>
-              <div className="text-align-left py-2">
-                <h3 style={{ color: "#6BA349", fontSize: "16px" }}>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Suspendisse eu tempor felis. Vivamus luctus urna at ornare
-                  facilisis
+              <div className="text-center py-2">
+                <h3 style={{ color: "#6BA349" }}>
+                  Building Deeper, Building Differently
                 </h3>
               </div>
               <div
@@ -51,9 +49,17 @@ function Home() {
                 </div>
               </div>
               <div className="row py-3">
-                <p className="fs-6" style={{ color: "#6BA349" }}>
-                  Vivamus luctus urna at ornare at ornare facilisis{" "}
-                </p>
+                <h4 className="fs-6 text-center " style={{ color: "#6BA349" }}>
+                  Years of personal experience have proven that the saying by
+                  John C. Maxwell “Everything rises and falls on leadership” is
+                  hardly an exaggeration. Leadership is at the center of the
+                  growth of every institution, organizations, governments,
+                  networks and of course network marketing just to name a few.
+                  DIP is a product conceived in the quest to provide solutions
+                  to these leadership crisis in some of the aforementioned
+                  sectors with keen interest in but not limited to network
+                  marketing.
+                </h4>
               </div>
             </div>
           </Fade>

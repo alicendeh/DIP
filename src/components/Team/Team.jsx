@@ -6,7 +6,15 @@ function Team() {
       <h2 className="text-center">Our Team</h2>
       <Carousel>
         <Carousel.Item interval={2000}>
-          <div className="slot" style={{ width: "100vw", height: "80vh" }}>
+          <div
+            className="slot"
+            style={{
+              // width: "100",
+              height: "80vh",
+              display: "flex",
+              justifyContent: "center",
+            }}
+          >
             <img className="d-block w-100" src="/dip1.jpg" alt="First slide" />
           </div>
           <Carousel.Caption>
@@ -15,7 +23,15 @@ function Team() {
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
-          <div className="slot2" style={{ width: "100vw", height: "80vh" }}>
+          <div
+            className="slot2"
+            style={{
+              // width: "100",
+              height: "80vh",
+              display: "flex",
+              justifyContent: "center",
+            }}
+          >
             <img className="d-block w-100" src="/dip2.jpg" alt="Second slide" />
           </div>
 
@@ -25,13 +41,17 @@ function Team() {
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
-          <div className="slot3" style={{ width: "100vw", height: "80vh" }}>
+          <div
+            className="slot3"
+            style={{
+              // width: "100",
+              height: "80vh",
+              display: "flex",
+              justifyContent: "center",
+            }}
+          >
             {" "}
-            <img
-              className="d-block w-100"
-              src="/cld-sample.jpg"
-              alt="Third slide"
-            />
+            <img className="d-block w-100" src="/tim.jpeg" alt="Third slide" />
           </div>
 
           <Carousel.Caption>
