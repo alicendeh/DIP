@@ -1,14 +1,22 @@
 import React from "react";
 import Fade from "react-reveal/Fade";
-
+// import "../pages/Home/Home.css";
 function Mission() {
   return (
-    <div className="capsule">
-      <div className="container-fluid mission">
+    <div
+      className="capsule "
+      style={{
+        width: " 100%",
+        height: "100%",
+        backgroundColor: " rgba(179, 108, 255, 0.13)",
+        paddingBottom: "5em",
+      }}
+    >
+      <div className="container-fluid mission" style={{ marginBottom: "5em" }}>
         <div className="text-center pt-5 pb-3">
           <h2 style={{ fontWeight: "bold", color: "#222f3e" }}>Our Mission</h2>
         </div>
-        <div className="row py-3 d-flex">
+        <div className="container py-3 d-flex">
           <Fade top>
             <div className="col-lg-6 col-md-12 p-0">
               <div className="hold d-flex justify-content-center align-items-center">

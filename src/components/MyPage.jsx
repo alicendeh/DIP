@@ -122,7 +122,7 @@ function MyPage({ children }) {
         </div>
       </nav>
 
-      <div className="container">{children}</div>
+      <div>{children}</div>
 
       {/* Footer */}
 
