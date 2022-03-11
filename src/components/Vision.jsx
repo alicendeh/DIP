@@ -3,8 +3,8 @@ import Fade from "react-reveal/Fade";
 
 function Vision() {
   return (
-    <div className="container-fluid mission">
-      <div className="text-center pt-5 pb-3">
+    <div className="container-fluid mission pb-5">
+      <div className="text-center pt-5 pb-5">
         <h2>Our Vision</h2>
       </div>
       <div className="row py-3 d-flex">
@@ -24,9 +24,9 @@ function Vision() {
           <div className="col-lg-6 col-md-12 p-0">
             <div className="hold">
               <img
-                src="/3.jpg"
+                src="/vis.jpg"
                 alt=""
-                style={{ width: "100%", height: "100%" }}
+                style={{ width: "100%", height: "100%", borderRadius: "5px" }}
               />
             </div>
           </div>
