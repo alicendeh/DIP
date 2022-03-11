@@ -7,7 +7,12 @@ function MyPage({ children }) {
       {/* Top header */}
       <nav className="navbar navbar-expand-lg navbar-light  pt-3 pb-3">
         <div className="container">
-          <Link to="/" className="navbar-brand" href="#">
+          <Link
+            to="/"
+            className="navbar-brand"
+            href="#"
+            style={{ color: "#222f3e", fontweight: "700" }}
+          >
             <img src="/Dip.jpeg" className="img-responsive" height="60" />
             Dream Institution For Professionalism
           </Link>
@@ -30,7 +35,12 @@ function MyPage({ children }) {
             {/* <div className="bg-light shadow-3 p-4"> */}
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0 ">
               <li className="nav-item">
-                <Link to="/" className="nav-link actived" aria-current="page">
+                <Link
+                  to="/"
+                  className="nav-link actived"
+                  aria-current="page"
+                  style={{ color: "#222f3e", fontweight: "700" }}
+                >
                   Home
                 </Link>
               </li>
@@ -39,22 +49,38 @@ function MyPage({ children }) {
                   to="/testimony"
                   className="nav-link actived"
                   aria-current="page"
+                  style={{ color: "#222f3e", fontweight: "700" }}
                 >
                   Testimonies
                 </Link>
               </li>
               <li className="nav-item">
-                <Link to="/" className="nav-link actived" aria-current="page">
+                <Link
+                  to="/"
+                  className="nav-link actived"
+                  aria-current="page"
+                  style={{ color: "#222f3e", fontweight: "700" }}
+                >
                   About Us
                 </Link>
               </li>
               <li className="nav-item">
-                <Link to="/" className="nav-link actived" aria-current="page">
+                <Link
+                  to="/"
+                  className="nav-link actived"
+                  aria-current="page"
+                  style={{ color: "#222f3e", fontweight: "700" }}
+                >
                   Feedback
                 </Link>
               </li>
               <li className="nav-item">
-                <Link to="/" className="nav-link actived" aria-current="page">
+                <Link
+                  to="/"
+                  className="nav-link actived"
+                  aria-current="page"
+                  style={{ color: "#222f3e", fontweight: "700" }}
+                >
                   Contact
                 </Link>
               </li>
@@ -69,6 +95,7 @@ function MyPage({ children }) {
                       to="/login"
                       className="nav-link actived"
                       aria-current="page"
+                      style={{ color: "#222f3e", fontweight: "700" }}
                     >
                       Signin
                     </Link>

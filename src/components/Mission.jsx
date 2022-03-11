@@ -6,7 +6,7 @@ function Mission() {
     <div className="capsule">
       <div className="container-fluid mission">
         <div className="text-center pt-5 pb-3">
-          <h2>Our Mission</h2>
+          <h2 style={{ fontWeight: "bold", color: "#222f3e" }}>Our Mission</h2>
         </div>
         <div className="row py-3 d-flex">
           <Fade top>
@@ -27,7 +27,7 @@ function Mission() {
           <Fade right>
             <div className="col-lg-6 col-md-12 d-flex justify-content-center align-items-center">
               <div className="text-left">
-                <h3>
+                <h3 style={{ color: "#222f3e" }}>
                   Our mission is to professionally equip our members through a
                   proven modern support system to excel in their various
                   industries and network marketing in particular.

@@ -22,13 +22,19 @@ function Home() {
         <div className="row home py-2 d-flex  ">
           <Fade left>
             <div className="col-lg-6 col-md-12 ">
-              <div className="text-center pt-3 pb-3">
-                <h1 style={{ color: "#1F73B9", fontSize: "3.5em" }}>
+              <div className="text-align-left pt-3 pb-3">
+                <h1
+                  style={{
+                    color: "#1F73B9",
+                    fontSize: "3.5em",
+                    fontWeight: "bold",
+                  }}
+                >
                   Welcome To Dream Institution For Professionalism
                 </h1>
               </div>
-              <div className="text-center py-2">
-                <h3 style={{ color: "#6BA349" }}>
+              <div className="text-align-left py-2">
+                <h3 style={{ color: "#6BA349", fontWeight: "bold" }}>
                   Building Deeper, Building Differently
                 </h3>
               </div>
@@ -49,7 +55,10 @@ function Home() {
                 </div>
               </div>
               <div className="row py-3">
-                <h4 className="fs-6 text-center " style={{ color: "#6BA349" }}>
+                <h4
+                  className="fs-5  "
+                  style={{ color: "#222f3e", lineHeight: "1.5" }}
+                >
                   Years of personal experience have proven that the saying by
                   John C. Maxwell “Everything rises and falls on leadership” is
                   hardly an exaggeration. Leadership is at the center of the

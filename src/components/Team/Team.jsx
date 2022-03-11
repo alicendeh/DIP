@@ -3,7 +3,12 @@ import { Carousel } from "react-bootstrap";
 function Team() {
   return (
     <div>
-      <h2 className="text-center">Our Team</h2>
+      <h2
+        className="text-center"
+        style={{ color: "#222f3e", fontWeight: "bold" }}
+      >
+        Our Team
+      </h2>
       <Carousel>
         <Carousel.Item interval={2000}>
           <div
@@ -18,7 +23,7 @@ function Team() {
             <img className="d-block w-100" src="/dip1.jpg" alt="First slide" />
           </div>
           <Carousel.Caption>
-            <h3>First slide label</h3>
+            <h3>Team</h3>
             <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
           </Carousel.Caption>
         </Carousel.Item>
