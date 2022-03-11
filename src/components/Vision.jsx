@@ -10,22 +10,12 @@ function Vision() {
       <div className="row py-3 d-flex">
         <Fade left>
           <div className="col-lg-6 col-md-12 d-flex justify-content-center align-items-center">
-            <div className="text-center">
+            <div className="text-left">
               <h5>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Suspendisse eu tempor felis. Vivamus luctus urna at ornare
-                facilisis. Sed ultricies tortor id tincidunt congue. Aliquam
-                erat volutpat. Donec aliquam nisi nec nunc luctus, sed pharetra
-                dolor aliquam. Sed sapien ex, euismod ac consequat quis,
-                fermentum id velit. Quisque sollicitudin nulla in mattis
-                convallis. Sed ultricies tortor id tincidunt congue. Aliquam
-                erat volutpat. Donec aliquam nisi nec nunc luctus, sed pharetra
-                dolor aliquam. Sed sapien ex, euismod ac consequat quis,
-                fermentum id velit. Quisque sollicitudin nulla in mattis
-                convallis.Sed ultricies tortor id tincidunt congue. Aliquam erat
-                volutpat. Donec aliquam nisi nec nunc luctus, sed pharetra dolor
-                aliquam. Sed sapien ex, euismod ac consequat quis, fermentum id
-                velit. Quisque sollicitudin nulla in mattis convallis
+                Raise impact oriented leaders driven by a strong culture of
+                love, professionalism,leadership and team spirit in their
+                domains of influence and especially network marketing to become
+                game changers in a disruptive economy.
               </h5>
             </div>
           </div>
