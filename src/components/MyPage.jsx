@@ -36,12 +36,22 @@ function MyPage({ children }) {
               </li>
               <li className="nav-item">
                 <Link to="/" className="nav-link actived" aria-current="page">
-                  Mission
+                  Testimonies
                 </Link>
               </li>
               <li className="nav-item">
                 <Link to="/" className="nav-link actived" aria-current="page">
-                  Vision
+                  About Us
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link to="/" className="nav-link actived" aria-current="page">
+                  Feedback
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link to="/" className="nav-link actived" aria-current="page">
+                  Contact
                 </Link>
               </li>
               <div className="d-flex" style={{ gap: "6px " }}>
