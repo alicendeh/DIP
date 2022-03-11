@@ -61,7 +61,7 @@ function Home() {
             <div className="col-lg-6 col-md-12 p-0">
               <div className="hold">
                 <img
-                  src="/1.png"
+                  src="/a.png"
                   alt=""
                   style={{ width: "100%", height: "100%" }}
                 />

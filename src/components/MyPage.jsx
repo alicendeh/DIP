@@ -35,7 +35,11 @@ function MyPage({ children }) {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link to="/" className="nav-link actived" aria-current="page">
+                <Link
+                  to="/testimony"
+                  className="nav-link actived"
+                  aria-current="page"
+                >
                   Testimonies
                 </Link>
               </li>
