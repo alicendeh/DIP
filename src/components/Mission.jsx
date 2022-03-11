@@ -11,11 +11,15 @@ function Mission() {
         <div className="row py-3 d-flex">
           <Fade top>
             <div className="col-lg-6 col-md-12 p-0">
-              <div className="hold">
+              <div className="hold d-flex justify-content-center align-items-center">
                 <img
-                  src="/2.jpg"
+                  src="/mis.jpg"
                   alt=""
-                  style={{ width: "100%", height: "100%" }}
+                  style={{
+                    width: "90%",
+                    height: "100%",
+                    borderRadius: "5px",
+                  }}
                 />
               </div>
             </div>
