@@ -23,11 +23,11 @@ function Mission() {
           <Fade right>
             <div className="col-lg-6 col-md-12 d-flex justify-content-center align-items-center">
               <div className="text-left">
-                <h5>
+                <h3>
                   Our mission is to professionally equip our members through a
                   proven modern support system to excel in their various
                   industries and network marketing in particular.
-                </h5>
+                </h3>
               </div>
             </div>
           </Fade>

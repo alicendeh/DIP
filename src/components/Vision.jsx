@@ -11,12 +11,12 @@ function Vision() {
         <Fade left>
           <div className="col-lg-6 col-md-12 d-flex justify-content-center align-items-center">
             <div className="text-left">
-              <h5>
+              <h3>
                 Raise impact oriented leaders driven by a strong culture of
                 love, professionalism,leadership and team spirit in their
                 domains of influence and especially network marketing to become
                 game changers in a disruptive economy.
-              </h5>
+              </h3>
             </div>
           </div>
         </Fade>
