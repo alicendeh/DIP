@@ -54,15 +54,62 @@ function MyPage({ children }) {
                   Testimonies
                 </Link>
               </li>
-              <li className="nav-item">
-                <Link
-                  to="/"
-                  className="nav-link actived"
-                  aria-current="page"
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  id="navbarDropdown"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
                   style={{ color: "#222f3e", fontweight: "700" }}
                 >
                   About Us
-                </Link>
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li>
+                    <a
+                      class="nav-link dropdown-toggle"
+                      href="#"
+                      id="navbarDropdown"
+                      role="button"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                      Institutes Background
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <div>
+                        <h4>Our Backgrounds</h4>
+                      </div>
+                    </ul>
+                  </li>
+                  <li>
+                    <a
+                      class="nav-link dropdown-toggle"
+                      href="#"
+                      id="navbarDropdown2"
+                      role="button"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                      Motivation
+                    </a>
+                    <ul
+                      class="dropdown-menu "
+                      aria-labelledby="navbarDropdown2"
+                    >
+                      <div>
+                        <h4>Our Motivation</h4>
+                      </div>
+                    </ul>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="#">
+                      Key Partners (Superlife)
+                    </a>
+                  </li>
+                </ul>
               </li>
               <li className="nav-item">
                 <Link
