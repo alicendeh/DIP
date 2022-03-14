@@ -6,6 +6,12 @@ function MyPage({ children }) {
 
   return (
     <main>
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+      />
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js"></script>
+
       {/* Top header */}
       <nav className="navbar navbar-expand-lg navbar-light  pt-3 pb-3">
         <div className="container">
@@ -55,108 +61,6 @@ function MyPage({ children }) {
                   Testimonies
                 </Link>
               </li>
-              {/* <li class="nav-item dropdown">
-                <a
-                  class="nav-link dropdown-toggle"
-                  href="#"
-                  id="navbarDropdown"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                  style={{ color: "#222f3e", fontweight: "700" }}
-                >
-                  About Us
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li>
-                    <a
-                      class="nav-link dropdown-toggle"
-                      href="#"
-                      id="navbarDropdown"
-                      role="button"
-                      data-bs-toggle="dropdown"
-                      aria-expanded="false"
-                    >
-                      Institutes Background
-                    </a>
-                    <ul class="dropdown-menu">
-                      <li>
-                        <a class="dropdown-item" href="#">
-                          Action
-                        </a>
-                      </li>
-                      <li>
-                        <a class="dropdown-item" href="#">
-                          Another action
-                        </a>
-                      </li>
-                      <li>
-                        <hr class="dropdown-divider" />
-                      </li>
-                      <li>
-                        <a class="dropdown-item" href="#">
-                          Something else here
-                        </a>
-                      </li>
-                      <li class="nav-item dropdown">
-                        <a
-                          class="dropdown-item dropdown-toggle"
-                          href="#"
-                          role="button"
-                          data-bs-toggle="dropdown"
-                        >
-                          Dropdown
-                        </a>
-                        <ul class="dropdown-menu">
-                          <li>
-                            <a class="dropdown-item" href="#">
-                              Action
-                            </a>
-                          </li>
-                          <li>
-                            <a class="dropdown-item" href="#">
-                              Another action
-                            </a>
-                          </li>
-                          <li>
-                            <hr class="dropdown-divider" />
-                          </li>
-                          <li>
-                            <a class="dropdown-item" href="#">
-                              Something else here
-                            </a>
-                          </li>
-                        </ul>
-                      </li>
-                    </ul>
-                  </li>
-                  <li>
-                    <a
-                      class="nav-link dropdown-toggle"
-                      href="#"
-                      id="navbarDropdown2"
-                      role="button"
-                      data-bs-toggle="dropdown"
-                      aria-expanded="false"
-                    >
-                      Motivation
-                    </a>
-                  </li>
-                  <li>
-                    <a class="dropdown-item" href="#">
-                      Key Partners (Superlife)
-                    </a>
-                  </li>
-                </ul>
-              </li> */}
-              <li>
-                {/* <a class="dropdown-item" href="#">
-                  <DropDownMenuSelect
-                    values={option}
-                    handleOnClick={this.handleOnClick}
-                  />
-                </a> */}
-              </li>
 
               <li class="nav-item dropdown">
                 <a
@@ -167,7 +71,7 @@ function MyPage({ children }) {
                   data-mdb-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  Dropdown link
+                  About Us
                 </a>
                 <ul
                   class="dropdown-menu"
@@ -175,17 +79,7 @@ function MyPage({ children }) {
                 >
                   <li>
                     <a class="dropdown-item" href="#">
-                      Action
-                    </a>
-                  </li>
-                  <li>
-                    <a class="dropdown-item" href="#">
-                      Another action
-                    </a>
-                  </li>
-                  <li>
-                    <a class="dropdown-item" href="#">
-                      Submenu &raquo;
+                      Institute Background &raquo;
                     </a>
                     <ul class="dropdown-menu dropdown-submenu">
                       <li>
@@ -193,39 +87,97 @@ function MyPage({ children }) {
                           Submenu item 1
                         </a>
                       </li>
-                      <li>
-                        <a class="dropdown-item" href="#">
-                          Submenu item 2
-                        </a>
-                      </li>
-                      <li>
-                        <a class="dropdown-item" href="#">
-                          Submenu item 3 &raquo;{" "}
-                        </a>
-                        <ul class="dropdown-menu dropdown-submenu">
-                          <li>
-                            <a class="dropdown-item" href="#">
-                              Multi level 1
-                            </a>
-                          </li>
-                          <li>
-                            <a class="dropdown-item" href="#">
-                              Multi level 2
-                            </a>
-                          </li>
-                        </ul>
-                      </li>
-                      <li>
-                        <a class="dropdown-item" href="#">
-                          Submenu item 4
-                        </a>
-                      </li>
-                      <li>
-                        <a class="dropdown-item" href="#">
-                          Submenu item 5
-                        </a>
-                      </li>
                     </ul>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="#">
+                      Motivation &raquo;
+                    </a>
+                    <div class="dropdown-menu dropdown-submenu">
+                      <div
+                        className="px-4"
+                        style={{ height: "fit-content", width: "25vw" }}
+                      >
+                        {/* <a class="dropdown-item" href="#">
+                          Submenu item 1
+                        </a> */}
+                        <p>
+                          <h4 className="text-center">Our Motivation</h4>
+                          We are a modern and innovative support system created
+                          to provide support to those who want to excel in their
+                          career of network marketing, politics, health,
+                          teaching etc. Talking about network marketing which is
+                          our main nitch, the average person just by hearing the
+                          name ‘network marketing” wouldn’t want to give a
+                          listening ear. However, it has been proven that most
+                          people actually give it a chance when they are guided
+                          to understand the basics about the industry. So in an
+                          attempt to know why many people hate network
+                          marketing, we found out that many people from the
+                          first sight don’t like the name network marketing
+                          because they know very little or nothing about it. All
+                          they will tell you is “network marketing is about
+                          buying and selling products , bringing 2 people to
+                          bring 2 people…” etc. And this can be traced from the
+                          fact that most companies, team leaders, individuals in
+                          network marketing don’t have a good mastery and hence
+                          don’t provide necessary professional support and
+                          training. Reasons why many adventurers, first timers,
+                          darers who have little or no results in this industry
+                          keep painting a negative image and impressions about
+                          network marketing even when they are in a good and
+                          genuine company. Again The most disturbing part of it
+                          is that the rise of ponzy schemes, scams and fake
+                          network marketing companies is alarming. Reasons why
+                          we have more victims who ofcourse don’t appreciate the
+                          industry because of their negative experiences. Very
+                          few companies have systems that help them to do things
+                          right. Dream Institute for Professionalism(DIP) was
+                          formed to solve the above mentioned challenges. DIP is
+                          an innovative modern support system which provides
+                          coaching and mentorship through expertise tools. We
+                          believe through DIP we will redefine the industry and
+                          give it a positive image that it deserves.
+                        </p>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="#">
+                      Key Partners (SuperLife) &raquo;
+                    </a>
+                    <div class="dropdown-menu dropdown-submenu">
+                      <div
+                        className="px-4"
+                        style={{ height: "fit-content", width: "25vw" }}
+                      >
+                        <p>
+                          <h4 className="text-center">
+                            Key Partners (SuperLife){" "}
+                          </h4>
+                          Our institute (DIP) is practical and result oriented.
+                          We train and empower our leaders with skills w And
+                          provide them a proven company to practically apply the
+                          knowledge they acquire simultaneously to obtain
+                          feasible results. Our partner is SuperLife World SDN,
+                          one of the best professional network marketing
+                          companies in the world, based in Malaysia. SuperLife
+                          is a 4-years-old company that is recognized for its
+                          stem cell therapeutic superfoods. With its core
+                          business as a multilevel marketing and direct selling
+                          company, its businesses are conducted under strict
+                          rulings and business etiquette. Working alongside
+                          local authorities around the globe and its Switzerland
+                          partner Mibelle Group to produce superfoods, have made
+                          SuperLife’s business reliable and grow with strong
+                          expectations. Superlife world is founded by Mr Lai Tek
+                          Ken alongside other 3 co-founders. Paul Nair,
+                          Co-Founder and Executive Director, Harry Tee,
+                          Co-Founder and Executive Director, To know more about
+                          Superlife World, visit www.superlifeworld.com
+                        </p>
+                      </div>
+                    </div>
                   </li>
                 </ul>
               </li>
