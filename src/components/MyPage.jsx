@@ -184,7 +184,7 @@ function MyPage({ children }) {
 
               <li className="nav-item">
                 <Link
-                  to="/"
+                  to="/feedback"
                   className="nav-link actived"
                   aria-current="page"
                   style={{ color: "#222f3e", fontweight: "700" }}
