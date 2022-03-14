@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-
+// import code from "./Code"
 function MyPage({ children }) {
+  const [open, setOpen] = useState();
+
   return (
     <main>
       {/* Top header */}
@@ -32,7 +34,6 @@ function MyPage({ children }) {
             </span>
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            {/* <div className="bg-light shadow-3 p-4"> */}
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0 ">
               <li className="nav-item">
                 <Link
@@ -54,7 +55,7 @@ function MyPage({ children }) {
                   Testimonies
                 </Link>
               </li>
-              <li class="nav-item dropdown">
+              {/* <li class="nav-item dropdown">
                 <a
                   class="nav-link dropdown-toggle"
                   href="#"
@@ -78,10 +79,55 @@ function MyPage({ children }) {
                     >
                       Institutes Background
                     </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <div>
-                        <h4>Our Backgrounds</h4>
-                      </div>
+                    <ul class="dropdown-menu">
+                      <li>
+                        <a class="dropdown-item" href="#">
+                          Action
+                        </a>
+                      </li>
+                      <li>
+                        <a class="dropdown-item" href="#">
+                          Another action
+                        </a>
+                      </li>
+                      <li>
+                        <hr class="dropdown-divider" />
+                      </li>
+                      <li>
+                        <a class="dropdown-item" href="#">
+                          Something else here
+                        </a>
+                      </li>
+                      <li class="nav-item dropdown">
+                        <a
+                          class="dropdown-item dropdown-toggle"
+                          href="#"
+                          role="button"
+                          data-bs-toggle="dropdown"
+                        >
+                          Dropdown
+                        </a>
+                        <ul class="dropdown-menu">
+                          <li>
+                            <a class="dropdown-item" href="#">
+                              Action
+                            </a>
+                          </li>
+                          <li>
+                            <a class="dropdown-item" href="#">
+                              Another action
+                            </a>
+                          </li>
+                          <li>
+                            <hr class="dropdown-divider" />
+                          </li>
+                          <li>
+                            <a class="dropdown-item" href="#">
+                              Something else here
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
                     </ul>
                   </li>
                   <li>
@@ -95,14 +141,6 @@ function MyPage({ children }) {
                     >
                       Motivation
                     </a>
-                    <ul
-                      class="dropdown-menu "
-                      aria-labelledby="navbarDropdown2"
-                    >
-                      <div>
-                        <h4>Our Motivation</h4>
-                      </div>
-                    </ul>
                   </li>
                   <li>
                     <a class="dropdown-item" href="#">
@@ -110,7 +148,88 @@ function MyPage({ children }) {
                     </a>
                   </li>
                 </ul>
+              </li> */}
+              <li>
+                {/* <a class="dropdown-item" href="#">
+                  <DropDownMenuSelect
+                    values={option}
+                    handleOnClick={this.handleOnClick}
+                  />
+                </a> */}
               </li>
+
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  id="navbarDropdownMenuLink"
+                  role="button"
+                  data-mdb-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Dropdown link
+                </a>
+                <ul
+                  class="dropdown-menu"
+                  aria-labelledby="navbarDropdownMenuLink"
+                >
+                  <li>
+                    <a class="dropdown-item" href="#">
+                      Action
+                    </a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="#">
+                      Another action
+                    </a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="#">
+                      Submenu &raquo;
+                    </a>
+                    <ul class="dropdown-menu dropdown-submenu">
+                      <li>
+                        <a class="dropdown-item" href="#">
+                          Submenu item 1
+                        </a>
+                      </li>
+                      <li>
+                        <a class="dropdown-item" href="#">
+                          Submenu item 2
+                        </a>
+                      </li>
+                      <li>
+                        <a class="dropdown-item" href="#">
+                          Submenu item 3 &raquo;{" "}
+                        </a>
+                        <ul class="dropdown-menu dropdown-submenu">
+                          <li>
+                            <a class="dropdown-item" href="#">
+                              Multi level 1
+                            </a>
+                          </li>
+                          <li>
+                            <a class="dropdown-item" href="#">
+                              Multi level 2
+                            </a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        <a class="dropdown-item" href="#">
+                          Submenu item 4
+                        </a>
+                      </li>
+                      <li>
+                        <a class="dropdown-item" href="#">
+                          Submenu item 5
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+
               <li className="nav-item">
                 <Link
                   to="/"

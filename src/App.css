@@ -1,3 +1,5 @@
+@import "~mdb-ui-kit/css/mdb.min.css";
+
 :root {
   --primary: #005faf;
   --secondary: #b4b4b4;
@@ -71,4 +73,22 @@
 .spinnerContainer {
   height: 50vh;
   flex: 1;
+}
+.drop-down02 {
+  position: relative;
+}
+.drop-down02 .sub-menu02 {
+  position: absolute !important;
+  left: 100%;
+  top: 0;
+}
+
+.drop-down02 .dropdown-toggle {
+  padding: 0.25rem 1.1rem !important;
+}
+
+@media screen and (max-width: 767px) {
+  .drop-down02 .sub-menu02 {
+    position: static !important;
+  }
 }
