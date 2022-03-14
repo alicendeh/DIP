@@ -24,7 +24,17 @@ function Team() {
           </div>
           <Carousel.Caption>
             <h1 style={{ fontWeight: "bold" }}>Team</h1>
-            <h3>Always available to be and make a difference</h3>
+            <h3 style={{ color: "#192a56", fontWeight: "bold" }}>
+              {" "}
+              Years of personal experience have proven that the saying by John
+              C. Maxwell “Everything rises and falls on leadership” is hardly an
+              exaggeration. Leadership is at the center of the growth of every
+              institution, organizations, governments, networks and of course
+              network marketing just to name a few. DIP is a product conceived
+              in the quest to provide solutions to these leadership crisis in
+              some of the aforementioned sectors with keen interest in but not
+              limited to network marketing.
+            </h3>
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
@@ -40,7 +50,17 @@ function Team() {
 
           <Carousel.Caption>
             <h1 style={{ fontWeight: "bold" }}>Team</h1>
-            <h3>Always available to be and make a difference.</h3>
+            <h3 style={{ color: "#192a56", fontWeight: "bold" }}>
+              {" "}
+              Years of personal experience have proven that the saying by John
+              C. Maxwell “Everything rises and falls on leadership” is hardly an
+              exaggeration. Leadership is at the center of the growth of every
+              institution, organizations, governments, networks and of course
+              network marketing just to name a few. DIP is a product conceived
+              in the quest to provide solutions to these leadership crisis in
+              some of the aforementioned sectors with keen interest in but not
+              limited to network marketing.
+            </h3>
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
@@ -59,7 +79,17 @@ function Team() {
 
           <Carousel.Caption>
             <h1 style={{ fontWeight: "bold" }}>Team</h1>
-            <h3>Always available to be and make a difference.</h3>
+            <h3 style={{ color: "#192a56", fontWeight: "bold" }}>
+              {" "}
+              Years of personal experience have proven that the saying by John
+              C. Maxwell “Everything rises and falls on leadership” is hardly an
+              exaggeration. Leadership is at the center of the growth of every
+              institution, organizations, governments, networks and of course
+              network marketing just to name a few. DIP is a product conceived
+              in the quest to provide solutions to these leadership crisis in
+              some of the aforementioned sectors with keen interest in but not
+              limited to network marketing.
+            </h3>
           </Carousel.Caption>
         </Carousel.Item>
       </Carousel>
