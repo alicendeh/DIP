@@ -42,6 +42,16 @@ function DashPage({ children }) {
               Dashboard
             </p>
           </Link>
+          <li className="nav-item">
+            <Link
+              to="/feedback"
+              className="nav-link actived"
+              aria-current="page"
+              style={{ color: "#222f3e", fontweight: "700" }}
+            >
+              Weekly Task Submit
+            </Link>
+          </li>
           <button
             className="navbar-toggler"
             type="button"

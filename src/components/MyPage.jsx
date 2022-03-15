@@ -51,16 +51,6 @@ function MyPage({ children }) {
                   Home
                 </Link>
               </li>
-              <li className="nav-item">
-                <Link
-                  to="/testimony"
-                  className="nav-link actived"
-                  aria-current="page"
-                  style={{ color: "#222f3e", fontweight: "700" }}
-                >
-                  Testimonies
-                </Link>
-              </li>
 
               <li class="nav-item dropdown">
                 <a
@@ -96,7 +86,7 @@ function MyPage({ children }) {
                     <div class="dropdown-menu dropdown-submenu">
                       <div
                         className="px-4"
-                        style={{ height: "fit-content", width: "25vw" }}
+                        style={{ height: "fit-content", width: "26vw" }}
                       >
                         {/* <a class="dropdown-item" href="#">
                           Submenu item 1
@@ -149,7 +139,7 @@ function MyPage({ children }) {
                     <div class="dropdown-menu dropdown-submenu">
                       <div
                         className="px-4"
-                        style={{ height: "fit-content", width: "25vw" }}
+                        style={{ height: "fit-content", width: "20vw" }}
                       >
                         <p>
                           <h4 className="text-center">
@@ -181,17 +171,17 @@ function MyPage({ children }) {
                   </li>
                 </ul>
               </li>
-
               <li className="nav-item">
                 <Link
-                  to="/feedback"
+                  to="/testimony"
                   className="nav-link actived"
                   aria-current="page"
                   style={{ color: "#222f3e", fontweight: "700" }}
                 >
-                  Feedback
+                  Testimonies
                 </Link>
               </li>
+
               <li className="nav-item">
                 <Link
                   to="/"
@@ -250,15 +240,17 @@ function MyPage({ children }) {
       >
         <div className="container text-md-left">
           <div className="row">
-            <div className="col-md-4 mt-md-0 mt-3">
-              <h5 className="text-uppercase">Footer Content</h5>
+            <div className="col-md-3 mt-md-0 mt-3">
+              <h5 className="text-uppercase">
+                Dream Institution For Professionalism
+              </h5>
               <p>
-                Here you can use rows and columns to organize your footer
-                content.
+                Proven that most people actually give it a chance when they are
+                guided to understand the basics about the industry.
               </p>
             </div>
 
-            <div className="col-md-4 mb-md-0 mb-3">
+            <div className="col-md-3 mb-md-0 mb-3">
               <h5 className="text-uppercase">Links</h5>
 
               <ul className="list-unstyled">
@@ -301,7 +293,7 @@ function MyPage({ children }) {
               </ul>
             </div>
 
-            <div className="col-md-4 mb-md-0 mb-3">
+            <div className="col-md-3 mb-md-0 mb-3">
               <h5 className="text-uppercase">Links</h5>
 
               <ul className="list-unstyled">
@@ -326,7 +318,7 @@ function MyPage({ children }) {
                       listStyle: "none",
                     }}
                   >
-                    info@dip.com
+                    www.superlifeworld.com
                   </a>
                 </li>
                 <li>
@@ -343,7 +335,72 @@ function MyPage({ children }) {
                 </li>
               </ul>
             </div>
+            <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+              <h5 class="text-uppercase mb-4">Feedback to the Company</h5>
+
+              <div class="form-outline form-light mb-4">
+                <input
+                  type="email"
+                  id="form5Example2"
+                  class="form-control"
+                  style={{ border: "2px solid white" }}
+                />
+                <label
+                  class="form-label"
+                  for="form5Example2"
+                  style={{ color: "black" }}
+                >
+                  Email address
+                </label>
+              </div>
+              <div class="form-outline form-light mb-4">
+                <input
+                  type="number"
+                  id="form5Example2"
+                  class="form-control"
+                  style={{ border: "2px solid white" }}
+                />
+                <label
+                  class="form-label"
+                  for="form5Example2"
+                  style={{ color: "black" }}
+                >
+                  Phone Number
+                </label>
+              </div>
+              <div class="form-outline form-light mb-4">
+                {/* <input
+                  type="number"
+                  id="form5Example2"
+                  class="form-control"
+                  style={{ border: "2px solid white" }}
+                /> */}
+                <textarea
+                  class="form-control"
+                  id="exampleFormControlTextarea1"
+                  rows="5"
+                  style={{ border: "2px solid white" }}
+                ></textarea>
+                <label
+                  class="form-label"
+                  for="form5Example2"
+                  style={{ color: "black" }}
+                >
+                  Comment
+                </label>
+              </div>
+
+              <button
+                type="submit"
+                class="btn btn-outline-light btn-block"
+                style={{ fonWeight: "bold" }}
+              >
+                Send Feedback
+              </button>
+            </div>
+            {/* <!--Grid column--> */}
           </div>
+          {/* <!--Grid row--> */}
         </div>
 
         <div className="footer-copyright text-center py-3">
