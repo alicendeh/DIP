@@ -243,6 +243,15 @@ button {
      ========================================================================== */
 .page-wrapper {
   min-height: 100vh;
+  background-image: linear-gradient(
+      rgba(0, 0, 0, 0.4),
+      rgba(0, 0, 0, 0.4),
+      rgba(0, 0, 0, 0.2)
+    ),
+    url(../../../public/back.jpg);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 body {
@@ -295,7 +304,7 @@ h6 {
   background: #fa4251;
 }
 
-.bg-gra-01 {
+/* .bg-gra-01 {
   background: -webkit-gradient(
     linear,
     left bottom,
@@ -335,7 +344,7 @@ h6 {
   background: -moz-linear-gradient(bottom left, #08aeea 0%, #b721ff 100%);
   background: -o-linear-gradient(bottom left, #08aeea 0%, #b721ff 100%);
   background: linear-gradient(to top right, #08aeea 0%, #b721ff 100%);
-}
+} */
 
 /* ==========================================================================
      #SPACING
