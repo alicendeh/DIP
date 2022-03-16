@@ -16,15 +16,23 @@ function PendingView() {
         className="pend"
         style={{
           width: "100vw",
-          height: "100%",
+          height: "100vh",
           display: "flex",
           justifyContent: "center",
           alignContent: "center",
         }}
       >
-        <div className="view" style={{ width: "60%", height: "70%" }}>
-          <h3 style={{ textAlign: "center", color: "grey" }}>
-            Your Request is on Hold please be patient
+        <div
+          className="view d-flex flex-column justify-content-center align-items-center"
+          style={{ width: "60%", height: "70%" }}
+        >
+          <h3
+            style={{ textAlign: "center", color: "grey", fontWeight: "bolder" }}
+          >
+            Your Request is on Hold. A small token to be paid by all members who
+            wants to use the system using either MTN Mobile Money or Orange
+            Money. Pay 10,000XAF to this number and send a screenshot to this
+            number on whatsapp to confirm your transaction.
           </h3>
 
           <Lottie options={defaultOptions} height={400} width={"70%"} />
