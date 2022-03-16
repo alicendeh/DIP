@@ -24,6 +24,16 @@ function Upload() {
   const [images, setimages] = useState();
   const [showSuccessModal, setshowSuccessModal] = useState(false);
   const [toggle, setToggle] = useState("free", "premium");
+  const [toggle1, setToggle1] = useState(
+    "courses",
+    "systemfundamentals",
+    "advancecertificationprogram",
+    "DIPcoachingcertification",
+    "DIPmentorcertificate",
+    "customizedtraining",
+    "DIPprokit",
+    "buildingblocks"
+  );
   const { name, author } = formData;
 
   const handleChange = (e) => {
@@ -38,6 +48,10 @@ function Upload() {
   const handleImageChange = (e) => {
     let image = e.target.files[0];
     setSelectedImage(image);
+  };
+
+  const handleSelectCategory = (e) => {
+    setToggle1(e.target.value);
   };
 
   const handleSelectFreeOrPremium = (e) => {
@@ -127,20 +141,35 @@ function Upload() {
                   </Form.Select>
                 </Form.Group>
                 <Form.Group as={Col} md="6">
-                  <Form.Label>Upload Book</Form.Label>
-                  <Form.Control
-                    required
-                    type="file"
-                    name="upload"
-                    accept="application/pdf , application/msword,application/vnd.ms-excel,application/vnd.ms-powerpoint,text/plain"
-                    placeholder="Select A Book"
-                    onChange={(e) => handlePdfDocument(e)}
-                  />
-                  <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                  <Form.Label>Category</Form.Label>
+                  <Form.Select
+                    aria-label="Default select example"
+                    onChange={(e) => handleSelectCategory(e)}
+                  >
+                    <option>Open this select menu</option>
+                    <option value="courses">Courses</option>
+                    <option value="systemfundamentals">
+                      System Fundamentals
+                    </option>
+                    <option value="advancecertificationprogram">
+                      Advanced Certification Program
+                    </option>
+                    <option value="DIPcoachingcertification">
+                      DIP Coaching Certification
+                    </option>
+                    <option value="DIPmentorcertificate">
+                      DIP Mentor Certificate
+                    </option>
+                    <option value="customizedtraining">
+                      Customized Training
+                    </option>
+                    <option value="DIPprokit">DIP pro kit</option>
+                    <option value="buildingblocks">Buildings Blocks</option>
+                  </Form.Select>
                 </Form.Group>
               </Row>
               <Row>
-                <Form.Group as={Col} md="12" className="mb-3">
+                <Form.Group as={Col} md="6" className="mb-3">
                   <Form.Label>Upload Cover Page</Form.Label>
                   <Form.Control
                     required
@@ -150,6 +179,18 @@ function Upload() {
                     accept="image/*"
                     placeholder="Select A Book"
                     onChange={(e) => handleImageChange(e)}
+                  />
+                  <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                </Form.Group>
+                <Form.Group as={Col} md="6">
+                  <Form.Label>Upload Book</Form.Label>
+                  <Form.Control
+                    required
+                    type="file"
+                    name="upload"
+                    accept="application/pdf , application/msword,application/vnd.ms-excel,application/vnd.ms-powerpoint,text/plain,.mp4"
+                    placeholder="Select A Book"
+                    onChange={(e) => handlePdfDocument(e)}
                   />
                   <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                 </Form.Group>
