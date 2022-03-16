@@ -95,7 +95,7 @@ function Dashboard() {
                 }}
               >
                 <div className="text-center pt-3">
-                  <h1 style={{ color: "#0360AF" }}>FREE</h1>
+                  <h1 style={{ color: "#0360AF" }}>BASIC</h1>
                   <h4 style={{ color: "#008514" }}>PLAN</h4>
                   <div className="pt-2">
                     <div className="plan-1 d-flex" style={{ gap: "10px" }}>
@@ -103,10 +103,7 @@ function Dashboard() {
                         class="fas fa-check-circle pt-1"
                         style={{ color: "#747170" }}
                       ></i>
-                      <p>
-                        The next generation of the web's favorite icon toolkit
-                        is now available
-                      </p>
+                      <p>Customized training</p>
                     </div>
                     <div className="plan-1 d-flex" style={{ gap: "10px" }}>
                       <i
@@ -114,8 +111,8 @@ function Dashboard() {
                         style={{ color: "#747170" }}
                       ></i>
                       <p>
-                        The next generation of the web's favorite icon toolkit
-                        is now available
+                        Health/Business presentation (pictures,videos and
+                        write-ups)
                       </p>
                     </div>
                     <div className="plan-1 d-flex" style={{ gap: "10px" }}>
@@ -124,8 +121,7 @@ function Dashboard() {
                         style={{ color: "#747170" }}
                       ></i>
                       <p>
-                        The next generation of the web's favorite icon toolkit
-                        is now available
+                        Inspirational training (pictures,videos and write-ups)
                       </p>
                     </div>
 
@@ -134,10 +130,7 @@ function Dashboard() {
                         class="fas fa-times-circle pt-1"
                         style={{ color: "#747170" }}
                       ></i>
-                      <p>
-                        The next generation of the web's favorite icon toolkit
-                        is now available
-                      </p>
+                      <p>Rebirth Conference (pictures,videos and write-ups)</p>
                     </div>
                     <div className="plan-1 d-flex" style={{ gap: "10px" }}>
                       <i
@@ -145,8 +138,40 @@ function Dashboard() {
                         style={{ color: "#747170" }}
                       ></i>
                       <p>
-                        The next generation of the web's favorite icon toolkit
-                        is now available
+                        Executive leadership (pictures,videos and write-ups)
+                      </p>
+                    </div>
+                    <div className="plan-1 d-flex" style={{ gap: "10px" }}>
+                      <i
+                        class="fas fa-times-circle pt-1"
+                        style={{ color: "#747170" }}
+                      ></i>
+                      <p>DIP convention (pictures,videos and write-ups)</p>
+                    </div>
+                    <div className="plan-1 d-flex" style={{ gap: "10px" }}>
+                      <i
+                        class="fas fa-times-circle pt-1"
+                        style={{ color: "#747170" }}
+                      ></i>
+                      <p>
+                        Accelerator programs (pictures,videos and write-ups)
+                      </p>
+                    </div>
+                    <div className="plan-1 d-flex" style={{ gap: "10px" }}>
+                      <i
+                        class="fas fa-times-circle pt-1"
+                        style={{ color: "#747170" }}
+                      ></i>
+                      <p>30 days fast start (pictures,videos and write-ups)</p>
+                    </div>
+                    <div className="plan-1 d-flex" style={{ gap: "10px" }}>
+                      <i
+                        class="fas fa-times-circle pt-1"
+                        style={{ color: "#747170" }}
+                      ></i>
+                      <p>
+                        90 days leadership school (pictures,videos and
+                        write-ups)
                       </p>
                     </div>
                     <div className="plan-1 d-flex" style={{ gap: "10px" }}>
@@ -155,9 +180,23 @@ function Dashboard() {
                         style={{ color: "#747170" }}
                       ></i>
                       <p>
-                        The next generation of the web's favorite icon toolkit
-                        is now available
+                        Launching your business in one month (pictures,videos
+                        and write-ups)
                       </p>
+                    </div>
+                    <div className="plan-1 d-flex" style={{ gap: "10px" }}>
+                      <i
+                        class="fas fa-times-circle pt-1"
+                        style={{ color: "#747170" }}
+                      ></i>
+                      <p>Bootcamp (pictures,videos and write-ups)</p>
+                    </div>
+                    <div className="plan-1 d-flex" style={{ gap: "10px" }}>
+                      <i
+                        class="fas fa-times-circle pt-1"
+                        style={{ color: "#747170" }}
+                      ></i>
+                      <p>Masterminds (pictures,videos and write-ups)</p>
                     </div>
                     <div class="col-12 pb-3">
                       <button
@@ -187,89 +226,87 @@ function Dashboard() {
                   <h4 style={{ color: "#0360AF" }}>PLAN</h4>
                   <div className="pt-2">
                     <div
-                      className="plan-1 d-flex justify-content-center"
-                      style={{ gap: "10px" }}
+                      className="plan-1 d-flex flex-column"
+                      // style={{ gap: "10px" }}
                     >
-                      <i
-                        class="fas fa-check-circle pt-1"
-                        style={{ color: "#747170" }}
-                      ></i>
-                      <p>
-                        The next generation of the web's favorite icon library +
-                        toolkit is now available as a Beta release! Try out the
-                        Free version
-                      </p>
+                      <div className="d-flex">
+                        {" "}
+                        <i
+                          class="fas fa-check-circle pt-1"
+                          style={{ color: "#747170" }}
+                        ></i>
+                        <p>Courses</p>
+                      </div>
+
+                      <li
+                        className="d-flex flex-column"
+                        // style={{ paddingRight: "5em" }}
+                      >
+                        <ol style={{ paddingRight: "15em" }}>
+                          Penetration strategies
+                        </ol>
+                        <ol style={{ paddingRight: "15em" }}>
+                          Basic team building
+                        </ol>
+                        <ol style={{ paddingRight: "15em" }}>
+                          Advance team building
+                        </ol>
+                        <ol style={{ paddingRight: "15em" }}>
+                          Responsible leadership
+                        </ol>
+                        <ol style={{ paddingRight: "15em" }}>
+                          How to launch your business
+                        </ol>
+                      </li>
                     </div>
-                    <div
-                      className="plan-1 d-flex justify-content-center"
-                      style={{ gap: "10px" }}
-                    >
-                      <i
-                        class="fas fa-check-circle pt-1"
-                        style={{ color: "#747170" }}
-                      ></i>
-                      <p>
-                        The next generation of the web's favorite icon library +
-                        toolkit is now available as a Beta release! Try out the
-                        Free version
-                      </p>
+                    <div className="plan-1 d-flex flex-column">
+                      <div className="d-flex">
+                        {" "}
+                        <i
+                          class="fas fa-check-circle pt-1"
+                          style={{ color: "#747170" }}
+                        ></i>
+                        <p>System fundamentals</p>
+                      </div>
+
+                      <li className="d-flex flex-column">
+                        <ol style={{ paddingRight: "20em" }}>Love</ol>
+                        <ol style={{ paddingRight: "20em" }}>
+                          professionalism
+                        </ol>
+                        <ol style={{ paddingRight: "20em" }}>Sacrifice</ol>
+                        <ol style={{ paddingRight: "20em" }}>Leadership</ol>
+                        <ol style={{ paddingRight: "20em" }}>TeamWork</ol>
+                      </li>
                     </div>
-                    <div
-                      className="plan-1 d-flex justify-content-center"
-                      style={{ gap: "10px" }}
-                    >
+                    <div className="plan-1 d-flex " style={{ gap: "10px" }}>
                       <i
                         class="fas fa-times-circle pt-1"
                         style={{ color: "#747170" }}
                       ></i>
-                      <p>
-                        The next generation of the web's favorite icon library +
-                        toolkit is now available as a Beta release! Try out the
-                        Free version
-                      </p>
+                      <p>System Building Blocks</p>
                     </div>
 
-                    <div
-                      className="plan-1 d-flex justify-content-center"
-                      style={{ gap: "10px" }}
-                    >
+                    <div className="plan-1 d-flex " style={{ gap: "10px" }}>
                       <i
                         class="fas fa-times-circle pt-1"
                         style={{ color: "#747170" }}
                       ></i>
-                      <p>
-                        The next generation of the web's favorite icon library +
-                        toolkit is now available as a Beta release! Try out the
-                        Free version
-                      </p>
+                      <p>Advance Certification program</p>
                     </div>
-                    <div
-                      className="plan-1 d-flex justify-content-center"
-                      style={{ gap: "10px" }}
-                    >
+                    <div className="plan-1 d-flex " style={{ gap: "10px" }}>
                       <i
                         class="fas fa-check-circle pt-1"
                         style={{ color: "#747170" }}
                       ></i>
-                      <p>
-                        The next generation of the web's favorite icon library +
-                        toolkit is now available as a Beta release! Try out the
-                        Free version
-                      </p>
+                      <p>DIP coaching certification</p>
                     </div>
-                    <div
-                      className="plan-1 d-flex justify-content-center"
-                      style={{ gap: "10px" }}
-                    >
+                    <div className="plan-1 d-flex " style={{ gap: "10px" }}>
                       <i
                         class="fas fa-times-circle pt-1"
                         style={{ color: "#747170" }}
                       ></i>
-                      <p>
-                        The next generation of the web's favorite icon library +
-                        toolkit is now available as a Beta release! Try out the
-                        Free version
-                      </p>
+                      <p>DIP Mentor Certificate</p>
                     </div>
                     <div class="col-12 pb-3">
                       <button

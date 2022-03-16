@@ -5,7 +5,21 @@ function Testimony() {
   return (
     <MyPage>
       <div className={`${styles.test}`}>
-        <h3>Sorry me</h3>
+        <div
+          className="d-flex justify-content-center align-items-center"
+          style={{ height: "100%", width: "100%" }}
+        >
+          <h2
+            style={{
+              paddingBottom: "4em",
+              fontSize: "6em",
+              fontWeight: "bolder",
+              color: "white",
+            }}
+          >
+            Our Testimony
+          </h2>
+        </div>
       </div>
     </MyPage>
   );

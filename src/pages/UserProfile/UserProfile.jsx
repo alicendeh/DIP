@@ -84,7 +84,7 @@ function UserProfile() {
   return (
     <DashPage>
       <MyVerticallyCenteredModal show={modalShow} close={setModalShow} />
-      <div className="pt-3 pb-3">
+      <div className={`${styles.profileBody} pt-3 pb-3`}>
         <h2 style={{ textAlign: "center" }}>User Profile</h2>
         <Form onSubmit={(e) => onsubmit(e)}>
           <Row>

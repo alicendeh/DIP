@@ -22,6 +22,7 @@ function DashPage({ children }) {
               Dream Institution For Professionalism
             </p>
           </Link>
+
           <Link
             to="/dashboard"
             style={{
@@ -42,16 +43,25 @@ function DashPage({ children }) {
               Dashboard
             </p>
           </Link>
-          <li className="nav-item">
-            <Link
-              to="/feedback"
-              className="nav-link actived"
-              aria-current="page"
-              style={{ color: "#222f3e", fontweight: "700" }}
+          {/* <li className="nav-item"> */}
+          <Link
+            to="/feedback"
+            className="nav-link actived pr-0"
+            aria-current="page"
+            style={{ color: "#000", fontweight: "700" }}
+          >
+            <p
+              style={{
+                marginTop: "0.7em",
+                marginLeft: "2em",
+                fontSize: "16px",
+              }}
             >
-              Weekly Task Submit
-            </Link>
-          </li>
+              {" "}
+              Weekly Task
+            </p>
+          </Link>
+          {/* </li> */}
           <button
             className="navbar-toggler"
             type="button"
