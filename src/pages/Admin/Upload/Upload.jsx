@@ -34,6 +34,8 @@ function Upload() {
     "DIPprokit",
     "buildingblocks"
   );
+  const [videoSrc, setVideoSrc] = useState("");
+  const [item, setItem] = useState("video", "book");
   const { name, author } = formData;
 
   const handleChange = (e) => {
@@ -52,6 +54,9 @@ function Upload() {
 
   const handleSelectCategory = (e) => {
     setToggle1(e.target.value);
+  };
+  const handleSelectItem = (e) => {
+    setItem(e.target.value);
   };
 
   const handleSelectFreeOrPremium = (e) => {
@@ -73,6 +78,7 @@ function Upload() {
     dataToSend.append("images", images);
     dataToSend.append("images", selectedImage);
     dataToSend.append("name", formData.name);
+    dataToSend.append("category", toggle1);
     dataToSend.append("author", formData.author);
     dataToSend.append("plan", toggle);
 
@@ -90,7 +96,10 @@ function Upload() {
       }
     });
   };
-
+  const handleChangeVideo = ({ file }) => {
+    var url = URL.createObjectURL(file.originFileObj);
+    setVideoSrc(url);
+  };
   const handleClose = () => {
     setshowSuccessModal(false);
   };
@@ -192,12 +201,9 @@ function Upload() {
                     placeholder="Select A Book"
                     onChange={(e) => handlePdfDocument(e)}
                   />
-                  <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                 </Form.Group>
               </Row>
-              {/* <Row className=" px-3">
-                <Button type="submit">Submit form</Button>
-              </Row> */}
+
               <div class="col-12">
                 {adminState.bookSPinner ? (
                   <div
@@ -233,7 +239,7 @@ function SuccessModal({ title, show, handleClose }) {
         <Modal.Header closeButton>
           <Modal.Title>Successful</Modal.Title>
         </Modal.Header>
-        <Modal.Body>Book Succesfully added</Modal.Body>
+        <Modal.Body>Book Or Video Succesfully added</Modal.Body>
       </Modal>
     </>
   );
