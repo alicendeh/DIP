@@ -35,7 +35,7 @@ function Upload() {
     "buildingblocks"
   );
   const [videoSrc, setVideoSrc] = useState("");
-  const [item, setItem] = useState("video", "book");
+  const [item, setItem] = useState("video", "pdf");
   const { name, author } = formData;
 
   const handleChange = (e) => {
@@ -79,6 +79,7 @@ function Upload() {
     dataToSend.append("images", selectedImage);
     dataToSend.append("name", formData.name);
     dataToSend.append("category", toggle1);
+    dataToSend.append("dataType", toggle);
     dataToSend.append("author", formData.author);
     dataToSend.append("plan", toggle);
 
@@ -96,10 +97,10 @@ function Upload() {
       }
     });
   };
-  const handleChangeVideo = ({ file }) => {
-    var url = URL.createObjectURL(file.originFileObj);
-    setVideoSrc(url);
-  };
+  // const handleChangeVideo = ({ file }) => {
+  //   var url = URL.createObjectURL(file.originFileObj);
+  //   setVideoSrc(url);
+  // };
   const handleClose = () => {
     setshowSuccessModal(false);
   };
@@ -192,18 +193,45 @@ function Upload() {
                   <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                 </Form.Group>
                 <Form.Group as={Col} md="6">
+                  <Form.Label>Select Book Or Video</Form.Label>
+                  <Form.Select
+                    aria-label="Default select example"
+                    onChange={(e) => handleSelectItem(e)}
+                  >
+                    <option>Select file</option>
+                    <option value="pdf">Book</option>
+                    <option value="video">Video</option>
+                  </Form.Select>
+
+                  <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                </Form.Group>
+              </Row>
+              <Row className=" mb-3">
+                <Form.Group as={Col} md="6">
                   <Form.Label>Upload Book</Form.Label>
                   <Form.Control
                     required
                     type="file"
                     name="upload"
-                    accept="application/pdf , application/msword,application/vnd.ms-excel,application/vnd.ms-powerpoint,text/plain,.mp4"
+                    accept="application/pdf , application/msword,application/vnd.ms-excel,application/vnd.ms-powerpoint,text/plain"
                     placeholder="Select A Book"
+                    onChange={(e) => handlePdfDocument(e)}
+                    disabled={item == "video" ? true : false}
+                  />
+                </Form.Group>
+                <Form.Group as={Col} md="6">
+                  <Form.Label>Upload Video</Form.Label>
+                  <Form.Control
+                    required
+                    type="file"
+                    name="upload"
+                    accept=".mp4"
+                    placeholder="Select A Video"
+                    disabled={item == "pdf" ? true : false}
                     onChange={(e) => handlePdfDocument(e)}
                   />
                 </Form.Group>
               </Row>
-
               <div class="col-12">
                 {adminState.bookSPinner ? (
                   <div
