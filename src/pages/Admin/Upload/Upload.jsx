@@ -34,7 +34,6 @@ function Upload() {
     "DIPprokit",
     "buildingblocks"
   );
-  const [videoSrc, setVideoSrc] = useState("");
   const [item, setItem] = useState("video", "pdf");
   const { name, author } = formData;
 
@@ -79,7 +78,7 @@ function Upload() {
     dataToSend.append("images", selectedImage);
     dataToSend.append("name", formData.name);
     dataToSend.append("category", toggle1);
-    dataToSend.append("dataType", toggle);
+    dataToSend.append("dataType", item);
     dataToSend.append("author", formData.author);
     dataToSend.append("plan", toggle);
 
