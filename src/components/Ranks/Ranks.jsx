@@ -17,7 +17,7 @@ function Ranks() {
       >
         DIP Recognition Ranks
       </h2>
-      <div className="d-flex flex-wrap">
+      <div className="d-flex justify-content-center flex-wrap">
         <Card
           border="light"
           style={{

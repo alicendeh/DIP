@@ -1,6 +1,8 @@
 import React from "react";
 import Fade from "react-reveal/Fade";
 
+import styles from "../pages/Home/Home.module.css";
+
 function Vision() {
   return (
     <div
@@ -15,7 +17,7 @@ function Vision() {
       <div className="text-center pt-5 pb-5">
         <h2 style={{ fontWeight: "bold", color: "#222f3e" }}>Our Vision</h2>
       </div>
-      <div className="container py-3 d-flex">
+      <div className={` ${styles.vision} container  py-3 d-flex`}>
         <Fade left>
           <div className="col-lg-6 col-md-12 d-flex justify-content-center align-items-center pr-3">
             <div className="text-left">

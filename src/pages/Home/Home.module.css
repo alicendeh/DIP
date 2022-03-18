@@ -62,4 +62,9 @@
     display: flex;
     flex-direction: column;
   }
+  .vision {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
 }
