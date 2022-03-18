@@ -17,7 +17,7 @@ function Ranks() {
       >
         DIP Recognition Ranks
       </h2>
-      <div className="d-flex flex-wrap">
+      <div className="d-flex justify-content-center flex-wrap">
         <Card
           border="light"
           style={{
@@ -29,7 +29,6 @@ function Ranks() {
           }}
           className="col-md-12 col-sm-12"
         >
-          <Card.Header className={styles.header}></Card.Header>
           <Card.Body>
             <div className="d-flex justify-content-center">
               <i
@@ -54,7 +53,6 @@ function Ranks() {
           }}
           className="col-md-12 col-sm-12"
         >
-          <Card.Header className={styles.header}></Card.Header>
           <Card.Body>
             <div className="d-flex justify-content-center">
               <i

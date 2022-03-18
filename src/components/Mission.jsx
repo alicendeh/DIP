@@ -1,5 +1,7 @@
 import React from "react";
 import Fade from "react-reveal/Fade";
+
+import styles from "../pages/Home/Home.module.css";
 // import "../pages/Home/Home.css";
 function Mission() {
   return (
@@ -16,7 +18,7 @@ function Mission() {
         <div className="text-center pt-5 pb-3">
           <h2 style={{ fontWeight: "bold", color: "#222f3e" }}>Our Mission</h2>
         </div>
-        <div className="container py-3 d-flex">
+        <div className={` ${styles.mission} container  py-3 d-flex`}>
           <Fade top>
             <div className="col-lg-6 col-md-12 p-0">
               <div className="hold d-flex justify-content-center align-items-center">

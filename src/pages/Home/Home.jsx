@@ -22,11 +22,11 @@ function Home() {
       {" "}
       <div className=" pt-2 pb-5 mt-2 mb-2">
         <div
-          className="container home py-2 pb-5 d-flex  "
+          className={` ${styles.home} container py-2 pb-5 d-flex`}
           style={{ marginBottom: "5em" }}
         >
-          <Fade left>
-            <div className="col-lg-6 col-md-12 ">
+          <div className="col-lg-6 col-md-12 ">
+            <Fade left>
               <div className="text-align-left pt-3 pb-3">
                 <h1
                   style={{
@@ -75,10 +75,11 @@ function Home() {
                   marketing.
                 </h4>
               </div>
-            </div>
-          </Fade>
-          <Fade bottom>
-            <div className="col-lg-6 col-md-12 p-0">
+            </Fade>
+          </div>
+
+          <div className="col-lg-6 col-md-12 col-sm-12 p-0">
+            <Fade bottom>
               <div className="hold">
                 <img
                   src="/a.png"
@@ -86,8 +87,8 @@ function Home() {
                   style={{ width: "100%", height: "100%" }}
                 />
               </div>
-            </div>
-          </Fade>
+            </Fade>
+          </div>
           <div class="custom-shape-divider-bottom-1647012188">
             <svg
               data-name="Layer 1"
