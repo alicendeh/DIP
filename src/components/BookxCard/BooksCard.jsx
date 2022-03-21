@@ -20,7 +20,6 @@ function BooksCard({ book }) {
       console.log(err);
     }
   };
-  console.log(book);
   return (
     <>
       {book.dataType == "pdf" ? (

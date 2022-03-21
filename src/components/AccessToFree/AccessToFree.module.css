@@ -1,6 +1,11 @@
 .all {
   display: flex;
   justify-content: center;
+  width: 100%;
+  height: 100vh;
+}
+.flow {
+  width: 100%;
 }
 @media (min-width: 268px) and (max-width: 790.98px) {
   .flow {
@@ -8,7 +13,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 90%;
+    width: 100%;
   }
 }
 @media (min-width: 791px) and (max-width: 1450px) {
