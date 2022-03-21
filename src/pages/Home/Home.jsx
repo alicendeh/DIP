@@ -59,7 +59,7 @@ function Home() {
                   </Link>
                 </div>
               </div>
-              <div className="row py-3">
+              <div className="row py-3" style={{ width: "100%" }}>
                 <h4
                   className="fs-5  "
                   style={{ color: "#222f3e", lineHeight: "1.5" }}
