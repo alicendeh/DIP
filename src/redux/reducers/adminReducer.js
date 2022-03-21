@@ -12,6 +12,7 @@ import {
   LOGOUT,
   ALL_FREE_BOOKS,
   FILTERED_FREE_BOOKS,
+  CURRENT_TASK,
   LOAD_ADMIN,
   UPDATED_ADMIN_INFO,
 } from "../ActionType";
@@ -81,6 +82,7 @@ const getUsersRequest = (state = INITIAL_STATE, { type, payload }) => {
         bookSPinner: false,
         newBook: payload,
       };
+
     case ALL_BOOKS:
       return {
         ...state,
