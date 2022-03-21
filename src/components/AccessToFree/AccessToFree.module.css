@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   width: 100%;
-  height: fit-content;
+  /* height: fit-content; */
 }
 .flow {
   width: 100%;
@@ -16,9 +16,8 @@
     width: 100%;
   }
 }
-@media (min-width: 791px) and (max-width: 1450px) {
+@media (min-width: 791px) and (max-width: 2750px) {
   .flow {
     display: flex;
-    /* width: 100%; */
   }
 }
