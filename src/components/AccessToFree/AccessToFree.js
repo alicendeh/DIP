@@ -21,7 +21,7 @@ function AccessToFree() {
   const dispatch = useDispatch();
   const data = useSelector((state) => state.admin);
   const { error, allFreeBooks, loading, freeBooksFilteredList } = data;
-  const [selectCategory, setSelectCategory] = useState("courses");
+  const [selectCategory, setSelectCategory] = useState("customizedtraining");
 
   const [alice, setalice] = useState([]);
 
@@ -58,21 +58,10 @@ function AccessToFree() {
                   aria-label="Default select example"
                   onChange={(e) => handleSelectCategory(e)}
                 >
-                  <option value="courses">Courses</option>
-                  <option value="systemfundamentals">
-                    System Fundamentals
-                  </option>
-                  <option value="advancecertificationprogram">
-                    Advance Certification Program
-                  </option>
-                  <option value="DIPcoachingcertification">
-                    DIP Coaching Certification
-                  </option>
-                  <option value="DIPmentorcertificate">
-                    DIP Mentor Certificate
+                  <option value="customizedtraining">
+                    Customized Training
                   </option>
                   <option value="DIPprokit">DIP Prokit</option>
-                  <option value="buildingblocks">Building Blocks</option>
                 </select>
               </div>
               <br />
