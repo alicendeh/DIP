@@ -61,7 +61,7 @@ function MyFree({ children }) {
                   to="/feedback"
                   className="nav-link actived"
                   aria-current="page"
-                  style={{ color: "#222f3e", fontweight: "700" }}
+                  style={{ color: "#222f3e", fontWeight: "700" }}
                 >
                   Weekly Task Submit
                 </Link>
