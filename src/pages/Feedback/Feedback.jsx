@@ -55,12 +55,12 @@ function Feedback() {
     dataToSend.append("name", name);
     dataToSend.append("sponsorsName", sponsorsName);
     dataToSend.append("email", email);
-    dataToSend.append("pdf", pdf);
+    dataToSend.append("images", pdf);
 
     const Task = { task, pdf };
     console.log(Task);
 
-    _addTask(name, email, sponsorsName, pdf).then((response) => {
+    _addTask(dataToSend).then((response) => {
       console.log(response, "answer");
       if (response.code === 400) {
         console.log("alice");
@@ -70,10 +70,17 @@ function Feedback() {
         setfailureToSend(response.data.message);
       } else {
         console.log("yaya");
+        dispatch(submitBookSPinner(false));
         dispatch(currentlyAddedTask(response));
         setshowSuccessModal(true);
       }
     });
+    setTask({
+      name: "",
+      email: "",
+      sponsorsName: "",
+    });
+    // setPdf(null);
   };
 
   return (
