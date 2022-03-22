@@ -25,6 +25,7 @@ import PDFViewer from "./pages/PDFViewer/PDFViewer";
 import Testimony from "./pages/Testimonies/Testimony";
 import Feedback from "./pages/Feedback/Feedback";
 import Videoplayer from "./pages/VideoPlayer/Videoplayer";
+import Task from "./pages/Admin/Task/Task";
 function ScrollToTop({ children }) {
   const { pathname } = useLocation();
   const user = useSelector((state) => state.user);
@@ -70,6 +71,7 @@ function Navigation() {
           <>
             <Route exact path="/users" element={<AllUsers />} />
             <Route exact path="/books" element={<Books />} />
+            <Route exact path="/alltask" element={<Task />} />
             <Route exact path="/upload" element={<Upload />} />
             <Route exact path="/profile" element={<Profile />} />
             <Route exact path="/feedback" element={<Feedback />} />

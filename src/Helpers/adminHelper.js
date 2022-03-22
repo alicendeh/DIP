@@ -132,6 +132,21 @@ const _viewAllBooks = async () => {
   }
 };
 
+const _viewAllTasks = async () => {
+  try {
+    const res = await axios.get(
+      `${process.env.REACT_APP_URL}/weeklyForm/GetAllWeeklyFeedbacks`
+    );
+    return res.data;
+  } catch (err) {
+    if (err.response.data) {
+      return { errorMessage: err.response.data.msg, code: 400 };
+    } else {
+      return { errorMessage: err.message, code: 400 };
+    }
+  }
+};
+
 const _deleteBook = async (bookID) => {
   try {
     const res = await axios.delete(
@@ -223,6 +238,7 @@ export {
   _upgradeUsersPlan,
   _denyUsersPlanUpgrade,
   _viewAllBooks,
+  _viewAllTasks,
   _deleteBook,
   _getFreeBooks,
   _updateAdminInfo,

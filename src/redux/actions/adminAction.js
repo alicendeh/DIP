@@ -14,7 +14,7 @@ import {
   ALL_FREE_BOOKS,
   UPDATED_ADMIN_INFO,
   LOAD_ADMIN,
-  CURRENT_TASK,
+  ALL_TASKS,
   SUPER_ADMIN_GETS_ALL_ADMIN,
   FILTRATION_ADMIN_RESULT,
 } from "../ActionType";
@@ -66,6 +66,13 @@ const currentlyAddedBook = (book) => {
 const getAllBooks = (books) => {
   return {
     type: ALL_BOOKS,
+    payload: books,
+  };
+};
+
+const getAllTaks = (books) => {
+  return {
+    type: ALL_TASKS,
     payload: books,
   };
 };
