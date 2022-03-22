@@ -1,6 +1,5 @@
 import React from "react";
 import Fade from "react-reveal/Fade";
-
 import styles from "../pages/Home/Home.module.css";
 // import "../pages/Home/Home.css";
 function Mission() {

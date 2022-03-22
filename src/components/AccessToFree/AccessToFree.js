@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { MyFree1 } from "../../components";
 import BooksCard from "../../components/BookxCard/BooksCard";
 import Unexpected from "../Unexpected";
@@ -21,6 +21,9 @@ function AccessToFree() {
   const dispatch = useDispatch();
   const data = useSelector((state) => state.admin);
   const { error, allFreeBooks, loading, freeBooksFilteredList } = data;
+  const [selectCategory, setSelectCategory] = useState("customizedtraining");
+
+  const [alice, setalice] = useState([]);
 
   useEffect(() => {
     dispatch(loadingState(true));
@@ -31,6 +34,16 @@ function AccessToFree() {
     _getFreeBooks().then((response) => dispatch(getAllFreeBooks(response)));
   }, []);
 
+  const handleSelectCategory = async (e) => {
+    setSelectCategory(e.target.value);
+  };
+  useEffect(() => {
+    let newArray = allFreeBooks.filter(
+      (book) => book.category === selectCategory
+    );
+    setalice(newArray);
+  }, [selectCategory]);
+
   return (
     <MyFree1>
       <div className={`${styles.all} row pt-3 pb-5 flex-lg-wrap`}>
@@ -39,6 +52,19 @@ function AccessToFree() {
             <Unexpected />
           ) : (
             <div className="col-12">
+              <div className="col-4">
+                <select
+                  class="form-select"
+                  aria-label="Default select example"
+                  onChange={(e) => handleSelectCategory(e)}
+                >
+                  <option value="customizedtraining">
+                    Customized Training
+                  </option>
+                  <option value="DIPprokit">DIP Prokit</option>
+                </select>
+              </div>
+              <br />
               {loading ? (
                 <div className={`containerCenter spinnerContainer`}>
                   <div className="spinner"></div>
@@ -56,20 +82,35 @@ function AccessToFree() {
                           ))}
                         </div>
                       ) : (
-                        <div
-                          className={` ${styles.flow} d-flex flex-wrap col-md-12  col-sm-12 `}
-                        >
-                          {allFreeBooks.map((book, index) => (
-                            <div key={index}>
-                              <BooksCard book={book} index={index} />
-                            </div>
-                          ))}
+                        <div>
+                          <h3 className="fw-bold">{selectCategory}</h3>
+                          <div
+                            className={` ${styles.flow} d-flex flex-wrap col-md-12  col-sm-12 `}
+                          >
+                            {alice.length <= 0 ? (
+                              <div
+                                className="d-flex justify-content-center"
+                                style={{ width: "100%" }}
+                              >
+                                {" "}
+                                <LottieVIew />
+                              </div>
+                            ) : (
+                              <div
+                                className={` ${styles.flow} d-flex flex-wrap col-md-12  col-sm-12 `}
+                              >
+                                {alice.map((book, index) => (
+                                  <BooksCard book={book} index={index} />
+                                ))}
+                              </div>
+                            )}
+                          </div>
                         </div>
                       )}
                     </div>
                   ) : (
                     <div className="containerColumn fw-bold ">
-                      <Lottie
+                      {/* <Lottie
                         options={defaultOptions}
                         height={400}
                         width={"70%"}
@@ -79,8 +120,8 @@ function AccessToFree() {
                           fontSize: 21,
                         }}
                       >
-                        All books will appear hear
-                      </p>
+                        All books will appear here
+                      </p> */}
                     </div>
                   )}
                 </div>
@@ -94,3 +135,18 @@ function AccessToFree() {
 }
 
 export default AccessToFree;
+
+const LottieVIew = () => {
+  return (
+    <div className="containerColumn fw-bold ">
+      <Lottie options={defaultOptions} height={400} width={"70%"} />
+      <p
+        style={{
+          fontSize: 21,
+        }}
+      >
+        All books For this Category will appear here
+      </p>
+    </div>
+  );
+};

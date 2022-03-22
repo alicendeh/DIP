@@ -8,11 +8,16 @@ import {
   REGISTER_FAILED,
   IS_LOADING,
   LOAD_USER,
+  UPLOAD_SPINNER,
+  CURRENT_TASK,
   UPDATED_USER_INFO,
 } from "../ActionType";
 
 const initialState = {
   // token: localStorage.getItem("token"),
+
+  newTask: [],
+  bookSPinner: false,
   isAuthenticated: null,
   Loading: false,
   user: null,
@@ -62,6 +67,19 @@ export default function (state = initialState, action) {
         ...state,
         Loading: true,
       };
+    case CURRENT_TASK:
+      return {
+        ...state,
+        bookSPinner: false,
+        newTask: payload,
+      };
+    case UPLOAD_SPINNER:
+      return {
+        ...state,
+        bookSPinner: payload,
+        error: null,
+      };
+
     default:
       return state;
   }

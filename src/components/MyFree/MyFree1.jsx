@@ -56,6 +56,16 @@ function MyFree1({ children }) {
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
               <li className="nav-item pt-4">
                 <Link
+                  to="/feedback"
+                  className="nav-link actived"
+                  aria-current="page"
+                  style={{ color: "#222f3e", fontWeight: "700" }}
+                >
+                  Weekly Task Submit
+                </Link>
+              </li>
+              <li className="nav-item pt-4">
+                <Link
                   to="/userprofile"
                   className={` ${styles.hideName}  nav-link actived`}
                   aria-current="page"

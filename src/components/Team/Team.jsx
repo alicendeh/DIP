@@ -1,5 +1,6 @@
 import React from "react";
 import { Carousel } from "react-bootstrap";
+import styles from "./Team.module.css";
 function Team() {
   return (
     <div style={{ height: "50%", marginTop: "7em" }}>
@@ -24,16 +25,16 @@ function Team() {
           </div>
           <Carousel.Caption>
             <h1 style={{ fontWeight: "bold" }}>Team</h1>
-            <h3 style={{ color: "#192a56", fontWeight: "bold" }}>
+            <h3
+              className={` ${styles.teamText}`}
+              style={{ color: "#fff", fontWeight: "bold" }}
+            >
               {" "}
               Years of personal experience have proven that the saying by John
               C. Maxwell “Everything rises and falls on leadership” is hardly an
               exaggeration. Leadership is at the center of the growth of every
               institution, organizations, governments, networks and of course
-              network marketing just to name a few. DIP is a product conceived
-              in the quest to provide solutions to these leadership crisis in
-              some of the aforementioned sectors with keen interest in but not
-              limited to network marketing.
+              network marketing just to name a few.
             </h3>
           </Carousel.Caption>
         </Carousel.Item>
@@ -50,16 +51,16 @@ function Team() {
 
           <Carousel.Caption>
             <h1 style={{ fontWeight: "bold" }}>Team</h1>
-            <h3 style={{ color: "#192a56", fontWeight: "bold" }}>
+            <h3
+              className={` ${styles.teamText}`}
+              style={{ color: "#fff", fontWeight: "bold" }}
+            >
               {" "}
               Years of personal experience have proven that the saying by John
               C. Maxwell “Everything rises and falls on leadership” is hardly an
               exaggeration. Leadership is at the center of the growth of every
               institution, organizations, governments, networks and of course
-              network marketing just to name a few. DIP is a product conceived
-              in the quest to provide solutions to these leadership crisis in
-              some of the aforementioned sectors with keen interest in but not
-              limited to network marketing.
+              network marketing just to name a few.
             </h3>
           </Carousel.Caption>
         </Carousel.Item>
@@ -79,16 +80,16 @@ function Team() {
 
           <Carousel.Caption>
             <h1 style={{ fontWeight: "bold" }}>Team</h1>
-            <h3 style={{ color: "#192a56", fontWeight: "bold" }}>
+            <h3
+              className={` ${styles.teamText}`}
+              style={{ color: "#fff", fontWeight: "bold" }}
+            >
               {" "}
               Years of personal experience have proven that the saying by John
               C. Maxwell “Everything rises and falls on leadership” is hardly an
               exaggeration. Leadership is at the center of the growth of every
               institution, organizations, governments, networks and of course
-              network marketing just to name a few. DIP is a product conceived
-              in the quest to provide solutions to these leadership crisis in
-              some of the aforementioned sectors with keen interest in but not
-              limited to network marketing.
+              network marketing just to name a few.
             </h3>
           </Carousel.Caption>
         </Carousel.Item>

@@ -24,6 +24,7 @@ import FetchUses from "./pages/SuperAdmin/ViewAll/FetchUses";
 import PDFViewer from "./pages/PDFViewer/PDFViewer";
 import Testimony from "./pages/Testimonies/Testimony";
 import Feedback from "./pages/Feedback/Feedback";
+import Videoplayer from "./pages/VideoPlayer/Videoplayer";
 function ScrollToTop({ children }) {
   const { pathname } = useLocation();
   const user = useSelector((state) => state.user);
@@ -55,12 +56,12 @@ function Navigation() {
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route exact path="/testimony" element={<Testimony />} />
-          <Route exact path="/feedback" element={<Feedback />} />
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/signup" element={<Registeration />} />
           <Route exact path="/pending" element={<PendingView />} />
           <Route exact path="/rejected" element={<Rejected />} />
           <Route exact path="/pdfview" element={<PDFViewer />} />
+          <Route exact path="/videoplayer" element={<Videoplayer />} />
           <Route exact path="/userprofile" element={<UserProfile />} />
           <Route exact path="/login" element={<Login />} />
 
@@ -71,6 +72,7 @@ function Navigation() {
             <Route exact path="/books" element={<Books />} />
             <Route exact path="/upload" element={<Upload />} />
             <Route exact path="/profile" element={<Profile />} />
+            <Route exact path="/feedback" element={<Feedback />} />
             <Route exact path="/upgradetopremium" element={<Upgrade />} />
             <Route
               exact

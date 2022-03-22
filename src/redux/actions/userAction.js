@@ -8,29 +8,12 @@ import {
   IS_LOADING,
   LOAD_USER,
   UPDATED_USER_INFO,
+  CURRENT_TASK,
+  UPLOAD_SPINNER,
 } from "../ActionType";
 
 import axios from "axios";
 import setAuthToken from "../../components/utils/setAuthToken";
-
-// //load User
-// export const loadUser = () => async (dispatch) => {
-//   if (localStorage.token) {
-//     setAuthToken(localStorage.token);
-//   }
-
-//   try {
-//     const res = await axios.get(`${process.env.REACT_APP_URL}/users/LoadUser`);
-//     dispatch({
-//       type: USER_LOADED,
-//       payload: res.data,
-//     });
-//   } catch (error) {
-//     dispatch({
-//       type: AUTH_ERROR,
-//     });
-//   }
-// };
 
 export const registerUsers = (user) => {
   return {
@@ -99,5 +82,17 @@ export const updatedUserInfo = (user) => {
   return {
     type: UPDATED_USER_INFO,
     payload: user,
+  };
+};
+export const currentlyAddedTask = (book) => {
+  return {
+    type: CURRENT_TASK,
+    payload: book,
+  };
+};
+export const submitBookSPinner = (value) => {
+  return {
+    type: UPLOAD_SPINNER,
+    payload: value,
   };
 };

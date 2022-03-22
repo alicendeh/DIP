@@ -98,7 +98,7 @@ function SentModal(props) {
         </div>
         <p>
           Request Sent, But you need to wait for the Admin to grant you access!
-          For you to enjoy the free Plan!
+          For you to enjoy the Basic Plan!
         </p>
       </Modal.Body>
     </Modal>

@@ -1,9 +1,24 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import emailjs from "emailjs-com";
 // import code from "./Code"
 function MyPage({ children }) {
   const [open, setOpen] = useState();
+  const sendEmail = (e) => {
+    e.preventDefault();
 
+    emailjs
+      .sendForm(
+        "service_2ih8kre",
+        "template_101i6ot",
+        e.target,
+        "qEPbDcJbTvNX3kRmh"
+      )
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => console.log(err));
+  };
   return (
     <main>
       <link
@@ -335,12 +350,29 @@ function MyPage({ children }) {
                 </li>
               </ul>
             </div>
-            <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+            <form onSubmit={sendEmail} class="col-lg-3 col-md-6 mb-4 mb-lg-0">
               <h5 class="text-uppercase mb-4">Feedback to the Company</h5>
 
               <div class="form-outline form-light mb-4">
                 <input
+                  type="text"
+                  name="name"
+                  id="form5Example2"
+                  class="form-control"
+                  style={{ border: "2px solid white" }}
+                />
+                <label
+                  class="form-label"
+                  for="form5Example2"
+                  style={{ color: "black" }}
+                >
+                  Name
+                </label>
+              </div>
+              <div class="form-outline form-light mb-4">
+                <input
                   type="email"
+                  name="user_email"
                   id="form5Example2"
                   class="form-control"
                   style={{ border: "2px solid white" }}
@@ -357,6 +389,7 @@ function MyPage({ children }) {
                 <input
                   type="number"
                   id="form5Example2"
+                  name="phone"
                   class="form-control"
                   style={{ border: "2px solid white" }}
                 />
@@ -377,6 +410,7 @@ function MyPage({ children }) {
                 /> */}
                 <textarea
                   class="form-control"
+                  name="message"
                   id="exampleFormControlTextarea1"
                   rows="5"
                   style={{ border: "2px solid white" }}
@@ -397,7 +431,7 @@ function MyPage({ children }) {
               >
                 Send Feedback
               </button>
-            </div>
+            </form>
             {/* <!--Grid column--> */}
           </div>
           {/* <!--Grid row--> */}

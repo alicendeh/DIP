@@ -116,6 +116,21 @@ const _addABook = async (data) => {
     }
   }
 };
+const _addTask = async (data) => {
+  try {
+    let res = await axios.post(
+      `${process.env.REACT_APP_URL}weeklyForm/CreateWeeklyForm`,
+      data
+    );
+    return res.data;
+  } catch (err) {
+    if (err.response.data) {
+      return { errorMessage: err.response.data.msg, code: 400 };
+    } else {
+      return { errorMessage: err.message, code: 400 };
+    }
+  }
+};
 
 const _viewAllBooks = async () => {
   try {
@@ -220,6 +235,7 @@ export {
   _getAllUsers,
   _getAllStatistics,
   _addABook,
+  _addTask,
   _upgradeUsersPlan,
   _denyUsersPlanUpgrade,
   _viewAllBooks,
