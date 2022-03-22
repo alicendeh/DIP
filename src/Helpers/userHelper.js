@@ -88,6 +88,23 @@ const _userRequestFreePlan = async () => {
   }
 };
 
+const _addTask = async (data) => {
+  try {
+    let res = await axios.post(
+      `${process.env.REACT_APP_URL}/weeklyForm/CreateWeeklyForm`,
+      data
+    );
+    console.log(res.data, "from server");
+    return res.data;
+  } catch (err) {
+    if (err.response.data) {
+      return { errorMessage: err.response.data.msg, code: 400 };
+    } else {
+      return { errorMessage: err.message, code: 400 };
+    }
+  }
+};
+
 const _userRequestPremiumPlan = async () => {
   try {
     const res = await axios.put(
@@ -137,4 +154,5 @@ export {
   _userRequestFreePlan,
   _userRequestPremiumPlan,
   _updateUserInfo,
+  _addTask,
 };

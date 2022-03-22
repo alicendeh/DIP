@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Row, Button, Modal } from "react-bootstrap";
 import "./Feedback.css";
@@ -8,7 +8,7 @@ import {
   submitBookSPinner,
   currentlyAddedTask,
 } from "../../redux/actions/userAction";
-import { _addTask } from "../../Helpers/adminHelper";
+import { _addTask } from "../../Helpers/userHelper";
 import animationData from "../../annimations/56132-error.json";
 import Lottie from "react-lottie";
 
@@ -20,11 +20,15 @@ const defaultOptions = {
 
 function Feedback() {
   const user = useSelector((state) => state.user);
-  const [Task, setTask] = useState({
+  const [task, setTask] = useState({
     name: "",
     sponsorName: "",
     email: "",
   });
+
+  useEffect(() => {
+    _loadeCurrentlyLogedInUser().then((data) => dispatch(loadUser(data)));
+  }, []);
 
   const adminState = useSelector((state) => state.admin);
   const [pdf, setPdf] = useState();
@@ -33,9 +37,9 @@ function Feedback() {
   const [showRejectionModal, setshowRejectionModal] = useState(false);
 
   const [failureToSend, setfailureToSend] = useState(null);
-  const { name, sponsorsName, email } = Task;
+  const { name, sponsorsName, email } = task;
   const handleChange = (e) => {
-    setTask({ ...Task, [e.target.name]: e.target.value });
+    setTask({ ...task, [e.target.name]: e.target.value });
   };
   const handlePdfDocument = (e) => {
     let pdf1 = e.target.files[0];
@@ -48,13 +52,16 @@ function Feedback() {
     e.preventDefault();
     dispatch(submitBookSPinner(true));
     const dataToSend = new FormData();
-    dataToSend.append("name", Task.name);
-    dataToSend.append("sponsorsName", Task.sponsorsName);
-    dataToSend.append("email", Task.email);
+    dataToSend.append("name", name);
+    dataToSend.append("sponsorsName", sponsorsName);
+    dataToSend.append("email", email);
     dataToSend.append("pdf", pdf);
 
-    _addTask(dataToSend).then((response) => {
-      console.log(response);
+    const Task = { task, pdf };
+    console.log(Task);
+
+    _addTask(name, email, sponsorsName, pdf).then((response) => {
+      console.log(response, "answer");
       if (response.code === 400) {
         console.log("alice");
 
@@ -62,7 +69,6 @@ function Feedback() {
         setshowRejectionModal(true);
         setfailureToSend(response.data.message);
       } else {
-        _loadeCurrentlyLogedInUser().then((data) => dispatch(loadUser(data)));
         console.log("yaya");
         dispatch(currentlyAddedTask(response));
         setshowSuccessModal(true);
