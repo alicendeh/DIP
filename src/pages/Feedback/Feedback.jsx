@@ -2,11 +2,21 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Row, Button, Modal } from "react-bootstrap";
 import "./Feedback.css";
-import axios from "axios";
+import { loadUser } from "../../redux/actions/userAction";
+import { _loadeCurrentlyLogedInUser } from "../../Helpers/userHelper";
 import {
   submitBookSPinner,
   currentlyAddedTask,
 } from "../../redux/actions/userAction";
+import { _addTask } from "../../Helpers/adminHelper";
+import animationData from "../../annimations/56132-error.json";
+import Lottie from "react-lottie";
+
+const defaultOptions = {
+  loop: true,
+  autoplay: true,
+  animationData: animationData,
+};
 
 function Feedback() {
   const user = useSelector((state) => state.user);
@@ -20,6 +30,8 @@ function Feedback() {
   const [pdf, setPdf] = useState();
   const dispatch = useDispatch();
   const [showSuccessModal, setshowSuccessModal] = useState(false);
+  const [showRejectionModal, setshowRejectionModal] = useState(false);
+
   const [failureToSend, setfailureToSend] = useState(null);
   const { name, sponsorsName, email } = Task;
   const handleChange = (e) => {
@@ -41,28 +53,29 @@ function Feedback() {
     dataToSend.append("email", Task.email);
     dataToSend.append("pdf", pdf);
 
-    axios
-      .post(
-        `${process.env.REACT_APP_URL}/weeklyForm/CreateWeeklyForm`,
-        dataToSend
-      )
-      .then((response) => {
-        console.log(response);
-        if (response.code === 400) {
-          console.log("alice");
-          dispatch(submitBookSPinner(false));
+    _addTask(dataToSend).then((response) => {
+      console.log(response);
+      if (response.code === 400) {
+        console.log("alice");
 
-          setfailureToSend(response.data.message);
-        } else {
-          console.log("yaya");
-          dispatch(currentlyAddedTask(response));
-          setshowSuccessModal(true);
-        }
-      });
+        dispatch(submitBookSPinner(false));
+        setshowRejectionModal(true);
+        setfailureToSend(response.data.message);
+      } else {
+        _loadeCurrentlyLogedInUser().then((data) => dispatch(loadUser(data)));
+        console.log("yaya");
+        dispatch(currentlyAddedTask(response));
+        setshowSuccessModal(true);
+      }
+    });
   };
 
   return (
     <div style={{ width: "100%", height: "100vh" }}>
+      <MyVerticallyCenteredModal
+        show={showRejectionModal}
+        close={setshowRejectionModal}
+      />
       <SuccessModal show={showSuccessModal} handleClose={handleClose} />
       <div class="page-wrapper bg-gra-03 p-t-45 p-b-50">
         <div class="wrapper wrapper--w790">
@@ -160,13 +173,6 @@ function Feedback() {
                       </Button>
                     </Row>
                   )}
-                  {/* <button
-                    class="btn btn--radius-2 btn--red"
-                    type="submit"
-                    style={{ backgroundColor: "#fa4251" }}
-                  >
-                    Submit Task
-                  </button> */}
                 </div>
               </form>
             </div>
@@ -189,5 +195,61 @@ function SuccessModal({ title, show, handleClose }) {
         <Modal.Body>Book Or Video Succesfully added</Modal.Body>
       </Modal>
     </>
+  );
+}
+
+function MyVerticallyCenteredModal(props) {
+  return (
+    <Modal
+      show={props.show}
+      {...props}
+      size="lg"
+      aria-labelledby="contained-modal-title-vcenter"
+      centered
+    >
+      <Modal.Body>
+        <div
+          className="pend"
+          style={{
+            // width: "100vw",
+            // height: "100%",
+            display: "flex",
+            justifyContent: "center",
+            alignContent: "center",
+          }}
+        >
+          <div
+            className="view"
+            style={{
+              width: "40%",
+              height: "50%",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignContent: "center",
+            }}
+          >
+            <div className="containerColumn fw-bold ">
+              <Lottie options={defaultOptions} height={400} width={"70%"} />
+            </div>
+
+            <h3 style={{ textAlign: "center", color: "grey" }}>
+              Sorry, Something went wrong , Please try again later
+            </h3>
+          </div>
+        </div>
+      </Modal.Body>
+      <Modal.Footer>
+        <div
+          className="btn btn-danger"
+          onClick={() => {
+            localStorage.removeItem("I_REQUESTED");
+            props.close(false);
+          }}
+        >
+          close
+        </div>
+      </Modal.Footer>
+    </Modal>
   );
 }

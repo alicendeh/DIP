@@ -56,7 +56,6 @@ function Navigation() {
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route exact path="/testimony" element={<Testimony />} />
-          <Route exact path="/feedback" element={<Feedback />} />
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/signup" element={<Registeration />} />
           <Route exact path="/pending" element={<PendingView />} />
@@ -73,6 +72,7 @@ function Navigation() {
             <Route exact path="/books" element={<Books />} />
             <Route exact path="/upload" element={<Upload />} />
             <Route exact path="/profile" element={<Profile />} />
+            <Route exact path="/feedback" element={<Feedback />} />
             <Route exact path="/upgradetopremium" element={<Upgrade />} />
             <Route
               exact
