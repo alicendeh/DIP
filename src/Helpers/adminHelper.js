@@ -138,6 +138,7 @@ const _viewAllTasks = async () => {
       `${process.env.REACT_APP_URL}/weeklyForm/GetAllWeeklyFeedbacks`
     );
     return res.data;
+    console.log(res.data);
   } catch (err) {
     if (err.response.data) {
       return { errorMessage: err.response.data.msg, code: 400 };

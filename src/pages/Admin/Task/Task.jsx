@@ -1,13 +1,14 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Lottie from "react-lottie";
 import { AdminLayout } from "../../../pages";
 import { BookCard, Header, Unexpected } from "../../../components";
 import { _viewAllTasks } from "../../../Helpers/adminHelper";
-import { getAllBooks, loadingState } from "../../../redux/actions/adminAction";
+import { getAllTasks, loadingState } from "../../../redux/actions/adminAction";
 import animationData from "../../../annimations/72929-reading-book.json";
 import { useSelector, useDispatch } from "react-redux";
 import { loadUser } from "../../../redux/actions/userAction";
 import { _loadeCurrentlyLogedInUser } from "../../../Helpers/userHelper";
+import TaskCard from "../../../components/Admin/TaskCard/TaskCard";
 
 const defaultOptions = {
   loop: true,
@@ -16,19 +17,38 @@ const defaultOptions = {
 };
 
 function Task() {
+  const [holdTask, setHoldTask] = useState([]);
+
   const dispatch = useDispatch();
 
-  const data = useSelector((state) => state.user);
-  const { error, newTask, loading, booksFilteredList } = data;
+  const data = useSelector((state) => state.admin);
+  const { error, newTasks, loading, booksFilteredList } = data;
 
   useEffect(() => {
     dispatch(loadingState(true));
     _loadeCurrentlyLogedInUser().then((data) => dispatch(loadUser(data)));
-    _viewAllBooks().then((response) => dispatch(getAllBooks(response)));
+    _viewAllTasks().then((response) =>
+      //   dispatch(getAllTasks(response), console.log(response))
+      setHoldTask(response.form)
+    );
   }, []);
+  console.log(holdTask);
 
   return (
     <AdminLayout>
+      <Header title={"Tasks"} filtrationTask={holdTask} from={"Task Array"} />
+      <div className="carryall d-flex" style={{ width: "100%" }}>
+        <div className={`btn btn-danger mr-3`}>
+          <i
+            className="fas fa-trash"
+            style={{
+              color: "#fff",
+            }}
+          ></i>
+        </div>
+        <h3 className="mt-2">Clear All</h3>
+      </div>
+
       {error != null ? (
         <Unexpected />
       ) : (
@@ -39,11 +59,11 @@ function Task() {
             </div>
           ) : (
             <div>
-              {newTask.length > 0 ? (
+              {holdTask.length > 0 ? (
                 <div>
-                  {newTask.map((book, index) => (
+                  {holdTask.map((book, index) => (
                     <div key={index}>
-                      <BookCard book={book} index={index} />
+                      <TaskCard book={book} index={index} />
                     </div>
                   ))}
                 </div>

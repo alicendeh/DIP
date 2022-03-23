@@ -4,10 +4,11 @@ import { Dropdown } from "react-bootstrap";
 import {
   usersFilteredList,
   booksFilteredList,
+  tasksFilteredList,
 } from "../../../redux/actions/adminAction";
 import { useDispatch } from "react-redux";
 
-function Header({ hidden, title, filtrationList, from }) {
+function Header({ filtrationTask, hidden, title, filtrationList, from }) {
   const [searchValue, setSearchValue] = useState("");
   const [currentSelectValue, setcurrentSelectValue] = useState("");
   const [toggleSideMenu, settoggleSideMenu] = useState(false);
@@ -39,6 +40,14 @@ function Header({ hidden, title, filtrationList, from }) {
         );
 
         dispatch(usersFilteredList(result));
+      } else if (from === "Task Array") {
+        let result = filtrationTask.filter(
+          (item) =>
+            item.name.toLowerCase().includes(itemToFilter) ||
+            item.email.toLowerCase().includes(itemToFilter) ||
+            item.plan.toLowerCase().includes(itemToFilter)
+        );
+        dispatch(tasksFilteredList(result));
       }
     } else {
       if (from === "books Array") {
@@ -62,6 +71,8 @@ function Header({ hidden, title, filtrationList, from }) {
       dispatch(booksFilteredList(filtrationList));
     } else if (from === "user Array") {
       dispatch(usersFilteredList(filtrationList));
+    } else if (from === "Task Array") {
+      dispatch(tasksFilteredList(filtrationTask));
     }
     setcurrentSelectValue("");
   };
@@ -76,6 +87,18 @@ function Header({ hidden, title, filtrationList, from }) {
         dispatch(booksFilteredList(res));
       } else {
         let res = filtrationList.filter((item) =>
+          item.plan.toLowerCase().includes("premium")
+        );
+        dispatch(booksFilteredList(res));
+      }
+    } else if (from === "Task Array") {
+      if (e == "#/free") {
+        let res = filtrationTask.filter((item) =>
+          item.plan.toLowerCase().includes("free")
+        );
+        dispatch(booksFilteredList(res));
+      } else {
+        let res = filtrationTask.filter((item) =>
           item.plan.toLowerCase().includes("premium")
         );
         dispatch(booksFilteredList(res));
