@@ -82,12 +82,6 @@ function SentModal(props) {
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >
-      {/* <Modal.Header className="mheader" closeButton>
-        <div className="contain" style={{ width: "80px", height: "80px" }}>
-          <img src="/8.png" alt="" style={{ width: "100%", height: "100%" }} />
-        </div>
-      </Modal.Header> */}
-
       <Modal.Body>
         <div className="containt d-flex">
           <h4>Request sent and Pending</h4>{" "}

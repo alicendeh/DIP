@@ -6,8 +6,18 @@ import { login, _loadeCurrentlyLogedInUser } from "../../Helpers/userHelper";
 import { loginUser, isLoading, loadUser } from "../../redux/actions/userAction";
 import { useDispatch, useSelector } from "react-redux";
 import Alert from "../../components/Alert/Alert";
+import { Form, Col, Button, Row, Modal } from "react-bootstrap";
 import { Offline, Online } from "react-detect-offline";
 import Network from "../../components/Network/Network";
+import animationData from "../../annimations/5449-success-tick.json";
+import Lottie from "react-lottie";
+
+const defaultOptions = {
+  loop: true,
+  autoplay: true,
+  animationData: animationData,
+};
+
 function Login() {
   const user = useSelector((state) => state.user);
   let navigate = useNavigate();
@@ -26,6 +36,7 @@ function Login() {
 
   const dispatch = useDispatch();
   const [err, setErr] = useState();
+  const [modalShow, setModalShow] = React.useState(false);
   const [errMsg, setErrMsg] = useState();
   const [toggleEyePassword, setToggleEyePassword] = useState(false);
   const [formData, setFormData] = useState({
@@ -52,24 +63,28 @@ function Login() {
       if (response.code == 400) {
         setIsLoading(false);
 
-        setErrMsg(response.errorMessage);
+        setErrMsg("User not recognised");
         // console.log(response, "error");
+      } else if (response.code == 500) {
+        setErrMsg(
+          "Oops someting went wrong with our server, please try again later "
+        );
+      } else if (response.code == 200) {
       } else {
+        setModalShow(true);
         setIsLoading(false);
 
         dispatch(loginUser(response));
         _loadeCurrentlyLogedInUser().then((data) => dispatch(loadUser(data)));
       }
 
-      // console.log(response.errorMessage);
+      console.log(response);
     });
   };
-
-  useEffect(() => {
-    // console.log(errMsg, "boom");
-  }, []);
+  console.log(errMsg);
   return (
     <div className={`${styles.main}`}>
+      <MyVerticallyCenteredModal show={modalShow} close={setModalShow} />
       <div className={styles.box}>
         <div className={`${styles.firstPart} col-lg-6`}>
           <div className={styles.part}>
@@ -208,3 +223,57 @@ function Login() {
 }
 
 export default Login;
+
+function MyVerticallyCenteredModal(props) {
+  return (
+    <Modal
+      show={props.show}
+      {...props}
+      size="lg"
+      aria-labelledby="contained-modal-title-vcenter"
+      centered
+    >
+      <Modal.Body>
+        <div
+          className="pend"
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignContent: "center",
+          }}
+        >
+          <div
+            className="view"
+            style={{
+              width: "40%",
+              height: "50%",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignContent: "center",
+            }}
+          >
+            <div className="containerColumn fw-bold ">
+              <Lottie options={defaultOptions} height={400} width={"70%"} />
+            </div>
+            <h3 style={{ textAlign: "center", color: "grey" }}>
+              Login Succesfull
+            </h3>
+          </div>
+        </div>
+      </Modal.Body>
+      <Modal.Footer>
+        <div
+          className="btn btn-primary"
+          onClick={() => {
+            localStorage.removeItem("I_REQUESTED");
+            props.close(false);
+            window.location.reload();
+          }}
+        >
+          close
+        </div>
+      </Modal.Footer>
+    </Modal>
+  );
+}
