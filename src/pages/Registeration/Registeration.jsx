@@ -8,11 +8,21 @@ import { _registerUser } from "../../Helpers/userHelper";
 import Alert from "../../components/Alert/Alert";
 import { Offline, Online } from "react-detect-offline";
 import Network from "../../components/Network/Network";
+import animationData from "../../annimations/5449-success-tick.json";
+import Lottie from "react-lottie";
+
+const defaultOptions = {
+  loop: true,
+  autoplay: true,
+  animationData: animationData,
+};
+
 function Registeration() {
   const user = useSelector((state) => state.user);
   let navigate = useNavigate();
 
   const dispatch = useDispatch();
+  const [modalShow, setModalShow] = React.useState(false);
   const [toggleEyePassword, setToggleEyePassword] = useState(false);
   const [toggleEyePassword1, setToggleEyePassword1] = useState(false);
   const [validationPassword, setValidationPassword] = useState(false);
@@ -70,6 +80,7 @@ function Registeration() {
   // }
   return (
     <div className={`${styles.main}`}>
+      <MyVerticallyCenteredModal show={modalShow} close={setModalShow} />
       <div className={styles.box}>
         <div className={`${styles.secondPart} col-lg-6`}>
           <div className="text-left pt-3 px-4">
@@ -325,3 +336,57 @@ function Registeration() {
 //   // isAuthenticated: state.auth.isAuthenticated,
 // });
 export default Registeration;
+
+function MyVerticallyCenteredModal(props) {
+  return (
+    <Modal
+      show={props.show}
+      {...props}
+      size="lg"
+      aria-labelledby="contained-modal-title-vcenter"
+      centered
+    >
+      <Modal.Body>
+        <div
+          className="pend"
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignContent: "center",
+          }}
+        >
+          <div
+            className="view"
+            style={{
+              width: "40%",
+              height: "50%",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignContent: "center",
+            }}
+          >
+            <div className="containerColumn fw-bold ">
+              <Lottie options={defaultOptions} height={400} width={"70%"} />
+            </div>
+            <h3 style={{ textAlign: "center", color: "grey" }}>
+              Registeration Succesfull
+            </h3>
+          </div>
+        </div>
+      </Modal.Body>
+      <Modal.Footer>
+        <div
+          className="btn btn-primary"
+          onClick={() => {
+            localStorage.removeItem("I_REQUESTED");
+            props.close(false);
+            window.location.reload();
+          }}
+        >
+          close
+        </div>
+      </Modal.Footer>
+    </Modal>
+  );
+}

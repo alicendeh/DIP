@@ -70,9 +70,8 @@ function Login() {
           "Oops someting went wrong with our server, please try again later "
         );
       } else {
-        setModalShow(true);
         setIsLoading(false);
-
+        setModalShow(true);
         dispatch(loginUser(response));
         _loadeCurrentlyLogedInUser().then((data) => dispatch(loadUser(data)));
       }

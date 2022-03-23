@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Lottie from "react-lottie";
 import { AdminLayout } from "../../../pages";
-import { BookCard, Header, Unexpected } from "../../../components";
+import { BookCard, Header3, Unexpected } from "../../../components";
 import { _viewAllTasks } from "../../../Helpers/adminHelper";
 import { getAllTasks, loadingState } from "../../../redux/actions/adminAction";
 import animationData from "../../../annimations/72929-reading-book.json";
@@ -36,7 +36,7 @@ function Task() {
 
   return (
     <AdminLayout>
-      <Header title={"Tasks"} filtrationTask={holdTask} from={"Task Array"} />
+      <Header3 title={"Tasks"} filtrationTask={holdTask} from={"Task Array"} />
       <div className="carryall d-flex" style={{ width: "100%" }}>
         <div className={`btn btn-danger mr-3`}>
           <i

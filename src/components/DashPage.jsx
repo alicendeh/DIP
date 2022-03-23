@@ -98,15 +98,21 @@ function DashPage({ children }) {
                   backgroundColor: "violet",
                 }}
               >
-                <img
-                  src={
-                    user.user && user.user.avater !== ""
-                      ? user.user.avater
-                      : "/defaultUserPic.webp"
-                  }
-                  alt=""
-                  style={{ width: "100%", height: "100%", borderRadius: "50%" }}
-                />
+                <Link to="/userprofile">
+                  <img
+                    src={
+                      user.user && user.user.avater !== ""
+                        ? user.user.avater
+                        : "/defaultUserPic.webp"
+                    }
+                    alt=""
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      borderRadius: "50%",
+                    }}
+                  />
+                </Link>
               </div>
               {/* </div> */}
               <div className="pt-2 pl-2" style={{ cursor: "pointer" }}>
@@ -148,7 +154,9 @@ function DashPage({ children }) {
         <div className="container text-md-left">
           <div className="row">
             <div className="col-md-4 mt-md-0 mt-3">
-              <h5 className="text-uppercase">Footer Content</h5>
+              <h5 className="text-uppercase">
+                Dream Institustion for Professionalism
+              </h5>
               <p>
                 Here you can use rows and columns to organize your footer
                 content.
@@ -156,7 +164,7 @@ function DashPage({ children }) {
             </div>
 
             <div className="col-md-4 mb-md-0 mb-3">
-              <h5 className="text-uppercase">Links</h5>
+              <h5 className="text-uppercase">About</h5>
 
               <ul className="list-unstyled">
                 <li>
@@ -187,7 +195,7 @@ function DashPage({ children }) {
             </div>
 
             <div className="col-md-4 mb-md-0 mb-3">
-              <h5 className="text-uppercase">Links</h5>
+              <h5 className="text-uppercase">Contact Us</h5>
 
               <ul className="list-unstyled">
                 <li>
@@ -211,7 +219,7 @@ function DashPage({ children }) {
                     href="#!"
                     style={{ textDecoration: "none", color: "black" }}
                   >
-                    Yaounde, Lorem ipsum dolo
+                    Limbe, G
                   </a>
                 </li>
               </ul>
