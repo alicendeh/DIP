@@ -116,11 +116,11 @@ const _addABook = async (data) => {
     }
   }
 };
-const _addTask = async (data) => {
+
+const _viewAllBooks = async () => {
   try {
-    let res = await axios.post(
-      `${process.env.REACT_APP_URL}weeklyForm/CreateWeeklyForm`,
-      data
+    const res = await axios.get(
+      `${process.env.REACT_APP_URL}/admin/books/GetAllBook`
     );
     return res.data;
   } catch (err) {
@@ -132,12 +132,13 @@ const _addTask = async (data) => {
   }
 };
 
-const _viewAllBooks = async () => {
+const _viewAllTasks = async () => {
   try {
     const res = await axios.get(
-      `${process.env.REACT_APP_URL}/admin/books/GetAllBook`
+      `${process.env.REACT_APP_URL}/weeklyForm/GetAllWeeklyFeedbacks`
     );
     return res.data;
+    console.log(res.data);
   } catch (err) {
     if (err.response.data) {
       return { errorMessage: err.response.data.msg, code: 400 };
@@ -235,10 +236,10 @@ export {
   _getAllUsers,
   _getAllStatistics,
   _addABook,
-  _addTask,
   _upgradeUsersPlan,
   _denyUsersPlanUpgrade,
   _viewAllBooks,
+  _viewAllTasks,
   _deleteBook,
   _getFreeBooks,
   _updateAdminInfo,

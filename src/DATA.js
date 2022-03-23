@@ -15,6 +15,10 @@ export const ICON_DATA_SET = [
     name: "fas fa-user ",
     path: "/profile",
   },
+  {
+    name: "fa fa-address-book",
+    path: "/alltask",
+  },
 ];
 
 export const COLOR_ARRAY = [

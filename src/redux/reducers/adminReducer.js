@@ -6,6 +6,7 @@ import {
   SET_ERROR,
   CURRENT_BOOK,
   ALL_BOOKS,
+  ALL_TASKS,
   UPLOAD_SPINNER,
   FILTRATION_RESULT,
   FILTERED_BOOKS,
@@ -14,6 +15,7 @@ import {
   FILTERED_FREE_BOOKS,
   CURRENT_TASK,
   LOAD_ADMIN,
+  FILTRATION_TASKS,
   UPDATED_ADMIN_INFO,
 } from "../ActionType";
 
@@ -23,12 +25,14 @@ const INITIAL_STATE = {
   users: [],
   loading: false,
   error: null,
+  newTasks: [],
   newBook: [],
   allBooks: [],
   allFreeBooks: [],
   bookSPinner: false,
   usersFilteredList: [],
   booksFilteredList: [],
+  taskFilteredList: [],
   freeBooksFilteredList: [],
 };
 
@@ -89,6 +93,14 @@ const getUsersRequest = (state = INITIAL_STATE, { type, payload }) => {
         loading: false,
         allBooks: payload.books,
       };
+
+    case ALL_TASKS:
+      return {
+        ...state,
+        loading: false,
+        newTasks: payload.books,
+      };
+
     case ALL_FREE_BOOKS:
       return {
         ...state,
@@ -107,6 +119,13 @@ const getUsersRequest = (state = INITIAL_STATE, { type, payload }) => {
         ...state,
         usersFilteredList: payload,
       };
+
+    case FILTRATION_TASKS:
+      return {
+        ...state,
+        taskFilteredList: payload,
+      };
+
     case FILTERED_BOOKS:
       return {
         ...state,

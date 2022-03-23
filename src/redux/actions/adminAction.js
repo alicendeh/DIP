@@ -14,7 +14,8 @@ import {
   ALL_FREE_BOOKS,
   UPDATED_ADMIN_INFO,
   LOAD_ADMIN,
-  CURRENT_TASK,
+  ALL_TASKS,
+  FILTRATION_TASKS,
   SUPER_ADMIN_GETS_ALL_ADMIN,
   FILTRATION_ADMIN_RESULT,
 } from "../ActionType";
@@ -70,6 +71,13 @@ const getAllBooks = (books) => {
   };
 };
 
+const getAllTasks = (books) => {
+  return {
+    type: ALL_TASKS,
+    payload: books,
+  };
+};
+
 const getAllFreeBooks = (books) => {
   return {
     type: ALL_FREE_BOOKS,
@@ -87,6 +95,12 @@ const submitBookSPinner = (value) => {
 const usersFilteredList = (data) => {
   return {
     type: FILTRATION_RESULT,
+    payload: data,
+  };
+};
+const tasksFilteredList = (data) => {
+  return {
+    type: FILTRATION_TASKS,
     payload: data,
   };
 };
@@ -137,4 +151,6 @@ export {
   booksFilteredList,
   logout,
   freeBooksFilteredList,
+  getAllTasks,
+  tasksFilteredList,
 };

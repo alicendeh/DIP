@@ -82,12 +82,12 @@ function Upload() {
     dataToSend.append("author", formData.author);
     dataToSend.append("plan", toggle);
 
+    console.log(dataToSend);
     _addABook(dataToSend).then((response) => {
       console.log(response);
       if (response.code === 400) {
         console.log("alice");
         dispatch(submitBookSPinner(false));
-
         setfailureToSend(response.data.message);
       } else {
         console.log("yaya");
@@ -96,10 +96,7 @@ function Upload() {
       }
     });
   };
-  // const handleChangeVideo = ({ file }) => {
-  //   var url = URL.createObjectURL(file.originFileObj);
-  //   setVideoSrc(url);
-  // };
+
   const handleClose = () => {
     setshowSuccessModal(false);
   };

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { SuperAdminLayout } from "../..";
 import { Header } from "../../../components";
 import { Form, Col, Button, Row, Modal } from "react-bootstrap";
