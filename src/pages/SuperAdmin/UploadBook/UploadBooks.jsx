@@ -91,7 +91,7 @@ function Upload() {
           <div className="col-lg-12">
             <Form onSubmit={handleSubmit}>
               <Row className="mb-3">
-                <Form.Group as={Col} md="12">
+                <Form.Group as={Col} md="12" className="mb-4">
                   <Form.Label>Name Of Book</Form.Label>
                   <Form.Control
                     required
@@ -103,6 +103,7 @@ function Upload() {
                   />
                   <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                 </Form.Group>
+
                 <Form.Group as={Col} md="12">
                   <Form.Label>Author Of Book</Form.Label>
                   <Form.Control
@@ -117,7 +118,7 @@ function Upload() {
                 </Form.Group>
               </Row>
               <Row className="mb-3">
-                <Form.Group as={Col} md="12">
+                <Form.Group as={Col} md="12" className="mb-4">
                   <Form.Label>Type</Form.Label>
                   <Form.Select
                     aria-label="Default select example"
