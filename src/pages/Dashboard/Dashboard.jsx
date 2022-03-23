@@ -237,27 +237,25 @@ function Dashboard() {
                         ></i>
                         <p>Courses</p>
                       </div>
-
-                      <li
-                        className="d-flex flex-column"
-                        // style={{ paddingRight: "5em" }}
-                      >
-                        <ol style={{ paddingRight: "15em" }}>
-                          Penetration strategies
-                        </ol>
-                        <ol style={{ paddingRight: "15em" }}>
-                          Basic team building
-                        </ol>
-                        <ol style={{ paddingRight: "15em" }}>
-                          Advance team building
-                        </ol>
-                        <ol style={{ paddingRight: "15em" }}>
-                          Responsible leadership
-                        </ol>
-                        <ol style={{ paddingRight: "15em" }}>
-                          How to launch your business
-                        </ol>
-                      </li>
+                      <div className="plan-1 d-flex " style={{ gap: "10px" }}>
+                        <i
+                          class="fas fa-times-circle pt-1"
+                          style={{ color: "#747170" }}
+                        ></i>
+                        <p>
+                          Penetration strategies, Basic team building, Advance
+                          team building
+                        </p>
+                      </div>
+                      <div className="plan-1 d-flex " style={{ gap: "10px" }}>
+                        <i
+                          class="fas fa-times-circle pt-1"
+                          style={{ color: "#747170" }}
+                        ></i>
+                        <p>
+                          Responsible leadership, How to launch your business
+                        </p>
+                      </div>
                     </div>
                     <div className="plan-1 d-flex flex-column">
                       <div className="d-flex">
@@ -268,16 +266,22 @@ function Dashboard() {
                         ></i>
                         <p>System fundamentals</p>
                       </div>
-
-                      <li className="d-flex flex-column">
-                        <ol style={{ paddingRight: "20em" }}>Love</ol>
-                        <ol style={{ paddingRight: "20em" }}>
-                          professionalism
-                        </ol>
-                        <ol style={{ paddingRight: "20em" }}>Sacrifice</ol>
-                        <ol style={{ paddingRight: "20em" }}>Leadership</ol>
-                        <ol style={{ paddingRight: "20em" }}>TeamWork</ol>
-                      </li>
+                      <div className="d-flex">
+                        {" "}
+                        <i
+                          class="fas fa-check-circle pt-1"
+                          style={{ color: "#747170" }}
+                        ></i>
+                        <p>Love, professionalism, Sacrifice</p>
+                      </div>
+                      <div className="d-flex">
+                        {" "}
+                        <i
+                          class="fas fa-check-circle pt-1"
+                          style={{ color: "#747170" }}
+                        ></i>
+                        <p>Leadership , TeamWork</p>
+                      </div>
                     </div>
                     <div className="plan-1 d-flex " style={{ gap: "10px" }}>
                       <i
@@ -308,7 +312,7 @@ function Dashboard() {
                       ></i>
                       <p>DIP Mentor Certificate</p>
                     </div>
-                    <div class="col-12 pb-3">
+                    <div class="col-12 pb-3" style={{ paddingTop: "8em" }}>
                       <button
                         type="submit"
                         className="col-12 btn btn-primary"

@@ -7,6 +7,7 @@ import SuperRightStatisticsSection from "./Admin/RightStatisticsSection/SuperRig
 import Avater from "./Avater/Avater";
 import Header from "./Admin/Header/Header";
 import Header2 from "./Admin/Header/Header2";
+import Header3 from "./Admin/Header/Header3";
 import PendingCard from "./Admin/PendingCard/PendingCard";
 import PlanCard from "./Admin/PlanCard/PlanCard";
 import BookCard from "./Admin/BookCard/BookCard";
@@ -26,6 +27,7 @@ export {
   Avater,
   Header,
   Header2,
+  Header3,
   PendingCard,
   PlanCard,
   BookCard,

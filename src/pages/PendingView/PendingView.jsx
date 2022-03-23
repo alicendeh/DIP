@@ -27,7 +27,12 @@ function PendingView() {
           style={{ width: "60%", height: "70%" }}
         >
           <h3
-            style={{ textAlign: "center", color: "grey", fontWeight: "bolder" }}
+            style={{
+              textAlign: "center",
+              color: "grey",
+              fontWeight: "bolder",
+              paddingTop: "2em",
+            }}
           >
             Your Request is on Hold. A small token to be paid by all members who
             wants to use the system using either MTN Mobile Money or Orange

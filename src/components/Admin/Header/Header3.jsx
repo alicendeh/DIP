@@ -4,10 +4,11 @@ import { Dropdown } from "react-bootstrap";
 import {
   usersFilteredList,
   booksFilteredList,
+  tasksFilteredList,
 } from "../../../redux/actions/adminAction";
 import { useDispatch } from "react-redux";
 
-function Header({ hidden, title, filtrationList, from }) {
+function Header3({ filtrationTask, hidden, title, filtrationList, from }) {
   const [searchValue, setSearchValue] = useState("");
   const [currentSelectValue, setcurrentSelectValue] = useState("");
   const [toggleSideMenu, settoggleSideMenu] = useState(false);
@@ -19,78 +20,44 @@ function Header({ hidden, title, filtrationList, from }) {
     let newText = e.target.value.toLowerCase();
     if (newText !== "") {
       let itemToFilter = newText.toLowerCase();
-
-      if (from === "books Array") {
-        console.log(filtrationList);
-
-        let results = filtrationList.filter(
-          (item) =>
-            item.name.toLowerCase().includes(itemToFilter) ||
-            item.author.toLowerCase().includes(itemToFilter) ||
-            item.plan.toLowerCase().includes(itemToFilter)
-        );
-        dispatch(booksFilteredList(results));
-      } else if (from === "user Array") {
-        let result = filtrationList.filter(
+      if (from === "Task Array") {
+        let result = filtrationTask.filter(
           (item) =>
             item.name.toLowerCase().includes(itemToFilter) ||
             item.email.toLowerCase().includes(itemToFilter) ||
             item.plan.toLowerCase().includes(itemToFilter)
         );
-
-        dispatch(usersFilteredList(result));
-      }
-    } else {
-      if (from === "books Array") {
-        dispatch(booksFilteredList(filtrationList));
-      } else {
-        dispatch(usersFilteredList(filtrationList));
+        dispatch(tasksFilteredList(result));
       }
     }
   };
   const clearInput = () => {
     setSearchValue("");
-    if (from === "books Array") {
-      dispatch(booksFilteredList(filtrationList));
-    } else {
-      dispatch(usersFilteredList(filtrationList));
+    if (from === "Task Array") {
+      dispatch(tasksFilteredList(filtrationTask));
     }
   };
 
   const cancelMode = () => {
-    if (from === "books Array") {
-      dispatch(booksFilteredList(filtrationList));
-    } else if (from === "user Array") {
-      dispatch(usersFilteredList(filtrationList));
+    if (from === "Task Array") {
+      dispatch(tasksFilteredList(filtrationTask));
     }
     setcurrentSelectValue("");
   };
 
   const selectFunction = (e) => {
     setcurrentSelectValue(e);
-    if (from === "books Array") {
+    if (from === "Task Array") {
       if (e == "#/free") {
-        let res = filtrationList.filter((item) =>
+        let res = filtrationTask.filter((item) =>
           item.plan.toLowerCase().includes("free")
         );
         dispatch(booksFilteredList(res));
       } else {
-        let res = filtrationList.filter((item) =>
+        let res = filtrationTask.filter((item) =>
           item.plan.toLowerCase().includes("premium")
         );
         dispatch(booksFilteredList(res));
-      }
-    } else {
-      if (e == "#/free") {
-        let res = filtrationList.filter((item) =>
-          item.plan.toLowerCase().includes("free")
-        );
-        dispatch(usersFilteredList(res));
-      } else {
-        let res = filtrationList.filter((item) =>
-          item.plan.toLowerCase().includes("premium")
-        );
-        dispatch(usersFilteredList(res));
       }
     }
   };
@@ -172,7 +139,7 @@ function Header({ hidden, title, filtrationList, from }) {
   );
 }
 
-export default Header;
+export default Header3;
 
 const SideBar = ({ openSideBar }) => {
   return (
