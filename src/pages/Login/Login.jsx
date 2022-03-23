@@ -69,7 +69,6 @@ function Login() {
         setErrMsg(
           "Oops someting went wrong with our server, please try again later "
         );
-      } else if (response.code == 200) {
       } else {
         setModalShow(true);
         setIsLoading(false);
