@@ -92,7 +92,7 @@ function Upload() {
             <Form onSubmit={handleSubmit}>
               <Row className="mb-3">
                 <Form.Group as={Col} md="12" className="mb-4">
-                  <Form.Label>Name Of Book</Form.Label>
+                  <Form.Label className=" fw-bold">Name Of Book</Form.Label>
                   <Form.Control
                     required
                     type="text"
@@ -105,7 +105,7 @@ function Upload() {
                 </Form.Group>
 
                 <Form.Group as={Col} md="12">
-                  <Form.Label>Author Of Book</Form.Label>
+                  <Form.Label className=" fw-bold">Author Of Book</Form.Label>
                   <Form.Control
                     required
                     type="text"
@@ -119,7 +119,7 @@ function Upload() {
               </Row>
               <Row className="mb-3">
                 <Form.Group as={Col} md="12" className="mb-4">
-                  <Form.Label>Type</Form.Label>
+                  <Form.Label className=" fw-bold">Type</Form.Label>
                   <Form.Select
                     aria-label="Default select example"
                     onChange={(e) => handleSelectFreeOrPremium(e)}
@@ -129,7 +129,7 @@ function Upload() {
                   </Form.Select>
                 </Form.Group>
                 <Form.Group as={Col} md="12">
-                  <Form.Label>Upload Book</Form.Label>
+                  <Form.Label className=" fw-bold">Upload Book</Form.Label>
                   <Form.Control
                     required
                     type="file"
@@ -143,7 +143,9 @@ function Upload() {
               </Row>
               <Row>
                 <Form.Group as={Col} md="12" className="mb-3">
-                  <Form.Label>Upload Cover Page</Form.Label>
+                  <Form.Label className=" fw-bold">
+                    Upload Cover Page
+                  </Form.Label>
                   <Form.Control
                     required
                     type="file"

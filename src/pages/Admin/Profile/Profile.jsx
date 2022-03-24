@@ -127,7 +127,7 @@ function Profile() {
                     </div>
                   )}
                 </div>
-                <p className="petit">Click the image to upload image</p>
+                <p className="petit">Click above to upload image</p>
               </div>
             </div>
             <div className="other-form col-lg-8">

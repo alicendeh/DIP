@@ -140,7 +140,7 @@ function Header({
             <div className={`${styles.selectContainer} containerCenter`}>
               {currentSelectValue === "#/free" ? (
                 <div className={`${styles.free} ${styles.mode}`}>
-                  <span>free</span>
+                  <span>Basic</span>
                   <div className={styles.cancelFree}>
                     <i
                       onClick={cancelMode}
@@ -188,7 +188,7 @@ function Header({
               ></Dropdown.Toggle>
 
               <Dropdown.Menu>
-                <Dropdown.Item href="#/free">Free </Dropdown.Item>
+                <Dropdown.Item href="#/free">Basic</Dropdown.Item>
                 <Dropdown.Item href="#/premium">Premium </Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>

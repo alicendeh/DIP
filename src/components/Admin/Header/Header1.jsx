@@ -138,7 +138,7 @@ function Header1({ title, filtrationList, filtrationFree, from, to }) {
             <div className={`${styles.selectContainer} containerCenter`}>
               {currentSelectValue === "#/free" ? (
                 <div className={`${styles.free} ${styles.mode}`}>
-                  <span>free</span>
+                  <span>Basic</span>
                   <div className={styles.cancelFree}>
                     <i
                       onClick={cancelMode}

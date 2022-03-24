@@ -128,12 +128,12 @@ function SuperProfile() {
                     </div>
                   )}
                 </div>
-                <p className="petit">Click the image to upload image</p>
+                <p className="petit">Click above to upload image</p>
               </div>
             </div>
             <div className="other-form col-lg-8">
               <Row className="mb-3">
-                <Form.Group as={Col} md="6">
+                <Form.Group as={Col} md="12" className="mb-4">
                   <Form.Label>Name </Form.Label>
                   <Form.Control
                     type="text"
@@ -142,7 +142,7 @@ function SuperProfile() {
                     value={name}
                   />
                 </Form.Group>
-                <Form.Group as={Col} md="6" controlId="validationCustom02">
+                <Form.Group as={Col} md="12" controlId="validationCustom02">
                   <Form.Label>Email</Form.Label>
                   <Form.Control
                     required
@@ -155,16 +155,6 @@ function SuperProfile() {
                 </Form.Group>
               </Row>
               <Row className="mb-3">
-                <Form.Group as={Col} md="12" controlId="validationCustom02">
-                  <Form.Label> Change Password</Form.Label>
-                  <Form.Control required type="password" />
-                  <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-                </Form.Group>
-                <Form.Group as={Col} md="12" controlId="validationCustom02">
-                  <Form.Label> Confirm Password</Form.Label>
-                  <Form.Control required type="password" />
-                  <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-                </Form.Group>
                 {/* <Form.Group as={Col} md="12" controlId="validationCustom04">
                   <Form.Label>Role</Form.Label>
                   <Form.Control

@@ -77,11 +77,11 @@ function TaskCard({ book }) {
           containerCenter
           className={` ${styles.bookContainer}  `}
         >
-          <div>
+          {/* <div>
             <Avater
               imageUrl={book.coverPage ? book.coverPage : "/defaultBook.png"}
             />
-          </div>
+          </div> */}
           <div className={styles.txtContainer}>
             {book.name} <br />
             <span className={styles.email}> {book.author}</span>

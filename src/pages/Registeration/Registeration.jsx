@@ -98,8 +98,8 @@ function Registeration() {
             </div>
             <div className="formsap row d-flex justify-content-center align-items-center">
               <form class="row g-3 m-0 " onSubmit={(e) => onsubmit(e)}>
-                <div className="col-md-6 m-0">
-                  <label for="validationCustom01" class="form-label">
+                <div className="col-md-6 m-0 mb-3">
+                  <label for="validationCustom01" class="form-label fw-bold">
                     Name
                   </label>
                   <input
@@ -125,8 +125,8 @@ function Registeration() {
                     Please provide a valid city.
                   </div>
                 </div>
-                <div class="col-md-6 m-0">
-                  <label for="inputEmail4" class="form-label">
+                <div class="col-md-6 m-0 ">
+                  <label for="inputEmail4" class="form-label fw-bold">
                     Email
                   </label>
                   <input
@@ -139,8 +139,8 @@ function Registeration() {
                     required
                   />
                 </div>
-                <div class="col-md-12 m-0">
-                  <label for="inputEmail4" class="form-label">
+                <div class="col-md-12 m-0 mb-3">
+                  <label for="inputEmail4" class="form-label fw-bold">
                     Sponor's Name
                   </label>
                   <input
@@ -154,7 +154,7 @@ function Registeration() {
                   />
                 </div>
                 <div class="col-md-12 m-0 ">
-                  <label for="inputName" class="form-label">
+                  <label for="inputName" class="form-label fw-bold">
                     Upline Leader's Name
                   </label>
                   <input
@@ -168,7 +168,7 @@ function Registeration() {
                   />
                 </div>
                 <div class="col-md-6">
-                  <label for="inputPassword4" className="form-label">
+                  <label for="inputPassword4" className="form-label fw-bold">
                     Password
                   </label>
                   <div
@@ -210,7 +210,7 @@ function Registeration() {
                   </div>
                 </div>
                 <div class="col-md-6 ">
-                  <label for="inputPassword4" className="form-label">
+                  <label for="inputPassword4" className="form-label fw-bold">
                     Confirm Password
                   </label>
                   <div
@@ -298,13 +298,19 @@ function Registeration() {
               alt=""
               style={{ width: "100%", height: "100%" }}
             />
-            <h4 style={{ textAlign: "center", color: "white" }}>
+            <h4
+              style={{
+                textAlign: "center",
+                color: "white",
+                fontWeight: "bold",
+              }}
+            >
               Reading at your Pace
             </h4>
             <p
-              className="py-2"
+              className="py-2 fw-bold "
               style={{
-                fontSize: "12px",
+                fontSize: "16px",
                 color: "white",
                 textAlign: "center",
               }}
