@@ -1,6 +1,7 @@
 .all {
   display: flex;
   justify-content: center;
+  min-height: 100vh;
 }
 @media (min-width: 268px) and (max-width: 790.98px) {
   .flow {

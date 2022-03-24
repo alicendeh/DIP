@@ -91,13 +91,19 @@ function Login() {
               alt=""
               style={{ width: "100%", height: "100%" }}
             />
-            <h4 style={{ textAlign: "center", color: "white" }}>
+            <h4
+              style={{
+                textAlign: "center",
+                color: "white",
+                fontWeight: "bold",
+              }}
+            >
               Reading at your Pace
             </h4>
             <p
-              className="py-2"
+              className="py-2 fw-bold "
               style={{
-                fontSize: "12px",
+                fontSize: "16px",
                 color: "white",
                 textAlign: "center",
               }}
@@ -134,7 +140,7 @@ function Login() {
             <div className="formsap row d-flex justify-content-center align-items-center">
               <form class="row g-3" onSubmit={(e) => onsubmit(e)}>
                 <div class="col-md-12">
-                  <label for="inputEmail4" class="form-label">
+                  <label for="inputEmail4" class="form-label fw-bold">
                     Email
                   </label>
                   <input
@@ -147,7 +153,7 @@ function Login() {
                   />
                 </div>
                 <div class="col-md-12">
-                  <label for="inputPassword4" className="form-label">
+                  <label for="inputPassword4" className="form-label fw-bold">
                     Password
                   </label>
                   <div

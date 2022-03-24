@@ -9,7 +9,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-function Header1({ title, filtrationList, filtrationFree, from, to }) {
+function Header1({ click, title, filtrationList, filtrationFree, from, to }) {
   const [searchValue, setSearchValue] = useState("");
   const [currentSelectValue, setcurrentSelectValue] = useState("");
   const [toggleSideMenu, settoggleSideMenu] = useState(false);
@@ -66,27 +66,18 @@ function Header1({ title, filtrationList, filtrationFree, from, to }) {
   const selectFunction = (e) => {
     setcurrentSelectValue(e);
     if (to === "books Array") {
-      // if (e == "#/free") {
-      //   let res = filtrationList.filter((item) =>
-      //     item.plan.toLowerCase().includes("free")
-      //   );
-      //   dispatch(usersFilteredList(res));
-      // } else {
-      //   let res = filtrationList.filter((item) =>
-      //     item.plan.toLowerCase().includes("premium")
-      //   );
-      //   dispatch(usersFilteredList(res));
-      // }
       if (e == "#/free") {
         let res = filtrationList.filter((item) =>
           item.plan.toLowerCase().includes("free")
         );
         dispatch(booksFilteredList(res));
+        click(true);
       } else {
         let res = filtrationList.filter((item) =>
           item.plan.toLowerCase().includes("premium")
         );
         dispatch(booksFilteredList(res));
+        click(false);
       }
     }
     if (from === "free books plan") {
@@ -138,7 +129,7 @@ function Header1({ title, filtrationList, filtrationFree, from, to }) {
             <div className={`${styles.selectContainer} containerCenter`}>
               {currentSelectValue === "#/free" ? (
                 <div className={`${styles.free} ${styles.mode}`}>
-                  <span>free</span>
+                  <span>Basic</span>
                   <div className={styles.cancelFree}>
                     <i
                       onClick={cancelMode}
@@ -173,8 +164,14 @@ function Header1({ title, filtrationList, filtrationFree, from, to }) {
               onClick={clearInput}
             ></i>
           ) : (
-            <Dropdown onSelect={(e) => selectFunction(e)}>
+            <Dropdown
+              style={{ boxShadow: "none" }}
+              onSelect={(e) => selectFunction(e)}
+            >
               <Dropdown.Toggle
+                split
+                variant="success"
+                id="dropdown-split-basic"
                 style={{
                   fontSize: "25px",
                   outline: "none",
@@ -184,8 +181,12 @@ function Header1({ title, filtrationList, filtrationFree, from, to }) {
               ></Dropdown.Toggle>
 
               <Dropdown.Menu>
-                <Dropdown.Item href="#/free">Free </Dropdown.Item>
-                <Dropdown.Item href="#/premium">Premium </Dropdown.Item>
+                <Dropdown.Item href="#/free" onClick={(e) => click(e)}>
+                  Basic{" "}
+                </Dropdown.Item>
+                <Dropdown.Item href="#/premium" onClick={(e) => click(e)}>
+                  Premium{" "}
+                </Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
           )}

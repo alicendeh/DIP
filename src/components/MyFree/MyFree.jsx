@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "../../components/MyFree/MyFree.module.css";
-import { Form, Dropdown } from "react-bootstrap";
+import { Form, Nav, NavDropdown } from "react-bootstrap";
 import Header from "../../components/Admin/Header/Header";
 import {
   usersFilteredList,
@@ -11,15 +11,23 @@ import { LOGOUT } from "../../redux/ActionType";
 import { useSelector, useDispatch } from "react-redux";
 import Header1 from "../Admin/Header/Header1";
 
-function MyFree({ children }) {
+function MyFree({ children, take }) {
   const user = useSelector((state) => state.user);
-
+  const [choice, setChoice] = useState(false);
   const dispatch = useDispatch();
   const [searchValue, setSearchValue] = useState({ names: "" });
   const { names } = searchValue;
   const search = (e) => {
     setSearchValue({ names: e.target.value });
   };
+  // const handleChoice = (e) => {
+  //   if (e == "#/free") {
+  //     setChoice(true);
+  //     console.log("hey");
+  //   } else {
+  //     setChoice(false);
+  //   }
+  // };
   const data = useSelector((state) => state.admin);
   const { error, allBooks, allFreeBooks, loading, booksFilteredList } = data;
   return (
@@ -27,7 +35,7 @@ function MyFree({ children }) {
       {/* Top header */}
       <nav
         className="navbar navbar-expand-lg navbar-light  pt-3 pb-3"
-        style={{ boxShadow: "rgba(17, 12, 46, 0.15) 0px 48px 100px 0px" }}
+        style={{ boxShadow: "rgba(17, 12, 46, 0.15) 0px 2px 5px 0px" }}
       >
         <div className="container">
           <Link to="/" className="navbar-brand" href="#">
@@ -53,17 +61,76 @@ function MyFree({ children }) {
                 filtrationFree={allFreeBooks}
                 from={"free books plan"}
                 to={"books Array"}
+                click={() => setChoice(true)}
               />
             </div>
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
-              <li className="nav-item pt-4">
+              {choice ? (
+                <NavDropdown
+                  title="Category"
+                  id="navbarScrollingDropdown"
+                  className="pt-4 pr-3 fw-bold"
+                >
+                  <NavDropdown.Item
+                    href="#courses"
+                    value="courses"
+                    onClick={(e) => take(e)}
+                  >
+                    Courses
+                  </NavDropdown.Item>
+                  <NavDropdown.Item href="#action4" value="systemfundamentals">
+                    {" "}
+                    System Fundamentals
+                  </NavDropdown.Item>
+                  <NavDropdown.Divider />
+
+                  <NavDropdown.Item
+                    href="#action4"
+                    value="advancecertificationprogram"
+                  >
+                    Advance Certification program
+                  </NavDropdown.Item>
+                  <NavDropdown.Divider />
+                  <NavDropdown.Item
+                    href="#action5"
+                    value="DIPcoachingcertification"
+                  >
+                    DIP Coaching Certificate
+                  </NavDropdown.Item>
+                  <NavDropdown.Item
+                    href="#action6"
+                    value="DIPmentorcertificate"
+                  >
+                    DIP Mentor Certificate
+                  </NavDropdown.Item>
+                </NavDropdown>
+              ) : (
+                <NavDropdown
+                  title="Category"
+                  id="navbarScrollingDropdown"
+                  className="pt-4 pr-3 fw-bold"
+                >
+                  <NavDropdown.Item href="#courses">
+                    Customers Training
+                  </NavDropdown.Item>
+                  <NavDropdown.Item href="#action5" value="buildingblocks">
+                    System Building Blocks
+                  </NavDropdown.Item>
+                  <NavDropdown.Item href="#action4">
+                    {" "}
+                    DIP Prokit
+                  </NavDropdown.Item>
+                </NavDropdown>
+              )}
+
+              <li className="nav-item pt-4 pr-4">
                 <Link
                   to="/feedback"
                   className="nav-link actived"
                   aria-current="page"
                   style={{ color: "#222f3e", fontWeight: "700" }}
                 >
-                  Weekly Task Submit
+                  Task
                 </Link>
               </li>
               <li className="nav-item pt-4">
@@ -71,6 +138,7 @@ function MyFree({ children }) {
                   to="/userprofile"
                   className={` ${styles.hideName}  nav-link actived`}
                   aria-current="page"
+                  style={{ color: "#222f3e", fontWeight: "700" }}
                 >
                   Hi, {user.user.name}
                 </Link>

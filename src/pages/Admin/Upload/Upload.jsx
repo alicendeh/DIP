@@ -15,6 +15,8 @@ function Upload() {
   const adminState = useSelector((state) => state.admin);
 
   const [validated, setValidated] = useState(false);
+
+  const [choose, setChoose] = useState(false);
   const [selectedImage, setSelectedImage] = useState();
   const [formData, setFormData] = useState({
     name: "",
@@ -45,7 +47,10 @@ function Upload() {
     let pdf = e.target.files[0];
     setimages(pdf);
   };
-
+  const handleChoice = () => {
+    setChoose(!choose);
+    console.log(choose);
+  };
   const handleImageChange = (e) => {
     let image = e.target.files[0];
     setSelectedImage(image);
@@ -60,6 +65,13 @@ function Upload() {
 
   const handleSelectFreeOrPremium = (e) => {
     setToggle(e.target.value);
+
+    if (e.target.value == "premium") {
+      setChoose(true);
+      console.log(choose);
+    } else {
+      setChoose(false);
+    }
   };
 
   const handleSubmit = async (event) => {
@@ -100,6 +112,7 @@ function Upload() {
   const handleClose = () => {
     setshowSuccessModal(false);
   };
+
   return (
     <AdminLayout>
       <Header title={"Upload A Book"} hidden />
@@ -148,30 +161,40 @@ function Upload() {
                 </Form.Group>
                 <Form.Group as={Col} md="6">
                   <Form.Label>Category</Form.Label>
-                  <Form.Select
-                    aria-label="Default select example"
-                    onChange={(e) => handleSelectCategory(e)}
-                  >
-                    <option>Open this select menu</option>
-                    <option value="courses">Courses</option>
-                    <option value="systemfundamentals">
-                      System Fundamentals
-                    </option>
-                    <option value="advancecertificationprogram">
-                      Advanced Certification Program
-                    </option>
-                    <option value="DIPcoachingcertification">
-                      DIP Coaching Certification
-                    </option>
-                    <option value="DIPmentorcertificate">
-                      DIP Mentor Certificate
-                    </option>
-                    <option value="customizedtraining">
-                      Customized Training
-                    </option>
-                    <option value="DIPprokit">DIP pro kit</option>
-                    <option value="buildingblocks">Buildings Blocks</option>
-                  </Form.Select>
+                  {choose ? (
+                    <Form.Select
+                      aria-label="Default select example"
+                      onChange={(e) => handleSelectCategory(e)}
+                    >
+                      <option>Open this select menu</option>
+                      <option value="courses">Courses</option>
+                      <option value="systemfundamentals">
+                        System Fundamentals
+                      </option>
+                      <option value="advancecertificationprogram">
+                        Advanced Certification Program
+                      </option>
+                      <option value="DIPcoachingcertification">
+                        DIP Coaching Certification
+                      </option>
+                      <option value="DIPmentorcertificate">
+                        DIP Mentor Certificate
+                      </option>
+                    </Form.Select>
+                  ) : (
+                    <Form.Select
+                      aria-label="Default select example"
+                      onChange={(e) => handleSelectCategory(e)}
+                    >
+                      <option>Open this select menu</option>
+
+                      <option value="customizedtraining">
+                        Customized Training
+                      </option>
+                      <option value="DIPprokit">DIP pro kit</option>
+                      <option value="buildingblocks">Buildings Blocks</option>
+                    </Form.Select>
+                  )}
                 </Form.Group>
               </Row>
               <Row>
