@@ -61,7 +61,7 @@ function MyFree({ children, take }) {
                 filtrationFree={allFreeBooks}
                 from={"free books plan"}
                 to={"books Array"}
-                click={() => setChoice(true)}
+                click={() => setChoice()}
               />
             </div>
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">

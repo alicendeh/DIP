@@ -20,6 +20,7 @@ function BooksCard({ book }) {
       console.log(err);
     }
   };
+
   return (
     <>
       {book.dataType == "pdf" ? (
@@ -130,12 +131,12 @@ function BooksCard({ book }) {
             <Link
               to="/videoplayer"
               state={{
-                videoURL: `${process.env.REACT_APP_URL}/admin/books/images/${book.pdf}`,
+                videoURL: `${process.env.REACT_APP_URL}/admin/books/images/${book.pdf}#.mp4`,
               }}
             >
               <button
                 type="button"
-                // onClick={() => openPdf(book)}
+                onClick={() => console.log(book.pdf)}
                 // onContextMenu={(e) => e.preventDefault()}
                 class="btn btn-outline-success col-md-6"
               >
