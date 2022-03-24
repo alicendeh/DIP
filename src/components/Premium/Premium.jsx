@@ -20,13 +20,15 @@ function Premium() {
   const dispatch = useDispatch();
   const data = useSelector((state) => state.admin);
   const { error, allBooks, loading, booksFilteredList } = data;
+
   const [selectCategory, setSelectCategory] = useState("courses");
+
   const [alice, setalice] = useState([]);
 
-  const handleSelectCategory = async (e) => {
-    setSelectCategory(e.target.value);
-  };
-  const [link, setLink] = useState("");
+  useEffect(() => {
+    console.log(allBooks, "heeeeeeee");
+  }, [allBooks]);
+
   const takeCare = (e) => {
     console.log(e.target.value);
   };
@@ -57,42 +59,55 @@ function Premium() {
               <div style={{ width: "100%", height: "fit-content" }}>
                 {allBooks.length > 0 ? (
                   <div>
-                    {booksFilteredList.length > 0 ? (
-                      <div
-                        className={` ${styles.flow} d-flex flex-wrap col-md-12  col-sm-12  `}
-                      >
-                        {booksFilteredList.map((book, index) => (
-                          <div key={index} className="d-flex">
-                            <BooksCard book={book} index={index} />
-                          </div>
-                        ))}
-                      </div>
-                    ) : (
-                      <div>
-                        <h3 className="fw-bold">{selectCategory}</h3>
+                    {
+                      booksFilteredList.length > 0 ? (
                         <div
-                          className={` ${styles.flow} d-flex flex-wrap col-md-12  col-sm-12 `}
+                          className={` ${styles.flow} d-flex flex-wrap col-md-12  col-sm-12  `}
                         >
-                          {alice.length <= 0 ? (
-                            <div
-                              className="d-flex justify-content-center"
-                              style={{ width: "100%" }}
-                            >
-                              {" "}
-                              <LottieVIew />
+                          {booksFilteredList.map((book, index) => (
+                            <div key={index} className="d-flex">
+                              <BooksCard book={book} index={index} />
                             </div>
-                          ) : (
-                            <div
-                              className={` ${styles.flow} d-flex flex-wrap col-md-12  col-sm-12 `}
-                            >
-                              {alice.map((book, index) => (
-                                <BooksCard book={book} index={index} />
-                              ))}
-                            </div>
-                          )}
+                          ))}
                         </div>
-                      </div>
-                    )}
+                      ) : (
+                        <div
+                          className={` ${styles.flow} d-flex flex-wrap col-md-12  col-sm-12  `}
+                        >
+                          {allBooks.map((book, index) => (
+                            <div key={index} className="d-flex">
+                              <BooksCard book={book} index={index} />
+                            </div>
+                          ))}
+                        </div>
+                      )
+                      //  : (
+                      //   <div>
+                      //     <h3 className="fw-bold">{selectCategory}</h3>
+                      //     <div
+                      //       className={` ${styles.flow} d-flex flex-wrap col-md-12  col-sm-12 `}
+                      //     >
+                      //       {alice.length <= 0 ? (
+                      //         <div
+                      //           className="d-flex justify-content-center"
+                      //           style={{ width: "100%" }}
+                      //         >
+                      //           {" "}
+                      //           <LottieVIew />
+                      //         </div>
+                      //       ) : (
+                      //         <div
+                      //           className={` ${styles.flow} d-flex flex-wrap col-md-12  col-sm-12 `}
+                      //         >
+                      //           {alice.map((book, index) => (
+                      //             <BooksCard book={book} index={index} />
+                      //           ))}
+                      //         </div>
+                      //       )}
+                      //     </div>
+                      //   </div>
+                      // )
+                    }
                   </div>
                 ) : (
                   <div>

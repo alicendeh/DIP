@@ -6,7 +6,6 @@ import {
   Unexpected,
 } from "../../../components";
 import { useSelector } from "react-redux";
-import { Link, useLocation } from "react-router-dom";
 
 function AdminLayout({ children }) {
   const admin = useSelector((state) => state.admin);

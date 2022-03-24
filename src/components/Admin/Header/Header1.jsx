@@ -9,7 +9,14 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-function Header1({ click, title, filtrationList, filtrationFree, from, to }) {
+function Header1({
+  setChoiceOnPlanType,
+  title,
+  filtrationList,
+  filtrationFree,
+  from,
+  to,
+}) {
   const [searchValue, setSearchValue] = useState("");
   const [currentSelectValue, setcurrentSelectValue] = useState("");
   const [toggleSideMenu, settoggleSideMenu] = useState(false);
@@ -33,7 +40,6 @@ function Header1({ click, title, filtrationList, filtrationFree, from, to }) {
         dispatch(booksFilteredList(results));
       }
       if (from === "free books plan") {
-        console.log("see her");
         let info = filtrationFree.filter(
           (item) =>
             item.name.toLowerCase().includes(itemToFilter) ||
@@ -67,17 +73,19 @@ function Header1({ click, title, filtrationList, filtrationFree, from, to }) {
     setcurrentSelectValue(e);
     if (to === "books Array") {
       if (e == "#/free") {
+        setChoiceOnPlanType(true);
+
         let res = filtrationList.filter((item) =>
           item.plan.toLowerCase().includes("free")
         );
         dispatch(booksFilteredList(res));
-        click(true);
       } else {
+        setChoiceOnPlanType(false);
+
         let res = filtrationList.filter((item) =>
           item.plan.toLowerCase().includes("premium")
         );
         dispatch(booksFilteredList(res));
-        click(false);
       }
     }
     if (from === "free books plan") {
@@ -181,12 +189,8 @@ function Header1({ click, title, filtrationList, filtrationFree, from, to }) {
               ></Dropdown.Toggle>
 
               <Dropdown.Menu>
-                <Dropdown.Item href="#/free" onClick={(e) => click(e)}>
-                  Basic{" "}
-                </Dropdown.Item>
-                <Dropdown.Item href="#/premium" onClick={(e) => click(e)}>
-                  Premium{" "}
-                </Dropdown.Item>
+                <Dropdown.Item href="#/free">Basic </Dropdown.Item>
+                <Dropdown.Item href="#/premium">Premium </Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
           )}

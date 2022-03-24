@@ -1,35 +1,70 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import styles from "../../components/MyFree/MyFree.module.css";
-import { Form, Nav, NavDropdown } from "react-bootstrap";
-import Header from "../../components/Admin/Header/Header";
-import {
-  usersFilteredList,
-  booksFilteredList,
-} from "../../redux/actions/adminAction";
+import { NavDropdown } from "react-bootstrap";
+
 import { LOGOUT } from "../../redux/ActionType";
 import { useSelector, useDispatch } from "react-redux";
 import Header1 from "../Admin/Header/Header1";
 
 function MyFree({ children, take }) {
+  const [choiceOnPlanType, setChoiceOnPlanType] = useState(true);
+  const [categoryDropDownMenu, setCategoryDropDownMenu] = useState([
+    {
+      value: "",
+      key: "",
+    },
+  ]);
+
+  useEffect(() => {
+    choiceOnPlanType
+      ? setCategoryDropDownMenu([
+          {
+            value: "customizedtraining",
+            key: "Customized Training",
+          },
+          {
+            value: "systemfundamentals",
+            key: "System Fundamentals",
+          },
+          {
+            value: "dipprokit",
+            key: "DIP Prokit",
+          },
+        ])
+      : setCategoryDropDownMenu([
+          {
+            value: "courses",
+            key: "courses",
+          },
+          {
+            value: "systemfundamentals",
+            key: "System Fundamentals",
+          },
+          {
+            value: "systembuildingblocks",
+            key: "System Building Blocks",
+          },
+          {
+            value: "advancecertificationprogram",
+            key: "Advance Certification program",
+          },
+          {
+            value: "DIPcoachingcertification",
+            key: "DIP Coaching Certificate",
+          },
+          {
+            value: "DIPmentorcertificate",
+            key: "DIP Mentor Certificate",
+          },
+        ]);
+  }, [choiceOnPlanType]);
+
   const user = useSelector((state) => state.user);
-  const [choice, setChoice] = useState(false);
   const dispatch = useDispatch();
-  const [searchValue, setSearchValue] = useState({ names: "" });
-  const { names } = searchValue;
-  const search = (e) => {
-    setSearchValue({ names: e.target.value });
-  };
-  // const handleChoice = (e) => {
-  //   if (e == "#/free") {
-  //     setChoice(true);
-  //     console.log("hey");
-  //   } else {
-  //     setChoice(false);
-  //   }
-  // };
+
   const data = useSelector((state) => state.admin);
-  const { error, allBooks, allFreeBooks, loading, booksFilteredList } = data;
+  const { error, allBooks, allFreeBooks } = data;
   return (
     <main>
       {/* Top header */}
@@ -61,67 +96,21 @@ function MyFree({ children, take }) {
                 filtrationFree={allFreeBooks}
                 from={"free books plan"}
                 to={"books Array"}
-                click={() => setChoice(true)}
+                setChoiceOnPlanType={setChoiceOnPlanType}
               />
             </div>
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
-              {choice ? (
-                <NavDropdown
-                  title="Category"
-                  id="navbarScrollingDropdown"
-                  className="pt-4 pr-3 fw-bold"
-                >
-                  <NavDropdown.Item
-                    href="#courses"
-                    value="courses"
-                    onClick={(e) => take(e)}
-                  >
-                    Courses
-                  </NavDropdown.Item>
-                  <NavDropdown.Item href="#action4" value="systemfundamentals">
-                    {" "}
-                    System Fundamentals
-                  </NavDropdown.Item>
-                  <NavDropdown.Divider />
-
-                  <NavDropdown.Item
-                    href="#action4"
-                    value="advancecertificationprogram"
-                  >
-                    Advance Certification program
-                  </NavDropdown.Item>
-                  <NavDropdown.Divider />
-                  <NavDropdown.Item
-                    href="#action5"
-                    value="DIPcoachingcertification"
-                  >
-                    DIP Coaching Certificate
-                  </NavDropdown.Item>
-                  <NavDropdown.Item
-                    href="#action6"
-                    value="DIPmentorcertificate"
-                  >
-                    DIP Mentor Certificate
-                  </NavDropdown.Item>
-                </NavDropdown>
-              ) : (
-                <NavDropdown
-                  title="Category"
-                  id="navbarScrollingDropdown"
-                  className="pt-4 pr-3 fw-bold"
-                >
+              <NavDropdown
+                title="Category"
+                id="navbarScrollingDropdown"
+                className="pt-4 pr-3 fw-bold"
+              >
+                {categoryDropDownMenu.map((category) => (
                   <NavDropdown.Item href="#courses">
-                    Customers Training
+                    {category.key}
                   </NavDropdown.Item>
-                  <NavDropdown.Item href="#action5" value="buildingblocks">
-                    System Building Blocks
-                  </NavDropdown.Item>
-                  <NavDropdown.Item href="#action4">
-                    {" "}
-                    DIP Prokit
-                  </NavDropdown.Item>
-                </NavDropdown>
-              )}
+                ))}
+              </NavDropdown>
 
               <li className="nav-item pt-4 pr-4">
                 <Link
@@ -292,7 +281,6 @@ function MyFree({ children, take }) {
             href="https://mdbootstrap.com/"
             style={{ textDecoration: "none", color: "black" }}
           >
-            {" "}
             dip.com
           </a>
         </div>
