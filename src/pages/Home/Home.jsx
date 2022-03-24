@@ -8,6 +8,7 @@ import "./Home.css";
 // import Network from "../../components/Network/Network";
 import Team from "../../components/Team/Team";
 import Ranks from "../../components/Ranks/Ranks";
+
 function Home() {
   const user = useSelector((state) => state.user);
   console.log(user.isAuthenticated);

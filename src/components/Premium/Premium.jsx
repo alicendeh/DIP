@@ -26,7 +26,10 @@ function Premium() {
   const handleSelectCategory = async (e) => {
     setSelectCategory(e.target.value);
   };
-
+  const [link, setLink] = useState("");
+  const takeCare = (e) => {
+    console.log(e.target.value);
+  };
   useEffect(() => {
     localStorage.removeItem("I_REQUESTED");
 
@@ -39,32 +42,12 @@ function Premium() {
     setalice(newArray);
   }, [selectCategory]);
   return (
-    <MyFree>
+    <MyFree take={takeCare}>
       <div className={`${styles.all} row pt-3 pb-5 d-flex flex-lg-wrap`}>
         {error != null ? (
           <Unexpected />
         ) : (
           <div className="col-12 m-0">
-            <div className="col-4">
-              <select
-                class="form-select"
-                aria-label="Default select example"
-                onChange={(e) => handleSelectCategory(e)}
-              >
-                <option value="courses">Courses</option>
-                <option value="systemfundamentals">System Fundamentals</option>
-                <option value="advancecertificationprogram">
-                  Advance Certification Program
-                </option>
-                <option value="DIPcoachingcertification">
-                  DIP Coaching Certification
-                </option>
-                <option value="DIPmentorcertificate">
-                  DIP Mentor Certificate
-                </option>
-                <option value="buildingblocks">Building Blocks</option>
-              </select>
-            </div>
             <br />
             {loading ? (
               <div className={`containerCenter spinnerContainer`}>
