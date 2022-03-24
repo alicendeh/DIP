@@ -118,10 +118,6 @@ function Header1({
       />
       <div className={styles.headeritleContainer}>
         <p className={`display-6 `}>{title} </p>
-        {/* <i
-          onClick={() => settoggleSideMenu(!toggleSideMenu)}
-          className={`fas fa-bars hide ${styles.menu}`}
-        ></i> */}
       </div>
       <div className={`${styles.hideContainer}`}>
         <div

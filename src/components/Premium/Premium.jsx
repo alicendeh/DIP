@@ -39,10 +39,12 @@ function Premium() {
     _loadeCurrentlyLogedInUser().then((data) => dispatch(loadUser(data)));
     _viewAllBooks().then((response) => dispatch(getAllBooks(response)));
   }, []);
+
   useEffect(() => {
     let newArray = allBooks.filter((book) => book.category === selectCategory);
     setalice(newArray);
   }, [selectCategory]);
+
   return (
     <MyFree take={takeCare}>
       <div className={`${styles.all} row pt-3 pb-5 d-flex flex-lg-wrap`}>

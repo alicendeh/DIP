@@ -9,6 +9,7 @@ import Header1 from "../Admin/Header/Header1";
 
 function MyFree({ children, take }) {
   const [choiceOnPlanType, setChoiceOnPlanType] = useState(true);
+  const [currentSelectValue, setcurrentSelectValue] = useState("");
   const [categoryDropDownMenu, setCategoryDropDownMenu] = useState([
     {
       value: "",
@@ -60,6 +61,11 @@ function MyFree({ children, take }) {
         ]);
   }, [choiceOnPlanType]);
 
+  const selectFunction = (e) => {
+    let categoryTitle = e.split("#");
+    setcurrentSelectValue(categoryTitle[1]);
+  };
+
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
@@ -101,12 +107,15 @@ function MyFree({ children, take }) {
             </div>
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
               <NavDropdown
-                title="Category"
+                onSelect={(e) => selectFunction(e)}
+                title={`${
+                  currentSelectValue ? currentSelectValue : "Category"
+                }`}
                 id="navbarScrollingDropdown"
                 className="pt-4 pr-3 fw-bold"
               >
                 {categoryDropDownMenu.map((category) => (
-                  <NavDropdown.Item href="#courses">
+                  <NavDropdown.Item href={`#${category.key}`}>
                     {category.key}
                   </NavDropdown.Item>
                 ))}
@@ -145,7 +154,6 @@ function MyFree({ children, take }) {
                 }}
               >
                 <Link to="/userprofile">
-                  {" "}
                   <img
                     src={
                       user.user && user.user.avater !== ""
