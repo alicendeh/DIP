@@ -5,6 +5,7 @@ import {
   usersFilteredList,
   booksFilteredList,
   freeBooksFilteredList,
+  loadLottieAnnimation,
 } from "../../../redux/actions/adminAction";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -23,6 +24,7 @@ function Header1({
   const user = useSelector((state) => state.user);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
   const search = (e) => {
     setSearchValue(e.target.value);
     let newText = e.target.value.toLowerCase();
@@ -70,6 +72,8 @@ function Header1({
   };
 
   const selectFunction = (e) => {
+    dispatch(loadLottieAnnimation(false));
+
     setcurrentSelectValue(e);
     if (to === "books Array") {
       if (e == "#/free") {

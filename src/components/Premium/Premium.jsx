@@ -9,7 +9,7 @@ import { loadUser } from "../../redux/actions/userAction";
 import { _loadeCurrentlyLogedInUser } from "../../Helpers/userHelper";
 import Unexpected from "../../components/Unexpected";
 import Lottie from "react-lottie";
-import animationData from "../../annimations/72929-reading-book.json";
+import animationData from "../../annimations/91361-page-not-found-animation.json";
 const defaultOptions = {
   loop: true,
   autoplay: true,
@@ -19,19 +19,14 @@ const defaultOptions = {
 function Premium() {
   const dispatch = useDispatch();
   const data = useSelector((state) => state.admin);
-  const { error, allBooks, loading, booksFilteredList } = data;
-
-  const [selectCategory, setSelectCategory] = useState("courses");
-
-  const [alice, setalice] = useState([]);
-
-  useEffect(() => {
-    console.log(allBooks, "heeeeeeee");
-  }, [allBooks]);
-
-  const takeCare = (e) => {
-    console.log(e.target.value);
-  };
+  const {
+    error,
+    allBooks,
+    loading,
+    booksFilteredList,
+    shouldLoadLottieAnnimation,
+  } = data;
+  console.log(shouldLoadLottieAnnimation);
   useEffect(() => {
     localStorage.removeItem("I_REQUESTED");
 
@@ -40,13 +35,8 @@ function Premium() {
     _viewAllBooks().then((response) => dispatch(getAllBooks(response)));
   }, []);
 
-  useEffect(() => {
-    let newArray = allBooks.filter((book) => book.category === selectCategory);
-    setalice(newArray);
-  }, [selectCategory]);
-
   return (
-    <MyFree take={takeCare}>
+    <MyFree>
       <div className={`${styles.all} row pt-3 pb-5 d-flex flex-lg-wrap`}>
         {error != null ? (
           <Unexpected />
@@ -59,62 +49,36 @@ function Premium() {
               </div>
             ) : (
               <div style={{ width: "100%", height: "fit-content" }}>
-                {allBooks.length > 0 ? (
-                  <div>
-                    {
-                      booksFilteredList.length > 0 ? (
-                        <div
-                          className={` ${styles.flow} d-flex flex-wrap col-md-12  col-sm-12  `}
-                        >
-                          {booksFilteredList.map((book, index) => (
-                            <div key={index} className="d-flex">
-                              <BooksCard book={book} index={index} />
-                            </div>
-                          ))}
-                        </div>
-                      ) : (
-                        <div
-                          className={` ${styles.flow} d-flex flex-wrap col-md-12  col-sm-12  `}
-                        >
-                          {allBooks.map((book, index) => (
-                            <div key={index} className="d-flex">
-                              <BooksCard book={book} index={index} />
-                            </div>
-                          ))}
-                        </div>
-                      )
-                      //  : (
-                      //   <div>
-                      //     <h3 className="fw-bold">{selectCategory}</h3>
-                      //     <div
-                      //       className={` ${styles.flow} d-flex flex-wrap col-md-12  col-sm-12 `}
-                      //     >
-                      //       {alice.length <= 0 ? (
-                      //         <div
-                      //           className="d-flex justify-content-center"
-                      //           style={{ width: "100%" }}
-                      //         >
-                      //           {" "}
-                      //           <LottieVIew />
-                      //         </div>
-                      //       ) : (
-                      //         <div
-                      //           className={` ${styles.flow} d-flex flex-wrap col-md-12  col-sm-12 `}
-                      //         >
-                      //           {alice.map((book, index) => (
-                      //             <BooksCard book={book} index={index} />
-                      //           ))}
-                      //         </div>
-                      //       )}
-                      //     </div>
-                      //   </div>
-                      // )
-                    }
-                  </div>
+                {shouldLoadLottieAnnimation ? (
+                  <LottieView />
                 ) : (
-                  <div>
-                    <LottieVIew />
-                  </div>
+                  <>
+                    {allBooks.length > 0 && (
+                      <div>
+                        {booksFilteredList.length > 0 ? (
+                          <div
+                            className={`${styles.flow} d-flex flex-wrap col-md-12  col-sm-12  `}
+                          >
+                            {booksFilteredList.map((book, index) => (
+                              <div key={index} className="d-flex">
+                                <BooksCard book={book} index={index} />
+                              </div>
+                            ))}
+                          </div>
+                        ) : (
+                          <div
+                            className={` ${styles.flow} d-flex flex-wrap col-md-12  col-sm-12  `}
+                          >
+                            {allBooks.map((book, index) => (
+                              <div key={index} className="d-flex">
+                                <BooksCard book={book} index={index} />
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    )}
+                  </>
                 )}
               </div>
             )}
@@ -127,7 +91,7 @@ function Premium() {
 
 export default Premium;
 
-const LottieVIew = () => {
+const LottieView = () => {
   return (
     <div className="containerColumn fw-bold ">
       <Lottie options={defaultOptions} height={400} width={"70%"} />
@@ -136,7 +100,7 @@ const LottieVIew = () => {
           fontSize: 21,
         }}
       >
-        All books For this Category will appear here
+        Oops we couln't find something for this category
       </p>
     </div>
   );

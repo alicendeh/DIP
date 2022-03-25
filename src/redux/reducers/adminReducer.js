@@ -17,6 +17,7 @@ import {
   LOAD_ADMIN,
   FILTRATION_TASKS,
   UPDATED_ADMIN_INFO,
+  LOAD_ANNIMATION,
 } from "../ActionType";
 
 const INITIAL_STATE = {
@@ -34,6 +35,7 @@ const INITIAL_STATE = {
   booksFilteredList: [],
   taskFilteredList: [],
   freeBooksFilteredList: [],
+  shouldLoadLottieAnnimation: false,
 };
 
 const getUsersRequest = (state = INITIAL_STATE, { type, payload }) => {
@@ -136,6 +138,12 @@ const getUsersRequest = (state = INITIAL_STATE, { type, payload }) => {
         ...state,
         freeBooksFilteredList: payload,
       };
+    case LOAD_ANNIMATION:
+      return {
+        ...state,
+        shouldLoadLottieAnnimation: payload,
+      };
+
     case LOGOUT:
       window.location.replace("/");
       localStorage.removeItem("token");

@@ -5,18 +5,20 @@ import { NavDropdown } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { LOGOUT } from "../../redux/ActionType";
 import Header1 from "../Admin/Header/Header1";
+import {
+  booksFilteredList,
+  loadLottieAnnimation,
+} from "../../redux/actions/adminAction";
 
 function MyFree({ children, take }) {
   const dispatch = useDispatch();
   const data = useSelector((state) => state.admin);
   const user = useSelector((state) => state.user);
 
-  const { error, allBooks, allFreeBooks, loading, booksFilteredList } = data;
+  const { error, allBooks, allFreeBooks, loading } = data;
 
   const [choiceOnPlanType, setChoiceOnPlanType] = useState(true);
-  const [currentSelectValue, setcurrentSelectValue] = useState(
-    "Customized Training"
-  );
+  const [currentSelectValue, setcurrentSelectValue] = useState("All Category");
 
   const [categoryDropDownMenu, setCategoryDropDownMenu] = useState([
     {
@@ -34,6 +36,10 @@ function MyFree({ children, take }) {
     choiceOnPlanType
       ? setCategoryDropDownMenu([
           {
+            value: "All Category",
+            key: "All Category",
+          },
+          {
             value: "customizedtraining",
             key: "Customized Training",
           },
@@ -47,6 +53,10 @@ function MyFree({ children, take }) {
           },
         ])
       : setCategoryDropDownMenu([
+          {
+            value: "All Category",
+            key: "All Category",
+          },
           {
             value: "courses",
             key: "courses",
@@ -78,11 +88,16 @@ function MyFree({ children, take }) {
     let newArray = allBooks.filter(
       (book) => book.category === currentSelectValue
     );
-    // setalice(newArray);
-    console.log(newArray);
-    // dispatch(booksFilteredList(newArray));
-
-    // setalice(newArray);
+    if (newArray.length > 0) {
+      dispatch(loadLottieAnnimation(false));
+      dispatch(booksFilteredList(newArray));
+    } else if (newArray.length <= 0 && currentSelectValue !== "All Category") {
+      dispatch(loadLottieAnnimation(true));
+      console.log("kij");
+    } else {
+      dispatch(booksFilteredList(allBooks));
+      dispatch(loadLottieAnnimation(false));
+    }
   }, [currentSelectValue]);
 
   return (
@@ -123,15 +138,17 @@ function MyFree({ children, take }) {
               <NavDropdown
                 onSelect={(e) => selectFunction(e)}
                 title={`${
-                  currentSelectValue ? currentSelectValue : "Category"
+                  currentSelectValue ? currentSelectValue : "All Category"
                 }`}
                 id="navbarScrollingDropdown"
                 className="pt-4 pr-3 fw-bold"
               >
                 {categoryDropDownMenu.map((category) => (
-                  <NavDropdown.Item href={`#${category.value}`}>
-                    {category.key}
-                  </NavDropdown.Item>
+                  <>
+                    <NavDropdown.Item href={`#${category.value}`}>
+                      {category.key}
+                    </NavDropdown.Item>
+                  </>
                 ))}
               </NavDropdown>
 

@@ -16,8 +16,7 @@ import {
   LOAD_ADMIN,
   ALL_TASKS,
   FILTRATION_TASKS,
-  SUPER_ADMIN_GETS_ALL_ADMIN,
-  FILTRATION_ADMIN_RESULT,
+  LOAD_ANNIMATION,
 } from "../ActionType";
 
 const adminGetsUsersequest = (users) => {
@@ -112,6 +111,13 @@ const booksFilteredList = (data) => {
   };
 };
 
+const loadLottieAnnimation = (val) => {
+  return {
+    type: LOAD_ANNIMATION,
+    payload: val,
+  };
+};
+
 const freeBooksFilteredList = (data) => {
   return {
     type: FILTERED_FREE_BOOKS,
@@ -153,4 +159,5 @@ export {
   freeBooksFilteredList,
   getAllTasks,
   tasksFilteredList,
+  loadLottieAnnimation,
 };
