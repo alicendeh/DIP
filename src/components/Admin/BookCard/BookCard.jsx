@@ -21,133 +21,253 @@ function BookCard({ book }) {
 
   const openPdf = async (data) => {
     setShowPdf(true);
+
     try {
       let pdfURL = `${process.env.REACT_APP_URL}/admin/books/images/${data.pdf}`;
       setStorePDF(pdfURL);
-
-      // window.open(pdfURL, "_blank", "#toolbar=0");
     } catch (err) {
       console.log(err);
     }
   };
 
   return (
-    <div className={styles.mainCOntainer}>
-      <ModalComponent
-        name={name}
-        book={book}
-        show={show}
-        handleClose={handleClose}
-      />
-      {/* {showPdf && (
-        // <Document file={PDF}>
-        //   <Page pageNumber={1} />
-        // </Document>
-      )} */}
-      <div className={styles.card}>
-        <div
-          className={`
-        ${
-          plan === "free"
-            ? `${styles.colorContainer}`
-            : `${styles.colorContainerPremium}`
-        }
-        `}
-        ></div>
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            marginLeft: "12px",
-            flexDirection: "column",
-          }}
-        >
-          {moment(parseInt(book.date)).format("MMMM Do YYYY")}
-        </div>
-        <div className={`containerCenter`}>
-          <div className={styles.line}></div>
-        </div>
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            marginLeft: "12px",
-          }}
-          containerCenter
-          className={` ${styles.bookContainer}  `}
-        >
-          <div>
-            <Avater
-              imageUrl={book.coverPage ? book.coverPage : "/defaultBook.png"}
-            />
-          </div>
-          <div className={styles.txtContainer}>
-            {book.name} <br />
-            <span className={styles.email}> {book.author}</span>
-          </div>
-        </div>
-
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center",
-            width: "123px",
-            marginLeftRight: "12px",
-          }}
-        >
-          <div
-            style={{
-              color: "#000",
-            }}
-            className={`${styles.pendingContianer} `}
-          >
-            {book.views} views
-          </div>
-        </div>
-
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center",
-            width: "123px",
-            marginLeftRight: "12px",
-          }}
-        >
-          <span className={styles.usersPlan}>{book.plan} </span>
-          <div className={`${styles.pendingContianer} `}>
-            <div className={styles.round}></div>
-          </div>
-        </div>
-        <div className="containerCenter">
-          <Link
-            to="/pdfview"
-            state={{
-              pdfURL: `${process.env.REACT_APP_URL}/admin/books/images/${book.pdf}`,
-            }}
-          >
-            <i
-              onClick={() => openPdf(book)}
+    <>
+      {book.dataType == "pdf" ? (
+        <div className={styles.mainCOntainer}>
+          <ModalComponent
+            name={name}
+            book={book}
+            show={show}
+            handleClose={handleClose}
+          />
+          {/* {showPdf && (
+          // <Document file={PDF}>
+          //   <Page pageNumber={1} />
+          // </Document>
+        )} */}
+          <div className={styles.card}>
+            <div
+              className={`
+          ${
+            plan === "free"
+              ? `${styles.colorContainer}`
+              : `${styles.colorContainerPremium}`
+          }
+          `}
+            ></div>
+            <div
               style={{
-                color: "#000",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                marginLeft: "12px",
+                flexDirection: "column",
               }}
-              className={` fas fa-eye
-        ${plan === "Free" ? `${styles.eyeIconFree}` : `${styles.eyeIcon}`}
-        `}
-            ></i>
-          </Link>
-        </div>
-        <div className="containerCenter">
-          <div className={`btn btn-danger mr-3 `} onClick={handleShow}>
-            <i className="fas fa-times"></i>
+            >
+              {moment(parseInt(book.date)).format("MMMM Do YYYY")}
+            </div>
+            <div className={`containerCenter`}>
+              <div className={styles.line}></div>
+            </div>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                marginLeft: "12px",
+              }}
+              containerCenter
+              className={` ${styles.bookContainer}  `}
+            >
+              <div>
+                <Avater
+                  imageUrl={
+                    book.coverPage ? book.coverPage : "/defaultBook.png"
+                  }
+                />
+              </div>
+              <div className={styles.txtContainer}>
+                {book.name} <br />
+                <span className={styles.email}> {book.author}</span>
+              </div>
+            </div>
+
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                width: "123px",
+                marginLeftRight: "12px",
+              }}
+            >
+              <div
+                style={{
+                  color: "#000",
+                }}
+                className={`${styles.pendingContianer} `}
+              >
+                {book.views} views
+              </div>
+            </div>
+
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                width: "123px",
+                marginLeftRight: "12px",
+              }}
+            >
+              <span className={styles.usersPlan}>{book.plan} </span>
+              <div className={`${styles.pendingContianer} `}>
+                <div className={styles.round}></div>
+              </div>
+            </div>
+            <div className="containerCenter">
+              <Link
+                to="/pdfview"
+                state={{
+                  pdfURL: `${process.env.REACT_APP_URL}/admin/books/images/${book.pdf}`,
+                }}
+              >
+                <i
+                  onClick={() => openPdf(book)}
+                  style={{
+                    color: "#000",
+                  }}
+                  className={` fas fa-eye
+          ${plan === "Free" ? `${styles.eyeIconFree}` : `${styles.eyeIcon}`}
+          `}
+                ></i>
+              </Link>
+            </div>
+            <div className="containerCenter">
+              <div className={`btn btn-danger mr-3 `} onClick={handleShow}>
+                <i className="fas fa-times"></i>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
+      ) : (
+        <div className={styles.mainCOntainer}>
+          <ModalComponent
+            name={name}
+            book={book}
+            show={show}
+            handleClose={handleClose}
+          />
+
+          <div className={styles.card}>
+            <div
+              className={`
+          ${
+            plan === "free"
+              ? `${styles.colorContainer}`
+              : `${styles.colorContainerPremium}`
+          }
+          `}
+            ></div>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                marginLeft: "12px",
+                flexDirection: "column",
+              }}
+            >
+              {moment(parseInt(book.date)).format("MMMM Do YYYY")}
+            </div>
+            <div className={`containerCenter`}>
+              <div className={styles.line}></div>
+            </div>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                marginLeft: "12px",
+              }}
+              containerCenter
+              className={` ${styles.bookContainer}  `}
+            >
+              <div>
+                <Avater
+                  imageUrl={
+                    book.coverPage ? book.coverPage : "/defaultBook.png"
+                  }
+                />
+              </div>
+              <div className={styles.txtContainer}>
+                {book.name} <br />
+                <span className={styles.email}> {book.author}</span>
+              </div>
+            </div>
+
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                width: "123px",
+                marginLeftRight: "12px",
+              }}
+            >
+              <div
+                style={{
+                  color: "#000",
+                }}
+                className={`${styles.pendingContianer} `}
+              >
+                {book.views} views
+              </div>
+            </div>
+
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                width: "123px",
+                marginLeftRight: "12px",
+              }}
+            >
+              <span className={styles.usersPlan}>{book.plan} </span>
+              <div className={`${styles.pendingContianer} `}>
+                <div className={styles.round}></div>
+              </div>
+            </div>
+            <div className="containerCenter">
+              <Link
+                to="/videoplayer"
+                state={{
+                  videoURL: `${process.env.REACT_APP_URL}/admin/books/images/${book.pdf}#.mp4`,
+                }}
+              >
+                <i
+                  onClick={() => console.log(book.pdf)}
+                  style={{
+                    color: "#000",
+                  }}
+                  className={` fas fa-eye
+          ${plan === "Free" ? `${styles.eyeIconFree}` : `${styles.eyeIcon}`}
+          `}
+                ></i>
+              </Link>
+            </div>
+            <div className="containerCenter">
+              <div className={`btn btn-danger mr-3 `} onClick={handleShow}>
+                <i className="fas fa-times"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
   );
 }
 
