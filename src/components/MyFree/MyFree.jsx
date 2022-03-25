@@ -10,7 +10,7 @@ import {
   loadLottieAnnimation,
 } from "../../redux/actions/adminAction";
 
-function MyFree({ children, take }) {
+function MyFree({ children }) {
   const dispatch = useDispatch();
   const data = useSelector((state) => state.admin);
   const user = useSelector((state) => state.user);
@@ -243,7 +243,9 @@ function MyFree({ children, take }) {
         <div className="container text-md-left">
           <div className="row">
             <div className="col-md-4 mt-md-0 mt-3">
-              <h5 className="text-uppercase">Footer Content</h5>
+              <h5 className="text-uppercase">
+                Dream Institute For Professionalism
+              </h5>
               <p>
                 Here you can use rows and columns to organize your footer
                 content.

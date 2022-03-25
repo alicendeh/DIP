@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import styles from "../../components/MyFree/MyFree.module.css";
-import { Form, Dropdown } from "react-bootstrap";
+import { NavDropdown } from "react-bootstrap";
 import {
   usersFilteredList,
   booksFilteredList,
@@ -18,6 +18,59 @@ function MyFree1({ children }) {
   const search = (e) => {
     setSearchValue({ names: e.target.value });
   };
+
+  const [choiceOnPlanType, setChoiceOnPlanType] = useState(true);
+  const [categoryDropDownMenu, setCategoryDropDownMenu] = useState([
+    {
+      value: "",
+      key: "",
+    },
+  ]);
+
+  useEffect(() => {
+    choiceOnPlanType
+      ? setCategoryDropDownMenu([
+          {
+            value: "customizedtraining",
+            key: "Customized Training",
+          },
+          {
+            value: "systemfundamentals",
+            key: "System Fundamentals",
+          },
+          {
+            value: "dipprokit",
+            key: "DIP Prokit",
+          },
+        ])
+      : setCategoryDropDownMenu([
+          {
+            value: "courses",
+            key: "courses",
+          },
+          {
+            value: "systemfundamentals",
+            key: "System Fundamentals",
+          },
+          {
+            value: "systembuildingblocks",
+            key: "System Building Blocks",
+          },
+          {
+            value: "advancecertificationprogram",
+            key: "Advance Certification program",
+          },
+          {
+            value: "DIPcoachingcertification",
+            key: "DIP Coaching Certificate",
+          },
+          {
+            value: "DIPmentorcertificate",
+            key: "DIP Mentor Certificate",
+          },
+        ]);
+  }, [choiceOnPlanType]);
+
   const data = useSelector((state) => state.admin);
   const { error, allBooks, allFreeBooks, loading, booksFilteredList } = data;
   return (
@@ -51,17 +104,29 @@ function MyFree1({ children }) {
                 filtrationFree={allFreeBooks}
                 from={"free books plan"}
                 to={"books Array"}
+                setChoiceOnPlanType={setChoiceOnPlanType}
               />
             </div>
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
-              <li className="nav-item pt-4">
+              <NavDropdown
+                title="Category"
+                id="navbarScrollingDropdown"
+                className="pt-4 pr-3 fw-bold"
+              >
+                {categoryDropDownMenu.map((category) => (
+                  <NavDropdown.Item href="#courses">
+                    {category.key}
+                  </NavDropdown.Item>
+                ))}
+              </NavDropdown>
+              <li className="nav-item pt-4  pr-4">
                 <Link
                   to="/feedback"
                   className="nav-link actived"
                   aria-current="page"
                   style={{ color: "#222f3e", fontWeight: "700" }}
                 >
-                  Weekly Task Submit
+                  Task
                 </Link>
               </li>
               <li className="nav-item pt-4">
@@ -69,6 +134,7 @@ function MyFree1({ children }) {
                   to="/userprofile"
                   className={` ${styles.hideName}  nav-link actived`}
                   aria-current="page"
+                  style={{ color: "#222f3e", fontWeight: "700" }}
                 >
                   Hi, {user.user.name}
                 </Link>
@@ -145,7 +211,9 @@ function MyFree1({ children }) {
         <div className="container text-md-left">
           <div className="row">
             <div className="col-md-4 mt-md-0 mt-3">
-              <h5 className="text-uppercase">Footer Content</h5>
+              <h5 className="text-uppercase">
+                Dream Institute For Professionalism
+              </h5>
               <p>
                 Here you can use rows and columns to organize your footer
                 content.

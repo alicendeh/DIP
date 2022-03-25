@@ -52,18 +52,6 @@ function AccessToFree() {
             <Unexpected />
           ) : (
             <div className="col-12">
-              <div className="col-4">
-                <select
-                  class="form-select"
-                  aria-label="Default select example"
-                  onChange={(e) => handleSelectCategory(e)}
-                >
-                  <option value="customizedtraining">
-                    Customized Training
-                  </option>
-                  <option value="DIPprokit">DIP Prokit</option>
-                </select>
-              </div>
               <br />
               {loading ? (
                 <div className={`containerCenter spinnerContainer`}>
@@ -73,55 +61,57 @@ function AccessToFree() {
                 <div className="col-12 col-md-12 col-sm-12">
                   {allFreeBooks.length > 0 ? (
                     <div>
-                      {freeBooksFilteredList.length > 0 ? (
-                        <div className="d-flex flex-wrap col-md-12  col-sm-12">
-                          {freeBooksFilteredList.map((book, index) => (
-                            <div key={index} className="d-flex">
-                              <BooksCard book={book} index={index} />
-                            </div>
-                          ))}
-                        </div>
-                      ) : (
-                        <div>
-                          <h3 className="fw-bold">{selectCategory}</h3>
-                          <div
-                            className={` ${styles.flow} d-flex flex-wrap col-md-12  col-sm-12 `}
-                          >
-                            {alice.length <= 0 ? (
-                              <div
-                                className="d-flex justify-content-center"
-                                style={{ width: "100%" }}
-                              >
-                                {" "}
-                                <LottieVIew />
+                      {
+                        freeBooksFilteredList.length > 0 ? (
+                          <div className="d-flex flex-wrap col-md-12  col-sm-12">
+                            {freeBooksFilteredList.map((book, index) => (
+                              <div key={index} className="d-flex">
+                                <BooksCard book={book} index={index} />
                               </div>
-                            ) : (
-                              <div
-                                className={` ${styles.flow} d-flex flex-wrap col-md-12  col-sm-12 `}
-                              >
-                                {alice.map((book, index) => (
-                                  <BooksCard book={book} index={index} />
-                                ))}
-                              </div>
-                            )}
+                            ))}
                           </div>
-                        </div>
-                      )}
+                        ) : (
+                          <div
+                            className={` ${styles.flow} d-flex flex-wrap col-md-12  col-sm-12  `}
+                          >
+                            {allFreeBooks.map((book, index) => (
+                              <div key={index} className="d-flex">
+                                <BooksCard book={book} index={index} />
+                              </div>
+                            ))}
+                          </div>
+                        )
+                        // : (
+                        //   <div>
+                        //     <h3 className="fw-bold">{selectCategory}</h3>
+                        //     <div
+                        //       className={` ${styles.flow} d-flex flex-wrap col-md-12  col-sm-12 `}
+                        //     >
+                        //       {alice.length <= 0 ? (
+                        //         <div
+                        //           className="d-flex justify-content-center"
+                        //           style={{ width: "100%" }}
+                        //         >
+                        //           {" "}
+                        //           <LottieVIew />
+                        //         </div>
+                        //       ) : (
+                        //         <div
+                        //           className={` ${styles.flow} d-flex flex-wrap col-md-12  col-sm-12 `}
+                        //         >
+                        //           {alice.map((book, index) => (
+                        //             <BooksCard book={book} index={index} />
+                        //           ))}
+                        //         </div>
+                        //       )}
+                        //     </div>
+                        //   </div>
+                        // )
+                      }
                     </div>
                   ) : (
-                    <div className="containerColumn fw-bold ">
-                      {/* <Lottie
-                        options={defaultOptions}
-                        height={400}
-                        width={"70%"}
-                      />
-                      <p
-                        style={{
-                          fontSize: 21,
-                        }}
-                      >
-                        All books will appear here
-                      </p> */}
+                    <div>
+                      <LottieVIew />
                     </div>
                   )}
                 </div>
