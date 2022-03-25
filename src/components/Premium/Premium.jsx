@@ -29,9 +29,6 @@ function Premium() {
     console.log(allBooks, "heeeeeeee");
   }, [allBooks]);
 
-  const takeCare = (e) => {
-    console.log(e.target.value);
-  };
   useEffect(() => {
     localStorage.removeItem("I_REQUESTED");
 
@@ -44,7 +41,7 @@ function Premium() {
     setalice(newArray);
   }, [selectCategory]);
   return (
-    <MyFree take={takeCare}>
+    <MyFree>
       <div className={`${styles.all} row pt-3 pb-5 d-flex flex-lg-wrap`}>
         {error != null ? (
           <Unexpected />
