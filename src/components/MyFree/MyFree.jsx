@@ -2,20 +2,33 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import styles from "../../components/MyFree/MyFree.module.css";
 import { NavDropdown } from "react-bootstrap";
-
-import { LOGOUT } from "../../redux/ActionType";
 import { useSelector, useDispatch } from "react-redux";
+import { LOGOUT } from "../../redux/ActionType";
 import Header1 from "../Admin/Header/Header1";
 
 function MyFree({ children, take }) {
+  const dispatch = useDispatch();
+  const data = useSelector((state) => state.admin);
+  const user = useSelector((state) => state.user);
+
+  const { error, allBooks, allFreeBooks, loading, booksFilteredList } = data;
+
   const [choiceOnPlanType, setChoiceOnPlanType] = useState(true);
-  const [currentSelectValue, setcurrentSelectValue] = useState("");
+  const [currentSelectValue, setcurrentSelectValue] = useState(
+    "Customized Training"
+  );
+
   const [categoryDropDownMenu, setCategoryDropDownMenu] = useState([
     {
       value: "",
       key: "",
     },
   ]);
+
+  const selectFunction = (e) => {
+    let categoryTitle = e.split("#");
+    setcurrentSelectValue(categoryTitle[1]);
+  };
 
   useEffect(() => {
     choiceOnPlanType
@@ -25,11 +38,11 @@ function MyFree({ children, take }) {
             key: "Customized Training",
           },
           {
-            value: "systemfundamentals",
-            key: "System Fundamentals",
+            value: "buildingblocks",
+            key: "Building Blocks",
           },
           {
-            value: "dipprokit",
+            value: "DIPprokit",
             key: "DIP Prokit",
           },
         ])
@@ -61,16 +74,17 @@ function MyFree({ children, take }) {
         ]);
   }, [choiceOnPlanType]);
 
-  const selectFunction = (e) => {
-    let categoryTitle = e.split("#");
-    setcurrentSelectValue(categoryTitle[1]);
-  };
+  useEffect(() => {
+    let newArray = allBooks.filter(
+      (book) => book.category === currentSelectValue
+    );
+    // setalice(newArray);
+    console.log(newArray);
+    // dispatch(booksFilteredList(newArray));
 
-  const user = useSelector((state) => state.user);
-  const dispatch = useDispatch();
+    // setalice(newArray);
+  }, [currentSelectValue]);
 
-  const data = useSelector((state) => state.admin);
-  const { error, allBooks, allFreeBooks } = data;
   return (
     <main>
       {/* Top header */}
@@ -115,7 +129,7 @@ function MyFree({ children, take }) {
                 className="pt-4 pr-3 fw-bold"
               >
                 {categoryDropDownMenu.map((category) => (
-                  <NavDropdown.Item href={`#${category.key}`}>
+                  <NavDropdown.Item href={`#${category.value}`}>
                     {category.key}
                   </NavDropdown.Item>
                 ))}
