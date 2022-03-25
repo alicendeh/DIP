@@ -29,6 +29,7 @@
 .text2 {
   color: rgb(140, 140, 140);
   font-size: 10px;
+  margin-left: 7em;
 }
 .badge1 span {
   background-color: #fdf4da;

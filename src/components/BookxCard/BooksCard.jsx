@@ -52,7 +52,7 @@ function BooksCard({ book }) {
                   />{" "}
                 </div>
                 <div className={` ${styles.details} ms-2`}>
-                  <h6 className="mb-0">{book.author}</h6> <span>Author</span>
+                  <h6 className="mb-0 ">{book.author}</h6> <span>Author</span>
                 </div>
                 <div className={` ${styles.badge} pl-5 `}>
                   {" "}
@@ -61,12 +61,20 @@ function BooksCard({ book }) {
               </div>
             </div>
           </Card.Header>
-          <Card.Body>
-            <Card.Title> {book.name} </Card.Title>
+          <Card.Body style={{ marginTop: "2em" }}>
+            <Card.Title className="fw-bold ">
+              {" "}
+              <label className="fw-bold" style={{ fontSize: "14px" }}>
+                Title:
+              </label>{" "}
+              {book.name}
+            </Card.Title>
             <Card.Text>
               Some quick example text to build on the card title the card's
               content.
             </Card.Text>
+            <h5 className="fw-bold"> {book.category} </h5>
+
             <div className="mt-5 d-flex justify-content-between">
               <Link
                 to="/pdfview"
@@ -120,29 +128,47 @@ function BooksCard({ book }) {
 
           <div class="card-body">
             <div className="d-flex justify-content-between">
-              <h5 class="card-title">{book.name}</h5>
+              <h5 class="card-title fw-bold">
+                {" "}
+                <label className="fw-bold" style={{ fontSize: "14px" }}>
+                  Title:
+                </label>{" "}
+                {book.name}
+              </h5>
               <div className={` ${styles.badge} pl-5 `}>
                 {" "}
                 <span>{book.plan}</span>{" "}
               </div>
             </div>
+            <div>
+              <p class="card-text">Watch and Learn with Dip videos .</p>
+              <h5 className="fw-bold"> {book.category} </h5>
+            </div>
 
-            <p class="card-text">Watch and Learn with Dip videos .</p>
-            <Link
-              to="/videoplayer"
-              state={{
-                videoURL: `${process.env.REACT_APP_URL}/admin/books/images/${book.pdf}#.mp4`,
-              }}
-            >
-              <button
-                type="button"
-                onClick={() => console.log(book.pdf)}
-                // onContextMenu={(e) => e.preventDefault()}
-                class="btn btn-outline-success col-md-6"
+            <div style={{ width: "100%" }}>
+              <Link
+                to="/videoplayer"
+                state={{
+                  videoURL: `${process.env.REACT_APP_URL}/admin/books/images/${book.pdf}#.mp4`,
+                }}
               >
-                Play Video
-              </button>
-            </Link>
+                <button
+                  type="button"
+                  onClick={() => console.log(book.pdf)}
+                  // onContextMenu={(e) => e.preventDefault()}
+                  class="btn btn-outline-success col-md-6"
+                >
+                  Play Video
+                </button>
+              </Link>
+              <span className={`${styles.text2} text-secondary mt-3 `}>
+                {book.views} views
+                <i
+                  className="far fa-eye p-0"
+                  style={{ fontSize: "17px", cursor: "pointer" }}
+                ></i>{" "}
+              </span>
+            </div>
           </div>
         </div>
       )}
