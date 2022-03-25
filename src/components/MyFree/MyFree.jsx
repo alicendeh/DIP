@@ -93,7 +93,6 @@ function MyFree({ children }) {
       dispatch(booksFilteredList(newArray));
     } else if (newArray.length <= 0 && currentSelectValue !== "All Category") {
       dispatch(loadLottieAnnimation(true));
-      console.log("kij");
     } else {
       dispatch(booksFilteredList(allBooks));
       dispatch(loadLottieAnnimation(false));

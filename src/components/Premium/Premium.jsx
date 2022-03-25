@@ -26,7 +26,6 @@ function Premium() {
     booksFilteredList,
     shouldLoadLottieAnnimation,
   } = data;
-  console.log(shouldLoadLottieAnnimation);
   useEffect(() => {
     localStorage.removeItem("I_REQUESTED");
 
